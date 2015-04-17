@@ -1,0 +1,238 @@
+mpForm wbCMS Content Module
+###########################
+
+MODULE VERSION HISTORY 
+======================
+
+   ------------------------------------------------------------------------------------------------------------------------ 
+        *** 1.1.9 BETA (Martin Hecht: 29-Mar-2015) ***
+        making release (thanks to Craxx for bug report)
+
+        *** 1.1.8.3 BETA (Quinto: 07-Mar-2015) ***
+        bugfix: missing closing div-tag in add.php
+
+        *** 1.1.8.2 BETA (Quinto: 06-Mar-2015) ***
+        added FR.php language file
+        bugfix in backend_modify_settings.htt and in all the language files 
+        (placeholder {TXT_LAYOUT_SETTINGS} added)
+
+        *** 1.1.8.1 BETA (Martin Hecht: 05-Mar-2015) ***
+        another bugfix in paintform for css error messages, 
+        thanks to quinto for this bugfix
+
+        *** 1.1.8.0 BETA (Martin Hecht: 20-Feb-2015) ***
+        bugfixes in in paintform for marking required fields output around checkboxes
+        thanks to instantflorian for reporting these issues 
+
+        *** 1.1.7.9 BETA (Martin Hecht: 07-Feb-2015) ***
+        bugfix for missing quote in upgrade.php
+
+        1.1.7.8 BETA (Martin Hecht: 07-Feb-2015)
+        clean up evalform and replace class wbx by a simple function
+
+        1.1.7.7 BETA (Martin Hecht: 18-Jan-2015)
+        found another bug in the latest patch for including the output_filter
+
+        1.1.7.6 BETA (Martin Hecht: 15-Jan-2015)
+        fixed sql statements for Mysyl-strit-mode (thanks to jacobi22)
+        modified include mechanism for output_filter (thanks to DarkViper)
+
+        1.1.7.5 BETA (Martin Hecht: 12-Jan-2015)
+        security fix: better validate posted variables in ajax.php 
+        make spam protection work together better with output filter dashboard
+        fix missing brace in Manuelas patch and a "new" too much when calling the function 
+        merged in Christians changes:
+        (Christian M. Stefan (Stefek): 1-Dec-2014):
+        [+] add CONSTANT 'MPFORM_DIV_WRAPPER'  (allows for more output customization)
+        [+] add CONSTANT 'MPFORM_CLASS_PREFIX' (allows for more output customization)
+        [c] rewrite paint_form.php 
+        [+] placeholder {FIELD_ID} added (thanks to Chio)
+        [+] apply method_exists($database, 'escapeString') (handle depracated issues)
+
+        1.1.7.4 BETA(Martin Hecht: 03-Jan-2015)
+        added wrapper for 2.8.4 compatibility
+
+        1.1.7.3 BETA(Martin Hecht: 03-Jan-2015)
+        corrected in info.php module_function -> page
+        dos2unix on all files
+        backend.css one '*/' too much
+        moved captche-readme.txt -> captcha-readme.txt 
+
+        1.1.7.2 BETA(Martin Hecht: 30-Dec-2014)
+        restored backwards compatibility for WB 2.8.3sp1 and php5.2, while at the same time using the new 
+        escapeString method of the database class if running in WB 2.8.3sp3 or later, fixed dos line breaks 
+
+        1.1.7.1 BETA(Martin Hecht: 26-Dec-2014)
+        Fixed sql issues with php5.5
+
+        Added admin backend footer in case of a "generic security access" error.
+        Thanks to Stefek for the hint about this issue.
+   ------------------------------------------------------------------------------------------------------------------------
+        *** 1.1.6 BETA(Martin Hecht: 06-May-2014) ***
+
+        Activate FTAN checks for the backend.
+   ------------------------------------------------------------------------------------------------------------------------
+        *** 1.1.5 BETA(Norbert Heimsath: 15-Sept-2012) ***
+        Bugfix from Werner actuallly was buggy ;-)
+        Now using the functional one.
+   ------------------------------------------------------------------------------------------------------------------------ 
+        *** 1.1.4 BETA(Norbert Heimsath: 13-Sept-2012) ***
+        [debug] Fixed trailing comma in Evalform line 420 bugfix from: 
+        http://www.websitebaker2.org/forum/index.php/topic,24686.0.html
+
+   ------------------------------------------------------------------------------------------------------------------------ 
+        *** 1.1.3 BETA(Norbert Heimsath: 12-Sept-2012) ***
+        [debug] File upload now accepts a length parameter (only usefull to limit size of upload field in FF browser 
+        but still usefull as FF tends to make really long upload fields that easily blowup any CSS formating) 
+        Not many Bowsers interpret the size="10" attribute  but i found it usefull on quite a few occasions.
+
+
+   ------------------------------------------------------------------------------------------------------------------------ 
+        *** 1.1.0 BETA (Christian M. Stefan (Stefek): 1-Sept-2012) ***
+        [upgrade] jquery.cluetip plugin to v 1.2.5 and apply new extend to let the plugin work better along with WB
+        [improve] ajax plugin ajaxDeleteRecord.js to improve fallback in cases JS is turned off in browser 
+        [+] while adding a new field, jquery disables save/copy/add buttons as long as title and type ain't selected
+        [+] new language file for ALL the Javascript language strings
+   ------------------------------------------------------------------------------------------------------------------------  
+        *** 1.0.9 (Norbert Heimsath: 25-Aug-2012) ***
+        backend now runns whithout javascript
+        capcha Patch from :
+        http://www.websitebaker2.org/forum/index.php/topic,23986.msg167490.html#msg167490
+        fixed some small CSS issues
+        fixed some warnings on saving advanced settings
+        Default accessrights now based on Websitebaker settings
+        changed some deffault settings(possible issues whith some local law)
+        fixed non functional mailadresses whith names "my Name<my@mail.de>"
+        added BCC: CC: functionality just add a BCC: or CC: bevore your Email 
+        removed all ?> at end of file
+        fixed a missing linebreak in /htt/backend_modify_settings.htt
+   ------------------------------------------------------------------------------------------------------------------------  
+        *** 1.0.8 (Christian M. Stefan (Stefek): 25-Aug-2012) ***
+        [debug] debug ajaxPry to get rid of bug reported by NorHei
+        [+] use of jEditable for easy rename of form-field titles
+   ------------------------------------------------------------------------------------------------------------------------
+        *** 1.0.7 (Christian M. Stefan (Stefek): 18-Aug-2012) ***
+        [+] added new ajax comfort; you can now:
+                -> delete fields without page reload using ajax
+                -> change required status (optional, required, read-only) without page reload using ajax
+   ------------------------------------------------------------------------------------------------------------------------        
+        *** 1.0.6 (Christian M. Stefan (Stefek): 18-Aug-2012) ***
+        [+] added ajaxPry functionality using jquery.cluetip Plugin
+   ------------------------------------------------------------------------------------------------------------------------        
+        *** 1.0.5 (Christian M. Stefan (Stefek): 18-Aug-2012) ***
+        [-] getting rid of $admin->print_success() in files, use of header() instead for changes 
+                without the time costly reload message
+        [+] use of jQuery success messages
+        [change] Drag&Drop mechanism to work with jQuery instead of the use of the YahooUI (should be set to deprecated anyway)
+        [+] use of jEditable for easy change of the titles of form fields
+        [change] lots of CSS changes in the Backend, Template changes, new/changed icons
+   ------------------------------------------------------------------------------------------------------------------------
+        *** 1.0.4 (NorHei: 16-Aug-2012) ***
+        modified soe regex, for sending multiple mails was diysfunctional
+   ------------------------------------------------------------------------------------------------------------------------
+        *** 1.0.3 stable (Frank Heyne: 06-Apr-2012) ***
+        minor improvements
+        solved problem because of stupid renaming of function in WB
+        Final version
+   ------------------------------------------------------------------------------------------------------------------------
+        *** 1.0.1 stable (Frank Heyne: 09-Aug-2011) ***
+        disabled WB FTAN because it is not implemented for frontend, yet 
+   ------------------------------------------------------------------------------------------------------------------------
+        *** 1.0. stable (Frank Heyne: 06-Aug-2011) ***
+        made the module compatible with Lepton
+   ------------------------------------------------------------------------------------------------------------------------
+        *** 0.4.5 stable (Frank Heyne: 03-Jul-2011) ***
+        This version is sponsored by www.usdumzuege.de
+        added {USER} field for authenticated user
+        added possibility to use email address of authenticated user
+        0.4.4 stable (Frank Heyne: 23-Jan-2011)
+        minor changes
+   ------------------------------------------------------------------------------------------------------------------------
+        *** 0.4.3 stable (Frank Heyne: 16-Jan-2011) ***
+        some security fixes (CSRF, droplets)
+   ------------------------------------------------------------------------------------------------------------------------
+        *** 0.4.2 stable (Frank Heyne: 13-Dec-2010) ***
+        some security fixes (Cross Page Writing, Reading and Deleting)
+   ------------------------------------------------------------------------------------------------------------------------
+        *** 0.4.1 stable (Frank Heyne: 01-Jan-2010) ***
+        minor bug fixes
+        slight usability improvements in the backend
+        NL language file from Argos
+    
+        To protect your customisatione, update from older version will now no longer overwrite the following files:
+                frontend.css (update is delivered as frontend.css.txt)
+                backend.css  (update is delivered as backend.css.txt)
+                private.php (update is delivered as private.php.txt)
+        You need to manually compare the files and decide which versions to use!
+   ------------------------------------------------------------------------------------------------------------------------
+        *** 0.4.0 stable (Frank Heyne: 20-Nov-2009) ***
+        now submitted forms with errors will repaint form at once
+        added {ERRORTEXT} for some field types
+        now multiple forms are allowed on a page
+        now separate texts are configurable for:
+                -> email to site owner
+                -> confirmation mail to user
+                -> text on web page
+                -> text saved in submissions table
+        removed unnecessary field in settings table
+        improved frontend.css
+        added optional enumeration for radio and checkbox
+        added optional default values for radio and checkbox
+        documentation for this module now consists of 20 pages and is available online at the module home page (see below)
+        module now requires WB 2.8 + patch for Captcha (included)
+   ------------------------------------------------------------------------------------------------------------------------
+    *** 0.3.2 RC1 (Frank Heyne: 20-Aug-2009) ***
+    added class for captcha
+   ------------------------------------------------------------------------------------------------------------------------
+    *** 0.3.1 beta (Frank Heyne: 31-Jul-2009) ***
+    bug fixes
+   ------------------------------------------------------------------------------------------------------------------------
+    *** 0.3.0 beta (Frank Heyne: 30-Jul-2009) ***
+    added field type HTML-Code
+    added readonly fields
+    added place holder {CLASSES}
+    added interface for private functions
+    made module compatible with WB 2.8
+    minor improvements
+    thank goes to Stefek for icons for Backend and to Chio for alternate frontend.css
+   ------------------------------------------------------------------------------------------------------------------------
+    *** 0.2.2 RC3 (Frank Heyne: 02-Jul-2009) ***
+    now multiple email addresses work again if you put one on each line
+    minor improvements, thank goes to Argos for bug reports
+   ------------------------------------------------------------------------------------------------------------------------
+    *** 0.2.1 RC2 (Frank Heyne: 20-Jun-2009) *** 
+    now multiple email addresses in one line in the backend are allowed as follows:
+            Recipient X <address1,address2,address3>
+    minor improvements 
+   ------------------------------------------------------------------------------------------------------------------------
+    *** 0.2.0 RC1 (Frank Heyne: 10-Jun-2009) ***
+    valid html code for the backend (as far as module code is concerned)
+    minor improvements 
+   ------------------------------------------------------------------------------------------------------------------------
+    *** 0.1.4 beta (Frank Heyne: 31-May-2009) ***
+    bug fix in Settings (save_settings.php) 
+    spelling error fix in html (view.php) 
+   ------------------------------------------------------------------------------------------------------------------------
+    *** 0.1.3 beta (Frank Heyne: 29-May-2009) ***
+    bug fix in Search function (install.php and upgrade.php) 
+   ------------------------------------------------------------------------------------------------------------------------
+    *** 0.1.2 beta (Frank Heyne: 26-May-2009) ***
+    bug fix in Java Script (view.php) 
+    status changed to beta
+   ------------------------------------------------------------------------------------------------------------------------ 
+    *** 0.1.0 alpha (Frank Heyne: 16-May-2009) ***
+    first public version 
+    derived from FormX version 2.4.8 (authors: Ryan Djurovich & Rudolph Lartey - additions John Maats - PCWacht - Greg Bosen - Stefano Ricci)
+    Added fields to submissions table:
+    + Added field for IP address
+    + Added field for time stamp when form was sent to browser
+    + Added field for session id (important for multipage forms)
+        + Added field is_following (important for multipage forms)
+    Added new tables results_xxx<
+    + contains one column for each field, regardles of its page_id
+        + contains one line for each session_id
+        + column with timestamp when the first form of a session has been sent to the user
+        + column with timestamp when the last form of a session has been sent back to the server
+    + column with referer page from where the form was called
+    Enhanced multilanguage support
+   ------------------------------------------------------------------------------------------------------------------------

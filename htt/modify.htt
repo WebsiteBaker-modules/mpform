@@ -1,0 +1,23 @@
+<!-- BEGIN main_block -->
+<div class="{MOD_CLASS}">
+<table class="head" cellpadding="5" cellspacing="0" border="0" align="center" width="100%" style="margin-bottom: 10px; ">
+<tr>
+        <td valign="middle" align="left">
+                <h2>{MODULE_TITLE}</h2>
+                <b>Ver.&nbsp;{MODULE_VERSION}</b>
+        </td>
+        <td align="right">
+                {TEXT_CURRENT_PAGE}:
+                <b>{PAGE_TITLE}</b> (page_id: {PAGE_ID} - section_id: {SECTION_ID})<br />
+                &nbsp; 
+                <a href="{ADMIN_URL}/pages/settings.php?page_id={PAGE_ID}">{TEXT_CHANGE_SETTINGS}</a>
+                <font style="display: {DISPLAY_MANAGE_SECTIONS}">-</font>
+                <a href="{ADMIN_URL}/pages/sections.php?page_id={PAGE_ID}" style="display: {DISPLAY_MANAGE_SECTIONS}">{TEXT_MANAGE_SECTIONS}</a>
+                <font style="color: #999999;" class="{DISPLAY_MODIFIED}"><br />
+                {LAST_MODIFIED} {MODIFIED_BY} ({MODIFIED_BY_USERNAME}), {MODIFIED_WHEN}
+                </font>
+        </td>
+</tr>
+</table>
+</div>
+<!-- END main_block -->
