@@ -5,7 +5,7 @@
    This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
    
    @module              mpform
-   @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman), Quinto
+   @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
    @copyright           (c) 2009 - 2015, Website Baker Org. e.V.
    @url                 http://www.websitebaker.org/
    @license             GNU General Public License
@@ -476,7 +476,7 @@ if (!function_exists('paint_form')) {
                         $sHelp = str_replace('&quot;', '\\&quot;', $sHelp);
                         $sHelpText = '<p class="help_txt">'.$sHelp.'</p>'.PHP_EOL;                        
                         $sHelpLink =  '<a id="mpform_a_'. $iFID . '" class="mpform_a_help" href="#"'
-                                . ' onclick="javascript:helpme(\'mpform_a_'.$iFID.'\', \''.$sHelp.'\', \''.$field['title'].'\', \''.$MENU['HELP'].'\'); return false;"'
+                                . ' onclick="javascript:helpme(\'mpform_a_'.$iFID.'\', \''.$sHelp.'\', \''.str_replace("'","\'",$field['title']).'\', \''.$MENU['HELP'].'\'); return false;"'
                                 . ' title="'.$MENU['HELP'].'"><img class="mpform_img_help" src="'.MPFORM_ICONS.'/help.gif" alt="'.$MENU['HELP'].'" /></a>';
                         $aReplacements['{HELP}'] = $sHelpLink;
                         $aReplacements['{HELPTXT}'] = htmlspecialchars_decode($sHelpText); // help text always to show                     

@@ -5,7 +5,7 @@
    This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
    
    @module              mpform
-   @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman), Quinto
+   @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
    @copyright           (c) 2009 - 2015, Website Baker Org. e.V.
    @url                 http://www.websitebaker.org/
    @license             GNU General Public License
@@ -16,7 +16,17 @@
 
 */
 /* This file copies a field of the form in the backend. */
+
 require('../../config.php');
+
+
+// obtain module directory
+$mod_dir = basename(dirname(__FILE__));
+
+// include the wrapper for escaping sql queries in old php / WB versions
+require_once(WB_PATH.'/modules/'.$mod_dir.'/dbfunctions.php');
+
+
 $sError = '';
 // Include WB admin wrapper script
 $admin_header = FALSE;
@@ -48,9 +58,16 @@ $field_id = $database->get_one("SELECT LAST_INSERT_ID()");
 $query_content = $database->query("SELECT * FROM `".TABLE_PREFIX."mod_mpform_fields` WHERE `field_id` = '$oldfield_id'");
 $old = $query_content->fetchRow();
 
-// copy settings from existing to new field
-$database->query("UPDATE ".TABLE_PREFIX."mod_mpform_fields SET type='". $old['type']. "', title='". $old['title']. " [DUPLICATE]', required='". $old['required']. "', value='". $old['value']. "',"
-                                 ." extra='". $old['extra']. "', help='". $old['help']. "' WHERE field_id = '$field_id'");  
+// copy settings from existing to new field - need to protect this
+$sql="UPDATE ".TABLE_PREFIX."mod_mpform_fields"
+    . " SET  type='" . mpform_escape_string($old['type']). "',"
+    . "     title='" . mpform_escape_string($old['title']). " [DUPLICATE]',"
+    . "  required='" . mpform_escape_string($old['required']). "',"
+    . "     value='" . mpform_escape_string($old['value']). "',"
+    . "     extra='" . mpform_escape_string($old['extra']). "',"
+    . "      help='" . mpform_escape_string($old['help']). "'"
+    . " WHERE field_id = '$field_id'";
+$database->query($sql);  
 if($database->is_error()) {
         $sError .= ' error witch "UPDATE mod_mpform_fields"';
 }

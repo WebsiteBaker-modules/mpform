@@ -15,23 +15,26 @@
    For more information see info.php   
 
 */
-/* This file provides the deinstallation function of the module. */
-// Must include code to stop this file from being accessed directly
+/* This file provides a wrapper for quoting database queries (backport for older 
+   php versions and wb before 2.8.4 sp3 */
+
+// Must include code to stop this file being access directly
 if(defined('WB_PATH') == false) { exit("Cannot access this file directly"); }
 
-$database->query("DELETE FROM ".TABLE_PREFIX."search WHERE name = 'module' AND value = 'mpform'");
-$database->query("DELETE FROM ".TABLE_PREFIX."search WHERE extra = 'mpform'");
-
-$database->query("DROP TABLE IF EXISTS `".TABLE_PREFIX."mod_mpform_fields`");
-$database->query("DROP TABLE IF EXISTS `".TABLE_PREFIX."mod_mpform_settings`");
-$database->query("DROP TABLE IF EXISTS `".TABLE_PREFIX."mod_mpform_submissions`");
-
-$results = TABLE_PREFIX . "mod_mpform_results_%";
-$t = $database->query("SHOW TABLES LIKE '".$results."'");
-if ($t->numRows() > 0 ) {
-        while ($tn = $t->fetchRow()) {
-                $database->query("DROP TABLE IF EXISTS `".$tn[0]."`");
+if (!function_exists('mpform_escape_string')) {
+    function mpform_escape_string($sQuery) {
+        global $database;
+        $sReturn = $sQuery;
+        if(isset($database)&&method_exists($database,"escapeString")) {
+            $sReturn = $database->escapeString($sQuery);
+        } else { 
+            if (is_object($database->db_handle) 
+                 && (get_class($database->db_handle) === 'mysqli'))
+                     $sReturn = mysqli_real_escape_string($database->db_handle,$sQuery);
+            else
+                 $sReturn = mysql_real_escape_string($sQuery);
         }
+        return $sReturn;
+    }  
 }
-
 

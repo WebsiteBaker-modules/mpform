@@ -5,7 +5,7 @@
    This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
    
    @module              mpform
-   @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman), Quinto
+   @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
    @copyright           (c) 2009 - 2015, Website Baker Org. e.V.
    @url                 http://www.websitebaker.org/
    @license             GNU General Public License
@@ -19,6 +19,12 @@
 
 // Must include code to stop this file being access directly
 if(defined('WB_PATH') == false) { exit("Cannot access this file directly"); }
+
+// obtain module directory
+$mod_dir = basename(dirname(__FILE__));
+
+// include the wrapper for escaping sql queries in old php / WB versions
+require_once(WB_PATH.'/modules/'.$mod_dir.'/dbfunctions.php');
 
 if (!function_exists('upload_one_file')) {
         function upload_one_file($fileid, $upload_files_folder, $filename, $only_exts, $chmod, $maxbytes) {
@@ -424,16 +430,7 @@ function eval_form($section_id) {
                                                 if (strlen($felder) > 0) {
                                                         $felder .= ", ";
                                                 }
-                                                if(isset($database)&&method_exists($database,"escapeString"))
-                                                {
-                                                        $felder .= "field" . $field_id . " = '" . $database->escapeString(htmlspecialchars($post_field)) . "'";
-                                                } else { 
-                                                        if (is_object($database->db_handle) && (get_class($database->db_handle) === 'mysqli'))
-                                                                $felder .= "field" . $field_id . " = '" . mysqli_real_escape_string($database->db_handle,htmlspecialchars($post_field)) . "'";
-                                                        else
-                                                                $felder .= "field" . $field_id . " = '" . mysql_real_escape_string(htmlspecialchars($post_field)) . "'";
-                                                }
-                                        } else {
+                                                $felder .= "field" . $field_id . " = '" . mpform_escape_string(htmlspecialchars($post_field)) . "'";                                                                         } else {
                                                 //$email_body .= $field['title'].": \n";   
                                                 //$s1[$field['title']]='';
                                                 if (strlen($felder) > 0) {
@@ -443,22 +440,8 @@ function eval_form($section_id) {
                                                 $zeilen = '';
                                                 foreach ($post_field as $k => $v) {
                                                         $field_value = htmlspecialchars($admin->add_slashes($v), ENT_QUOTES);
-                                                        //$email_body .= $field_value."\n";  // besser noch strip_tags ??
-                                                        //$s1[$field['title']] .= $field_value; // save as label_name => value,,,
-                                                        if(isset($database)&&method_exists($database,"escapeString"))
-                                                        {
-                                                                $felder .= $database->escapeString($field_value) . ", ";
-                                                                $zeilen .= $database->escapeString($field_value) . "<br />";
-                                                        } else {
-                                                                if (is_object($database->db_handle) && (get_class($database->db_handle) === 'mysqli'))
-                                                                {
-                                                                        $felder .= mysqli_real_escape_string($database->db_handle,$field_value) . ", ";
-                                                                        $zeilen .= mysqli_real_escape_string($database->db_handle,$field_value) . "<br />";
-                                                                } else {
-                                                                        $felder .= mysql_real_escape_string($field_value) . ", ";
-                                                                        $zeilen .= mysql_real_escape_string($field_value) . "<br />";
-                                                                }
-                                                        }
+                                                        $felder .= mpform_escape_string($field_value) . ", ";
+                                                        $zeilen .= mpform_escape_string($field_value) . "<br />";
                                                 }
                                                 $felder = substr($felder, 0, -2);
                                                 $felder .= "'";
@@ -507,7 +490,13 @@ function eval_form($section_id) {
                         }
                 }
         }
-
+        
+        // sanitize against any javascript attempts
+        $aTags = array( 'script', 'body', 'head', 'html', 'link');
+        foreach($aTags as $tag){
+            $html_data_user = preg_replace('/<\/?'.$tag.'[^<>]*>/i',"",$html_data_user);
+            $html_data_site = preg_replace('/<\/?'.$tag.'[^<>]*>/i',"",$html_data_site);
+        }
         // Check if the user forgot to enter values into all the required fields
         if($fer != array()) {
                 // paint form again:
@@ -596,6 +585,7 @@ function eval_form($section_id) {
                                 $us = $_SESSION['submission_id_'.$section_id];
                                 $started_when = $_SESSION['submitted_when'.$section_id];
                                 $body = str_replace(array('{DATA}', '{REFERER}', '{IP}', '{DATE}', '{USER}'), array($html_data_site, $_SESSION['href'], $ip, $jetzt, $wb_user), $submissions_text);
+                                $body = mpform_escape_string($body);
                                 $database->query("INSERT INTO ".TABLE_PREFIX."mod_mpform_submissions
                                                 (page_id, section_id, submitted_when, submitted_by, upload_filename, ip_addr, body, started_when, session_id)
                                                 VALUES ('".PAGE_ID."', '$section_id', '".time()."', '$submitted_by', '$upload_filename', '$ip', '$body', '$started_when', '$us')");

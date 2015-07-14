@@ -5,7 +5,7 @@
    This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
    
    @module              mpform
-   @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman), Quinto
+   @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
    @copyright           (c) 2009 - 2015, Website Baker Org. e.V.
    @url                 http://www.websitebaker.org/
    @license             GNU General Public License
@@ -16,8 +16,16 @@
 
 */
 /* This file saves the advanced settings made in the main form of the module in the backend. */
+
 // include global configuration file
 require('../../config.php');
+
+
+// obtain module directory
+$mod_dir = basename(dirname(__FILE__));
+
+// include the wrapper for escaping sql queries in old php / WB versions
+require_once(WB_PATH.'/modules/'.$mod_dir.'/dbfunctions.php');
 
 // unset page/section IDs defined via GET before including the admin file (we expect POST here)
 unset($_GET['page_id']);
@@ -101,10 +109,11 @@ if ($upload_files_folder != MEDIA_DIRECTORY ) {
 
 
 
-// now loop over update values and create the SQL query string (this way we do not forget values)
+// now loop over update values and create the SQL query string (this way we do not forget values) 
+// - need to protect this
 $sql_key_values = '';
 foreach($update_keys as $key) {
-        $sql_key_values .= (($sql_key_values) ? ', ' : '' ) . "`$key` = '" . ${$key} . "'";
+        $sql_key_values .= (($sql_key_values) ? ', ' : '' ) . "`$key` = '" . mpform_escape_string(${$key}) . "'";
 }
 
 // write page settings to the module table
