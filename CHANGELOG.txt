@@ -5,6 +5,9 @@ MODULE VERSION HISTORY
 ======================
 
    ------------------------------------------------------------------------------------------------------------------------ 
+        *** 1.1.11 BETA (Martin Hecht: 18-Jul-2015) ***
+        one of the previous fixes was a bit overshooting (reverting it)
+
         *** 1.1.10 BETA (Martin Hecht: 13-Jul-2015) ***
         Security fix: sanitize body before adding post to 
         database table (thanks to instantflorian),

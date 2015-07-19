@@ -142,10 +142,10 @@ if ($email_fromname_field != '')
     $email_fromname = $email_fromname_field; //  use a field of the form as sender's name
 
 // now loop over update values and create the SQL query string (this way we do not forget values)
-// - need to protect this
+// - no need to protect this anymore because post-values were already protected above 
 $sql_key_values = '';
 foreach($update_keys as $key) {
-        $sql_key_values .= (($sql_key_values) ? ', ' : '' ) . "`$key` = '" . mpform_escape_string(${$key}) . "'";
+        $sql_key_values .= (($sql_key_values) ? ', ' : '' ) . "`$key` = '" . ${$key} . "'";
 }
 
 // write page settings to the module table
