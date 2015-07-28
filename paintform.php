@@ -7,7 +7,7 @@
    @module              mpform
    @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
    @copyright           (c) 2009 - 2015, Website Baker Org. e.V.
-   @url                 http://www.websitebaker.org/
+   @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
    @license             GNU General Public License
 
    Improvements are copyright (c) 2009-2011 Frank Heyne
@@ -136,6 +136,7 @@ echo <<<JS
                         theRowOpened = -1;
                 } else {
                         if (theRowOpened > 0) {
+                                if(theRowOpened<row) row--;
                                 removeRow(theRowOpened, theTableOpened);
                         }
                         insertTableRow(row,msg,title,help,theTableBody);
@@ -264,7 +265,7 @@ if (!function_exists('paint_form')) {
 
         // Get list of fields
         $query_fields = $database->query("SELECT * FROM ".TP_MPFORM."fields WHERE section_id = '$iSID' ORDER BY position ASC");
-        
+        $bFileSizeHintShown=false;
         $cla= array();
         $bLoadHelpJS = false;
         $bTableLayout = (stripos($header, "<table") !== false);  
@@ -316,6 +317,9 @@ if (!function_exists('paint_form')) {
                     $classes .= ' '.MPFORM_CLASS_PREFIX.'readonly';
                         }
                         
+                    $aReplacements['{HELP}'] = '';
+                    $aReplacements['{HELPTXT}'] = ''; 
+
                 switch ($field['type']){
                     case 'textfield': 
                         $aReplacements['{FIELD}'] = '<input type="text" name="field'.$iFID.'" id="field'.$iFID.'" '.$maxlength.' value="'.(isset($_SESSION['field'.$iFID])?$_SESSION['field'.$iFID]:$value).'" class="'.$sErrClass.'text" '."$readonly />";
@@ -353,8 +357,17 @@ if (!function_exists('paint_form')) {
                         $sMaxFileSize = sprintf($LANG['frontend']['MAX_FILESIZE'], $max_file_size/1024, $upload_only_exts);
                         $sMaxLength = str_replace("maxlength", "size", $maxlength);
                         $sValue = (isset($_SESSION['field'.$iFID])?$_SESSION['field'.$iFID]:$value);
-                        $aReplacements['{FIELD}'] = $vmax.'<input type="file"  name="field'.$iFID.'" id="field'.$iFID.'" '.$sMaxLength.' value="'.$sValue.'"'
-                                . ' class="'.$sErrClass.'text" /><span style="font-size:9px;"><br />'.$sMaxFileSize.'</span>';
+                        $bFileSizeHintShown;
+                        $aReplacements['{FIELD}'] = $vmax;
+                        if($bFileSizeHintShown==false){
+                            $aReplacements['{FIELD}'] .= '<span class="mpform_small">'.$sMaxFileSize.'<br/></span>';
+                            $aReplacements['{TITLE}'] = '<span class="mpform_small">&nbsp;<br/>&nbsp;<br/></span>' . $aReplacements['{TITLE}']; 
+                            $aReplacements['{HELP}'] = '<span class="mpform_small">&nbsp;<br/>&nbsp;<br/></span>';
+
+                            $bFileSizeHintShown=true;
+                        }
+                        $aReplacements['{FIELD}'] .= '<input type="file"  name="field'.$iFID.'[]" multiple="multiple" id="field'.$iFID.'" '.$sMaxLength.' value="'.$sValue.'"'
+                                . ' class="'.$sErrClass.'text" />';
                                 $first_MAX = false;
                         break; 
                     
@@ -469,8 +482,6 @@ if (!function_exists('paint_form')) {
                 if(isset($_SESSION['field'.$iFID])) { 
                     unset($_SESSION['field'.$iFID]);
                 }      
-                    $aReplacements['{HELP}'] = '';
-                    $aReplacements['{HELPTXT}'] = ''; 
                         if ($field['help']) {
                         $sHelp = preg_replace('/[\r\n]/', "<br />", $field['help']);
                         $sHelp = str_replace('&quot;', '\\&quot;', $sHelp);
@@ -478,7 +489,7 @@ if (!function_exists('paint_form')) {
                         $sHelpLink =  '<a id="mpform_a_'. $iFID . '" class="mpform_a_help" href="#"'
                                 . ' onclick="javascript:helpme(\'mpform_a_'.$iFID.'\', \''.$sHelp.'\', \''.str_replace("'","\'",$field['title']).'\', \''.$MENU['HELP'].'\'); return false;"'
                                 . ' title="'.$MENU['HELP'].'"><img class="mpform_img_help" src="'.MPFORM_ICONS.'/help.gif" alt="'.$MENU['HELP'].'" /></a>';
-                        $aReplacements['{HELP}'] = $sHelpLink;
+                        $aReplacements['{HELP}'] .= $sHelpLink;
                         $aReplacements['{HELPTXT}'] = htmlspecialchars_decode($sHelpText); // help text always to show                     
                         
                         if ($bNeedHelpButton) {

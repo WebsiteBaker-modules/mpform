@@ -8,7 +8,7 @@
    @module              mpform
    @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
    @copyright           (c) 2009 - 2015, Website Baker Org. e.V.
-   @url                 http://www.websitebaker.org/
+   @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
    @license             GNU General Public License
 
    Improvements are copyright (c) 2009-2011 Frank Heyne

@@ -5,8 +5,21 @@ MODULE VERSION HISTORY
 ======================
 
    ------------------------------------------------------------------------------------------------------------------------ 
+        *** 1.1.13 (Martin Hecht: 28-Jul-2015) ***
+        fixed row index where help message is displayed
+        fixed vertical alignment of help button in file upload fields, thanks to dbs
+
+        *** 1.1.12 BETA (Martin Hecht: 27-Jul-2015) ***
+        fixed permissions for file upload
+        display hint for file size only once on a page
+        move style for this hint to css file, add a missing dot in frontend.css
+        align field titles again to the upload input boxes
+        allow to select multiple files for upload in one field
+        thanks to dbs for testing and for the proposed feature extend
+        
         *** 1.1.11 BETA (Martin Hecht: 18-Jul-2015) ***
-        one of the previous fixes was a bit overshooting (reverting it)
+        one of the previous fixes was a bit overshooting (reverting it),
+        thanks to dbs for reporting this bug
 
         *** 1.1.10 BETA (Martin Hecht: 13-Jul-2015) ***
         Security fix: sanitize body before adding post to 

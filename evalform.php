@@ -7,7 +7,7 @@
    @module              mpform
    @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
    @copyright           (c) 2009 - 2015, Website Baker Org. e.V.
-   @url                 http://www.websitebaker.org/
+   @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
    @license             GNU General Public License
 
    Improvements are copyright (c) 2009-2011 Frank Heyne
@@ -26,29 +26,29 @@ $mod_dir = basename(dirname(__FILE__));
 // include the wrapper for escaping sql queries in old php / WB versions
 require_once(WB_PATH.'/modules/'.$mod_dir.'/dbfunctions.php');
 
-if (!function_exists('upload_one_file')) {
-        function upload_one_file($fileid, $upload_files_folder, $filename, $only_exts, $chmod, $maxbytes) {
+if (!function_exists('mpform_upload_one_file')) {
+        function mpform_upload_one_file($fieldid, $fileid, $upload_files_folder, $filename, $only_exts, $chmod, $maxbytes) {
                 // include strings for this function
                 $mod_dir = basename(dirname(__FILE__));
                 @include(get_module_language_file($mod_dir));
-        
+
                 // stop if file too large
-                if ($_FILES[$fileid]['size'] > $maxbytes) {
-                        $s = sprintf($LANG['frontend']['err_too_large'], $_FILES[$fileid]['size'], $maxbytes);
+                if ($_FILES[$fieldid]['size'][$fileid] > $maxbytes) {
+                        $s = sprintf($LANG['frontend']['err_too_large'], $_FILES[$fieldid][$fileid]['size'], $maxbytes);
                         return $s;
                 }
                 
                 // stop after upload error
-                if ($_FILES[$fileid]['error'] == 1) {
+                if ($_FILES[$fieldid]['error'][$fileid] == 1) {
                         $s = sprintf($LANG['frontend']['err_too_large2'], $maxbytes);
                         return $s;
-                } elseif ($_FILES[$fileid]['error'] == 2) {
+                } elseif ($_FILES[$fieldid]['error'][$fileid] == 2) {
                         $s = sprintf($LANG['frontend']['err_too_large2'], $maxbytes);
                         return $s;
-                } elseif ($_FILES[$fileid]['error'] == 3) {
+                } elseif ($_FILES[$fieldid]['error'][$fileid] == 3) {
                         $s = $LANG['frontend']['err_partial_upload'];
                         return $s;
-                } elseif ($_FILES[$fileid]['error'] == 4) {
+                } elseif ($_FILES[$fieldid]['error'][$fileid] == 4) {
                         $s = $LANG['frontend']['err_no_upload'];
                         return $s;
                 }
@@ -57,8 +57,9 @@ if (!function_exists('upload_one_file')) {
                 $old_path = ini_get("include_path");
                 ini_set("include_path", $old_path.((strstr($old_path,';')) ? ';' : ':').$cwd."/pear/");
                 require_once "Upload.php";
-        
-                $upload = new http_upload();
+                $lang =  DEFAULT_LANGUAGE;
+
+                $upload = new http_upload(strtolower($lang));
         
                 if ($chmod) $upload->setChmod(intval($chmod, 8));
         
@@ -450,12 +451,25 @@ function eval_form($section_id) {
                                                 $html_data_site .= str_replace(array('{TITLE}', '{DATA}'), array($field['title'], $zeilen), $long_html);
                                         }
                                 } elseif($field['type'] == 'filename') {
-                                        if($_FILES['field'.$field_id]['name'] != ""){
-                                                $filename = preg_replace("/[^0-9a-zA-Z_\-\.]/", "", basename($_FILES['field'.$field_id]['name'])); // only allow valid chars in filename
+                                    $err_txt[$field_id] = "";
+                                    // locally we use a copy of max_file_size 
+                                    $tmp_max_file_size = $max_file_size;
+                                    $file_counter=0;
+                                    if (count($_FILES['field'.$field_id]['name'])){
+                                       foreach($_FILES['field'.$field_id]['name'] as $f => $name) { 
+                                          if($name != ""){
+                                             if($tmp_max_file_size<=0){
+                                                $err_txt[$field_id] .= sprintf($LANG['frontend']['err_upload'], $name, sprintf($LANG['frontend']['err_too_large2'], 0));
+                                                $fer[]=$field_id;
+                                             } else {
+                                                $filename = preg_replace("/[^0-9a-zA-Z_\-\.]/", "", basename($name)); // only allow valid chars in filename
+                                                $file_counter++;
+                                                // prevent from upload of millions of empty files 
+                                                if($file_counter>128) break;
                                                 $newfilename = date('YmdHis') . "-" . rand(10000, 99999). "-" . $filename;
-                                                $uploadfailed = upload_one_file('field'.$field_id, WB_PATH.$upload_files_folder, $newfilename, $upload_only_exts, $upload_file_mask, $max_file_size);
+                                                $uploadfailed = mpform_upload_one_file('field'.$field_id, $f, WB_PATH.$upload_files_folder, $newfilename, $upload_only_exts, $upload_file_mask, $tmp_max_file_size);
                                                 if ($uploadfailed) {
-                                                        $err_txt[$field_id] = sprintf($LANG['frontend']['err_upload'], $filename, $uploadfailed);
+                                                        $err_txt[$field_id] .= sprintf($LANG['frontend']['err_upload'], $filename, $uploadfailed);
                                                         $fer[]=$field_id;
                                                 } else {
                                                         $upload_filename = $upload_files_folder . "/". $newfilename;          // for results table only
@@ -468,13 +482,25 @@ function eval_form($section_id) {
                                                                 $felder .= ", ";
                                                         }
                                                         $felder .= "field" . $field_id . " = '" . $upload_filename . "'";
-                                                        $fs = sprintf("%.1f", $_FILES['field'.$field_id]['size'] / 1024);  // file size in KB
+                                                        $fs = filesize(WB_PATH.$upload_files_folder."/".$newfilename);
+                                                        // reduce maximum by already consumed space
+                                                        $tmp_max_file_size -= $fs;
+                                                        // convert to human readable string for displaying
+                                                        $fs = sprintf("%.1f", $fs / 1024);  // file size in KB
+                                                        
                                                         $html_data_user .= str_replace(array('{TITLE}', '{DATA}'), array($field['title'], "$filename ($fs KB)"), $short_html);
                                                         $html_data_site .= str_replace(array('{TITLE}', '{DATA}', '{SIZE}'), array($field['title'], $file_url, $fs), $uploadfile_html);
                                                 }
-                                        } elseif ($field['required']==1) {
-                                                $fer[]=$field_id;
-                                        }
+                                             }
+                                          }
+                                       }
+                                    } elseif ($field['required']==1) {
+                                              $fer[]=$field_id;
+                                    }
+                                    // assumption: $_FILES is in the same order as filenames in $[field]
+                                    // then, we can shift it so that the next time pear's upload class can
+                                    // handle the next field. Otherwise we always stick to the first record
+                                    array_shift($_FILES);
                                 } elseif ($field['type'] == 'fieldset_start') {
                                         $html_data_user .= "<fieldset><legend>". $field['title'] ."</legend>\n";
                                         $html_data_site .= "<fieldset><legend>". $field['title'] ."</legend>\n";

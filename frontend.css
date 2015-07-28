@@ -193,7 +193,7 @@ width: 18px;
 .mpform_checkbox, .mpform_err_checkbox{
 width: 24px;
 }
-.mpform_select, mpform_err_select{
+.mpform_select, .mpform_err_select{
 width:410px;
 }
 
@@ -217,6 +217,11 @@ color:#666666;*/
 span.mpform_required {
 color:red;        
 }
+
+span.mpform_small {
+font-size:9px;
+}
+
 
 .captcha input {
 background-color:#F4F4F4;

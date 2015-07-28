@@ -8,7 +8,7 @@
    @module              mpform
    @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
    @copyright           (c) 2009 - 2015, Website Baker Org. e.V.
-   @url                 http://www.websitebaker.org/
+   @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
    @license             GNU General Public License
 
    Improvements are copyright (c) 2009-2011 Frank Heyne
@@ -145,8 +145,8 @@ Als dit veld een cijfer of letter krijgt (handige cijfers of letters kunnen bijv
         'TXT_MAX_FILE_SIZE_KB' => "Max. upload bestandsgrootte in Kb",
         'date_format'        => '%d-%m-%Y',
         'help_extensions'        => 'Voer extensies kommagescheiden in, bijv. doc,pdf,xls,jpg,gif,png,tif,bmp.',
-        'help_filemask'        => 'Rechten voor geupload bestand, bijv. 0204',
-        'help_dirmask'        => 'Rechten voor upload-folder, bijv. 0705'
+        'help_filemask'        => 'Rechten voor geupload bestand, bijv. 0640',
+        'help_dirmask'        => 'Rechten voor upload-folder, bijv. 0750'
  
 );
 

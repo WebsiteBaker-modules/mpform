@@ -8,7 +8,7 @@
    @module              mpform
    @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
    @copyright           (c) 2009 - 2015, Website Baker Org. e.V.
-   @url                 http://www.websitebaker.org/
+   @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
    @license             GNU General Public License
 
    Improvements are copyright (c) 2009-2011 Frank Heyne
@@ -141,8 +141,8 @@ $LANG['backend_adv'] = array(
         'TXT_MAX_FILE_SIZE_KB' => "Max upload file size Kb",
         'date_format'        => '%m/%d/%Y',
         'help_extensions'        => 'file extensions comma separated, eg. pdf,xls',
-        'help_filemask'        => 'permissions for uploaded file, eg. 0204',
-        'help_dirmask'        => 'permissions for upload directory, eg. 0705'
+        'help_filemask'        => 'permissions for uploaded file, eg. 0640',
+        'help_dirmask'        => 'permissions for upload directory, eg. 0750'
 
 );
 

@@ -8,7 +8,7 @@
    @module              mpform
    @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
    @copyright           (c) 2009 - 2015, Website Baker Org. e.V.
-   @url                 http://www.websitebaker.org/
+   @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
    @license             GNU General Public License
 
    Improvements are copyright (c) 2009-2011 Frank Heyne
@@ -147,8 +147,8 @@ $LANG['backend_adv'] = array(
         'TXT_MAX_FILE_SIZE_KB' => "Max Dateigr&ouml;sse f&uuml;r den Upload Kb",
         'date_format'        => '%d.%m.%Y',
         'help_extensions'        => 'Dateierweiterungen, getrennt durch Komma, z.B.: pdf,xls',
-        'help_filemask'        => 'Berechtigungen f&uuml;r hochgeladene Dateien, z.B.: 0204',
-        'help_dirmask'        => 'Berechtigungen f&uuml;r Upload-Verzeichnis, z.B.: 0705'
+        'help_filemask'        => 'Berechtigungen f&uuml;r hochgeladene Dateien, z.B.: 0640',
+        'help_dirmask'        => 'Berechtigungen f&uuml;r Upload-Verzeichnis, z.B.: 0750'
 
 );
 

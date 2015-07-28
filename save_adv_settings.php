@@ -7,7 +7,7 @@
    @module              mpform
    @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
    @copyright           (c) 2009 - 2015, Website Baker Org. e.V.
-   @url                 http://www.websitebaker.org/
+   @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
    @license             GNU General Public License
 
    Improvements are copyright (c) 2009-2011 Frank Heyne
@@ -86,10 +86,10 @@ if ((substr($upload_files_folder,-1,1) === "\\") or (substr($upload_files_folder
 $upload_files_folder = preg_replace("/[^\\0-9a-zA-Z_\-\.\/]/", "", $upload_files_folder);  // only allow valid chars 
 
 $upload_dir_mask = preg_replace("/[^0-7]/", "", $upload_dir_mask);  // only allow valid chars
-if(!is_numeric($upload_dir_mask) || $upload_dir_mask==0) $upload_dir_mask = '0705';
+if(!is_numeric($upload_dir_mask) || $upload_dir_mask==0) $upload_dir_mask = '0750';
 
 $upload_file_mask = preg_replace("/[^0-7]/", "", $upload_file_mask);  // only allow valid chars
-if(!is_numeric($upload_file_mask) || $upload_file_mask==0) $upload_file_mask = '0204';
+if(!is_numeric($upload_file_mask) || $upload_file_mask==0) $upload_file_mask = '0640';
 
 // set permissions for upload directory //stop touching WB directory settings
 //change_mode(WB_PATH.MEDIA_DIRECTORY);  // reset to full permission
@@ -98,13 +98,11 @@ if(!is_numeric($upload_file_mask) || $upload_file_mask==0) $upload_file_mask = '
 if ($upload_files_folder != MEDIA_DIRECTORY ) {
         if (!file_exists(WB_PATH.$upload_files_folder) && !is_dir(WB_PATH.$upload_files_folder)) {
                 make_dir(WB_PATH.$upload_files_folder);
-                copy($curr_dir.'/index.php', WB_PATH.$upload_files_folder.'/index.php'); // no directory listings allowed
-        }
-//cant get the point in that
-/*        if (is_dir(WB_PATH.$upload_files_folder)) {
-                change_mode(WB_PATH.$upload_files_folder); // reset to full permission
+                copy($curr_dir.'/index.php', WB_PATH.$upload_files_folder.'/index.php');           }
+        if (is_dir(WB_PATH.$upload_files_folder)) {
+                change_mode(WB_PATH.$upload_files_folder); // set permissions to current mask
                 @chmod(WB_PATH.$upload_files_folder, intval($upload_dir_mask, 8));
-        }*/
+        }
 }
 
 
