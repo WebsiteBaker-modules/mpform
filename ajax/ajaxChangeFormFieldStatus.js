@@ -1,6 +1,6 @@
 /**
  *   wbAjax Plugin
- *   Plugin to change the status of Form Fields (required, readonly, optional) 
+ *   Plugin to change the status of Form Fields (required, readonly, optional, disabled) 
  *   without a new page load (no reload)
  */        
 
@@ -26,7 +26,8 @@
                                 switch(oElement.attr("src")){
                                         case ICONS +"/optional.gif": var action = "required"; break;
                                         case ICONS +"/required.gif": var action = "readonly"; break;
-                                        case ICONS +"/readonly.gif": var action = "optional"; break;
+                                        case ICONS +"/readonly.gif": var action = "disabled"; break;
+                                        case ICONS +"/disabled.gif": var action = "optional"; break;
                                 }
                                 var sDataString = 'purpose=toggle_status&action='+action+'&DB_RECORD_TABLE='+aOpts.DB_RECORD_TABLE+'&DB_COLUMN='+aOpts.DB_COLUMN+'&MODULE='+aOpts.MODULE+'&iRecordID='+iRecordID+'&iSectionID=' + iSectionID;
                                 jQuery.ajax({

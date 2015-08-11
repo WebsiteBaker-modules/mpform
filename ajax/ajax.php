@@ -74,7 +74,7 @@ $aJsonRespond['success'] = FALSE;
         {
                 case 'toggle_status':
                         // Check the Parameters
-                        if(!is_numeric($iRecordID) || !isset($_POST['action']) || !(($_POST['action'] == 'readonly') || !($_POST['action'] == 'required') || !($_POST['action'] == 'optional'))) {
+                        if(!is_numeric($iRecordID) || !isset($_POST['action']) || !(($_POST['action'] == 'readonly') || !($_POST['action'] == 'required') || !($_POST['action'] == 'optional') || !($_POST['action'] == 'disabled'))) {
                                 $aJsonRespond['message'] = 'failed';
                                 exit(json_encode($aJsonRespond));
                         }
@@ -83,6 +83,7 @@ $aJsonRespond['success'] = FALSE;
                                 case 'optional':        $status = 0;        break;
                                 case 'required':        $status = 1;        break;
                                 case 'readonly':        $status = 2;        break;
+                                case 'disabled':        $status = 4;        break;
                         } 
                         $query = "UPDATE `".$sDbRecordTable."` SET `required` = ".$status." WHERE `".$sDbColumn."` = '".$iRecordID."' LIMIT 1";
                         $database->query($query);

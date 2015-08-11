@@ -149,9 +149,12 @@ if($query_fields->numRows() > 0) {
                                 $entrytype = "readonly";
                         break;
                         case 0:
-                        default:
                                 $entry = $LANG['backend']['optional_entry'];
                                 $entrytype = "optional";
+                        break;        
+                        default:
+                                $entry = $LANG['backend']['disabled_entry'];
+                                $entrytype = "disabled";
                         break;        
                 } 
                 $sIconSrc = WB_URL. "/modules/".$mod_dir."/images/".$entrytype.".gif";

@@ -16,7 +16,8 @@ switch(LANGUAGE){
                         ADD_TITLE: 'Feldtitel hinzufügen',                        
                         required_field : 'Pflichtfeld',
                         readonly_field : 'nicht veraenderbar',
-                        optional_field : 'freiwillig'
+                        optional_field : 'freiwillig',
+                        disabled_field : 'deaktiviert'
                 };
         break;
         case 'EN':
@@ -37,7 +38,8 @@ switch(LANGUAGE){
                         ADD_TITLE: 'add field title',
                         required_field : 'mandatory',
                         readonly_field : 'read only',
-                        optional_field : 'optional'
+                        optional_field : 'optional',
+                        disabled_field : 'disabled'
                 };
         break;
 }

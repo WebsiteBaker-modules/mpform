@@ -96,6 +96,7 @@ Si vous sp&eacute;cifiez &quot;aucun&quot;, le texte ci-dessous sera affich&eacu
         'compulsory_entry'        => 'obligatoire',
         'optional_entry'        => 'optionnelle',
         'ro_entry'        => 'lecture seulement',
+        'disabled_entry'        => 'd&eacute;sactiv&eacute;e',
         'des_field_loop'        => 'Vous pouvez utiliser les variables suivantes:<br />
  &nbsp; {CLASSES} - classe css (selon le type de champ et l&apos;&eacute;tat d&apos;erreur)<br />
  &nbsp; {TITLE} - titre du champ<br />

@@ -257,23 +257,29 @@ if($type == 'checkbox' OR $type == 'radio') {
 if($type != 'heading' AND $type != 'fieldset_start' AND $type != 'fieldset_end' AND $type != 'none' AND $type != 'html') { 
         $fieldtypeoption .= "<tr>\n<th>". $LANG['backend']['entry'] .":</th>\n";
         $fieldtypeoption .= '<td><input type="radio" name="required" id="required_true" value="1"';
-        if($form['required'] == 1 OR $type == 'email_recip') {
+        if(($form['required'] & 3 ) == 1 OR $type == 'email_recip') {
                 $fieldtypeoption .= ' checked="checked"';
         }
         $fieldtypeoption .= " />";        
         $fieldtypeoption .= '<label for="required_true">'. $LANG['backend']['compulsory_entry'] ."</label>\n";
         $fieldtypeoption .= '<input type="radio" name="required" id="required_false" value="0"';
-        if($form['required'] == 0 AND $type != 'email_recip') {
+        if(($form['required'] & 3 ) == 0 AND $type != 'email_recip') {
                 $fieldtypeoption .= ' checked="checked"';
         }
         $fieldtypeoption .= " />";
         $fieldtypeoption .= '<label for="required_false">'.$LANG['backend']['optional_entry'] ."</label>";
         $fieldtypeoption .= '<input type="radio" name="required" id="required_ro" value="2"';
-        if($form['required'] == 2 AND $type != 'email_recip'){
+        if(($form['required'] & 2 ) == 2 AND $type != 'email_recip'){
                 $fieldtypeoption .= ' checked="checked"';
         }
         $fieldtypeoption .= " />";
-        $fieldtypeoption .= '<label for="required_ro">'. $LANG['backend']['ro_entry'] ."</label></td>\n</tr>\n";
+        $fieldtypeoption .= '<label for="required_ro">'. $LANG['backend']['ro_entry'] ."</label>";
+        $fieldtypeoption .= '<input type="checkbox" name="disabled" id="disabled"';
+        if(($form['required'] & 4) != 0){
+                $fieldtypeoption .= ' checked="checked"';
+        }
+        $fieldtypeoption .= " />";
+        $fieldtypeoption .= '<label for="disabled">'.$LANG['backend']['disabled_entry'] ."</label></td>\n</tr>\n";
         $fieldtypeoption .= "<tr>\n<th>". $MENU['HELP'] .":</th>\n";
         $fieldtypeoption .= '<td><textarea name="help"  cols="50" rows="5" style="width: 98%; height: 100px;">'. $form['help'] ."</textarea></td>\n</tr>\n";
 }

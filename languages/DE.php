@@ -98,6 +98,7 @@ Falls keine Folgeseite angegeben wurde, wird der Text ausgegeben, der im folgend
         'compulsory_entry'        => "Pflichtfeld",
         'optional_entry'        => "freiwillig",
         'ro_entry'        => "nicht ver&auml;nderbar",
+        'disabled_entry'        => "deaktiviert",
         'des_field_loop'        => 'Folgende Platzhalter sind m&ouml;glich:<br />
  &nbsp; {CLASSES} - css-Klasse (abh&auml;ngig von Feldtyp und Fehlerstatus)<br />
  &nbsp; {TITLE} - Bezeichnung des Formularfeldes<br />

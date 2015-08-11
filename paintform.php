@@ -289,6 +289,10 @@ if (!function_exists('paint_form')) {
                     $sErrClass = MPFORM_CLASS_PREFIX.'err_';
                     $classes .= ' '.MPFORM_CLASS_PREFIX.'error';
                         }
+
+                // skip disabled fields
+                if (($field['required'] & 4) != 0) continue;
+
                         
                 $aReplacements = array();
                 

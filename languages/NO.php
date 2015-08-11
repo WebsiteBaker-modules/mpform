@@ -95,6 +95,7 @@ If no "Following page" is set, the text specified in the next field will be sent
         'compulsory_entry'        => "compulsory",
         'optional_entry'        => "optional",
         'ro_entry'        => "read only",
+        'disabled_entry'        => "deaktivert",
         'des_field_loop'        => 'The following place holders are possible:<br />
  &nbsp; {CLASSES} - css class (dependent from field type and error status)<br />
  &nbsp; {TITLE} - title of the form field<br />

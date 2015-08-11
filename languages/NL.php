@@ -98,6 +98,7 @@ Als geen landingspagina is ingesteld wordt de in het volgende veld gespecificeer
         'compulsory_entry'        => "verplicht",
         'optional_entry'        => "optioneel",
         'ro_entry'        => "alleen lezen",
+        'disabled_entry'        => "invalide",
         'des_field_loop'        => 'De volgende codes zijn mogelijk:<br />
  &nbsp; {CLASSES} - CSS-class (afhankelijk van het formulierveld en foutstatus)<br />
  &nbsp; {TITLE} - naam van het formulierveld<br />

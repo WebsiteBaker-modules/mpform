@@ -5,6 +5,10 @@ MODULE VERSION HISTORY
 ======================
 
    ------------------------------------------------------------------------------------------------------------------------ 
+        *** 1.1.14 (Martin Hecht: 29-Jul-2015) ***
+        allow disabling fields temporarily so that you can prepare things before
+        making them publicly visible (feature request by dbs, thanks for this idea) 
+
         *** 1.1.13 (Martin Hecht: 28-Jul-2015) ***
         fixed row index where help message is displayed
         fixed vertical alignment of help button in file upload fields, thanks to dbs

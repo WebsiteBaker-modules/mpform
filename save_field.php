@@ -64,6 +64,9 @@ if($admin->get_post('title') == '' OR $admin->get_post('type') == '') {
         } else {
                 $required = '0';
         }
+        if (isset($_POST['disabled'])) {
+                $required = intval($required) | 4;
+        }
         $help                 = str_replace(array("[[", "]]"), '', htmlspecialchars($admin->get_post_escaped('help'), ENT_QUOTES));
 }
 
