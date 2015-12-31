@@ -340,11 +340,11 @@ if (!function_exists('paint_form')) {
 
                 switch ($field['type']){
                     case 'textfield': 
-                        $aReplacements['{FIELD}'] = '<input type="text" name="field'.$iFID.'" id="field'.$iFID.'" '.$maxlength.' value="'.(isset($_SESSION['field'.$iFID])?$_SESSION['field'.$iFID]:$value).'" class="'.$sErrClass.'text" '."$readonly />";
+                        $aReplacements['{FIELD}'] = '<input type="text" name="field'.$iFID.'" id="field'.$iFID.'" '.$maxlength.' value="'.(isset($_SESSION['mpf']['field'.$iFID])?$_SESSION['mpf']['field'.$iFID]:$value).'" class="'.$sErrClass.'text" '."$readonly />";
                         break;
                     
                     case 'email_subj': 
-                        $aReplacements['{FIELD}'] = '<input type="text" name="field'.$iFID.'" id="field'.$iFID.'" '.$maxlength.' value="'.(isset($_SESSION['field'.$iFID])?$_SESSION['field'.$iFID]:$value).'" class="'.$sErrClass.'text" '."$readonly />";
+                        $aReplacements['{FIELD}'] = '<input type="text" name="field'.$iFID.'" id="field'.$iFID.'" '.$maxlength.' value="'.(isset($_SESSION['mpf']['field'.$iFID])?$_SESSION['mpf']['field'.$iFID]:$value).'" class="'.$sErrClass.'text" '."$readonly />";
                         break;                    
                      
                     case 'integer_number': 
@@ -354,7 +354,7 @@ if (!function_exists('paint_form')) {
                                                 if(event.keyCode &lt; 48 || event.keyCode > 57){return false;}' // IE
                                         .'}else{
                                                 if((event.charCode &lt; 48 || event.charCode > 57) &amp;&amp; event.charCode != 0){return false;}}"';  // FF
-                        $aReplacements['{FIELD}'] = '<input type="text" '.$js.' name="field'.$iFID.'" id="field'.$iFID.'" '.$maxlength.' value="'.(isset($_SESSION['field'.$iFID])?$_SESSION['field'.$iFID]:$value).'" class="'.$sErrClass.'text" '."$readonly />";
+                        $aReplacements['{FIELD}'] = '<input type="text" '.$js.' name="field'.$iFID.'" id="field'.$iFID.'" '.$maxlength.' value="'.(isset($_SESSION['mpf']['field'.$iFID])?$_SESSION['mpf']['field'.$iFID]:$value).'" class="'.$sErrClass.'text" '."$readonly />";
                         break;
                     
                     case 'decimal_number': 
@@ -364,7 +364,7 @@ if (!function_exists('paint_form')) {
                                                 if(event.keyCode &lt; 43 || event.keyCode > 57 || event.keyCode == 47){return false;}' // IE
                                         .'}else{
                                                 if((event.charCode &lt; 43 || event.charCode > 57 || event.charCode == 47) &amp;&amp; event.charCode != 0){return false;}}"';  // FF
-                        $aReplacements['{FIELD}'] = '<input type="text" '.$js.' name="field'.$iFID.'" id="field'.$iFID.'" '.$maxlength.' value="'.(isset($_SESSION['field'.$iFID])?$_SESSION['field'.$iFID]:$value).'" class="'.$sErrClass.'text" '."$readonly />";
+                        $aReplacements['{FIELD}'] = '<input type="text" '.$js.' name="field'.$iFID.'" id="field'.$iFID.'" '.$maxlength.' value="'.(isset($_SESSION['mpf']['field'.$iFID])?$_SESSION['mpf']['field'.$iFID]:$value).'" class="'.$sErrClass.'text" '."$readonly />";
                         break; 
                     
                     case 'filename': 
@@ -374,7 +374,7 @@ if (!function_exists('paint_form')) {
                         } 
                         $sMaxFileSize = sprintf($LANG['frontend']['MAX_FILESIZE'], $max_file_size/1024, $upload_only_exts);
                         $sMaxLength = str_replace("maxlength", "size", $maxlength);
-                        $sValue = (isset($_SESSION['field'.$iFID])?$_SESSION['field'.$iFID]:$value);
+                        $sValue = (isset($_SESSION['mpf']['field'.$iFID])?$_SESSION['mpf']['field'.$iFID]:$value);
                         $bFileSizeHintShown;
                         $aReplacements['{FIELD}'] = $vmax;
                         if($bFileSizeHintShown==false){
@@ -401,13 +401,13 @@ if (!function_exists('paint_form')) {
                                 } else {
                                         $rows = 5;
                                 }
-                        $sContent = (isset($_SESSION['field'.$iFID])?$_SESSION['field'.$iFID]:$value);
+                        $sContent = (isset($_SESSION['mpf']['field'.$iFID])?$_SESSION['mpf']['field'.$iFID]:$value);
                         $aReplacements['{FIELD}'] = '<textarea name="field'.$iFID.'" id="field'.$iFID.'" class="'.$sErrClass.'textarea" cols="'.$cols.'" rows="'.$rows.'" '.$readonly.'>'.$sContent.'</textarea>';
                         break; 
                     
                     case 'select': 
                                 $options = explode(',', $value);
-                        array_walk ($options, 'make_option', array((isset($_SESSION['field'.$iFID]) ? $_SESSION['field'.$iFID] : array()), $isnew,            $value_option_separator));
+                        array_walk ($options, 'make_option', array((isset($_SESSION['mpf']['field'.$iFID]) ? $_SESSION['mpf']['field'.$iFID] : array()), $isnew, $value_option_separator));
                                 $field['extra'] = explode(',',$field['extra']);
                                 $extras = '';
                                 if (is_numeric($field['extra'][0])) {
@@ -428,7 +428,7 @@ if (!function_exists('paint_form')) {
                                         if (trim($teil[0])!='')
                                         array_push($options, htmlspecialchars($teil[0], ENT_QUOTES));
                                 }
-                        array_walk($options, 'make_option', array((isset($_SESSION['field'.$iFID])?$_SESSION['field'.$iFID]:array()), false));
+                        array_walk($options, 'make_option', array((isset($_SESSION['mpf']['field'.$iFID])?$_SESSION['mpf']['field'.$iFID]:array()), false));
                         $aReplacements['{FIELD}'] = '<select name="field'.$iFID.'[]" id="field'.$iFID.'" class="'.$sErrClass.'select">';
                         $aReplacements['{FIELD}'] .= implode($options);
                         $aReplacements['{FIELD}'] .= '</select>';
@@ -467,7 +467,7 @@ if (!function_exists('paint_form')) {
                     case 'checkbox': 
                                 $options = explode(',', $value);
                                 $code = $enum_start;
-                        array_walk($options, 'make_checkbox', array($iFID, $field['extra'], (isset($_SESSION['field'.$iFID])?$_SESSION['field'.$iFID]:array()), $sErrClass, $isnew, $value_option_separator));
+                        array_walk($options, 'make_checkbox', array($iFID, $field['extra'], (isset($_SESSION['mpf']['field'.$iFID])?$_SESSION['mpf']['field'.$iFID]:array()), $sErrClass, $isnew, $value_option_separator));
                         $options[count($options)-1]=substr_replace($options[count($options)-1],"",-strlen($field['extra'])-1);
                         $aReplacements['{FIELD}'] = implode($options);                       
                         break; 
@@ -475,19 +475,19 @@ if (!function_exists('paint_form')) {
                     case 'radio': 
                                 $options = explode(',', $value);
                                 $code = $enum_start;
-                        array_walk($options, 'make_radio', array($iFID, $field['extra'], (isset($_SESSION['field'.$iFID])?$_SESSION['field'.$iFID]:''), $sErrClass, $isnew, $value_option_separator));
+                        array_walk($options, 'make_radio', array($iFID, $field['extra'], (isset($_SESSION['mpf']['field'.$iFID])?$_SESSION['mpf']['field'.$iFID]:''), $sErrClass, $isnew, $value_option_separator));
                         $options[count($options)-1]=substr_replace($options[count($options)-1],"",-strlen($field['extra'])-1);
                         $aReplacements['{FIELD}'] = implode($options);
                         break; 
                     
                     case 'email':                        
-                        $aReplacements['{FIELD}'] = '<input type="text" name="field'.$iFID.'" id="field'.$iFID.'" value="'.(isset($_SESSION['field'.$iFID])?$_SESSION['field'.$iFID]:'').'"'
+                        $aReplacements['{FIELD}'] = '<input type="text" name="field'.$iFID.'" id="field'.$iFID.'" value="'.(isset($_SESSION['mpf']['field'.$iFID])?$_SESSION['mpf']['field'.$iFID]:'').'"'
                                 .$maxlength.' class="'.$sErrClass.'email" '."$readonly />";               
                         break; 
                     
                     case 'date':                        
                         $cla['field'.$iFID] = "field".$iFID;
-                        $sValue = (isset ($_SESSION['field'.$iFID]) ? $_SESSION['field'.$iFID] : $value);
+                        $sValue = (isset ($_SESSION['mpf']['field'.$iFID]) ? $_SESSION['mpf']['field'.$iFID] : $value);
                         $aReplacements['{FIELD}'] = '<table cellpadding="0" cellspacing="0" border="0">'.PHP_EOL.'<tr>'.PHP_EOL.'<td>'.PHP_EOL
                             .'<input type="text" name="field'.$iFID.'" id="field'.$iFID.'"'.$maxlength.' value="'.$sValue.'" class="'.$sErrClass.'date" />'
                             .'</td>'.PHP_EOL.'<td>'.PHP_EOL
@@ -497,8 +497,8 @@ if (!function_exists('paint_form')) {
                         break;   
                         }
                         
-                if(isset($_SESSION['field'.$iFID])) { 
-                    unset($_SESSION['field'.$iFID]);
+                if(isset($_SESSION['mpf']['field'.$iFID])) { 
+                    unset($_SESSION['mpf']['field'.$iFID]);
                 }      
                         if ($field['help']) {
                         $sHelp = preg_replace('/[\r\n]/', "<br />", $field['help']);

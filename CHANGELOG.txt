@@ -5,6 +5,9 @@ MODULE VERSION HISTORY
 ======================
 
    ------------------------------------------------------------------------------------------------------------------------ 
+        *** 1.1.16 (Martin Hecht: 30-Dec-2015) ***
+        clean up form after submission (patch by marmot)
+
         *** 1.1.15 (Martin Hecht: 30-Dec-2015) ***
         fix an ftan bug reported by jacobi22, thanks to him
         correct the backlinks for the print_error calls, thanks to jacobi22

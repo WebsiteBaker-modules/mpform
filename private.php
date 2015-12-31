@@ -26,15 +26,15 @@ function private_function_before_new_form($section_id) {
 /*
         // example how to use:
         if ($section_id == 4526) {
-                $_SESSION['field136'] = $_SESSION['EMAIL'];
+                $_SESSION['mpf']['field136'] = $_SESSION['EMAIL'];
                 return true;
         }
 
         // another example how to use:
         if ($section_id == 4575) {
-                $_SESSION['field4568'] = '';
+                $_SESSION['mpf']['field4568'] = '';
                 if (isset($_SERVER['HTTP_REFERER'])) {
-                        $_SESSION['field4568'] = $_SERVER['HTTP_REFERER'];
+                        $_SESSION['mpf']['field4568'] = $_SERVER['HTTP_REFERER'];
                 } 
                 return true;
         }
@@ -83,7 +83,7 @@ function private_function_on_success($section_id) {
         $next_page =          7002;        // id of the page following after the loop
         
         if ($section_id == $prev_section) {
-                ($_SESSION['field'.$prev_field] == $prev_cond) ? $np = $loop_page : $np = $next_page;
+                ($_SESSION['mpf']['field'.$prev_field] == $prev_cond) ? $np = $loop_page : $np = $next_page;
                 $query_menu = $database->query("SELECT link,target FROM ".TABLE_PREFIX."pages WHERE `page_id` = $np");
                 if($query_menu->numRows() > 0) {
                         $fetch_settings = $query_menu->fetchRow();
@@ -93,7 +93,7 @@ function private_function_on_success($section_id) {
                 return false;
         }
         if ($section_id == $loop_section) {
-                if ($_SESSION['field'.$loop_field] == $loop_cond) {
+                if ($_SESSION['mpf']['field'.$loop_field] == $loop_cond) {
                         $np = $loop_page;
                         $_SESSION['submission_id_'.$section_id] .= "_";
                         foreach ($_SESSION as $k => $v) {

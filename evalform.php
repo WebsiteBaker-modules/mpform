@@ -349,10 +349,10 @@ if (!function_exists('eval_form')) {
 
                         // copy user entered data to $_SESSION in case form must be reviewed (for instance because of missing required values)
                         if (is_array($post_field)) {
-                            $_SESSION['field'.$field_id] = str_replace(array("[[", "]]"), array("&#91;&#91;", "&#93;&#93;"), $post_field);
+                            $_SESSION['mpf']['field'.$field_id] = str_replace(array("[[", "]]"), array("&#91;&#91;", "&#93;&#93;"), $post_field);
                         } else {
                             // make sure user does see what he entered:
-                            $_SESSION['field'.$field_id] = str_replace(array("[[", "]]"), array("&#91;&#91;", "&#93;&#93;"), htmlspecialchars(stripslashes($post_field), ENT_QUOTES));
+                            $_SESSION['mpf']['field'.$field_id] = str_replace(array("[[", "]]"), array("&#91;&#91;", "&#93;&#93;"), htmlspecialchars(stripslashes($post_field), ENT_QUOTES));
                         }
 
                         // no injections, please
@@ -696,6 +696,9 @@ if (!function_exists('eval_form')) {
             // delete the referer page reference after it did its work:
             unset($_SESSION['href']);
             unset($success);
+            if (isset($_SESSION['mpf'])) {
+              unset ($_SESSION['mpf']);
+            }
         } else {
             if (isset($success) AND $success == false) {
                 echo $TEXT['ERROR'];
