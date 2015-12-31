@@ -32,6 +32,8 @@ require(WB_PATH.'/modules/admin.php');
 // obtain module directory
 $mod_dir = basename(dirname(__FILE__));
 
+require_once(dirname(__FILE__).'/constants.php');
+
 // include the module language file depending on the backend language of the current user
 if (!@include(get_module_language_file($mod_dir))) return;  
 
@@ -73,6 +75,9 @@ $table = TABLE_PREFIX . 'mod_mpform_settings';
 $sql = "SELECT * FROM `$table` WHERE `section_id` = '$section_id'";
 $sql_result = $database->query($sql);
 $settings = $sql_result->fetchRow();
+if($settings['value_option_separator']=="") $settings['value_option_separator']=MPFORM_DEFAULT_OPT_SEPARATOR; // fallback
+$settings['value_option_separator']=
+        htmlspecialchars($settings['value_option_separator'],ENT_QUOTES);
 
 // replace all placeholder {xxx} of the template file with values from the db
 foreach($settings as $key => $value) {

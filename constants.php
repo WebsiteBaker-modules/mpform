@@ -70,3 +70,7 @@ if(ENABLED_ASP) {
         }
     }
 }
+
+if(!defined('MPFORM_DEFAULT_OPT_SEPARATOR')){
+    define('MPFORM_DEFAULT_OPT_SEPARATOR', "&#0;");
+}

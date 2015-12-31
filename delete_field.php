@@ -27,7 +27,8 @@ require(WB_PATH.'/modules/admin.php');
 if (WB_VERSION >= "2.8.2") {
         $field_id = $admin->checkIDKEY('field_id', false, 'GET');
         if (!$field_id) {
-                $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'], ADMIN_URL);
+                $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'],
+                ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
                 exit();
         }
 } else {

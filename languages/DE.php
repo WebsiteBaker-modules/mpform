@@ -135,6 +135,7 @@ $LANG['backend_adv'] = array(
         'des_enum'        => 'Standardverhalten: Optionsfelder und Kontrollk&auml;stchen &uuml;bergeben den angezeigten Text, wenn dieses Feld leer bleibt.<br />
  Falls hier ein Zeichen eingetragen wird (sinnvoll k&ouml;nnten z.B. 0, 1 oder a sein), wird dieser Wert f&uuml;r jede Option hochgez&auml;hlt und dann statt des Textes zur&uuml;ckgegeben.',
 
+         'TXT_VALUE_OPTION_SEPARATOR' => "Value-Option Trenn-String",
         'TXT_DATE_FORMAT' => "Datumsformat",
 
         'TXT_ASP_SETTINGS'        => 'SPAM-Schutz',

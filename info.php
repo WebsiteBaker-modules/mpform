@@ -20,7 +20,7 @@
 $module_directory   = 'mpform';
 $module_name        = 'mpForm';
 $module_function    = 'page';
-$module_version     = '1.1.14';
+$module_version     = '1.1.15';
 $module_platform    = '2.8.x';
 $module_status      = 'stable';
 $module_author      = 'Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)';

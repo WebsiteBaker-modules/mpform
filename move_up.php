@@ -34,9 +34,11 @@ require(WB_PATH.'/framework/class.order.php');
 // Create new order object an reorder
 $order = new order(TABLE_PREFIX.'mod_mpform_fields', 'position', 'field_id', 'section_id');
 if($order->move_up($field_id)) {
-        $admin->print_success($TEXT['SUCCESS'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
+        $admin->print_success($TEXT['SUCCESS'], 
+        ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
 } else {
-        $admin->print_error($TEXT['ERROR'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
+        $admin->print_error($TEXT['ERROR'],
+        ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
 }
 
 // Print admin footer

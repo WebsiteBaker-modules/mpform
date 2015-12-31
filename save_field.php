@@ -35,7 +35,8 @@ require(WB_PATH.'/modules/admin.php');
 if ((WB_VERSION >= "2.8.2") && (!$admin->checkFTAN()))
 {
         $admin->print_header();
-        $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
+        $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'],
+         ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
         $admin->print_footer();
         exit();
 }
@@ -107,7 +108,14 @@ if(is_numeric($list_count)) {
                 }
                 if($admin->get_post('value'.$i) != '') {
                         ($default == $i) ? $defcode = IS_DEFAULT : $defcode = '';
-                        $values[] = str_replace(array("[[", "]]"), '', str_replace(",", "&#44;", htmlspecialchars($admin->add_slashes($admin->get_post('value'.$i)), ENT_QUOTES))) . $defcode;
+                        $values[] = preg_replace("/&amp;(#?[a-zA-Z0-9]+);/","&\\1;",
+                                str_replace(array(",", "[[", "]]"), 
+                                        array("&#44;", '', ''),
+                                        htmlspecialchars($admin->add_slashes(
+                                                $admin->get_post('value'.$i)),
+                                                ENT_QUOTES)
+                                        )
+                                ) . $defcode;
                 }
         }
         $value = implode(',', $values);

@@ -38,7 +38,8 @@ require(WB_PATH.'/modules/admin.php');
 if ((WB_VERSION >= "2.8.2") && (!$admin->checkFTAN()))
 {
         $admin->print_header();
-        $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
+        $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'], 
+        ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
         $admin->print_footer();
         exit();
 } else {
@@ -60,7 +61,7 @@ $curr_dir = dirname(__FILE__);
 $page_id = (isset($_POST['page_id'])) ? (int) $_POST['page_id'] : '';
 $section_id = (isset($_POST['section_id'])) ? (int) $_POST['section_id'] : '';
 
-$update_keys=array('heading_html', 'short_html', 'long_html', 'email_html', 'uploadfile_html', 'enum_start',
+$update_keys=array('heading_html', 'short_html', 'long_html', 'email_html', 'uploadfile_html', 'enum_start', 'value_option_separator',
                                    'use_captcha', 'date_format', 'max_submissions', 'stored_submissions', 'upload_files_folder',
                                    'upload_dir_mask', 'upload_file_mask', 'attach_file', 'max_file_size_kb', 'upload_only_exts');
 foreach($update_keys as $key) {

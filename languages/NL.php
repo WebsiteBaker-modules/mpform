@@ -134,6 +134,7 @@ $LANG['backend_adv'] = array(
         'txt_enum'        => 'Startwaarde voor Radiobutton en Aankruisvakje',
         'des_enum'        => 'Standaard gedrag: Als dit veld leeg is tonen de radiobuttons en aankruisvakjes de zichtbare tekst.<br />
 Als dit veld een cijfer of letter krijgt (handige cijfers of letters kunnen bijvoorbeeld, 0, 1 of a zijn), dan wordt deze waarde opgehoogd voor elke optie en in plaats van de tekst getoond.',
+         'TXT_VALUE_OPTION_SEPARATOR' => "Waarde optie separator touwtje",
         'TXT_DATE_FORMAT' => "Datumnotatie",
         'TXT_ASP_SETTINGS'        => 'Spam-protectie', 
          'des_date_format'        => 'Datumnotatie, bijv. %d-%m-%Y',

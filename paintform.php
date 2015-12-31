@@ -29,9 +29,11 @@ if (!function_exists('make_option')) {
                 global $code;
                 $values = $params[0];
                 $isnew = $params[1];
+                $value_option_separator = $params[2];
                 $def = strpos($n, IS_DEFAULT);
                 ($def > 0) ? $h = substr($n, 0, $def) : $h = $n;
-
+                $vals=explode($value_option_separator,$h);
+                if(count($vals)==1) $vals[1]=$vals[0];
                 // start option group if it exists
                 if (substr($n, 0, 2) == '[=') {
                         $n = '<optgroup label="'.substr($n,2,strlen($n)).'">';
@@ -39,9 +41,9 @@ if (!function_exists('make_option')) {
                         $n = '</optgroup>';
                 } else {
                         if (in_array($h, $values) or ($isnew and $def > 0)) {
-                                $n = '<option selected="selected" value="'.$h.'">'.$h.'</option>';
+                                $n = '<option selected="selected" value="'.$vals[0].'">'.$vals[1].'</option>';
                         } else {
-                                $n = '<option value="'.$h.'">'.$h.'</option>';
+                                $n = '<option value="'.$vals[0].'">'.$vals[1].'</option>';
                         }
                 }
         }
@@ -53,25 +55,30 @@ if (!function_exists('make_checkbox')) {
                 global $code;
                 $def = strpos($n, IS_DEFAULT);
                 ($def > 0) ? $h = substr($n, 0, $def) : $h = $n;
+                $value_option_separator = $params[5];
+                $vals=explode($value_option_separator,$h);
                 if ($code=="") {
-                        $v = $h;
+                        $v = $vals[0];
                 } else {
-                        $v = $code;
-                        $code = chr(ord($code)+1);
+                        if(count($vals)==1){
+                                $v = $code;
+                                $code = chr(ord($code)+1);
+                        } else $v = $vals[0];
                 }
+                if(count($vals)==1) $vals[1]=$vals[0];
                 $field_id = $params[0];
                 $seperator = $params[1];
-        $sErrClass = $params[3];
+                $sErrClass = $params[3];
                 $isnew = $params[4];
                 $label_i = urlencode($n) . $field_id;
                 $bad = array("%", "+");
                 $label_id = 'wb_'.str_replace($bad, "", $label_i);
                 if (in_array($v, $params[2]) or ($isnew and $def > 0)) {
             $n = '<input class="'.$sErrClass.'checkbox" type="checkbox" id="'.$label_id.'" name="field'.$field_id.'['.$idx.']" value="'.$v.
-            '" checked="checked" />'.'<label for="'.$label_id.'" class="'.MPFORM_CLASS_PREFIX.'checkbox_label">'.$h.'</label>'.$seperator.PHP_EOL; 
+            '" checked="checked" />'.'<label for="'.$label_id.'" class="'.MPFORM_CLASS_PREFIX.'checkbox_label">'.$vals[1].'</label>'.$seperator.PHP_EOL; 
                 } else {
             $n = '<input class="'.$sErrClass.'checkbox" type="checkbox" id="'.$label_id.'" name="field'.$field_id.'['.$idx.']" value="'.$v.
-            '" />'.'<label for="'.$label_id.'" class="'.MPFORM_CLASS_PREFIX.'checkbox_label">'.$h.'</label>'.$seperator.PHP_EOL; 
+            '" />'.'<label for="'.$label_id.'" class="'.MPFORM_CLASS_PREFIX.'checkbox_label">'.$vals[1].'</label>'.$seperator.PHP_EOL; 
                 }        
         }
 }
@@ -82,25 +89,30 @@ if (!function_exists('make_radio')) {
                 global $code;
                 $def = strpos($n, IS_DEFAULT);
                 ($def > 0) ? $h = substr($n, 0, $def) : $h = $n;
+                $value_option_separator = $params[5];
+                $vals=explode($value_option_separator,$h);
                 if ($code=="") {
-                        $v = $h;
+                        $v = $vals[0];
                 } else {
-                        $v = $code;
-                        $code = chr(ord($code)+1);
+                        if(count($vals)==1){
+                                $v = $code;
+                                $code = chr(ord($code)+1);
+                        } else $v = $vals[0];
                 }
+                if(count($vals)==1) $vals[1]=$vals[0];
                 $field_id = $params[0];
                 $seperator = $params[1];
-        $sErrClass = $params[3];
+                $sErrClass = $params[3];
                 $isnew = $params[4];
                 $label_i = urlencode($n) . $field_id;
                 $bad = array("%", "+");
                 $label_id = 'wb_'.str_replace($bad, "", $label_i);
                 if (($v == $params[2]) or ($isnew and $def > 0)) {
             $n = '<input class="'.$sErrClass.'radio" type="radio" id="'.$label_id.'" name="field'.$field_id.'" value="'.$v.
-            '" checked="checked" />'.'<label for="'.$label_id.'" class="'.MPFORM_CLASS_PREFIX.'radio_label">'.$h.'</label>'.$seperator.PHP_EOL; 
+            '" checked="checked" />'.'<label for="'.$label_id.'" class="'.MPFORM_CLASS_PREFIX.'radio_label">'.$vals[1].'</label>'.$seperator.PHP_EOL; 
                 } else {
             $n = '<input class="'.$sErrClass.'radio" type="radio" id="'.$label_id.'" name="field'.$field_id.'" value="'.$v.
-            '" />'.'<label for="'.$label_id.'" class="'.MPFORM_CLASS_PREFIX.'radio_label">'.$h.'</label>'.$seperator.PHP_EOL; 
+            '" />'.'<label for="'.$label_id.'" class="'.MPFORM_CLASS_PREFIX.'radio_label">'.$vals[1].'</label>'.$seperator.PHP_EOL; 
                 }
         }
 }
@@ -195,6 +207,8 @@ if (!function_exists('paint_form')) {
             $footer           = str_replace('{WB_URL}', WB_URL, $aSettings['footer']);
             $use_captcha      = $aSettings['use_captcha'];
             $is_following     = $aSettings['is_following'];
+            $value_option_separator = $aSettings['value_option_separator'];
+            if($value_option_separator=="") $value_option_separator=MPFORM_DEFAULT_OPT_SEPARATOR; // fallback
             $max_file_size    = $aSettings['max_file_size_kb'] * 1024;
             $date_format      = $aSettings['date_format'];
             $email_to         = $aSettings['email_to'];
@@ -393,7 +407,7 @@ if (!function_exists('paint_form')) {
                     
                     case 'select': 
                                 $options = explode(',', $value);
-                        array_walk ($options, 'make_option', array((isset($_SESSION['field'.$iFID]) ? $_SESSION['field'.$iFID] : array()), $isnew));
+                        array_walk ($options, 'make_option', array((isset($_SESSION['field'.$iFID]) ? $_SESSION['field'.$iFID] : array()), $isnew,            $value_option_separator));
                                 $field['extra'] = explode(',',$field['extra']);
                                 $extras = '';
                                 if (is_numeric($field['extra'][0])) {
@@ -453,16 +467,16 @@ if (!function_exists('paint_form')) {
                     case 'checkbox': 
                                 $options = explode(',', $value);
                                 $code = $enum_start;
-                        array_walk($options, 'make_checkbox', array($iFID, $field['extra'], (isset($_SESSION['field'.$iFID])?$_SESSION['field'.$iFID]:array()), $sErrClass, $isnew));
-                                $options[count($options)-1]=substr($options[count($options)-1],0,strlen($options[count($options)-1])-strlen($field['extra'])+1);
+                        array_walk($options, 'make_checkbox', array($iFID, $field['extra'], (isset($_SESSION['field'.$iFID])?$_SESSION['field'.$iFID]:array()), $sErrClass, $isnew, $value_option_separator));
+                        $options[count($options)-1]=substr_replace($options[count($options)-1],"",-strlen($field['extra'])-1);
                         $aReplacements['{FIELD}'] = implode($options);                       
                         break; 
                     
                     case 'radio': 
                                 $options = explode(',', $value);
                                 $code = $enum_start;
-                        array_walk($options, 'make_radio', array($iFID, $field['extra'], (isset($_SESSION['field'.$iFID])?$_SESSION['field'.$iFID]:''), $sErrClass, $isnew));
-                                $options[count($options)-1]=substr($options[count($options)-1],0,strlen($options[count($options)-1])-strlen($field['extra'])+1);
+                        array_walk($options, 'make_radio', array($iFID, $field['extra'], (isset($_SESSION['field'.$iFID])?$_SESSION['field'.$iFID]:''), $sErrClass, $isnew, $value_option_separator));
+                        $options[count($options)-1]=substr_replace($options[count($options)-1],"",-strlen($field['extra'])-1);
                         $aReplacements['{FIELD}'] = implode($options);
                         break; 
                     

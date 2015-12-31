@@ -5,6 +5,24 @@ MODULE VERSION HISTORY
 ======================
 
    ------------------------------------------------------------------------------------------------------------------------ 
+        *** 1.1.15 (Martin Hecht: 30-Dec-2015) ***
+        fix an ftan bug reported by jacobi22, thanks to him
+        correct the backlinks for the print_error calls, thanks to jacobi22
+        replace all old get_error calls by the use of the database class, 
+        thanks to ruud
+        fix the wrong termination of checkbox and select lists in paintform
+        send emails only if private function before email returns true, 
+        thanks to hansis100
+        introduce private_function_after_email as a fallback for those who wish 
+        to send emails in any case
+        allow to specify a distinct value for checkboxes, radio and select (feature
+        request by hansis100) - the default separator string is "&#0;"
+        added a column position in submissions table, thanks to jacobi22
+        another fix for better handling html special chars inside options
+        change value_option_separator to VARCHAR for strict mode
+        make form submission work in strict mode (hopefully) 
+        thanks again to jacobi22 for testing and for reporting this issue
+
         *** 1.1.14 (Martin Hecht: 29-Jul-2015) ***
         allow disabling fields temporarily so that you can prepare things before
         making them publicly visible (feature request by dbs, thanks for this idea) 

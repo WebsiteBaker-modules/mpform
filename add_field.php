@@ -68,7 +68,8 @@ if(method_exists($admin, 'getIDKEY')){
 }
 // Say that a new record has been added, then redirect to modify page
 $sUrlToGo =  WB_URL.'/modules/mpform/modify_field.php'
-        . '?page_id='.$page_id.'&section_id='.$section_id.'&field_id='.$iFID.'&success=add';
+        . '?page_id='.(int)$page_id.'&section_id='
+        . (int)$section_id.'&field_id='.$iFID.'&success=add';
 if(!$database->is_error()) {        
         #$admin->print_success($TEXT['SUCCESS'],);
         header("Location: ". $sUrlToGo);

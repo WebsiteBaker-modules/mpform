@@ -23,6 +23,7 @@ if(defined('WB_PATH') == false) { exit("Cannot access this file directly"); }
 // replace the sample content in the functions below with your own content, if required!
 
 function private_function_before_new_form($section_id) {
+/*
         // example how to use:
         if ($section_id == 4526) {
                 $_SESSION['field136'] = $_SESSION['EMAIL'];
@@ -37,18 +38,32 @@ function private_function_before_new_form($section_id) {
                 } 
                 return true;
         }
-
+*/
         return true;
 }
 
 function private_function_before_email($section_id) {
+/*
         // example how to use:
         if ($section_id == 4524) {
                 global $felder;
                 $felder .= ", field133 = '". $_SESSION['study_id'] ."'";
                 return true;
         }
+*/
+        return true;
+}
 
+
+function private_function_after_email($section_id) {
+/*
+        // example how to use:
+        if ($section_id == 4524) {
+                global $felder;
+                $felder .= ", field133 = '". $_SESSION['study_id'] ."'";
+                return true;
+        }
+*/
         return true;
 }
 

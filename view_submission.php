@@ -41,7 +41,8 @@ module_header_footer($page_id,$mod_dir);
 // Get id
 $submission_id = $admin->checkIDKEY('submission_id', false, 'GET');
 if (!$submission_id) {
-        $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'], ADMIN_URL);
+        $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'],
+        ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
         exit();
 }
 
@@ -101,7 +102,7 @@ if($get_user->numRows() != 0) {
                 <td align="left">
                         <button class="" onclick="javascript: confirm_link('<?php echo $TEXT['ARE_YOU_SURE']; ?>', '<?php echo $sModuleUrl; ?>/delete_submission.php?page_id=<?php
                 echo $page_id; ?>&section_id=<?php echo $section_id; ?>&submission_id=<?php
-                echo $submission_id; ?>');"><img src="<?php echo $sIconDir; ?>/delete.png" alt="" width="16" height="16" border="0" /> <?php echo $TEXT['DELETE']; ?></button>
+                echo $admin->getIDKEY($submission_id); ?>');"><img src="<?php echo $sIconDir; ?>/delete.png" alt="" width="16" height="16" border="0" /> <?php echo $TEXT['DELETE']; ?></button>
                 </td>
                 <td align="right">
                         <button onclick="javascript: window.location = '<?php echo ADMIN_URL; ?>/pages/modify.php?page_id=<?php echo $page_id; ?>';"><?php echo $TEXT['BACK']; ?></button>

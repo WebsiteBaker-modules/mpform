@@ -130,6 +130,12 @@
                 </td>
         </tr>
         <tr>
+                <th>{TXT_VALUE_OPTION_SEPARATOR}:</th>
+                <td>
+                                <input type="text" name="value_option_separator"  maxlength="10" value="{value_option_separator}"  />
+                </td>
+        </tr>
+        <tr>
                 <th>{TXT_DATE_FORMAT}:</th>
                 <td><input name="date_format" class="setting_value_text" type="text" title="{des_date_format}" value="{date_format}" />
         <a href="http://www.ss64.com/bash/date.html" target="bash"><small>{des_date_format}</small></a>

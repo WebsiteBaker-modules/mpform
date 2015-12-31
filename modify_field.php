@@ -39,7 +39,8 @@ module_header_footer($page_id, $mod_dir);
 if (WB_VERSION >= "2.8.2") {
         $field_id = $admin->checkIDKEY('field_id', false, 'GET');
         if (!$field_id) {
-                $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'], ADMIN_URL);
+                $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'],
+                ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
                 exit();
         }
 } else {
@@ -206,6 +207,7 @@ switch ($type) {
                                 $ovalue = $option_value;
                                 $cv = "";
                         }
+                        $ovalue=htmlspecialchars(str_replace('&#44;', ',', $ovalue), ENT_QUOTES);
                         $option_count = $option_count+1;
                         ($type == 'radio') ? $isdef = "isdefault" : $isdef = "isdefault$option_count";
                         $fieldtypeoption .= '<table cellpadding="3" cellspacing="0" width="100%" border="0">'

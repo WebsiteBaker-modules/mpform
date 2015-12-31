@@ -36,7 +36,8 @@ $admin_header = false;
 require(WB_PATH . '/modules/admin.php');
 if ((WB_VERSION >= "2.8.2") && (!$admin->checkFTAN())) {
         $admin->print_header();
-        $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
+        $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'],
+        ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
         $admin->print_footer();
         exit();
 } else {

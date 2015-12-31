@@ -131,6 +131,7 @@ $LANG['backend_adv'] = array(
         'txt_enum'        => 'Valeur initiale des boutons Radio et Checkbox',
         'des_enum'        => 'Comportement par d&eacute;faut: Si ce champ est vide, les boutons radio et les checkboxs renvoient le texte affich&eacute;.<br />
 Si ce champ contient un caract&egrave;re (il est pratique d&apos;utiliser, par exemple, 0, 1 ou a), alors cette valeur sera incr&eacute;ment&eacute;e pour chaque option et renvoy&eacute;e &agrave; la place du texte.',        
+         'TXT_VALUE_OPTION_SEPARATOR' => "Cha&icirc;ne de s&eacute;parateur valeur-option",
         'TXT_DATE_FORMAT' => 'Format de la date',
         'TXT_ASP_SETTINGS'        => 'Protection Anti-SPAM', 
          'des_date_format'        => '<br/>Cha&icirc;ne de format de date et d&apos;heure standard (ex. %m/%d/%Y)',

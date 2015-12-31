@@ -17,6 +17,8 @@
 */
 /* This file provides the installation functions of the module. */
 if(defined('WB_URL')) {
+
+require_once(dirname(__FILE__).'/constants.php');
         
         // Rename files
         if (!file_exists(WB_PATH."/modules/mpform/backend.css"))  rename(WB_PATH."/modules/mpform/backend.css.txt",  WB_PATH."/modules/mpform/backend.css");
@@ -74,6 +76,7 @@ if(defined('WB_URL')) {
                 . ' `upload_dir_mask` VARCHAR(4) NOT NULL DEFAULT \'\' ,'
                 . ' `upload_only_exts` VARCHAR(255) DEFAULT \'\' ,'
                 . ' `is_following` BOOL NOT NULL DEFAULT \'0\' ,'        // 1 = is subsequent part of a multi page form
+                . ' `value_option_separator` VARCHAR(10) NOT NULL DEFAULT \'\','
                 . ' `tbl_suffix` VARCHAR(100) DEFAULT \'\' ,'            // optional suffix for the results table
                 . ' `enum_start` VARCHAR(1) DEFAULT \'\' ,'              // optional enumeration for radio and checkbox
                 . ' PRIMARY KEY ( `section_id` ) '
@@ -84,6 +87,7 @@ if(defined('WB_URL')) {
         $mod_mpform = 'CREATE TABLE `'.TABLE_PREFIX.'mod_mpform_submissions` ( `submission_id` INT NOT NULL AUTO_INCREMENT,'
                 . ' `section_id` INT NOT NULL DEFAULT \'0\' ,'
                 . ' `page_id` INT NOT NULL DEFAULT \'0\' ,'
+                . ' `position` INT NOT NULL DEFAULT \'0\' ,'
                 . ' `started_when` INT NOT NULL DEFAULT \'0\' ,'         // time when form was sent to browser
                 . ' `submitted_when` INT NOT NULL DEFAULT \'0\' ,'       // time when form was sent back to server
                 . ' `submitted_by` INT NOT NULL DEFAULT \'0\','                

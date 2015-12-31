@@ -130,6 +130,7 @@ $LANG['backend_adv'] = array(
         'txt_enum'        => 'Start value for Radio and Checkbox',
         'des_enum'        => 'Default behaviour: If this field is empty, Radio buttons and checkboxes return the visible text.<br />
  If this field contains a character (useful characters might be, for instance, 0, 1 or a), then this value will be incremented for every option and returned instead of the text.',
+         'TXT_VALUE_OPTION_SEPARATOR' => "Verdi opsjon separator string",
         'TXT_DATE_FORMAT' => 'Dato format',
         'TXT_ASP_SETTINGS'        => 'SPAM Protection', 
          'des_date_format'        => 'Bash Date Format (eg. %m/%d/%Y)',

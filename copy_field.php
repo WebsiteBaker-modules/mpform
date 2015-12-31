@@ -35,7 +35,8 @@ require(WB_PATH.'/modules/admin.php');
 // Get id
 $oldfield_id = $admin->checkIDKEY('oldfield_id', false, 'GET');
 if (!$oldfield_id) {
-        $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'], ADMIN_URL);
+        $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'], 
+                ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
         exit();
 }
 
