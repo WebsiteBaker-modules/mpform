@@ -468,7 +468,7 @@ if (!function_exists('paint_form')) {
                                 $options = explode(',', $value);
                                 $code = $enum_start;
                         array_walk($options, 'make_checkbox', array($iFID, $field['extra'], (isset($_SESSION['mpf']['field'.$iFID])?$_SESSION['mpf']['field'.$iFID]:array()), $sErrClass, $isnew, $value_option_separator));
-                        $options[count($options)-1]=substr_replace($options[count($options)-1],"",-strlen($field['extra'])-1);
+                        $options[count($options)-1]=substr_replace($options[count($options)-1],"",-strlen($field['extra'])-strlen(PHP_EOL));
                         $aReplacements['{FIELD}'] = implode($options);                       
                         break; 
                     
@@ -476,7 +476,7 @@ if (!function_exists('paint_form')) {
                                 $options = explode(',', $value);
                                 $code = $enum_start;
                         array_walk($options, 'make_radio', array($iFID, $field['extra'], (isset($_SESSION['mpf']['field'.$iFID])?$_SESSION['mpf']['field'.$iFID]:''), $sErrClass, $isnew, $value_option_separator));
-                        $options[count($options)-1]=substr_replace($options[count($options)-1],"",-strlen($field['extra'])-1);
+                        $options[count($options)-1]=substr_replace($options[count($options)-1],"",-strlen($field['extra'])-strlen(PHP_EOL));
                         $aReplacements['{FIELD}'] = implode($options);
                         break; 
                     
