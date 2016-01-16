@@ -5,8 +5,11 @@ MODULE VERSION HISTORY
 ======================
 
    ------------------------------------------------------------------------------------------------------------------------ 
+        *** 1.1.18 (Martin Hecht: 16-Jan-2016) ***
+        fix a link in calendar in the frontend css, thanks to jacobi22
+
         *** 1.1.17 (Martin Hecht: 14-Jan-2016) ***
-        fix check boxes and radio buttons on windows platform,thanks to jacobi22
+        fix check boxes and radio buttons on windows platform, thanks to jacobi22
 
         *** 1.1.16 (Martin Hecht: 30-Dec-2015) ***
         clean up form after submission (patch by marmot)

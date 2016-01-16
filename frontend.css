@@ -318,7 +318,7 @@ div.mpform_results {
 }
 
 .calendar .nav {
-  background: ButtonFace url(http://orthointern/include/jscalendar/menuarrow.gif) no-repeat 100% 100%;
+  background: ButtonFace url(../../include/jscalendar/menuarrow.gif) no-repeat 100% 100%;
 }
 
 .calendar thead .title { /* This holds the current "month, year" */
