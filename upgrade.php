@@ -1,20 +1,20 @@
 <?php
-/*
-   WebsiteBaker CMS module: mpForm
-   ===============================
-   This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
-   
-   @module              mpform
-   @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
-   @copyright           (c) 2009 - 2015, Website Baker Org. e.V.
-   @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
-   @license             GNU General Public License
-
-   Improvements are copyright (c) 2009-2011 Frank Heyne
-
-   For more information see info.php   
-
-*/
+/**
+ * WebsiteBaker CMS module: mpForm
+ * ===============================
+ * This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
+ *  
+ * @category            page
+ * @module              mpform
+ * @version             1.1.20
+ * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
+ * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
+ * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
+ * @license             GNU General Public License
+ * @platform            2.8.x
+ * @requirements        
+ *
+ **/
 /* upgrade.php provides the functions for an upgrade from an older version of the module. */
 // Must include code to stop this file being access directly
 if(defined('WB_PATH') == false) { exit("Cannot access this file directly"); }
@@ -90,27 +90,20 @@ if (!isset($settings['value_option_separator'])){
         if($database->is_error()) {
                 echo $database->get_error().'<br />';
         }
-          /* disabling this piece of code again. Unless you have tested the pre-release,
-             you do not need it anyway:
-
-          else {
-                $types = $cols->fetchRow();
-                if(preg_match('/^text$/i',$types['Type'])){
-                        $qs = "ALTER TABLE `".TABLE_PREFIX."mod_mpform_settings`"
-                        . " MODIFY `value_option_separator`"
-                        . " VARCHAR(10) NOT NULL DEFAULT ''";
-                        $database->query($qs);
-                        if($database->is_error()) {
-                                echo $database->get_error().'<br />';
-                        } else {
-                                echo "Modified field `value_option_separator` successfully<br />";
-                        }       
-
-                } else {
-                        echo "`value_option_separator` is already of type VARCHAR<br />";
-                }       
-        } */
 }
+
+// new in 1.1.20
+
+if (!isset($settings['email_replyto'])){
+        $qs = "ALTER TABLE `".TABLE_PREFIX."mod_mpform_settings` ADD `email_replyto` VARCHAR(255) NOT NULL DEFAULT '' AFTER `email_from`";
+        $database->query($qs);
+        if($database->is_error()) {
+                echo $database->get_error().'<br />';
+        } else {
+                echo "Added new field `email_replyto` successfully<br />";
+        }
+}
+
         
 // removing fields never ever used:
 if (isset($settings['radio_html'])){
@@ -158,6 +151,26 @@ if (!isset($submissions['position'])){
         }
 }
 
+//Copy css files
+$mpath = WB_PATH.'/modules/mpform/';
+
+// If not already there, copy the css files
+echo'<span class="good"><b>Adding putting css files in place</b></span><br />';
+
+if (!file_exists($mpath.'frontend.css')) { 
+        rename($mpath.'frontend.default.css', $mpath.'frontend.css') ; 
+        echo "frontend.css<br />";
+}
+
+if (!file_exists($mpath.'backend.css')) { 
+        rename($mpath.'backend.default.css', $mpath.'backend.css') ; 
+        echo "backend.css<br />";
+}
+
+if (!file_exists($mpath.'private.php')) { 
+        rename($mpath.'private.default.php', $mpath.'private.php') ; 
+        echo "private.php<br />";
+}
 
 echo "<BR><B>Module $module_name updated to version: $module_version</B><BR>";
 sleep (5);

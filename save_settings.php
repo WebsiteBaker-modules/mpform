@@ -1,20 +1,20 @@
 <?php
-/*
-   WebsiteBaker CMS module: mpForm
-   ===============================
-   This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
-   
-   @module              mpform
-   @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
-   @copyright           (c) 2009 - 2015, Website Baker Org. e.V.
-   @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
-   @license             GNU General Public License
-
-   Improvements are copyright (c) 2009-2011 Frank Heyne
-
-   For more information see info.php   
-
-*/
+/**
+ * WebsiteBaker CMS module: mpForm
+ * ===============================
+ * This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
+ *  
+ * @category            page
+ * @module              mpform
+ * @version             1.1.20
+ * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
+ * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
+ * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
+ * @license             GNU General Public License
+ * @platform            2.8.x
+ * @requirements        
+ *
+ **/
 /* This file saves the settings made in the main form of the module in the backend. */
 
 // include global configuration file
@@ -66,6 +66,7 @@ $update_keys = array(
     'field_loop',
     'email_to',
     'email_from',
+    'email_replyto',
     'email_fromname',
     'email_subject',
     'success_page',
@@ -85,6 +86,7 @@ foreach($update_keys as $key) {
 }
 $upd_extra = array(
     'email_from_field',
+    'email_replyto_field',
     'email_fromname_field'
 );
 foreach($upd_extra as $key) {
@@ -125,6 +127,9 @@ $email_to = $temp_email_to;
 if (!$admin->validate_email($email_from)) {
     $email_from = '';    
 }
+if (!$admin->validate_email($email_replyto)) {
+    $email_replyto = '';    
+}
 if (!$admin->validate_email($success_email_from)) {
     $success_email_from = '';
 }
@@ -139,6 +144,10 @@ $success_email_text = htmlspecialchars($success_email_text, ENT_QUOTES);
 
 if ($email_from_field != '')
     $email_from = $email_from_field; // use a field of the form as sender's address
+if ($email_replyto_field != '')
+    $email_replyto = $email_replyto_field; // use a field of the form as sender's address
+if ($email_replyto == '')
+    $email_replyto = $email_from;
 if ($email_fromname_field != '')
     $email_fromname = $email_fromname_field; //  use a field of the form as sender's name
 

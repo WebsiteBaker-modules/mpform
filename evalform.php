@@ -1,20 +1,20 @@
 <?php
-/*
-   WebsiteBaker CMS module: mpForm
-   ===============================
-   This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
-   
-   @module              mpform
-   @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
-   @copyright           (c) 2009 - 2015, Website Baker Org. e.V.
-   @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
-   @license             GNU General Public License
-
-   Improvements are copyright (c) 2009-2011 Frank Heyne
-
-   For more information see info.php   
-
-*/
+/**
+ * WebsiteBaker CMS module: mpForm
+ * ===============================
+ * This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
+ *  
+ * @category            page
+ * @module              mpform
+ * @version             1.1.20
+ * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
+ * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
+ * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
+ * @license             GNU General Public License
+ * @platform            2.8.x
+ * @requirements        
+ *
+ **/
 /* This file evaluates the submitted form in the frontend. */
 
 // Must include code to stop this file being access directly
@@ -107,7 +107,7 @@ if (!function_exists('NewWbMailer')) {
 
 if (!function_exists('mpform_mailx')) {
     // Validate send email
-    function mpform_mailx($fromaddress, $toaddress, $subject, $message, $fromname='', $file_attached='') {
+    function mpform_mailx($fromaddress, $replytoaddress, $toaddress, $subject, $message, $fromname='', $file_attached='') {
         /* 
             INTEGRATED OPEN SOURCE PHPMAILER CLASS FOR SMTP SUPPORT AND MORE
             SOME SERVICE PROVIDERS DO NOT SUPPORT SENDING MAIL VIA PHP AS IT DOES NOT PROVIDE SMTP AUTHENTICATION
@@ -132,8 +132,15 @@ if (!function_exists('mpform_mailx')) {
         if ($fromaddress!='') {
             if($fromname!='') $myMail->FromName = $fromname;     // FROM-NAME
             $myMail->From = $fromaddress;                // FROM:
+        }
+
+        // set user defined replyto address
+        if ($replytoaddress!='') {
+            $myMail->AddReplyTo($replytoaddress);               // REPLY TO:
+        } else {
             $myMail->AddReplyTo($fromaddress);               // REPLY TO:
         }
+        
 
         // define recipient(s)
         $emails = explode(",", $toaddress);
@@ -245,6 +252,15 @@ if (!function_exists('eval_form')) {
             }
             if ($email_from == 'wbu') {
                 $email_from = $admin->get_email();
+            }
+
+            $email_replyto = $fetch_settings['email_replyto'];
+            if(substr($email_replyto, 0, 5) == 'field') {
+                // Set the email replyto field to what the user entered in the specified field
+                $email_replyto = htmlspecialchars($admin->add_slashes($_POST[$email_replyto]));  
+            }
+            if ($email_replyto == 'wbu') {
+                $email_replyto = $admin->get_email();
             }
 
             $email_fromname = $fetch_settings['email_fromname'];
@@ -571,7 +587,7 @@ if (!function_exists('eval_form')) {
                     //echo $mailto;
 
 
-                    if(mpform_mailx($email_from, $mailto, $email_subject, $body, $email_fromname, $files_to_attach)) {
+                    if(mpform_mailx($email_from, $email_replyto, $mailto, $email_subject, $body, $email_fromname, $files_to_attach)) {
                         $files_to_attach = array();
                     } else {
                         $success = false;
@@ -586,7 +602,7 @@ if (!function_exists('eval_form')) {
 
                 if ($success==true AND $success_email_to != '') {
                     $user_body = str_replace(array('{DATA}', '{REFERER}', '{IP}', '{DATE}', '{USER}'), array($html_data_user, $_SESSION['href'], $ip, $jetzt, $wb_user), $success_email_text);
-                    if (! mpform_mailx($success_email_from, $success_email_to, $success_email_subject, $user_body, $success_email_fromname)) {
+                    if (! mpform_mailx($success_email_from, '', $success_email_to, $success_email_subject, $user_body, $success_email_fromname)) {
                         $success = false;
                         echo $TEXT['WBMAILER_FUNCTION']. " (CONFIRM) ";
                     }

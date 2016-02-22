@@ -95,6 +95,19 @@
                 </td>
         </tr>
     <tr>
+                <th>{txt_email_replyto_field}:</th>
+                <td>
+                        <select name="email_replyto_field">
+                                <option value="" onclick="javascript: document.getElementById('email_replyto_f_slave').style.display = 'block';">{TXT_STATIC_ADDR}:</option>
+                                <!-- BEGIN email_replyto_f_block -->
+                                {options_email_replyto_f}
+                                <!-- END email_replyto_f_block -->
+                        </select>
+                        <input type="text" name="email_replyto" id="email_replyto_f_slave" class="setting_value_text" style="display: {display_email_replyto_field}"        value="{email_replyto}"/><br />
+                        <small>{des_email_replyto}</small>
+                </td>
+        </tr>
+    <tr>
                 <th>{txt_email_fromname_field}:</th>
                 <td>
                         <select name="email_fromname_field">

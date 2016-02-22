@@ -1,21 +1,21 @@
 <?php
 
-/*
-   WebsiteBaker CMS module: mpForm
-   ===============================
-   This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
-   
-   @module              mpform
-   @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
-   @copyright           (c) 2009 - 2015, Website Baker Org. e.V.
-   @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
-   @license             GNU General Public License
-
-   Improvements are copyright (c) 2009-2011 Frank Heyne
-
-   For more information see info.php   
-
-*/
+/**
+ * WebsiteBaker CMS module: mpForm
+ * ===============================
+ * This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
+ *  
+ * @category            page
+ * @module              mpform
+ * @version             1.1.20
+ * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
+ * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
+ * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
+ * @license             GNU General Public License
+ * @platform            2.8.x
+ * @requirements        
+ *
+ **/
 
 /* The file NO.php provides strings in Norwegian language.
  * Filen NO.php inneholder Norske spr�k strenger.
@@ -65,6 +65,11 @@ For forms consisting of a single page No is required!',
         'txt_email_fromname_field'        => '&quot;Fra&quot; Navn',
         'txt_success_email_fromname'        => '&quot;Fra&quot; Navn',
         'txt_email_from_field'        => '&quot;Fra&quot; e-post adresse', // *uklar
+        'txt_email_replyto_field'        => '&quot;Svar til&quot; e-post adresse', // *uklar
+        'des_email_replyto'        => 'Skriv inn en statisk Svar til-adresse. <br/>
+Hvis dette feltet er tomt, er den samme adressen som Fra-feltet brukes. <br/>
+Når et felt av typen e er valgt, blir dette feltet brukes i stedet. <br/>
+Alternativt kan e-post av den påloggede brukeren automatisk bli valgt.', // *uklar
         'txt_success_email_from'        => '&quot;Fra&quot; e-post adresse', // *uklar
         'txt_success_page'        => 'Neste side',
         'des_success_page'        => 'The "Following page" will sent to the browser after the form has been filled out without any failure.<br />

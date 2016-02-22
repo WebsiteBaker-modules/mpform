@@ -1,21 +1,21 @@
 <?php
 
-/*
-   WebsiteBaker CMS module: mpForm
-   ===============================
-   This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
-   
-   @module              mpform
-   @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
-   @copyright           (c) 2009 - 2015, Website Baker Org. e.V.
-   @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
-   @license             GNU General Public License
-
-   Improvements are copyright (c) 2009-2011 Frank Heyne
-
-   For more information see info.php   
-
-*/
+/**
+ * WebsiteBaker CMS module: mpForm
+ * ===============================
+ * This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
+ *  
+ * @category            page
+ * @module              mpform
+ * @version             1.1.20
+ * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
+ * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
+ * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
+ * @license             GNU General Public License
+ * @platform            2.8.x
+ * @requirements        
+ *
+ **/
 /* The file DE.php provides strings in German language. */
 
 // German module description
@@ -67,6 +67,11 @@ Bei einseitigen Formularen muss Nein eingestellt sein!',
         'txt_email_fromname_field'        => 'Absendername',
         'txt_success_email_fromname'        => 'Absendername',
         'txt_email_from_field'        => 'Absenderadresse',
+        'txt_email_replyto_field'        => 'Antwortadresse',
+        'des_email_replyto'        => 'Geben Sie hier eine statische replyto-Adresse an. <br/>
+Wenn dieses Feld leer ist, wird die gleiche Adresse wie im From-Feld verwendet<br />
+Wenn ein Feld vom Typ email ausgew&auml;hlt ist, wird dieses Feld anstatt der hier eingetragenen Adresse verwendet.<br />
+Alternativ kann die email des angemeldeten Benutzers automatisch ausgew&auml;hlt werden.',
         'txt_success_email_from'        => 'Absenderadresse',
         'txt_success_page'        => 'Folgeseite',
         'des_success_page'        => 'Die Folgeseite wird aufgerufen, nachdem das Formular fehlerfrei ausgef&uuml;llt wurde.<br />

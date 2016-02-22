@@ -1,21 +1,21 @@
 <?php
 
-/*
-   WebsiteBaker CMS module: mpForm
-   ===============================
-   This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
-   
-   @module              mpform
-   @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
-   @copyright           (c) 2009 - 2015, Website Baker Org. e.V.
-   @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
-   @license             GNU General Public License
-
-   Improvements are copyright (c) 2009-2011 Frank Heyne
-
-   For more information see info.php   
-
-*/
+/**
+ * WebsiteBaker CMS module: mpForm
+ * ===============================
+ * This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
+ *  
+ * @category            page
+ * @module              mpform
+ * @version             1.1.20
+ * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
+ * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
+ * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
+ * @license             GNU General Public License
+ * @platform            2.8.x
+ * @requirements        
+ *
+ **/
 
 /*  French translation by Quinto */
 
@@ -65,6 +65,11 @@ Dans ce cas l&apos;utilisateur verra l&apos;adresse email si il a l&apos;autoris
         'txt_email_fromname_field'        => '&quot;Depuis&quot; le Nom',
         'txt_success_email_fromname'        => '&quot;Depuis&quot; le Nom',
         'txt_email_from_field'        => '&quot;Depuis&quot; l&apos;Adresse',
+        'txt_email_replyto_field'        => '&quot;Response&quot; &agrave;&apos;Adresse',
+        'des_email_replyto'        => 'Entrez une adresse replyto statique. <br/>
+Si ce champ est vide, la m&egrave;me adresse que le champ &quot;Depuis&quot; est utilis&eacut;. <br/>
+Quand un champ de type e-mail est s&eacut;lectionn&eacut;, ce champ est utilis&eacut; &agrave; la place. <br/>
+Alternativement, l&apos;e-mail de l&apos;utilisateur connect&eacut; peut &ecric;tre automatiquement s&eacut;lectionn&eacut;.',
         'txt_success_email_from'        => '&quot;Depuis&quot; L&apos;Adresse',
         'txt_success_page'        => 'Page suivante',
         'des_success_page'        => 'La &quot;Page suivante&quot; sera affich&eacute;e dans le navigateur une fois le formulaire correctement rempli.<br />

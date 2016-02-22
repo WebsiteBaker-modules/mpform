@@ -101,7 +101,7 @@ More examples can be found at [http://plugins.learningjquery.com/cluetip/demo/](
 ## Credits
 
 * Originally inspired by Cody Lindley's jTip (http://www.codylindley.com)
-* Huge thanks to Jonathan Chaffer, Glen Lipka, Shelane Enos, Hector Santos, Torben Schreiter, Dan G. Switzer, Jörn Zaefferer, and the many others who helped report and fix bugs and suggest features.
+* Huge thanks to Jonathan Chaffer, Glen Lipka, Shelane Enos, Hector Santos, Torben Schreiter, Dan G. Switzer, J&ouml;rn Zaefferer, and the many others who helped report and fix bugs and suggest features.
 
 [1]: http://jqueryui.com/themeroller/
 [2]: http://plugins.learningjquery.com/cluetip/

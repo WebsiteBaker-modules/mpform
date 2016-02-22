@@ -5,6 +5,12 @@ MODULE VERSION HISTORY
 ======================
 
    ------------------------------------------------------------------------------------------------------------------------ 
+        *** 1.1.20 (Martin Hecht: 21-Feb-2016) ***
+        allow to configure reply-to address
+
+        *** 1.1.19 (Martin Hecht: 12-Feb-2016) ***
+        do not overwrite frontend.css, backend.css and private.php with upgrade 
+
         *** 1.1.18 (Martin Hecht: 16-Jan-2016) ***
         fix a link in calendar in the frontend css, thanks to jacobi22
 

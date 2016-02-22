@@ -1,29 +1,32 @@
 <?php
-/*
-   WebsiteBaker CMS module: mpForm
-   ===============================
-   This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
-   
-   @module              mpform
-   @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
-   @copyright           (c) 2009 - 2015, Website Baker Org. e.V.
-   @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
-   @license             GNU General Public License
-
-   Improvements are copyright (c) 2009-2011 Frank Heyne
-
-   For more information see info.php   
-
-*/
+/**
+ * WebsiteBaker CMS module: mpForm
+ * ===============================
+ * This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
+ *  
+ * @category            page
+ * @module              mpform
+ * @version             1.1.20
+ * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
+ * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
+ * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
+ * @license             GNU General Public License
+ * @platform            2.8.x
+ * @requirements        
+ *
+ **/
 /* This file provides the installation functions of the module. */
 if(defined('WB_URL')) {
 
 require_once(dirname(__FILE__).'/constants.php');
         
         // Rename files
-        if (!file_exists(WB_PATH."/modules/mpform/backend.css"))  rename(WB_PATH."/modules/mpform/backend.css.txt",  WB_PATH."/modules/mpform/backend.css");
-        if (!file_exists(WB_PATH."/modules/mpform/frontend.css")) rename(WB_PATH."/modules/mpform/frontend.css.txt", WB_PATH."/modules/mpform/frontend.css");
-        if (!file_exists(WB_PATH."/modules/mpform/private.php"))  rename(WB_PATH."/modules/mpform/private.php.txt",  WB_PATH."/modules/mpform/private.php");
+        if (!file_exists(WB_PATH."/modules/mpform/backend.css"))  
+                rename(WB_PATH."/modules/mpform/backend.default.css",  WB_PATH."/modules/mpform/backend.css");
+        if (!file_exists(WB_PATH."/modules/mpform/frontend.css")) 
+                rename(WB_PATH."/modules/mpform/frontend.default.css", WB_PATH."/modules/mpform/frontend.css");
+        if (!file_exists(WB_PATH."/modules/mpform/private.default.php"))  
+                rename(WB_PATH."/modules/mpform/private.default.php",  WB_PATH."/modules/mpform/private.php");
 
         // Create tables
         $database->query("DROP TABLE IF EXISTS `".TABLE_PREFIX."mod_mpform_fields`");
@@ -49,6 +52,7 @@ require_once(dirname(__FILE__).'/constants.php');
                 . ' `footer` TEXT NOT NULL ,'
                 . ' `email_to` TEXT NOT NULL ,'
                 . ' `email_from` VARCHAR(255) NOT NULL DEFAULT \'\' ,'
+                . ' `email_replyto` VARCHAR(255) NOT NULL DEFAULT \'\' ,'
                 . ' `email_fromname` VARCHAR(255) NOT NULL DEFAULT \'\' ,'
                 . ' `email_subject` VARCHAR(255) NOT NULL DEFAULT \'\' ,'
                 . ' `email_text` TEXT NOT NULL ,'
@@ -154,6 +158,7 @@ require_once(dirname(__FILE__).'/constants.php');
         .     "`date_format` = '' ";
 
         $database->query($sql);
+
 }
 
 

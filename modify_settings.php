@@ -1,20 +1,20 @@
 <?php
-/*
-   WebsiteBaker CMS module: mpForm
-   ===============================
-   This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
-   
-   @module              mpform
-   @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
-   @copyright           (c) 2009 - 2015, Website Baker Org. e.V.
-   @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
-   @license             GNU General Public License
-
-   Improvements are copyright (c) 2009-2011 Frank Heyne
-
-   For more information see info.php   
-
-*/
+/**
+ * WebsiteBaker CMS module: mpForm
+ * ===============================
+ * This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
+ *  
+ * @category            page
+ * @module              mpform
+ * @version             1.1.20
+ * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
+ * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
+ * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
+ * @license             GNU General Public License
+ * @platform            2.8.x
+ * @requirements        
+ *
+ **/
 /* This file prints the settings form of the module in the backend. */
 // unset page/section IDs defined via GET before including the admin file (we expect POST here)
 unset($_GET['page_id']);
@@ -80,6 +80,7 @@ foreach($settings as $key => $value) {
 }
 
 $email_from_value = $setting['email_from'];
+$email_replyto_value = $setting['email_replyto'];
 $email_fromname_value = $setting['email_fromname']; 
 
 // replace static template placeholders with values from language file
@@ -105,6 +106,7 @@ $tpl->set_var(
                 'txt_field_loop'             => $TEXT['FIELD'].' '.$TEXT['LOOP'],
                 'txt_footer'                 => $TEXT['FOOTER'],
                 'email_from'                 => ((substr($settings['email_from'], 0, 5) != 'field') && ($settings['email_from'] != 'wbu') ? $settings['email_from'] : ''),
+                'email_replyto'              => ((substr($settings['email_replyto'], 0, 5) != 'field') && ($settings['email_replyto'] != 'wbu') ? $settings['email_replyto'] : ''),
                 'des_email_from_field'       => '',
                 'email_fromname'             => ((substr($settings['email_fromname'], 0, 5) != 'field') && ($settings['email_fromname'] != 'wbu') ? $settings['email_fromname'] : ''),
                 'des_email_fromname_field'   => '',
@@ -228,6 +230,8 @@ $rt1 = give_me_address_list($email_from_value, true, 'email_from_f', $LANG['back
 $tpl->set_var('display_email_from_field', (($rt1) ? 'none' : 'block'));
 $rt2 = give_me_name_list($email_fromname_value, true, 'email_fromname_f', $LANG['backend']['TXT_USER_NAME']);
 $tpl->set_var('display_email_fromname_field', (($rt2) ? 'none' : 'block'));
+$rt3 = give_me_address_list($email_replyto_value, true, 'email_replyto_f', $LANG['backend']['TXT_USER_ADDR']);
+$tpl->set_var('display_email_replyto_field', (($rt3) ? 'none' : 'block'));
 give_me_address_list($settings['success_email_to'], false, 'success_email_to', $LANG['backend']['TXT_USER_ADDR']);
 give_me_pages_list($settings['success_page'],'success_page');
 

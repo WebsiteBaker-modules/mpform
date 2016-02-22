@@ -1,21 +1,21 @@
 <?php
 
-/*
-   WebsiteBaker CMS module: mpForm
-   ===============================
-   This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
-   
-   @module              mpform
-   @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
-   @copyright           (c) 2009 - 2015, Website Baker Org. e.V.
-   @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
-   @license             GNU General Public License
-
-   Improvements are copyright (c) 2009-2011 Frank Heyne
-
-   For more information see info.php   
-
-*/
+/**
+ * WebsiteBaker CMS module: mpForm
+ * ===============================
+ * This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
+ *  
+ * @category            page
+ * @module              mpform
+ * @version             1.1.20
+ * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
+ * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
+ * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
+ * @license             GNU General Public License
+ * @platform            2.8.x
+ * @requirements        
+ *
+ **/
 /* The file EN.php provides strings in English language. */
 
 // declare module language array
@@ -64,6 +64,11 @@ For forms consisting of a single page No is required!',
         'txt_email_fromname_field'        => '&quot;From&quot; Name',
         'txt_success_email_fromname'        => '&quot;From&quot; Name',
         'txt_email_from_field'        => '&quot;From&quot; Address',
+        'txt_email_replyto_field'        => '&quot;Replyto&quot; Address',
+        'des_email_replyto'        => 'Enter a static replyto address.<br/>
+If this field is empty, the same address as the From field is used. <br/>
+When a field of type email is selected, this field is used instead. <br/>
+Alternatively, the email of the logged-in user can be automatically selected.',
         'txt_success_email_from'        => '&quot;From&quot; Address',
         'txt_success_page'        => 'Following page',
         'des_success_page'        => 'The "Following page" will sent to the browser after the form has been filled out without any failure.<br />

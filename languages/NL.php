@@ -1,21 +1,21 @@
 <?php
 
-/*
-   WebsiteBaker CMS module: mpForm
-   ===============================
-   This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
-   
-   @module              mpform
-   @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
-   @copyright           (c) 2009 - 2015, Website Baker Org. e.V.
-   @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
-   @license             GNU General Public License
-
-   Improvements are copyright (c) 2009-2011 Frank Heyne
-
-   For more information see info.php   
-
-*/
+/**
+ * WebsiteBaker CMS module: mpForm
+ * ===============================
+ * This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
+ *  
+ * @category            page
+ * @module              mpform
+ * @version             1.1.20
+ * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
+ * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
+ * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
+ * @license             GNU General Public License
+ * @platform            2.8.x
+ * @requirements        
+ *
+ **/
 /* The file NL.php provides strings in Dutch language. */
 
 // Dutch module description
@@ -67,6 +67,11 @@ Voor formulieren die uit een enkele pagina bestaan is NEE vereist!',
         'txt_email_fromname_field'        => 'Naam afzender',
         'txt_success_email_fromname'        => 'Naam afzender',
         'txt_email_from_field'        => 'E-mailadres afzender',
+        'txt_email_replyto_field'        => 'E-mailadres replyto',
+        'des_email_replyto'        => 'Voer een statisch replyto adres. <br/>
+Als dit veld leeg is, wordt hetzelfde adres als het veld wordt gebruikt. <br/>
+Wanneer een veld van het type e-mail wordt geselecteerd, wordt dit veld gebruikt in plaats. <br/>
+Als alternatief kan de e-mail van de aangemelde gebruiker automatisch worden geselecteerd.',
         'txt_success_email_from'        => 'E-mailadres afzender',
         'txt_success_page'        => 'Landingspagina na verzenden',
         'des_success_page'        => 'De landingspagina wordt in de browser getoond nadat het formulier zonder fouten is ingevuld.<br />

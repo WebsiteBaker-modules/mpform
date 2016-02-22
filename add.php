@@ -1,20 +1,20 @@
 <?php
-/*
-   WebsiteBaker CMS module: mpForm
-   ===============================
-   This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
-   
-   @module              mpform
-   @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
-   @copyright           (c) 2009 - 2015, Website Baker Org. e.V.
-   @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
-   @license             GNU General Public License
-
-   Improvements are copyright (c) 2009-2011 Frank Heyne
-
-   For more information see info.php   
-
-*/
+/**
+ * WebsiteBaker CMS module: mpForm
+ * ===============================
+ * This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
+ *  
+ * @category            page
+ * @module              mpform
+ * @version             1.1.20
+ * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
+ * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
+ * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
+ * @license             GNU General Public License
+ * @platform            2.8.x
+ * @requirements        
+ *
+ **/
 /* This file adds a new page/section with this module to the website. */
 // Must include code to stop this file being access directly
 if(defined('WB_PATH') == false) { exit("Cannot access this file directly"); }
@@ -48,6 +48,7 @@ $is_following = 0;
 $upload_files_folder = MEDIA_DIRECTORY. "/".$mod_dir;
 $email_to = $admin->get_email();
 $email_from = '';
+$email_replyto = '';
 $email_fromname = '';
 $email_subject = $LANG['backend']['EMAIL_SUBJECT'];
 $success_page = 'none';
@@ -85,6 +86,7 @@ $SQL .= "                field_loop     , ";
 $SQL .= "                footer         , ";
 $SQL .= "                email_to       , ";
 $SQL .= "                email_from     , ";
+$SQL .= "                email_replyto  , ";
 $SQL .= "                email_fromname , ";
 $SQL .= "                email_subject  , ";
 $SQL .= "                email_text     , ";
@@ -123,6 +125,7 @@ $SQL .= "                '$field_loop'           , ";
 $SQL .= "                '$footer'               , ";
 $SQL .= "                '$email_to'             , ";
 $SQL .= "                '$email_from'           , ";
+$SQL .= "                '$email_replyto'        , ";
 $SQL .= "                '$email_fromname'       , ";
 $SQL .= "                '$email_subject'        , ";
 $SQL .= "                '$email_text'           , ";
