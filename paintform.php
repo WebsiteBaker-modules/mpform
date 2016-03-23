@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.1.20
+ * @version             1.1.22
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -428,7 +428,7 @@ if (!function_exists('paint_form')) {
                                         if (trim($teil[0])!='')
                                         array_push($options, htmlspecialchars($teil[0], ENT_QUOTES));
                                 }
-                        array_walk($options, 'make_option', array((isset($_SESSION['mpf']['field'.$iFID])?$_SESSION['mpf']['field'.$iFID]:array()), false));
+                        array_walk($options, 'make_option', array((isset($_SESSION['mpf']['field'.$iFID])?$_SESSION['mpf']['field'.$iFID]:array()), false, $value_option_separator));
                         $aReplacements['{FIELD}'] = '<select name="field'.$iFID.'[]" id="field'.$iFID.'" class="'.$sErrClass.'select">';
                         $aReplacements['{FIELD}'] .= implode($options);
                         $aReplacements['{FIELD}'] .= '</select>';

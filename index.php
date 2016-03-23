@@ -7,7 +7,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.1.20
+ * @version             1.1.22
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html

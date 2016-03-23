@@ -5,6 +5,13 @@ MODULE VERSION HISTORY
 ======================
 
    ------------------------------------------------------------------------------------------------------------------------ 
+
+        *** 1.1.22 (Martin Hecht: 23-Mar-2016) ***
+        fix html special char notation for acute accents
+
+        *** 1.1.21 (Martin Hecht: 07-Mar-2016) ***
+        Bugfix for email receipients list        
+
         *** 1.1.20 (Martin Hecht: 21-Feb-2016) ***
         allow to configure reply-to address
 

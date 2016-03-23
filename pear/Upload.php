@@ -121,7 +121,7 @@ class HTTP_Upload_Error extends PEAR
                 'de'    => "Datei zu gro&szlig;. Die zul&auml;ssige Maximalgr&ouml;&szlig;e ist: $maxsize Bytes.",
                 'nl'    => "Het bestand is te groot, de maximale grootte is: $maxsize bytes.",
                 'fr'    => "Le fichier est trop gros. La taille maximum autoris&eacute;e est: $maxsize bytes.",
-                'it'    => "Il file &eacute; troppo grande. Il massimo permesso &eacute: $maxsize bytes.",
+                'it'    => "Il file &eacute; troppo grande. Il massimo permesso &eacute;: $maxsize bytes.",
                 'pt_BR' => "Arquivo muito grande. O tamanho m&aacute;ximo permitido &eacute; $maxsize bytes."
                 ),
             'MISSING_DIR' => array(
