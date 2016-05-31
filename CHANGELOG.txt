@@ -6,6 +6,14 @@ MODULE VERSION HISTORY
 
    ------------------------------------------------------------------------------------------------------------------------ 
 
+        *** 1.1.24 (Martin Hecht: 30-May-2016) ***
+        remove (still) unsupported call to ftan from paintform
+        modify explicit include of phplib
+
+        *** 1.1.23 (Martin Hecht: 06-Apr-2016) ***
+        include jquery.jnotify.css background images
+        correct the help page
+
         *** 1.1.22 (Martin Hecht: 23-Mar-2016) ***
         fix html special char notation for acute accents
 

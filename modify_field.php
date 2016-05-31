@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.1.22
+ * @version             1.1.24
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -67,7 +67,7 @@ if ($form['page_id'] != $page_id) {
 }
 
 // include template parser class and set template
-require_once(WB_PATH . '/include/phplib/template.inc');
+if (file_exists(WB_PATH . '/include/phplib/template.inc')) require_once(WB_PATH . '/include/phplib/template.inc');
 $tpl = new Template(dirname(__FILE__) . '/htt/');
 // define how to handle unknown variables (default:='remove', during development use 'keep' or 'comment')
 $tpl->set_unknowns('keep');

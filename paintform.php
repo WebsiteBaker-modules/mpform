@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.1.22
+ * @version             1.1.24
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -266,10 +266,12 @@ if (!function_exists('paint_form')) {
         echo '<form name="form_'.$iSID.'"  enctype="multipart/form-data" action="'. $sActionAttr .'#wb_section_'.$iSID.'" method="post">'.PHP_EOL;
         echo '<input type="hidden" name="submission_id" value="'. $sValueAttr .'" />'.PHP_EOL; 
        
+/*        ftan not yet implemented for frontend
         if (WB_VERSION >= "2.8.2") { 
             global $admin;
             $admin->getFTAN();
         }
+*/
         if(ENABLED_ASP) {
             echo draw_asp_honeypots($iSID);
         }

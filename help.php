@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.1.22
+ * @version             1.1.24
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -46,13 +46,13 @@ $adm = module_header_footer($page_id, $mod_dir);
 <div class="helppage">
         <?php if(LANGUAGE == 'DE') : ?>
         
-        <p>Die Dokumentation zu diesem Modul umfasst mittlerweile etwa 20 Seiten. Sie ist online auf der <a href="http://wbdemo.heysoft.de/pages/de/mpform.php" target="help">Homepage des Moduls</a> verf&uuml;gbar.</p>
-        <p>Falls Sie Bugs finden, melden Sie sie bitte an <em>mod 4 wb at heysoft dot de</em></p>
-        
+        <p>Die Dokumentation zu diesem Modul war online und ist noch <a href="https://web.archive.org/web/http://wbdemo.heysoft.de/pages/de/mpform.php" target="help">im Web Archiv</a> verf&uuml;gbar.</p>
+        <p>In einem zuk&uuml;nftigen Release des Moduls wird eine aktualisierte Version der Dokumentation mit ausgeliefert.</p>
+
         <?php else : ?>
         
-        <p>The help and documentation for this module now consists of approximately 20 pages. It is available online at the <a href="http://wbdemo.heysoft.de/pages/en/mpform.php" target="help">Home page of the module</a>.</p>
-        <p>If you find bugs, please report them to <em>mod 4 wb at heysoft dot de</em></p>
+        <p>The help and documentation for this module was available online and it is currently still available <a href="https://web.archive.org/web/http://wbdemo.heysoft.de/pages/en/mpform.php" target="help">in the web archive</a>.</p>
+        <p>In a future release an updated version of the documentation will be included in the module package.</p>
         
         <?php endif; ?>
 </div>
