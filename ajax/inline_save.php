@@ -38,27 +38,38 @@ $admin = new admin('Pages', 'pages_settings', false);
 $new_value = str_replace(array("[[", "]]"), '', $admin->add_slashes($admin->get_post('value')));
 
 
-// must check if user can change things, should be checked in tool.php so that user with no rights can't edit
+// must check if user can change things, 
+// should be checked in tool.php so that user with no rights can't edit
 // but also check in save to avoid any hack from a logged in not admin user
 if($admin->get_permission('pages_modify') == false ) { 
-        exit; 
+    exit; 
 }
 
 
 // Go to save me ! 
 if(isset($new_value) && $page_field == 'field'){
-        // Update page settings in the pages table
-        $sql  = 'UPDATE `'.TABLE_PREFIX.'mod_mpform_fields` SET `title` = "'.$new_value.'" WHERE `field_id` = '.$field_id.'';
-        $database->query($sql);
+    // Update page settings in the pages table
+    $sql  
+        = 'UPDATE `'.TABLE_PREFIX.'mod_mpform_fields`'
+            . ' SET `title` = "'.$new_value.'"'
+            . ' WHERE `field_id` = '.$field_id.'';
+    $database->query($sql);
 }
 
 if($database->is_error()) {
-                
-        #exit; 
-        echo '<b>(nv:'.$new_value.'; field_id: '.$admin->checkIDKEY($set_field[1]).'</b> )'.$database->get_error(); 
-        #$admin->print_error($database->get_error());
+        
+    #exit; 
+    echo '<b>(nv:'.$new_value.'; field_id: '
+          .((method_exists( $admin, 'checkIDKEY' ))
+            ? ($admin->checkIDKEY($set_field[1]))
+            : ($set_field[1]))
+          .'</b> )'
+          .$database->get_error(); 
+    #$admin->print_error($database->get_error());
 }else {
-        echo $new_value;  // there is a problem when user enter some comma they are escaped and returned escaped :(
+    echo $new_value;  
+    // there is a problem when user enter some comma 
+    // they are escaped and returned escaped :(
 }
 
 exit;

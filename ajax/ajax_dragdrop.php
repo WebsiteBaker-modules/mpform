@@ -3,17 +3,18 @@
 /**
  * WebsiteBaker CMS module: mpForm
  * ===============================
- * This module allows you to create customised online forms, such as a feedback form with file upload and email attachment mpForm allows forms over one or more pages.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module.
+ * This module allows you to create customised online forms, such as a feedback form with file upload and customizable email notifications. mpForm allows forms over one or more pages, loops of forms, conditionally displayed sections within a single page, and many more things.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module. Since 1.2.0 forms can be imported and exported directly in the module.
  *  
  * @category            page
  * @module              mpform
- * @version             1.1.24
- * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Quinto, Martin Hecht (mrbaseman)
+ * @version             1.2.1
+ * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
+ * @url                 https://github.com/WebsiteBaker-modules/mpform
  * @license             GNU General Public License
  * @platform            2.8.x
- * @requirements        
+ * @requirements        probably php >= 5.3 ?
  *
  **/
 /*      Drag'N'Drop Position
@@ -25,51 +26,53 @@ $aJsonRespond = array();
 $aJsonRespond['success'] = false;
 $aJsonRespond['message'] = 'hallo';
 $aJsonRespond['icon'] = '';
-        
-        
-if(!isset($_POST['action']) || !isset($_POST['field_id']) )        
+    
+    
+if(!isset($_POST['action']) || !isset($_POST['field_id']) )    
 //if(!isset($_POST['action']))
-{         
-        $aJsonRespond['message'] = 'eins von den parametern gibts nicht';
-        exit(json_encode($aJsonRespond));
+{     
+    $aJsonRespond['message'] = 'eins von den parametern gibts nicht';
+    exit(json_encode($aJsonRespond));
 }
  else 
-{        
-        $aRows = $_POST['field_id'];
-        require_once('../../../config.php');        
-        // check if user has permissions to access the Bakery module
-        require_once(WB_PATH.'/framework/class.admin.php');
-        $admin = new admin('Modules', 'module_view', false, false);
-        if (!($admin->is_authenticated() && $admin->get_permission('mpform', 'module'))) {
-                $aJsonRespond['message'] = 'unsuficcient rights';
-                exit(json_encode($aJsonRespond));
-        }
-        
-        // Sanitize variables
-        $action = $admin->add_slashes($_POST['action']);        
-        if ($action == "updatePosition")
-        {         
-                $i = 1;
-                foreach ($aRows as $recID) {
-                        // not we sanitize array
-                        $database->query("UPDATE `".TABLE_PREFIX."mod_mpform_fields` SET `position` = ".$i." WHERE `field_id` = ".intval($recID)." ");
-                        $i++;        
-                        
-                }
-                if($database->is_error()) {
-                        $aJsonRespond['success'] = false;
-                        $aJsonRespond['message'] = 'db query failed: '.$database->get_error();
-                        $aJsonRespond['icon'] = 'trash.gif';
-                        exit(json_encode($aJsonRespond));
-                }        
-        }else{
-                $aJsonRespond['message'] = 'wrong arguments "$action"';
-                exit(json_encode($aJsonRespond));
-        }
-        
-        $aJsonRespond['icon'] = 'ajax-loader.gif';
-        $aJsonRespond['message'] = 'seems everything is fine';
-        $aJsonRespond['success'] = true;
+{    
+    $aRows = $_POST['field_id'];
+    require_once('../../../config.php');    
+    // check if user has permissions to access the Bakery module
+    require_once(WB_PATH.'/framework/class.admin.php');
+    $admin = new admin('Modules', 'module_view', false, false);
+    if (!($admin->is_authenticated() && $admin->get_permission('mpform', 'module'))) {
+        $aJsonRespond['message'] = 'unsuficcient rights';
         exit(json_encode($aJsonRespond));
+    }
+    
+    // Sanitize variables
+    $action = $admin->add_slashes($_POST['action']);    
+    if ($action == "updatePosition")
+    {     
+        $i = 1;
+        foreach ($aRows as $recID) {
+            // not we sanitize array
+            $database->query("UPDATE `".TABLE_PREFIX."mod_mpform_fields`"
+               . " SET `position` = '".$i."'"
+               . " WHERE `field_id` = ".intval($recID)." ");
+            $i++;    
+            
+        }
+        if($database->is_error()) {
+            $aJsonRespond['success'] = false;
+            $aJsonRespond['message'] = 'db query failed: '.$database->get_error();
+            $aJsonRespond['icon'] = 'trash.gif';
+            exit(json_encode($aJsonRespond));
+        }    
+    }else{
+        $aJsonRespond['message'] = 'wrong arguments "$action"';
+        exit(json_encode($aJsonRespond));
+    }
+    
+    $aJsonRespond['icon'] = 'ajax-loader.gif';
+    $aJsonRespond['message'] = 'seems everything is fine';
+    $aJsonRespond['success'] = true;
+    exit(json_encode($aJsonRespond));
 } 
 

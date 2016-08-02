@@ -1,0 +1,146 @@
+<!-- quirks for IE -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="de"
+      lang="de">
+<head>
+  <title>MPForm Help - FAQ to MPForm</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="content-language" content="en" />
+  <meta name="description" content="FAQ to MPForm" />
+  <meta name="keywords" content="Website Baker, MPForm, FAQ, Websitebaker" />
+  <link rel="stylesheet" type="text/css" href="../../../docs/style/mpformdoku.css" />
+</head>
+
+
+<body>
+<!-- ########## Header-Bereich -->
+  <div id="header">
+      <div class="hthema"><span class="hthema"> MPForm Help pages</span>
+        <h1>FAQ to MPForm</h1>
+      </div>
+  </div>
+      <div id="topnavigation">
+          <div class="eml">
+             <span class="easymultilang">
+                <a href='../../../docs/DE/mpform/faq-zu-mpform.html' title='German'>
+                <img src="../../../docs/images/de.png" alt="German" /> German </a>
+             </span>
+             <span class="easymultilang_current">
+                <img src="../../../docs/images/en.png" alt="English" /> English
+             </span>
+          </div>
+      </div>
+<!-- ********** Ende Header-Bereich -->
+
+  <div id="content-left">
+      <div class="innerwrap">
+       
+<!-- show_menu2 -->
+ <ul class="menu-top menu-1">
+    <li class="menu-1 knot menu-parent" title="MPForm Help pages"><a href="../../../docs/EN/mpform.html" target="_top" class="menu-1 knot menu-parent">MPForm</a>
+     <ul class="menu-2">
+        <li class="menu-2 leaf menu-sibling menu-first" title="Installation"><a href="../../../docs/EN/mpform/installation.html" target="_top" class="menu-2 leaf menu-sibling menu-first">Installation</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Create a form"><a href="../../../docs/EN/mpform/create-a-form.html" target="_top" class="menu-2 leaf menu-sibling">Create a form</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="After submitting a form"><a href="../../../docs/EN/mpform/after-submitting.html" target="_top" class="menu-2 leaf menu-sibling">After submitting</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Multi page forms"><a href="../../../docs/EN/mpform/multi-page-forms.html" target="_top" class="menu-2 leaf menu-sibling">Multi page forms</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="How to install a form"><a href="../../../docs/EN/mpform/install-a-form.html" target="_top" class="menu-2 leaf menu-sibling">Install a form</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Help users"><a href="../../../docs/EN/mpform/help-users.html" target="_top" class="menu-2 leaf menu-sibling">Help users</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Table or div"><a href="../../../docs/EN/mpform/table-or-div.html" target="_top" class="menu-2 leaf menu-sibling">Table or div</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Private Functions"><a href="../../../docs/EN/mpform/private-functions.html" target="_top" class="menu-2 leaf menu-sibling">Private Functions</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Loops in Forms"><a href="../../../docs/EN/mpform/loops-in-forms.html" target="_top" class="menu-2 leaf menu-sibling">Loops in Forms</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Field Types of MPForm"><a href="../../../docs/EN/mpform/field-types.html" target="_top" class="menu-2 leaf menu-sibling">Field Types</a>        </li>
+        <li class="menu-2 knot menu-sibling" title="Settings of MPForm"><a href="../../../docs/EN/mpform/settings-of-mpform.html" target="_top" class="menu-2 knot menu-sibling">Settings of MPForm</a>        </li>
+        <li class="menu-2 leaf menu-current menu-last" title="FAQ to MPForm"><a href="../../../docs/EN/mpform/faq-to-mpform.html" target="_top" class="menu-2 leaf menu-current menu-last">FAQ to MPForm</a>        </li>
+     </ul>
+    </li>
+ </ul>
+
+      </div>
+  </div>
+<!-- ************ End content-left -->
+
+
+  <div id="mainbody">
+          <div id="content"><a id="top" />
+                          <a class="section_anchor" id="wb_149" name="wb_149"></a><p style="text-align: right;"><a href="../../../docs/EN/mpform/settings-of-mpform.html" target="_top">Settings of MPForm</a> &lt;&lt;&nbsp;&nbsp;&nbsp; ^ <a href="../../../docs/EN/mpform.html" target="_top">MPForm Help pages</a> ^&nbsp;&nbsp;</p>
+
+<!-- ************ main content -->
+
+<h2>Frequently asked questions regarding MPForm</h2>
+<dl>
+    <dt class="faq"><strong>Question</strong>: 
+       Website Baker already comes with the Form module, so why should I install MPForm?</dt>
+    <dd class="faq"><b>Answer</b>: 
+       You should install the <strong>MPForm</strong> module only if you reached the functional limit 
+       of the <strong>Form </strong>module. <strong>MPForm </strong>offers much more potential, 
+       but consequently it requires more effort to learn how to adjust all the settings appropriately.
+       <br />
+    </dd>
+    <dt class="faq"><strong>Question</strong>: 
+       My form contains a Date field. When I click the calendar icon next the field, 
+       no calendar does pop up?</dt>
+    <dd class="faq"><b>Answer</b>: 
+       The Javascript Calendar in some WB versions came with a known bug: If the Mainbody style uses 
+       absolute positioning and a Z-Index, the Calendar is positioned behind instead of in front of 
+       the main window. 
+       You just need to adapt the screen.css file of your template and everything will work. 
+       <br />
+    </dd>
+    <dt class="faq"><strong>Question</strong>: 
+       How can I integrate a declaration of consent (or my terms and conditions) into the form?</dt>
+    <dd class="faq"><b>Answer</b>: 
+       You can use a field of type HTML for arbitrary HTML code. When you put a single mandatory 
+       checkbox beneath this field, the user can only submit the form after he agreed to your conditions. 
+       <br />
+    </dd>
+    <dt class="faq"><strong>Question</strong>: 
+       Is it possible to preset a field dynamically, depending on some conditions?</dt>
+    <dd class="faq"><b>Answer</b>: 
+        Yes, you just need to set the right SESSION variable before the form is generated:
+    <ol>
+        <li>Find out the ID of the field and the section_id of the form 
+           (look, for instance, into the field properties in the backend)</li>
+        <li>Write your code in the file private.php into the function private_function_before_new_form. 
+           For the field with ID 42 in the form of section 24 you would write e.g.<br />
+        <tt>         if ($section_id == 24) { 
+           $_SESSION['field42'] = &quot;default value&quot;;                 
+           return true;         
+           }</tt></li>
+    </ol>
+    It might make sense to set the status of the field to read only.<br />
+    In case you have a multi select field, you write:<br />
+    <tt> $_SESSION['field42']=array('one','two');</tt>     </dd>
+    <dt class="faq"><strong>Question</strong>: 
+       I get a Fatal error: &quot;Call to a member function numRows() on a non-object 
+       in \modules\mpform\evalform.php on line 533&quot; - What does this mean?</dt>
+    <dd class="faq"><b>Answer</b>:
+       You probably changed the suffix of the results table after you created the first field of the form.
+       Starting with version 1.2 of mpform the problem should not occur anymore, but if you have changed
+       the suffix of the results table in an earlier version of mpform when already fields were present,
+       it should help to open the general settings page in the backend and simply save the settings again.
+       This should trigger a scan of the fields and update the results table accordingly.<br />
+    </dd>
+</dl>
+<p>&nbsp;</p>          </div>
+
+
+<!-- ************ Footer -->
+</div></div>
+  <div class="clear-both"></div>
+<div id="footer">
+        <p class="txt">&nbsp; MPForm is releaed under GPL </p>
+ 
+        <ul class="bottomnav">
+          <li class="bottomnav"><a href="#"
+             title="Print page without menu"
+             onclick="window.print();"><img src="../../../docs/images/print.gif" alt="Print" /> <span>print page</span></a></li>
+
+          <li class="bottomnav"><a href="#top"
+             title="Go to top"
+             onclick="history.go(0);"><img src="../../../docs/images/totop.gif" alt="Top" /> <span>go up</span></a></li>
+        </ul>
+   </div>
+</body></html>
+

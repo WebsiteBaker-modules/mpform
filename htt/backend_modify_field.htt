@@ -7,48 +7,49 @@
 <input type="hidden" name="field_id" value="{FIELD_ID}" />
 {FTAN}
 <table cellpadding="0" cellspacing="0" border="0" width="99%">
-        <tr>
-                                <td align="right">
-                                <button id="add_field" type="submit" name="add"><img src="{MODULE_URL}/images/add_new.gif" alt="" width="16" height="16" border="0" /> {TXT_ADD_FIELD}</button>
-                                &nbsp;
-                                <button id="copy_field" type="submit" name="copy"><img src="{MODULE_URL}/images/duplicate.gif" alt="" width="16" height="16" border="0" /> {TXT_COPY_FIELD}</button></td>
-        </tr>
+    <tr>
+          <td align="right">
+              <button id="add_field" type="submit" name="add"><img src="{MODULE_URL}/images/add_new.gif" alt="" width="16" height="16" border="0" /> {TXT_ADD_FIELD}</button>
+                &nbsp;
+              <button id="copy_field" type="submit" name="copy"><img src="{MODULE_URL}/images/duplicate.gif" alt="" width="16" height="16" border="0" /> {TXT_COPY_FIELD}</button>
+          </td>
+    </tr>
 </table>
 
 <table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="99%">
-        <caption>{TXT_MODIFY_FIELD}</caption>
-        <tr>
-                <th>{TXT_TITLE}:</th>
-                <td>
-                        <input class="requiredInput" type="text" id="field_title" name="title" value="{VAL_TITLE}" style="width: 60%;" maxlength="255" />
-                </td>
-        </tr>
-        <tr>
-                <th>{TXT_TYPE}:</th> 
-                <td>
-                        <select class="requiredInput" id="select_type" name="type" style="width: 30%;">
-                                <option value="">{TXT_PLEASE_SELECT}...</option> 
-                                <!-- BEGIN field_block -->
-                                        <option value={VAL_FIELDTYPE}</option>
-                                <!-- END field_block -->
-                        </select>
-                </td>
-        </tr>
+    <caption>{TXT_MODIFY_FIELD}</caption>
+    <tr>
+        <th>{TXT_TITLE}:</th>
+        <td>
+            <input class="requiredInput" type="text" id="field_title" name="title" value="{VAL_TITLE}" style="width: 60%;" maxlength="255" />
+        </td>
+    </tr>
+    <tr>
+        <th>{TXT_TYPE}:</th> 
+        <td>
+            <select class="requiredInput" id="select_type" name="type" style="width: 30%;">
+                <option value="">{TXT_PLEASE_SELECT}...</option> 
+                <!-- BEGIN field_block -->
+                    <option value={VAL_FIELDTYPE}</option>
+                <!-- END field_block -->
+            </select>
+        </td>
+    </tr>
 
-        <!-- BEGIN type_options -->
-                {VAL_TYPE_OPTIONS}
-        <!-- END type_options -->
+    <!-- BEGIN type_options -->
+        {VAL_TYPE_OPTIONS}
+    <!-- END type_options -->
 </table>
 
 <table cellpadding="0" cellspacing="0" border="0" width="99%">
-        <tr>
-                <td align="left">
-                        <button id="save_settings" type="submit" name="save"><img src="{MODULE_URL}/images/ok.gif" alt="" width="16" height="16" border="0" /> {TXT_SAVE}</button>
-                </td>
-                <td align="right">
-                <button type="button" onclick="javascript: window.location = '{ADMIN_URL}/pages/modify.php?page_id={PAGE_ID}';"><img src="{MODULE_URL}/images/cancel.gif" alt="" width="16" height="16" border="0" /> {TXT_CANCEL}</button>
-                </td>
-        </tr>
+    <tr>
+        <td align="left">
+            <button id="save_settings" type="submit" name="save"><img src="{MODULE_URL}/images/ok.gif" alt="" width="16" height="16" border="0" /> {TXT_SAVE}</button>
+        </td>
+        <td align="right">
+        <button type="button" onclick="javascript: window.location = '{ADMIN_URL}/pages/modify.php?page_id={PAGE_ID}';"><img src="{MODULE_URL}/images/cancel.gif" alt="" width="16" height="16" border="0" /> {TXT_CANCEL}</button>
+        </td>
+    </tr>
 </table>
 </form>
 </div>

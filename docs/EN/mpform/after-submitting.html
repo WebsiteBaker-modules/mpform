@@ -1,0 +1,160 @@
+<!-- quirks for IE -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="de"
+      lang="de">
+<head>
+  <title>MPForm Help - After submitting a form</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="content-language" content="en" />
+  <meta name="description" content="After submitting a form" />
+  <meta name="keywords" content="Website Baker, Websitebaker, MPForm, Form, Submitting" />
+  <link rel="stylesheet" type="text/css" href="../../../docs/style/mpformdoku.css" />
+</head>
+
+
+<body>
+<!-- ########## Header-Bereich -->
+  <div id="header">
+      <div class="hthema"><span class="hthema"> MPForm Help pages</span>
+        <h1>After submitting a form</h1>
+      </div>
+  </div>
+      <div id="topnavigation">
+          <div class="eml">
+             <span class="easymultilang">
+                <a href='../../../docs/DE/mpform/nach-dem-absenden.html' title='German'>
+                <img src="../../../docs/images/de.png" alt="German" /> German </a>
+             </span>
+             <span class="easymultilang_current">
+                <img src="../../../docs/images/en.png" alt="English" /> English
+             </span>
+          </div>
+      </div>
+<!-- ********** Ende Header-Bereich -->
+
+  <div id="content-left">
+      <div class="innerwrap">
+       
+<!-- show_menu2 -->
+ <ul class="menu-top menu-1">
+    <li class="menu-1 knot menu-parent" title="MPForm Help pages"><a href="../../../docs/EN/mpform.html" target="_top" class="menu-1 knot menu-parent">MPForm</a>
+     <ul class="menu-2">
+        <li class="menu-2 leaf menu-sibling menu-first" title="Installation"><a href="../../../docs/EN/mpform/installation.html" target="_top" class="menu-2 leaf menu-sibling menu-first">Installation</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Create a form"><a href="../../../docs/EN/mpform/create-a-form.html" target="_top" class="menu-2 leaf menu-sibling">Create a form</a>        </li>
+        <li class="menu-2 leaf menu-current" title="After submitting a form"><a href="../../../docs/EN/mpform/after-submitting.html" target="_top" class="menu-2 leaf menu-current">After submitting</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Multi page forms"><a href="../../../docs/EN/mpform/multi-page-forms.html" target="_top" class="menu-2 leaf menu-sibling">Multi page forms</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="How to install a form"><a href="../../../docs/EN/mpform/install-a-form.html" target="_top" class="menu-2 leaf menu-sibling">Install a form</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Help users"><a href="../../../docs/EN/mpform/help-users.html" target="_top" class="menu-2 leaf menu-sibling">Help users</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Table or div"><a href="../../../docs/EN/mpform/table-or-div.html" target="_top" class="menu-2 leaf menu-sibling">Table or div</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Private Functions"><a href="../../../docs/EN/mpform/private-functions.html" target="_top" class="menu-2 leaf menu-sibling">Private Functions</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Loops in Forms"><a href="../../../docs/EN/mpform/loops-in-forms.html" target="_top" class="menu-2 leaf menu-sibling">Loops in Forms</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Field Types of MPForm"><a href="../../../docs/EN/mpform/field-types.html" target="_top" class="menu-2 leaf menu-sibling">Field Types</a>        </li>
+        <li class="menu-2 knot menu-sibling" title="Settings of MPForm"><a href="../../../docs/EN/mpform/settings-of-mpform.html" target="_top" class="menu-2 knot menu-sibling">Settings of MPForm</a>        </li>
+        <li class="menu-2 leaf menu-sibling menu-last" title="FAQ to MPForm"><a href="../../../docs/EN/mpform/faq-to-mpform.html" target="_top" class="menu-2 leaf menu-sibling menu-last">FAQ to MPForm</a>        </li>
+     </ul>
+    </li>
+ </ul>
+
+      </div>
+  </div>
+<!-- ************ End content-left -->
+
+
+  <div id="mainbody">
+          <div id="content"><a id="top" />
+                          <a class="section_anchor" id="wb_133" name="wb_133"></a><p style="text-align: right;"><a href="../../../docs/EN/mpform/create-a-form.html" target="_top">Create a form</a> &lt;&lt;&nbsp;&nbsp;&nbsp; ^ <a href="../../../docs/EN/mpform.html" target="_top">MPForm Help pages</a> ^&nbsp;&nbsp;&nbsp; &gt;&gt; <a href="../../../docs/EN/mpform/multi-page-forms.html" target="_top">Multi page forms</a></p>
+
+<!-- ************ main content -->
+
+<h2>MPForm Documentation: Treatment of Form data</h2>
+<p style="text-align: right;">Level of difficulty: A</p>
+<p>The user did submit the form successfully - what happens now?</p>
+<p>The possibilities were already discussed along with the various settings of MPForm, 
+   but - for your convenience - here is a summary of all ways to save and send data .</p>
+<h3>Ways to show data to the user for confirmation</h3>
+<dl>
+    <dt>Confirmation on the web site</dt>
+    <dd>
+    <p>Preconditions to get it to work:</p>
+    <ul>
+        <li><strong>Following page </strong>must be set to <strong>None</strong> 
+           in the Workflow Settings</li>
+        <li><strong>Success text </strong>in the Workflow Settings is required to contain 
+           at least the place holder <strong>{DATA}</strong>.</li>
+    </ul>
+    </dd>
+    <dt>Confirmation email to the user</dt>
+    <dd>
+    <p>Preconditions to get it to work:</p>
+    <ul>
+        <li>The form contains a mandatory field of type <strong>E-Mail Address</strong></li>
+        <li>The setting <strong>&quot;To&quot; address </strong>in the section <strong>
+           Confirmation mail to user</strong> is linked with this field</li>
+        <li>The setting <strong>Text </strong>in this section is required to contain at least 
+           the place holder <strong>{DATA}</strong>.</li>
+    </ul>
+    </dd>
+</dl>
+<p>&nbsp;</p>
+<h3>Ways to show data to the site owner</h3>
+<dl>
+    <dt>Sending by email</dt>
+    <dd>
+    <p>Preconditions to get it to work:</p>
+    <ul>
+        <li>The field <strong>&quot;To&quot; address </strong>in the section 
+           <strong>Mail to site owner</strong> contains at least one valid email address</li>
+        <li>The setting <strong>Text </strong>in this section is required to contain at least 
+          the place holder <strong>{DATA}</strong>.</li>
+    </ul>
+    </dd>
+    <dt>View data in the Backend of the web site</dt>
+    <dd>
+    <p>Precondition to get it to work:</p>
+    <ul>
+        <li>The Workflow setting <strong>Data transfer to mpform_submissions-table</strong> 
+          is required to contain at least the place holder <strong>{DATA}</strong>.</li>
+    </ul>
+    </dd>
+    <dt>Save data in the table mpform_results_xxx<br />
+    </dt>
+    <dd>
+    <p>Precondition to get it to work:</p>
+    <ul>
+        <li>The table with the suffix defined in the workflow settings at 
+          <strong>Name suffix for results table</strong> must exist and contain 
+           a column for each field of the form. Starting with version 1.2 mpform should
+           always keep these tables consistent.
+        </li>
+        <li>
+         The suffix may not be the string  &quot;<strong>DISABLED</strong>&quot;,
+         because for that string results tables are not considered in processing at all.
+    </ul>
+    <p>The table contains a row for each submission and a column for each field of the form.<br />
+    For downloading the complete form the module 
+    <a href="http://www.websitebakers.com/pages/modules/various/csvexport.php">CSV-Export</a> 
+    is suggested - or you have direct access to the database, e.g. using tools like phpmyadmin.</p>
+    </dd>
+</dl>          </div>
+
+
+<!-- ************ Footer -->
+</div></div>
+  <div class="clear-both"></div>
+<div id="footer">
+        <p class="txt">&nbsp; MPForm is releaed under GPL </p>
+ 
+        <ul class="bottomnav">
+          <li class="bottomnav"><a href="#"
+             title="Print page without menu"
+             onclick="window.print();"><img src="../../../docs/images/print.gif" alt="Print" /> <span>print page</span></a></li>
+
+          <li class="bottomnav"><a href="#top"
+             title="Go to top"
+             onclick="history.go(0);"><img src="../../../docs/images/totop.gif" alt="Top" /> <span>go up</span></a></li>
+        </ul>
+   </div>
+</body></html>
+

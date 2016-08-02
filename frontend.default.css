@@ -10,97 +10,97 @@ div.mpform p.help_txt {
 }
 
 div.mpform fieldset {
-        padding: 0px 6px 6px 6px;
-        margin: 6px 0px 16px 0px;
-        background-color: #f7f7f7;
+    padding: 0px 6px 6px 6px;
+    margin: 6px 0px 16px 0px;
+    background-color: #f7f7f7;
     width: 610px;
 }
 
 /* IE7 specific: */
 *:first-child+html div.mpform fieldset {
-        padding: 6px 6px 6px 6px;
-        margin: 22px 0px 24px 0px;
+    padding: 6px 6px 6px 6px;
+    margin: 22px 0px 24px 0px;
 }
 
 div.mpform legend {
-        padding: 6px 6px 0px 6px;
-        margin: 0px 0 20px 0;
-        background-color: #f7f7f7;
-        border-left: 1px solid #666;
-        border-top: 1px  solid #666;
-        border-right: 1px  solid #666;
-        font-weight: bold;
+    padding: 6px 6px 0px 6px;
+    margin: 0px 0 20px 0;
+    background-color: #f7f7f7;
+    border-left: 1px solid #666;
+    border-top: 1px  solid #666;
+    border-right: 1px  solid #666;
+    font-weight: bold;
 }
 
 /* IE7 specific: */
 *:first-child+html div.mpform legend {
-        padding: 2px 6px 0px 6px;
-        margin: -22px 0 10px 0;
+    padding: 2px 6px 0px 6px;
+    margin: -22px 0 10px 0;
 }
 
 
 /* >>>>>>>> Layout without main table: */
 div.mpform div.newline {
-  clear: both;
-  margin: 0;
-  padding: 0;
+    clear: both;
+    margin: 0;
+    padding: 0;
 }
 
 div.mpform div.questionbox {
-  clear: left;
-  float:left;
-  width:180px;
-  height:auto;
-  background:#ffd;
-  padding: 4px;
-  margin: 2px 0px 2px 2px;
-  border-width: 1px 0px 1px 1px;
-  border-style: solid;
-  border-color: #aa3;
-  text-align: right;
+    clear: left;
+    float:left;
+    width:180px;
+    height:auto;
+    background:#ffd;
+    padding: 4px;
+    margin: 2px 0px 2px 2px;
+    border-width: 1px 0px 1px 1px;
+    border-style: solid;
+    border-color: #aa3;
+    text-align: right;
 }
 
 div.mpform fieldset div.questionbox {
-  clear: left;
-  float:left;
-  width: 172px;
-  height:auto;
-  background:#ffd;
-  padding: 4px;
-  margin: 2px 0px 2px 2px;
-  border-width: 1px 0px 1px 1px;
-  border-style: solid;
-  border-color: #aa3;
-  text-align: right;
+    clear: left;
+    float:left;
+    width: 172px;
+    height:auto;
+    background:#ffd;
+    padding: 4px;
+    margin: 2px 0px 2px 2px;
+    border-width: 1px 0px 1px 1px;
+    border-style: solid;
+    border-color: #aa3;
+    text-align: right;
 }
 
 div.mpform div.answerbox {
-  float:left;
-  width:420px;
-  height:auto;
-  background:#ffd;
-  padding: 4px;
-  margin: 2px 2px 2px 0;
+    float:left;
+    width:420px;
+    height:auto;
+    background:#ffd;
+    padding: 4px;
+    margin: 2px 2px 2px 0;
 }
 
 div.mpform fieldset div.answerbox {
-  float:left;
-  width: 412px;
-  height:auto;
-  background:#ffd;
-  padding: 4px;
-  margin: 2px 2px 2px 0;
-  border: 1px solid #aa3;
+    float:left;
+    width: 412px;
+    height:auto;
+    background:#ffd;
+    padding: 4px;
+    margin: 2px 2px 2px 0;
+    border: 1px solid #aa3;
 }
 
 div.mpform div.submitbox {
-  clear: both;
-  float: left;
-  width: 602px;
-  height: 26px;
-  padding: 8px;
-  margin: 2px;
-  text-align: center;
+    clear: both;
+    float: left;
+    width: 602px;
+    height: 26px;
+    padding: 8px;
+    margin: 2px;
+    text-align: center;
 }
 
 div.mpform div.submitbox input {
@@ -113,139 +113,153 @@ div.mpform div.submitbox input {
 }
 /* <<<<<<<<< Layout without main table */
 
-.mpform_title, .mpform_help {
-font-weight: normal;
-vertical-align: top;
-padding: 6px;
-background-color: #f7f7f7;
-color: black;
+.mpform_title, 
+.mpform_help {
+    font-weight: normal;
+    vertical-align: top;
+    padding: 6px;
+    background-color: #f7f7f7;
+    color: black;
 }
 
 .mpform_error .mpform_title,
 .mpform_error .mpform_field,
 .captcha_err  .mpform_title,
 .captcha_err  .mpform_field {
-color: red;
+    color: red;
 }
 
 .mpform_field {
-width:460px;
-background-color:#eee;
-padding:6px;
+    width:460px;
+    background-color:#eee;
+    padding:6px;
 }
 
-.mpform_date, .mpform_email, .mpform_textarea, .mpform_text, .mpform_select {
-background-color:#F4F4f4;
-/*border: 1px solid #CCCCCC;*/        
+.mpform_date, 
+.mpform_email, 
+.mpform_textarea, 
+.mpform_text, 
+.mpform_select {
+    background-color:#F4F4f4;
 }
 
-.mpform_err_date, .mpform_err_email, .mpform_err_textarea,
-.mpform_err_text, .mpform_err_radio, .mpform_err_select,
+.mpform_err_date, 
+.mpform_err_email, 
+.mpform_err_textarea,
+.mpform_err_text, 
+.mpform_err_radio, 
+.mpform_err_select,
 .captcha_err input {
-background-color:#F4A4A4; 
-border: 1px solid red;
+    background-color:#F4A4A4; 
+    border: 1px solid red;
 }
 
 div.mpform_missing {
-        background-color: red; 
-        border: 2px solid yellow;
-        color: yellow;
-        font-weight: bold;
-        padding: 6px;
+    background-color: red; 
+    border: 2px solid yellow;
+    color: yellow;
+    font-weight: bold;
+    padding: 6px;
 }
 
 .mpform_textfield.mpform_readonly input.mpform_text {
-        background-color: #ddd; 
+    background-color: #ddd; 
 }
 
 /* old classes: */
-.mpform_date:hover, .mpform_email:hover, .mpform_textarea:hover, .mpform_text:hover,
-.mpform_radio:hover, .mpform_select:hover, .mpform_checkbox:hover, .mpform_err_date:hover,
-.mpform_err_email:hover, .mpform_err_textarea:hover, .mpform_err_text:hover, .mpform_err_radio:hover,
-.mpform_err_select:hover, .mpform_err_checkbox:hover {
-background-color: white;
+.mpform_date:hover, 
+.mpform_email:hover, 
+.mpform_textarea:hover, 
+.mpform_text:hover,
+.mpform_radio:hover, 
+.mpform_select:hover, 
+.mpform_checkbox:hover, 
+.mpform_err_date:hover,
+.mpform_err_email:hover, 
+.mpform_err_textarea:hover, 
+.mpform_err_text:hover, 
+.mpform_err_radio:hover,
+.mpform_err_select:hover, 
+.mpform_err_checkbox:hover {
+    background-color: white;
 } 
 
 .mpform_date, .mpform_err_date{
-width: 120px;
+    width: 120px;
 }
 
 .mpform_date_img{
-cursor: pointer;
-border: 0;
-vertical-align: middle;
+    cursor: pointer;
+    border: 0;
+    vertical-align: middle;
 }        
 .mpform_email, .mpform_err_email {
-width:410px;
+    width:410px;
 }
 
-/*.mpform_textarea, .mpform_err_textarea {
-width:410px;
-height:100px;
-}*/
-
-.mpform_text, .mpform_err_text {
-width:410px;
+.mpform_text, 
+.mpform_err_text {
+    width:410px;
 } 
-.mpform_radio, .mpform_err_radio{
-width: 18px;
+.mpform_radio, 
+.mpform_err_radio{
+    width: 18px;
 }
-.mpform_checkbox, .mpform_err_checkbox{
-width: 24px;
+.mpform_checkbox, 
+.mpform_err_checkbox{
+    width: 24px;
 }
-.mpform_select, .mpform_err_select{
-width:410px;
+.mpform_select, 
+.mpform_err_select{
+    width:410px;
 }
 
 .mpform_heading {
-        width:98%;
-        font-weight: bold;
-        background-color: #777;
-        color:#fff;
-        padding: 5px;
+    width:98%;
+    font-weight: bold;
+    background-color: #777;
+    color:#fff;
+    padding: 5px;
 }
 
 .mpform_submit {
-cursor: pointer;
-/*border: 2px solid #999;        
-color:#666666;*/
+    cursor: pointer;
 }
 .mpform_submit:hover{
-/*border: 2px solid #333;*/
 }
 
 span.mpform_required {
-color:red;        
+    color:red;        
 }
 
 span.mpform_small {
-font-size:9px;
+    font-size:9px;
 }
 
 
 .captcha input {
-background-color:#F4F4F4;
-border: 1px solid #CCCCCC;        
+    background-color:#F4F4F4;
+    border: 1px solid #CCCCCC;        
 }
 
 .captcha .captcha_expl{
-font-weight:normal;
+    font-weight:normal;
 }
 
 .mpform_a_img{
-border:0;        
+    border:0;        
 }
 .mpform_img_help{
-border:0;
-width:16px;
-height:16px; 
+    border:0;
+    width:16px;
+    height:16px; 
 }
 
 .mpform_help_box_td{
-border:1px solid #666666;
-padding:6px;
-background-color:#ffffff;
-color:#003366;
+    border:1px solid #666666;
+    padding:6px;
+    background-color:#ffffff;
+    color:#003366;
 }
 
 .mpform_help_box_div{
@@ -254,80 +268,79 @@ color:#003366;
 }
 
 .mpform_help_box_hr {
-width:100%;
-margin: 5px 0 ;
-padding:0px;
-
+    width:100%;
+    margin: 5px 0 ;
+    padding:0px;
 }
 
 h5.mpform_help_box_h5 {
-color:#fff;
-background-color:#5587B1; 
-font-size:1.0em;
-font-weight:bold;
-margin:0;
-padding:5px;
+    color:#fff;
+    background-color:#5587B1; 
+    font-size:1.0em;
+    font-weight:bold;
+    margin:0;
+    padding:5px;
 }
 
 .mpform_help_box_h6 {
-color:#003366;
-background-color:#ccf;
-font-size:1.0em;
-font-weight:normal;
-margin:0;
-padding:4px;
+    color:#003366;
+    background-color:#ccf;
+    font-size:1.0em;
+    font-weight:normal;
+    margin:0;
+    padding:4px;
 }
 
 div.mpform_results {
-        background-color: #cfc;
-        border: 2px solid #090;
-        padding: 6px;
+    background-color: #cfc;
+    border: 2px solid #090;
+    padding: 6px;
 }
 
 /* >>> Start Calendar */
 .calendar {
-  position: relative;
-  display: none;
-  border: 1px solid;
-  border-color: #fff #000 #000 #fff;
-  font-size: 11px;
-  cursor: default;
-  background: Window;
-  color: WindowText;
-  font-family: tahoma,verdana,sans-serif;
+    position: relative;
+    display: none;
+    border: 1px solid;
+    border-color: #fff #000 #000 #fff;
+    font-size: 11px;
+    cursor: default;
+    background: Window;
+    color: WindowText;
+    font-family: tahoma,verdana,sans-serif;
 }
 
 .calendar table {
-  border: 1px solid;
-  border-color: #fff #000 #000 #fff;
-  font-size: 11px;
-  cursor: default;
-  background: Window;
-  color: WindowText;
-  font-family: tahoma,verdana,sans-serif;
+    border: 1px solid;
+    border-color: #fff #000 #000 #fff;
+    font-size: 11px;
+    cursor: default;
+    background: Window;
+    color: WindowText;
+    font-family: tahoma,verdana,sans-serif;
 }
 
 /* Header part -- contains navigation buttons and day names. */
 
 .calendar .button { /* "<<", "<", ">", ">>" buttons have this class */
-  text-align: center;
-  padding: 1px;
-  border: 1px solid;
-  border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
-  background: ButtonFace;
+    text-align: center;
+    padding: 1px;
+    border: 1px solid;
+    border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+    background: ButtonFace;
 }
 
 .calendar .nav {
-  background: ButtonFace url(../../include/jscalendar/menuarrow.gif) no-repeat 100% 100%;
+    background: ButtonFace url(../../include/jscalendar/menuarrow.gif) no-repeat 100% 100%;
 }
 
 .calendar thead .title { /* This holds the current "month, year" */
-  font-weight: bold;
-  padding: 1px;
-  border: 1px solid #000;
-  background: ActiveCaption;
-  color: CaptionText;
-  text-align: center;
+    font-weight: bold;
+    padding: 1px;
+    border: 1px solid #000;
+    background: ActiveCaption;
+    color: CaptionText;
+    text-align: center;
 }
 
 .calendar thead .headrow { /* Row <TR> containing navigation buttons */
@@ -337,96 +350,98 @@ div.mpform_results {
 }
 
 .calendar thead .name { /* Cells <TD> containing the day names */
-  border-bottom: 1px solid ButtonShadow;
-  padding: 2px;
-  text-align: center;
-  background: ButtonFace;
-  color: ButtonText;
+    border-bottom: 1px solid ButtonShadow;
+    padding: 2px;
+    text-align: center;
+    background: ButtonFace;
+    color: ButtonText;
 }
 
 .calendar thead .weekend { /* How a weekend day name shows in header */
-  color: #f00;
+    color: #f00;
 }
 
 .calendar thead .hilite { /* How do the buttons in header appear when hover */
-  border: 2px solid;
-  padding: 0px;
-  border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+    border: 2px solid;
+    padding: 0px;
+    border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
 }
 
 .calendar thead .active { /* Active (pressed) buttons in header */
-  border-width: 1px;
-  padding: 2px 0px 0px 2px;
-  border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow;
+    border-width: 1px;
+    padding: 2px 0px 0px 2px;
+    border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow;
 }
 
 /* The body part -- contains all the days in month. */
 
 .calendar tbody .day { /* Cells <TD> containing month days dates */
-  width: 2em;
-  text-align: right;
-  padding: 2px 4px 2px 2px;
+    width: 2em;
+    text-align: right;
+    padding: 2px 4px 2px 2px;
 }
 .calendar tbody .day.othermonth {
-  font-size: 80%;
-  color: #aaa;
+    font-size: 80%;
+    color: #aaa;
 }
 .calendar tbody .day.othermonth.oweekend {
-  color: #faa;
+    color: #faa;
 }
 
 .calendar table .wn {
-  padding: 2px 3px 2px 2px;
-  border-right: 1px solid ButtonShadow;
-  background: ButtonFace;
-  color: ButtonText;
+    padding: 2px 3px 2px 2px;
+    border-right: 1px solid ButtonShadow;
+    background: ButtonFace;
+    color: ButtonText;
 }
 
 .calendar tbody .rowhilite td {
-  background: Highlight;
-  color: HighlightText;
+    background: Highlight;
+    color: HighlightText;
 }
 
 .calendar tbody td.hilite { /* Hovered cells <TD> */
-  padding: 1px 3px 1px 1px;
-  border-top: 1px solid #fff;
-  border-right: 1px solid #000;
-  border-bottom: 1px solid #000;
-  border-left: 1px solid #fff;
+    padding: 1px 3px 1px 1px;
+    border-top: 1px solid #fff;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    border-left: 1px solid #fff;
 }
 
 .calendar tbody td.active { /* Active (pressed) cells <TD> */
-  padding: 2px 2px 0px 2px;
-  border: 1px solid;
-  border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow;
+    padding: 2px 2px 0px 2px;
+    border: 1px solid;
+    border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow;
 }
 
 .calendar tbody td.selected { /* Cell showing selected date */
-  font-weight: bold;
-  border: 1px solid;
-  border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow;
-  padding: 2px 2px 0px 2px;
-  background: ButtonFace;
-  color: ButtonText;
+    font-weight: bold;
+    border: 1px solid;
+    border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow;
+    padding: 2px 2px 0px 2px;
+    background: ButtonFace;
+    color: ButtonText;
 }
 
 .calendar tbody td.weekend { /* Cells showing weekend days */
-  color: #f00;
+    color: #f00;
 }
 
 .calendar tbody td.today { /* Cell showing today date */
-  font-weight: bold;
-  color: #00f;
+    font-weight: bold;
+    color: #00f;
 }
 
-.calendar tbody td.disabled { color: GrayText; }
+.calendar tbody td.disabled { 
+    color: GrayText; 
+}
 
 .calendar tbody .emptycell { /* Empty cells (the best is to hide them) */
-  visibility: hidden;
+    visibility: hidden;
 }
 
 .calendar tbody .emptyrow { /* Empty row (some months need less than 6 rows) */
-  display: none;
+    display: none;
 }
 
 /* The footer part -- status bar and "Close" button */
@@ -435,110 +450,111 @@ div.mpform_results {
 }
 
 .calendar tfoot .ttip { /* Tooltip (status bar) cell <TD> */
-  background: ButtonFace;
-  padding: 1px;
-  border: 1px solid;
-  border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow;
-  color: ButtonText;
-  text-align: center;
+    background: ButtonFace;
+    padding: 1px;
+    border: 1px solid;
+    border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow;
+    color: ButtonText;
+    text-align: center;
 }
 
 .calendar tfoot .hilite { /* Hover style for buttons in footer */
-  border-top: 1px solid #fff;
-  border-right: 1px solid #000;
-  border-bottom: 1px solid #000;
-  border-left: 1px solid #fff;
-  padding: 1px;
-  background: #e4e0d8;
+    border-top: 1px solid #fff;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    border-left: 1px solid #fff;
+    padding: 1px;
+    background: #e4e0d8;
 }
 
 .calendar tfoot .active { /* Active (pressed) style for buttons in footer */
-  padding: 2px 0px 0px 2px;
-  border-top: 1px solid #000;
-  border-right: 1px solid #fff;
-  border-bottom: 1px solid #fff;
-  border-left: 1px solid #000;
+    padding: 2px 0px 0px 2px;
+    border-top: 1px solid #000;
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    border-left: 1px solid #000;
 }
 
 /* Combo boxes (menus that display months/years for direct selection) */
 
 .calendar .combo {
-  position: absolute; 
-  display: none;
-  width: 4em;
-  top: 0px;
-  left: 0px;
-  cursor: default;
-  border: 1px solid;
-  border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
-  background: Menu;
-  color: MenuText;
-  font-size: 90%;
-  padding: 1px;
-  z-index: 99; 
+    position: absolute; 
+    display: none;
+    width: 4em;
+    top: 0px;
+    left: 0px;
+    cursor: default;
+    border: 1px solid;
+    border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+    background: Menu;
+    color: MenuText;
+    font-size: 90%;
+    padding: 1px;
+    z-index: 99; 
 }
 
 .calendar .combo .label,
 .calendar .combo .label-IEfix {
-  text-align: center;
-  padding: 1px;
+    text-align: center;
+    padding: 1px;
 }
 
 .calendar .combo .label-IEfix {
-  width: 4em;
+    width: 4em;
 }
 
 .calendar .combo .active {
-  padding: 0px;
-  border: 1px solid #000;
+    padding: 0px;
+    border: 1px solid #000;
 }
 
 .calendar .combo .hilite {
-  background: Highlight;
-  color: HighlightText;
+    background: Highlight;
+    color: HighlightText;
 }
 
 .calendar td.time {
-  border-top: 1px solid ButtonShadow;
-  padding: 1px 0px;
-  text-align: center;
-  background-color: ButtonFace;
+    border-top: 1px solid ButtonShadow;
+    padding: 1px 0px;
+    text-align: center;
+    background-color: ButtonFace;
 }
 
 .calendar td.time .hour,
 .calendar td.time .minute,
 .calendar td.time .ampm {
-  padding: 0px 3px 0px 4px;
-  border: 1px solid #889;
-  font-weight: bold;
-  background-color: Menu;
+    padding: 0px 3px 0px 4px;
+    border: 1px solid #889;
+    font-weight: bold;
+    background-color: Menu;
 }
 
 .calendar td.time .ampm {
-  text-align: center;
+    text-align: center;
 }
 
 .calendar td.time .colon {
-  padding: 0px 2px 0px 3px;
-  font-weight: bold;
+    padding: 0px 2px 0px 3px;
+    font-weight: bold;
 }
 
 .calendar td.time span.hilite {
-  border-color: #000;
-  background-color: Highlight;
-  color: HighlightText;
+    border-color: #000;
+    background-color: Highlight;
+    color: HighlightText;
 }
 
 .calendar td.time span.active {
-  border-color: #f00;
-  background-color: #000;
-  color: #0f0;
+    border-color: #f00;
+    background-color: #000;
+    color: #0f0;
 }
 /* <<< End Calendar */
 
 /*** Don't remove the class nixhier, this is required for ASP ***/
+.mpform_hiddenfield,
 .nixhier {
-        display:none;
+    display:none;
 }
 
 /*  deprecated definitions, only for forms created with mpform < 0.3.0
@@ -546,7 +562,7 @@ div.mpform_results {
 */        
 
 .mpform_td_help{
-width:16px;
-vertical-align:top;
+    width:16px;
+    vertical-align:top;
 }
                 

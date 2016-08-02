@@ -2,157 +2,157 @@
 <div class="{MOD_CLASS}">
 
 <form name="modify" action="{MOD_SAVE_URL}" method="post" style="margin: 0;">
-        <input type="hidden" name="section_id" value="{SECTION_ID}" />
-        <input type="hidden" name="page_id" value="{PAGE_ID}" />
-                {FTAN}
-        <table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
+    <input type="hidden" name="section_id" value="{SECTION_ID}" />
+    <input type="hidden" name="page_id" value="{PAGE_ID}" />
+        {FTAN}
+    <table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
         <caption>{TXT_NOTIFICATION_SETTINGS}</caption>
 
         <tr>
-                <th>{txt_heading_html}:</th>
-                <td>
-                                <textarea rows="5" cols="50" name="heading_html" class="setting_value_textarea">{heading_html}</textarea>
-                                <br />
-                                <small>{des_heading_html}</small>
-                </td>
+            <th>{txt_heading_html}:</th>
+            <td>
+                    <textarea rows="5" cols="50" name="heading_html" class="setting_value_textarea">{heading_html}</textarea>
+                    <br />
+                    <small>{des_heading_html}</small>
+            </td>
         </tr>
 
         <tr>
-                <th>{txt_short_html}:</th>
-                <td>
-                                <textarea rows="5" cols="50" name="short_html" class="setting_value_textarea">{short_html}</textarea>
-                                <br />
-                                <small>{des_short_html}</small>
-                </td>
+            <th>{txt_short_html}:</th>
+            <td>
+                    <textarea rows="5" cols="50" name="short_html" class="setting_value_textarea">{short_html}</textarea>
+                    <br />
+                    <small>{des_short_html}</small>
+            </td>
         </tr>
 
         <tr>
-                <th>{txt_long_html}:</th>
-                <td>
-                                <textarea rows="5" cols="50" name="long_html" class="setting_value_textarea">{long_html}</textarea>
-                                <br />
-                                <small>{des_long_html}</small>
-                </td>
+            <th>{txt_long_html}:</th>
+            <td>
+                    <textarea rows="5" cols="50" name="long_html" class="setting_value_textarea">{long_html}</textarea>
+                    <br />
+                    <small>{des_long_html}</small>
+            </td>
         </tr>
 
         <tr>
-                <th>{txt_email_html}:</th>
-                <td>
-                                <textarea rows="5" cols="50" name="email_html" class="setting_value_textarea">{email_html}</textarea>
-                                <br />
-                                <small>{des_email_html}</small>
-                </td>
+            <th>{txt_email_html}:</th>
+            <td>
+                    <textarea rows="5" cols="50" name="email_html" class="setting_value_textarea">{email_html}</textarea>
+                    <br />
+                    <small>{des_email_html}</small>
+            </td>
         </tr>
 
         <tr>
-                <th>{txt_uploadfile_html}:</th>
-                <td>
-                                <textarea rows="5" cols="50" name="uploadfile_html" class="setting_value_textarea">{uploadfile_html}</textarea>
-                                <br />
-                                <small>{des_uploadfile_html}</small>
-                </td>
-        </tr>
-        </table>
-        
-        <table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
-        <caption>{TXT_UPLOAD_SETTINGS}</caption>
-        <tr>
-                <th>{TXT_UPLOAD_FILE_FOLDER}:</th>
-                <td><input name="upload_files_folder" class="setting_value_text" type="text" title="{des_upload_files_folder}" value="{upload_files_folder}" /></td>
-        </tr>
-    <tr>
-                <th>{TXT_UPLOAD_DIRMASK}:</th>
-                <td><input name="upload_dir_mask" class="setting_value_text" type="text" title="{help_dirmask}" value="{upload_dir_mask}" />
-                <br />
-        <small>{help_dirmask}</small>
-                </td>
-        </tr>
-    <tr>
-                <th>{TXT_UPLOAD_FILEMASK}:</th>
-                <td><input name="upload_file_mask" class="setting_value_text" type="text" title="{help_filemask}" value="{upload_file_mask}" />
-                <br />
-        <small>{help_filemask}</small>
-                </td>
-        </tr>
-        <tr>
-                <th>{TXT_ATTACH_FILE}:</th>
-                <td>
-                        <input type="radio" name="attach_file" id="attach_file_true" value="1" {attach_file_true_checked} title="{des_attach_file}" />
-                        <label for="attach_file_true">{TXT_ENABLED}</label>
-                        <input type="radio" name="attach_file" id="attach_file_false" value="0" {attach_file_false_checked} title="{des_attach_file}" />
-                        <label for="attach_file_false">{TXT_DISABLED}</label>
-                </td>
-        </tr>
-        <tr>
-                <th>{TXT_MAX_FILE_SIZE_KB}:</th>
-                <td><input name="max_file_size_kb" class="setting_value_text" type="text" title="{des_max_file_size_kb}" value="{max_file_size_kb}" /></td>
-        </tr>
-        <tr>
-                <th>{TXT_UPLOAD_ONLY_EXTS}:</th>
-                <td><input name="upload_only_exts" class="setting_value_text" type="text" title="{help_extensions}" value="{upload_only_exts}" />
-                <br />
-                <small>{help_extensions}</small>
-                </td>
-        </tr>
-        </table>
-
-        <table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
-        <caption>{TXT_ASP_SETTINGS}</caption>
-        <tr>
-                <th>{txt_use_captcha}:</th>
-                <td>
-                        <input type="radio" name="use_captcha" id="use_captcha_true" value="1" {use_captcha_true_checked} title="{des_use_captcha}" />
-                        <label for="use_captcha_true">{TXT_ENABLED}</label>
-                        <input type="radio" name="use_captcha" id="use_captcha_false" value="0" {use_captcha_false_checked} title="{des_use_captcha}" />
-                        <label for="use_captcha_false">{TXT_DISABLED}</label>
-                        <p>{CAPTCHA_TYPE_IMAGE}</p>
-                        <p><small>{CAPTCHA_CONTROL_HINT}</small></p>
-                </td>
-        </tr>
-        <tr>
-                <th>{txt_max_submissions}:</th>
-                <td><input name="max_submissions" class="setting_value_text" type="text" title="{des_max_submissions}" value="{max_submissions}" /></td>
-        </tr>
-        <tr>
-                <th>{txt_stored_submissions}:</th>
-                <td><input name="stored_submissions" class="setting_value_text" type="text" title="{des_stored_submissions}" value="{stored_submissions}" /></td>
-        </tr>        
-        </table>
-        
-        <table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
-        <caption>{SPECIAL_SETTINGS}</caption>
-        <tr>
-                <th>{txt_enum}:</th>
-                <td>
-                                <input type="text" name="enum_start" maxlength="1"  value="{enum_start}"  />
-                                <br />
-                                <small>{des_enum}</small>
-                </td>
-        </tr>
-        <tr>
-                <th>{TXT_VALUE_OPTION_SEPARATOR}:</th>
-                <td>
-                                <input type="text" name="value_option_separator"  maxlength="10" value="{value_option_separator}"  />
-                </td>
-        </tr>
-        <tr>
-                <th>{TXT_DATE_FORMAT}:</th>
-                <td><input name="date_format" class="setting_value_text" type="text" title="{des_date_format}" value="{date_format}" />
-        <a href="http://www.ss64.com/bash/date.html" target="bash"><small>{des_date_format}</small></a>
-                </td>
-        </tr>
-        </table>
-        
-        <table cellpadding="0" cellspacing="0" border="0" width="99%">
-        <tr>
-                <td align="left">
-                        <button name="save" type="submit" class=""><img src="{MODULE_URL}/images/ok.gif" alt="" width="16" height="16" border="0" /> {TXT_SAVE}</button>
-                </td>
-                <td align="right">
-                        <button class="" onclick="javascript:window.location = '{MOD_CANCEL_URL}'; return false;"><img src="{MODULE_URL}/images/cancel.gif" alt="" width="16" height="16" border="0" /> {TXT_CANCEL}</button>
-                </td>
+            <th>{txt_uploadfile_html}:</th>
+            <td>
+                    <textarea rows="5" cols="50" name="uploadfile_html" class="setting_value_textarea">{uploadfile_html}</textarea>
+                    <br />
+                    <small>{des_uploadfile_html}</small>
+            </td>
         </tr>
     </table>
-</form>        
+    
+    <table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
+        <caption>{TXT_UPLOAD_SETTINGS}</caption>
+        <tr>
+            <th>{TXT_UPLOAD_FILE_FOLDER}:</th>
+            <td><input name="upload_files_folder" class="setting_value_text" type="text" title="{des_upload_files_folder}" value="{upload_files_folder}" /></td>
+        </tr>
+        <tr>
+            <th>{TXT_UPLOAD_DIRMASK}:</th>
+            <td><input name="upload_dir_mask" class="setting_value_text" type="text" title="{help_dirmask}" value="{upload_dir_mask}" />
+            <br />
+        <small>{help_dirmask}</small>
+            </td>
+        </tr>
+        <tr>
+            <th>{TXT_UPLOAD_FILEMASK}:</th>
+            <td><input name="upload_file_mask" class="setting_value_text" type="text" title="{help_filemask}" value="{upload_file_mask}" />
+            <br />
+        <small>{help_filemask}</small>
+            </td>
+        </tr>
+        <tr>
+            <th>{TXT_ATTACH_FILE}:</th>
+            <td>
+                <input type="radio" name="attach_file" id="attach_file_true" value="1" {attach_file_true_checked} title="{des_attach_file}" />
+                <label for="attach_file_true">{TXT_ENABLED}</label>
+                <input type="radio" name="attach_file" id="attach_file_false" value="0" {attach_file_false_checked} title="{des_attach_file}" />
+                <label for="attach_file_false">{TXT_DISABLED}</label>
+            </td>
+        </tr>
+        <tr>
+            <th>{TXT_MAX_FILE_SIZE_KB}:</th>
+            <td><input name="max_file_size_kb" class="setting_value_text" type="text" title="{des_max_file_size_kb}" value="{max_file_size_kb}" /></td>
+        </tr>
+        <tr>
+            <th>{TXT_UPLOAD_ONLY_EXTS}:</th>
+            <td><input name="upload_only_exts" class="setting_value_text" type="text" title="{help_extensions}" value="{upload_only_exts}" />
+            <br />
+            <small>{help_extensions}</small>
+            </td>
+        </tr>
+    </table>
+
+    <table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
+        <caption>{TXT_ASP_SETTINGS}</caption>
+        <tr>
+            <th>{txt_use_captcha}:</th>
+            <td>
+                <input type="radio" name="use_captcha" id="use_captcha_true" value="1" {use_captcha_true_checked} title="{des_use_captcha}" />
+                <label for="use_captcha_true">{TXT_ENABLED}</label>
+                <input type="radio" name="use_captcha" id="use_captcha_false" value="0" {use_captcha_false_checked} title="{des_use_captcha}" />
+                <label for="use_captcha_false">{TXT_DISABLED}</label>
+                <p>{CAPTCHA_TYPE_IMAGE}</p>
+                <p><small>{CAPTCHA_CONTROL_HINT}</small></p>
+            </td>
+        </tr>
+        <tr>
+            <th>{txt_max_submissions}:</th>
+            <td><input name="max_submissions" class="setting_value_text" type="text" title="{des_max_submissions}" value="{max_submissions}" /></td>
+        </tr>
+        <tr>
+            <th>{txt_stored_submissions}:</th>
+            <td><input name="stored_submissions" class="setting_value_text" type="text" title="{des_stored_submissions}" value="{stored_submissions}" /></td>
+        </tr>    
+    </table>
+    
+    <table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
+        <caption>{SPECIAL_SETTINGS}</caption>
+        <tr>
+            <th>{txt_enum}:</th>
+            <td>
+                    <input type="text" name="enum_start" maxlength="1"  value="{enum_start}"  />
+                    <br />
+                    <small>{des_enum}</small>
+            </td>
+        </tr>
+        <tr>
+            <th>{TXT_VALUE_OPTION_SEPARATOR}:</th>
+            <td>
+                    <input type="text" name="value_option_separator"  maxlength="10" value="{value_option_separator}"  />
+            </td>
+        </tr>
+        <tr>
+            <th>{TXT_DATE_FORMAT}:</th>
+            <td><input name="date_format" class="setting_value_text" type="text" title="{des_date_format}" value="{date_format}" />
+        <a href="http://www.ss64.com/bash/date.html" target="bash"><small>{des_date_format}</small></a>
+            </td>
+        </tr>
+    </table>
+    
+    <table cellpadding="0" cellspacing="0" border="0" width="99%">
+        <tr>
+            <td align="left">
+                <button name="save" type="submit" class=""><img src="{MODULE_URL}/images/ok.gif" alt="" width="16" height="16" border="0" /> {TXT_SAVE}</button>
+            </td>
+            <td align="right">
+                <button class="" onclick="javascript:window.location = '{MOD_CANCEL_URL}'; return false;"><img src="{MODULE_URL}/images/cancel.gif" alt="" width="16" height="16" border="0" /> {TXT_CANCEL}</button>
+            </td>
+        </tr>
+    </table>
+</form>    
 </div>
 <!-- END main_block -->

@@ -1,0 +1,258 @@
+<!-- quirks for IE -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="de"
+      lang="de">
+<head>
+  <title>MPForm Help - Field Types of MPForm</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="content-language" content="en" />
+  <meta name="description" content="Field Types of MPForm" />
+  <meta name="keywords" content="Website Baker, Websitebaker, MPForm, Form, fields, field types" />
+  <link rel="stylesheet" type="text/css" href="../../../docs/style/mpformdoku.css" />
+</head>
+
+
+<body>
+<!-- ########## Header-Bereich -->
+  <div id="header">
+      <div class="hthema"><span class="hthema"> MPForm Help pages</span>
+        <h1>Field Types of MPForm</h1>
+      </div>
+  </div>
+      <div id="topnavigation">
+          <div class="eml">
+             <span class="easymultilang">
+                <a href='../../../docs/DE/mpform/referenz-der-feldtypen.html' title='German'>
+                <img src="../../../docs/images/de.png" alt="German" /> German </a>
+             </span>
+             <span class="easymultilang_current">
+                <img src="../../../docs/images/en.png" alt="English" /> English
+             </span>
+          </div>
+      </div>
+<!-- ********** Ende Header-Bereich -->
+
+  <div id="content-left">
+      <div class="innerwrap">
+       
+<!-- show_menu2 -->
+ <ul class="menu-top menu-1">
+    <li class="menu-1 knot menu-parent" title="MPForm Help pages"><a href="../../../docs/EN/mpform.html" target="_top" class="menu-1 knot menu-parent">MPForm</a>
+     <ul class="menu-2">
+        <li class="menu-2 leaf menu-sibling menu-first" title="Installation"><a href="../../../docs/EN/mpform/installation.html" target="_top" class="menu-2 leaf menu-sibling menu-first">Installation</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Create a form"><a href="../../../docs/EN/mpform/create-a-form.html" target="_top" class="menu-2 leaf menu-sibling">Create a form</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="After submitting a form"><a href="../../../docs/EN/mpform/after-submitting.html" target="_top" class="menu-2 leaf menu-sibling">After submitting</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Multi page forms"><a href="../../../docs/EN/mpform/multi-page-forms.html" target="_top" class="menu-2 leaf menu-sibling">Multi page forms</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="How to install a form"><a href="../../../docs/EN/mpform/install-a-form.html" target="_top" class="menu-2 leaf menu-sibling">Install a form</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Help users"><a href="../../../docs/EN/mpform/help-users.html" target="_top" class="menu-2 leaf menu-sibling">Help users</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Table or div"><a href="../../../docs/EN/mpform/table-or-div.html" target="_top" class="menu-2 leaf menu-sibling">Table or div</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Private Functions"><a href="../../../docs/EN/mpform/private-functions.html" target="_top" class="menu-2 leaf menu-sibling">Private Functions</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Loops in Forms"><a href="../../../docs/EN/mpform/loops-in-forms.html" target="_top" class="menu-2 leaf menu-sibling">Loops in Forms</a>        </li>
+        <li class="menu-2 leaf menu-current" title="Field Types of MPForm"><a href="../../../docs/EN/mpform/field-types.html" target="_top" class="menu-2 leaf menu-current">Field Types</a>        </li>
+        <li class="menu-2 knot menu-sibling" title="Settings of MPForm"><a href="../../../docs/EN/mpform/settings-of-mpform.html" target="_top" class="menu-2 knot menu-sibling">Settings of MPForm</a>        </li>
+        <li class="menu-2 leaf menu-sibling menu-last" title="FAQ to MPForm"><a href="../../../docs/EN/mpform/faq-to-mpform.html" target="_top" class="menu-2 leaf menu-sibling menu-last">FAQ to MPForm</a>        </li>
+     </ul>
+    </li>
+ </ul>
+
+      </div>
+  </div>
+<!-- ************ End content-left -->
+
+
+  <div id="mainbody">
+          <div id="content"><a id="top" />
+                          <a class="section_anchor" id="wb_138" name="wb_138"></a><p style="text-align: right;"><a href="../../../docs/EN/mpform/loops-in-forms.html" target="_top">Loops in Forms</a> &lt;&lt;&nbsp;&nbsp;&nbsp; ^ <a href="../../../docs/EN/mpform.html" target="_top">MPForm Help pages</a> ^&nbsp;&nbsp;&nbsp; &gt;&gt; <a href="../../../docs/EN/mpform/settings-of-mpform.html" target="_top">Settings of MPForm</a></p>
+
+<!-- ************ main content -->
+
+<h2>MPForm Documentation: Field types of MPForm</h2>
+<p style="text-align: right;">Level of difficulty: B&nbsp;</p>
+<p>The following table lists all types of fields used in MPForm. <br />
+  The following properties are available for nearly all types and therefore are not 
+  mentioned for each type:</p>
+<ul>
+    <li>Title</li>
+    <li>Type</li>
+    <li>Length</li>
+    <li>Default value</li>
+    <li>Entry is</li>
+    <li>Help</li>
+</ul>
+<table width="99%" cellspacing="1" cellpadding="3" border="1" summary="Feldtypen von MPForm">
+    <thead>
+        <tr>
+            <th scope="col">Type</th>
+            <th scope="col">Uses HTML element</th>
+            <th scope="col">Used for</th>
+            <th scope="col">Special properties</th>
+        </tr>
+    </thead>
+    <caption>Field types of MPForm</caption>
+    <tbody>
+        <tr>
+            <td valign="top">Heading</td>
+            <td valign="top"><code>label</code></td>
+            <td valign="top">(Sub-)Headings</td>
+            <td valign="top"><strong>Template</strong>: 
+               html source code, for instance for spanning multiple columns in a table</td>
+        </tr>
+        <tr>
+            <td valign="top">Text field (one line)</td>
+            <td valign="top"><code>input type=&quot;text&quot;</code></td>
+            <td valign="top">short text</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td valign="top">Text area (multi line)</td>
+            <td valign="top"><code>textarea</code></td>
+            <td valign="top">long text</td>
+            <td valign="top"><strong>Width </strong>and <strong>Rows</strong>: size of the area</td>
+        </tr>
+        <tr>
+            <td valign="top">Select Box</td>
+            <td valign="top"><code>select</code></td>
+            <td valign="top">list for single or multiple selection</td>
+            <td valign="top"><strong>List</strong>: 
+               the options you offer, with the checkboxes you can mark default values.<br />
+            <strong>Allow Multiple Slections</strong>: yes or no?</td>
+        </tr>
+        <tr>
+            <td valign="top">Radio Button Group</td>
+            <td valign="top"><code>input type=&quot;radio&quot;</code></td>
+            <td valign="top">single selections</td>
+            <td valign="top"><strong>List</strong>: 
+               the options you offer, with the radio buttons you can mark a default value.<br />
+            <strong>Separator</strong>: html code for separating the options</td>
+        </tr>
+        <tr>
+            <td valign="top">Checkbox Group</td>
+            <td valign="top"><code>input type=&quot;checkbox&quot;</code></td>
+            <td valign="top">multiple selection</td>
+            <td valign="top"><strong>List</strong>: 
+               the options you offer, with the checkboxes you can mark default values.<br />
+            <strong>Separator</strong>: html code for separating the options</td>
+        </tr>
+        <tr>
+            <td valign="top">Fieldset (Start and End)</td>
+            <td valign="top"><code>fieldset</code></td>
+            <td valign="top">grouping of items</td>
+            <td>Better than a header, a fieldset allows to group fields. 
+               You only can set a title to the fieldset. <br />
+            Like any html element containing child elements, a fieldset must be closed after the last child. 
+            This type has no settings at all, the title is just for the backend, you can put any text 
+            you want here or leave the default text.</td>
+        </tr>
+        <tr>
+            <td valign="top">Email Address</td>
+            <td valign="top"><tt>input type=&quot;text&quot;</tt></td>
+            <td valign="top">Email address</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td valign="top">E-Mail Recipient</td>
+            <td valign="top"><code>select</code></td>
+            <td valign="top">selection of recipients of the form which have been listed in the backend</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td valign="top">E-Mail Subject (Suffix)</td>
+            <td valign="top"><code>input type=&quot;text&quot;</code></td>
+            <td valign="top">extension of the subject for the email which has been defined in the backend</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td valign="top">Date</td>
+            <td valign="top"><code>input type=&quot;text&quot;</code></td>
+            <td valign="top">date</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td valign="top">Integer value</td>
+            <td valign="top"><code>input type=&quot;text&quot;</code></td>
+            <td valign="top">whole number</td>
+            <td valign="top">
+            Only positive integer numbers are allowed with characters 0..9<br />
+            JavaScript checks already in the browser that no other characters will be entered.
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">Decimal value</td>
+            <td valign="top"><code>input type=&quot;text&quot;</code></td>
+            <td valign="top">decimal numbers</td>
+            <td valign="top">
+            Signed decimal numbers are allowed with characters 0..9,.+-<br />
+            JavaScript checks already in the browser that no other characters will be entered, 
+            and the server side script will make sure that an useful number has been entered. 
+            Both &quot;,&quot; and &quot;.&quot; are allowed as decimal point to support users 
+            of all countries.
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">File Upload</td>
+            <td valign="top"><code>input type=&quot;file&quot;</code></td>
+            <td valign="top">allowing to upload files</td>
+            <td valign="top">You probably do not want allow everybody to download files uploaded by an 
+               (anonymous) user. This is made at least very difficult because the file name will be extended 
+               by a random number. The uploaded file however is on the server and reachable for everyone
+               in principle, but only the backend-users with access to the module or the receipients 
+               of the mail to the site owner know the correct link to the uploaded file.
+               It is possible to upload several files at once by selecting more than one in the upload dialog.</td>
+        </tr>
+        <tr>
+            <td valign="top">HTML-Code</td>
+            <td valign="top">&nbsp;</td>
+            <td valign="top">HTML source code</td>
+            <td valign="top">it can be defined in the backend without any major restrictions</td>
+        </tr>
+        <tr>
+            <td valign="top">hidden field</td>
+            <td valign="top"><code>input type=&quot;hidden&quot;</code></td>
+            <td valign="top">handing over values between individual pages of multi page forms</td>
+            <td>in conjunction with the private function 
+              <strong>private_function_before_new_form</strong> this field type can be used to 
+              submit values of a previous page once again. This may help to keep each page simple
+              and at the same time have all values available on the last page for sending them 
+              by email. However, you have to define a hidden field for each field on all subsequent
+              pages of the form. The results table, however, will hold not only the original input
+              values, but the values of teh hidden fields as well.
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">conditionally displayed block</td>
+            <td valign="top"><code>div/script</code></td>
+            <td valign="top">Display of text or any other HTML code depending on 
+              selected options of a form</td>
+            <td> Strictly speaking this is not a separate field type, but instead
+              a wizzard for creating html code (including the required javascript)
+              that instantly reacts on user input, already on the same page, and 
+              displays different content depending on the selected options.
+              Supported are Checkboxes, Radiobuttons and Dropdown fields.              
+            </td>
+        </tr>
+        
+    </tbody>
+</table>
+<p>&nbsp;</p>          </div>
+
+
+<!-- ************ Footer -->
+</div></div>
+  <div class="clear-both"></div>
+<div id="footer">
+        <p class="txt">&nbsp; MPForm is releaed under GPL </p>
+ 
+        <ul class="bottomnav">
+          <li class="bottomnav"><a href="#"
+             title="Print page without menu"
+             onclick="window.print();"><img src="../../../docs/images/print.gif" alt="Print" /> <span>print page</span></a></li>
+
+          <li class="bottomnav"><a href="#top"
+             title="Go to top"
+             onclick="history.go(0);"><img src="../../../docs/images/totop.gif" alt="Top" /> <span>go up</span></a></li>
+        </ul>
+   </div>
+</body></html>
+

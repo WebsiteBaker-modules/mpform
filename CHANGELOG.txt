@@ -5,6 +5,35 @@ MODULE VERSION HISTORY
 ======================
 
    ------------------------------------------------------------------------------------------------------------------------ 
+        *** 1.2.1 (Martin Hecht: 02-Aug-2016) ***
+        fix the redirection on the help page
+        repair the build system which has inserted text by mistake
+        fix curly brace in private.php
+
+        *** 1.2.0 (Martin Hecht: 28-Jul-2016) ***
+        realign the code (break long lines and properly ident)
+        added Italian language support and completed language support in ajax parts
+        make backwards compatibility (e.g. IDKEY, FTAN) consistent
+        include and update the documentation
+        correctly remove results tables when deleting the section (including results)
+        on the other hand keep results table if more sections are referring to it
+        update results table structure when saving fields
+        recreate results table when changing the suffix
+        add import/export of forms and include the default forms
+        introduce hidden fields for re-submitting data on subsequent pages
+        introduce conditionally displayed code (a wizard to create html code)
+        introduce double comments in html blocks which are suppressed in the form output
+        make code sql strict conform (promised half a year ago)
+        avoid global variables for better transparency of code
+        introduce possibility to skip update of results tables
+        make enabled/disabled switch available to all field types
+        allow to specify where html fields shall be used: the html for form/user/site 
+        only send http headers if they were not yet sent by the framework
+ 
+   ------------------------------------------------------------------------------------------------------------------------
+
+        *** 1.1.25 (Martin Hecht: 23-Jun-2016) ***
+        commented out example in private.php 
 
         *** 1.1.24 (Martin Hecht: 30-May-2016) ***
         remove (still) unsupported call to ftan from paintform
@@ -18,7 +47,7 @@ MODULE VERSION HISTORY
         fix html special char notation for acute accents
 
         *** 1.1.21 (Martin Hecht: 07-Mar-2016) ***
-        Bugfix for email receipients list        
+        Bugfix for email receipients list
 
         *** 1.1.20 (Martin Hecht: 21-Feb-2016) ***
         allow to configure reply-to address

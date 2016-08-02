@@ -1,0 +1,138 @@
+<!-- quirks for IE -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="de"
+      lang="de">
+<head>
+  <title>MPForm Hilfe - Private Funktionen</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="content-language" content="de" />
+  <meta name="description" content="MPForm - Private Funktionen" />
+  <meta name="keywords" content="MPForm, Private Funktionen" />
+  <link rel="stylesheet" type="text/css" href="../../../docs/style/mpformdoku.css" />
+</head>
+
+
+<body>
+<!-- ########## Header-Bereich -->
+  <div id="header">
+      <div class="hthema"><span class="hthema"> MPForm Hilfeseiten</span>
+        <h1>Private Funktionen</h1>
+      </div>
+
+  </div>
+      <div id="topnavigation">
+
+          <div class="eml">
+             <span class="easymultilang_current">
+                <img src="../../../docs/images/de.png" alt="Deutsch" /> Deutsch
+             </span>
+             <span class="easymultilang">
+                <a href='../../../docs/EN/mpform/private-functions.html' title='English'>
+                <img src="../../../docs/images/en.png" alt="English" /> English</a>
+             </span>
+          </div>
+      </div>
+<!-- ********** Ende Header-Bereich -->
+
+  <div id="content-left">
+      <div class="innerwrap">
+       
+<!-- show_menu2 -->
+ <ul class="menu-top menu-1">
+    <li class="menu-1 knot menu-parent" title="MPForm Hilfeseiten"><a href="../../../docs/DE/mpform.html" target="_top" class="menu-1 knot menu-parent">MPForm</a>
+     <ul class="menu-2">
+        <li class="menu-2 leaf menu-sibling menu-first" title="Installation"><a href="../../../docs/DE/mpform/installation.html" target="_top" class="menu-2 leaf menu-sibling menu-first">Installation</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Crashkurs Formularerstellung"><a href="../../../docs/DE/mpform/crashkurs-formularerstellung.html" target="_top" class="menu-2 leaf menu-sibling">Crashkurs Formularerstellung</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Nach dem Absenden des Formulars"><a href="../../../docs/DE/mpform/nach-dem-absenden.html" target="_top" class="menu-2 leaf menu-sibling">Nach dem Absenden </a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Crashkurs Mehrseitige Formulare"><a href="../../../docs/DE/mpform/mehrseitige-formulare.html" target="_top" class="menu-2 leaf menu-sibling">Mehrseitige Formulare</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Standardformular installieren"><a href="../../../docs/DE/mpform/standardformular-installieren.html" target="_top" class="menu-2 leaf menu-sibling">Standardformular installieren</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Hilfetexte f&uuml;r Benutzer"><a href="../../../docs/DE/mpform/hilfetexte.html" target="_top" class="menu-2 leaf menu-sibling">Hilfetexte</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Tabelle oder div"><a href="../../../docs/DE/mpform/tabelle-oder-div.html" target="_top" class="menu-2 leaf menu-sibling">Tabelle oder div</a>        </li>
+        <li class="menu-2 leaf menu-current" title="Private Funktionen"><a href="../../../docs/DE/mpform/private-funktionen.html" target="_top" class="menu-2 leaf menu-current">Private Funktionen</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Formularschleifen"><a href="../../../docs/DE/mpform/formularschleifen.html" target="_top" class="menu-2 leaf menu-sibling">Formularschleifen</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Referenz der Feldtypen"><a href="../../../docs/DE/mpform/referenz-der-feldtypen.html" target="_top" class="menu-2 leaf menu-sibling">Referenz der Feldtypen</a>        </li>
+        <li class="menu-2 knot menu-sibling" title="Optionale Einstellungen von MPForm "><a href="../../../docs/DE/mpform/referenz-der-optionen.html" target="_top" class="menu-2 knot menu-sibling">Referenz der Optionen</a>        </li>
+        <li class="menu-2 leaf menu-sibling menu-last" title="FAQ zu MPForm"><a href="../../../docs/DE/mpform/faq-zu-mpform.html" target="_top" class="menu-2 leaf menu-sibling menu-last">FAQ zu MPForm</a>        </li>
+     </ul>
+    </li>
+ </ul>
+
+      </div>
+  </div>
+<!-- ************ End content-left -->
+
+
+  <div id="mainbody">
+          <div id="content"><a id="top" />
+                          <a class="section_anchor" id="wb_125" name="wb_125"></a><p style="text-align: right;"><a href="../../../docs/DE/mpform/tabelle-oder-div.html" target="_top">Tabelle oder div</a> &lt;&lt;&nbsp;&nbsp;&nbsp; ^ <a href="../../../docs/DE/mpform.html" target="_top">MPForm Hilfeseiten</a> ^&nbsp;&nbsp;&nbsp; &gt;&gt; <a href="../../../docs/DE/mpform/formularschleifen.html" target="_top">Formularschleifen</a> </p>
+
+<!-- ************ main content -->
+
+<h2>MPForm-Dokumentation: <b>Private Funktionen</b></h2>
+<p style="text-align: right;">Schwierigkeitsgrad C&nbsp;</p>
+<p>Ein Modul f&uuml;r Website Baker kann bei vielen Anwendern alle Anwendungsf&auml;lle 
+  &quot;erschlagen&quot;. Manche Kunden haben jedoch W&uuml;nsche oder Anforderungen, 
+  die besondere Funktionalit&auml;ten voraussetzen. Selbst auf einer Website k&ouml;nnen 
+  mehrere Formulare vorhanden sein, die aber unterschiedlich funktionieren sollen. 
+  Um flexibel auf solche Anforderungen reagieren zu k&ouml;nnen, sind Schnittstellen 
+  zu mehreren privaten Funktionen in das Modul eingebaut. Diese Funktionen geh&ouml;ren 
+  in die Datei private.php. Der Vorteil der B&uuml;ndelung des eigenen Programmcodes 
+  in einer separaten Datei d&uuml;rfte einleuchtend sein: vor dem Einspielen von Updates 
+  m&uuml;ssen Sie ansonsten Quellcode von alten und neuen Dateien vergleichen und jede 
+  &Auml;nderung an die richtige Stelle in den neuen Dateien kopieren. Mit der Auslagerung 
+  aller Anpassungen in die Datei private.php f&auml;llt diese Arbeit weg. 
+ <span style="color: rgb(255, 0, 0);">Die Datei private.php wird beim Upgrade nicht
+  mit aktualisiert. Anpassungen der vorgeschlagenen Beispiele in neueren Versionen 
+  m&uuml;ssen Sie gegebenenfalls selbst aus private.default.php &uuml;bernehmen</span></p>
+</p>
+<p><span>Folgende privaten Funktionen sind vorhanden</span>:</p>
+<dl>
+    <dt>function private_function_before_new_form($section_id)</dt>
+    <dd>Wird aufgerufen, bevor ein Formular zusammengebaut wird. Hier kann man z.B. Feldinhalte 
+      je nach zuvor besuchter Seite vorbelegen.</dd>
+    <dt>function private_function_before_email($section_id, &amp;$html_data_user, &amp;$html_data_site)</dt>
+    <dd>Wird aufgerufen, nachdem ein Formular erfolgreich ausgef&uuml;llt wurde, aber bevor es 
+      verschickt und gespeichert wird. Hier k&ouml;nnte man also z.B. Benachrichtigungstexte anpassen. 
+      Dabei gibt es den Benachrichtigungstext an den Sitebetreiber und denjenigen an den Benutzer.</dd>
+    <dt>private_function_after_email($section_id, &amp;$html_data_site, &amp;$mpform_fields)
+</dt>
+    <dd>Wird aufgerufen, nachdem ein Formular erfolgreich ausgef&uuml;llt und verschickt wurde, aber bevor es 
+      in der Datenbank gespeichert wird. Eventuell soll der Inhalt in der Datenbank in einem anderen
+      Format abgelegt werden, so dass es leichter zu verarbeiten ist, aber in der Benachrichtigungsmail
+      sollte der Originalinhalt verschickt werden. Dann ist hier die richtige Stelle, um diese Anpassung
+      vorzunehmen<code>$html_data_site</code> wird in der Submissions-Tabelle gespeichert und 
+      <code>$mpform_fields</code> enth&auml;lt die SQL-Statements f&uuml;r die Results-Tabelle. Auch hier gibt es zwei Varianten: </dd>
+    <dt>private_function_on_success($section_id)</dt>
+    <dd>Wird aufgerufen, nachdem ein Formular erfolgreich ausgef&uuml;llt und gespeichert wurde. 
+       Hier kann man z.B. dynamisch die Folgeseite umschalten.</dd>
+</dl>
+<p>Damit die Funktion nicht bei jedem Formular das gleiche macht, sollte man zuvor die Variable 
+   <code>$section_id</code> abfragen und nur bei &Uuml;bereinstimmung die ben&ouml;tigten Aktionen 
+   durchf&uuml;hren. </p>
+<p>Der R&uuml;ckgabewert sollte ein Boolscher Wert sein, allerdings verwendet ihn momentan 
+private_function_before_new_form noch nicht. Bei allen anderen: FALSE dient zum Abbrechen des 
+ regul&auml;ren Programmflusses, bei TRUE geht die Ausf&uuml;hrung weiter.</p>
+<p>Auf der n&auml;chsten Seite gibt es ein Beispiel aus der Praxis: die Programmierung einer 
+   Formularschleife.</p>          </div>
+
+
+<!-- ************ Footer -->
+</div></div>
+  <div class="clear-both"></div>
+<div id="footer">
+        <p class="txt">&nbsp; MPForm ist unter GPL ver&ouml;ffentlicht </p>
+ 
+        <ul class="bottomnav">
+          <li class="bottomnav"><a href="#"
+             title="Seite ohne Men&uuml; drucken"
+             onclick="window.print();"><img src="../../../docs/images/print.gif" alt="Drucken" /> <span>Seite drucken</span></a></li>
+
+          <li class="bottomnav"><a href="#top"
+             title="Zum Seitenanfang"
+             onclick="history.go(0);"><img src="../../../docs/images/totop.gif" alt="Nach oben" /> <span>Nach oben</span></a></li>
+        </ul>
+   </div>
+</body></html>
+

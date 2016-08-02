@@ -1,0 +1,132 @@
+<!-- quirks for IE -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="de"
+      lang="de">
+<head>
+  <title>MPForm Help - Private Functions</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="content-language" content="en" />
+  <meta name="description" content="Private Functions in MPForm" />
+  <meta name="keywords" content="Website Baker, Websitebaker, MPForm, Form, Private Functions" />
+  <link rel="stylesheet" type="text/css" href="../../../docs/style/mpformdoku.css" />
+</head>
+
+
+<body>
+<!-- ########## Header-Bereich -->
+  <div id="header">
+      <div class="hthema"><span class="hthema"> MPForm Help pages</span>
+        <h1>Private Functions in MPForm</h1>
+      </div>
+  </div>
+      <div id="topnavigation">
+          <div class="eml">
+             <span class="easymultilang">
+                <a href='../../../docs/DE/mpform/private-funktionen.html' title='German'>
+                <img src="../../../docs/images/de.png" alt="German" /> German </a>
+             </span>
+             <span class="easymultilang_current">
+                <img src="../../../docs/images/en.png" alt="English" /> English
+             </span>
+          </div>
+      </div>
+<!-- ********** Ende Header-Bereich -->
+
+  <div id="content-left">
+      <div class="innerwrap">
+       
+<!-- show_menu2 -->
+ <ul class="menu-top menu-1">
+    <li class="menu-1 knot menu-parent" title="MPForm Help pages"><a href="../../../docs/EN/mpform.html" target="_top" class="menu-1 knot menu-parent">MPForm</a>
+     <ul class="menu-2">
+        <li class="menu-2 leaf menu-sibling menu-first" title="Installation"><a href="../../../docs/EN/mpform/installation.html" target="_top" class="menu-2 leaf menu-sibling menu-first">Installation</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Create a form"><a href="../../../docs/EN/mpform/create-a-form.html" target="_top" class="menu-2 leaf menu-sibling">Create a form</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="After submitting a form"><a href="../../../docs/EN/mpform/after-submitting.html" target="_top" class="menu-2 leaf menu-sibling">After submitting</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Multi page forms"><a href="../../../docs/EN/mpform/multi-page-forms.html" target="_top" class="menu-2 leaf menu-sibling">Multi page forms</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="How to install a form"><a href="../../../docs/EN/mpform/install-a-form.html" target="_top" class="menu-2 leaf menu-sibling">Install a form</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Help users"><a href="../../../docs/EN/mpform/help-users.html" target="_top" class="menu-2 leaf menu-sibling">Help users</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Table or div"><a href="../../../docs/EN/mpform/table-or-div.html" target="_top" class="menu-2 leaf menu-sibling">Table or div</a>        </li>
+        <li class="menu-2 leaf menu-current" title="Private Functions"><a href="../../../docs/EN/mpform/private-functions.html" target="_top" class="menu-2 leaf menu-current">Private Functions</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Loops in Forms"><a href="../../../docs/EN/mpform/loops-in-forms.html" target="_top" class="menu-2 leaf menu-sibling">Loops in Forms</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Field Types of MPForm"><a href="../../../docs/EN/mpform/field-types.html" target="_top" class="menu-2 leaf menu-sibling">Field Types</a>        </li>
+        <li class="menu-2 knot menu-sibling" title="Settings of MPForm"><a href="../../../docs/EN/mpform/settings-of-mpform.html" target="_top" class="menu-2 knot menu-sibling">Settings of MPForm</a>        </li>
+        <li class="menu-2 leaf menu-sibling menu-last" title="FAQ to MPForm"><a href="../../../docs/EN/mpform/faq-to-mpform.html" target="_top" class="menu-2 leaf menu-sibling menu-last">FAQ to MPForm</a>        </li>
+     </ul>
+    </li>
+ </ul>
+
+      </div>
+  </div>
+<!-- ************ End content-left -->
+
+
+  <div id="mainbody">
+          <div id="content"><a id="top" />
+                          <a class="section_anchor" id="wb_137" name="wb_137"></a><p style="text-align: right;">&nbsp;<a href="../../../docs/EN/mpform/table-or-div.html" target="_top">Table or div</a> &lt;&lt;&nbsp;&nbsp;&nbsp; ^ <a href="../../../docs/EN/mpform.html" target="_top">MPForm Help pages</a> ^&nbsp;&nbsp;&nbsp; &gt;&gt; <a href="../../../docs/EN/mpform/loops-in-forms.html" target="_top">Loops in Forms</a></p>
+
+<!-- ************ main content -->
+
+<h2>MPForm Documentation: <b>Private Functions</b></h2>
+<p style="text-align: right;">Level of difficulty: C&nbsp;</p>
+<p>A module for Website Baker can solve many tasks for many users. But some customers do have wishes or 
+  needs which require special functionalities. Even on the same web site multiple forms might exist, 
+  which need to react differently. To be able to act in a flexible way, interfaces to some private 
+  functions are build into MPForm. Those functions reside in the file private.php. 
+  The advantage of the bundling of the own (private) program code into a single file should be obvious: 
+  Otherwise when upgrading the module, you would need to compare the differences of old and new source 
+  code before performing the upgrade, and need to copy each change onto the correct place in the new files.
+  By outsourcing all changes into the file private.php you can skip this work. 
+  <span style="color: rgb(255, 0, 0);">The file private.php will not be updated when upgrading the module.
+  You need to pick up updates to the prepared examples by yourself from the file private.default.php!</span></p>
+<p><span>Currently, the following private functions are defined currently</span>:</p>
+<dl>
+    <dt>function private_function_before_new_form($section_id)</dt>
+    <dd>Will be called before a form will be assembled. Here you can, for instance, set the current date 
+      in a field.</dd>
+    <dt>function private_function_before_email($section_id, &amp;$html_data_user, &amp;$html_data_site)</dt>
+    <dd>Will be called after a form has been submitted successfully, but before it will be saved or sent 
+      by email. Here you can, change the message text.<br />
+      There are two versions, one for the site owner and one for the user who has submitted the form.
+    </dd>
+    <dt>private_function_after_email($section_id, &amp;$html_data_site, &amp;$mpform_fields)
+</dt>
+    <dd>Will be called after a form has been submitted and email has been sent successfully, but before 
+    data is saved to the database. If you need to postprocess the submitted values for later use and
+    you want to keep the original format in the email, this is the place to do this transformation.<br />
+    Again, there are two versions: On the one hand the SQL statements for the results table and 
+    on the other hand the HTML version for the submissions table.
+    </dd>
+    <dt>private_function_on_success($section_id)</dt>
+    <dd>Will be called after a form has been submitted and saved successfully. Here you can, for instance, 
+      change the following page dynamically.</dd>
+</dl>
+<p>When the function should not do the same action for every form, you should first check the variable 
+  <code>$section_id </code>and only when it matches, the required actions should be run. This variable 
+  is the only argument which is provided as parameter to the private functions.</p>
+<p>The return value should be a Boolean type. Currently, private_function_before_new_form does not use it.
+  For all other private functions a return value of TRUE means that execution was successful and 
+  the program flow may continue. FALSE means that someting went wrong and execution is aborted at this point.</p>
+<p>On the next page an example for private functions is given: 
+How to create a loop within a multipage form </p>          </div>
+
+
+<!-- ************ Footer -->
+</div></div>
+  <div class="clear-both"></div>
+<div id="footer">
+        <p class="txt">&nbsp; MPForm is releaed under GPL </p>
+ 
+        <ul class="bottomnav">
+          <li class="bottomnav"><a href="#"
+             title="Print page without menu"
+             onclick="window.print();"><img src="../../../docs/images/print.gif" alt="Print" /> <span>print page</span></a></li>
+
+          <li class="bottomnav"><a href="#top"
+             title="Go to top"
+             onclick="history.go(0);"><img src="../../../docs/images/totop.gif" alt="Top" /> <span>go up</span></a></li>
+        </ul>
+   </div>
+</body></html>
+

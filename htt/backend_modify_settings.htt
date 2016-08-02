@@ -2,178 +2,178 @@
 <div class="{MOD_CLASS}">
 
 <form name="modify" action="{MOD_SAVE_URL}" method="post" style="margin: 0;">
-        <input type="hidden" name="section_id" value="{SECTION_ID}" />
-        <input type="hidden" name="page_id" value="{PAGE_ID}" />
-                {FTAN}
-        <table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
+    <input type="hidden" name="section_id" value="{SECTION_ID}" />
+    <input type="hidden" name="page_id" value="{PAGE_ID}" />
+        {FTAN}
+    <table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
         <caption>{TXT_MP_SETTINGS}</caption>
         <tr title="{des_is_following}">
-                <th>{TXT_ISFOLLOWING}:</th>
-                <td>
-                        <input type="radio" name="is_following" id="is_following_true" value="1" {is_following_true_checked} />
-                        <label for="is_following_true">{TXT_YES}</label>
-                        <input type="radio" name="is_following" id="is_following_false" value="0" {is_following_false_checked} />
-                        <label for="is_following_false">{TXT_NO}</label>                        
-                        <br />
-                        <small>{des_is_following}</small>
-                </td>
-        </tr>        
-        <tr>
-                <th>{txt_success_page}:</th>
-                <td>
-                <select name="success_page">
-                        <option value="none">{NONE}</option>
-                        <!-- BEGIN success_page_block -->
-                        {options_success_page}
-                        <!-- END success_page_block -->
-                </select>
+            <th>{TXT_ISFOLLOWING}:</th>
+            <td>
+                <input type="radio" name="is_following" id="is_following_true" value="1" {is_following_true_checked} />
+                <label for="is_following_true">{TXT_YES}</label>
+                <input type="radio" name="is_following" id="is_following_false" value="0" {is_following_false_checked} />
+                <label for="is_following_false">{TXT_NO}</label>            
                 <br />
-                <small>{des_success_page}</small></td>
+                <small>{des_is_following}</small>
+            </td>
+        </tr>    
+        <tr>
+            <th>{txt_success_page}:</th>
+            <td>
+            <select name="success_page">
+                <option value="none">{NONE}</option>
+                <!-- BEGIN success_page_block -->
+                {options_success_page}
+                <!-- END success_page_block -->
+            </select>
+            <br />
+            <small>{des_success_page}</small></td>
         </tr>
         <tr>
-                <th>{txt_success_text}:</th>
-                <td>
-                        <textarea rows="5" cols="50" name="success_text" class="setting_value_textarea">{success_text}</textarea><br />
-                        <p class="notification smaller">{des_success_text}</p><small>{success_options}</small></td>
+            <th>{txt_success_text}:</th>
+            <td>
+                <textarea rows="5" cols="50" name="success_text" class="setting_value_textarea">{success_text}</textarea><br />
+                <p class="notification smaller">{des_success_text}</p><small>{success_options}</small></td>
         </tr>
         <tr>
-                <th>{txt_submissions_text}:</th>
-                <td>
-                        <textarea rows="5" cols="50" name="submissions_text" class="setting_value_textarea">{submissions_text}</textarea><br />
-                        <p class="notification smaller">{des_submissions_text}</p><small>{success_options}</small></td>
+            <th>{txt_submissions_text}:</th>
+            <td>
+                <textarea rows="5" cols="50" name="submissions_text" class="setting_value_textarea">{submissions_text}</textarea><br />
+                <p class="notification smaller">{des_submissions_text}</p><small>{success_options}</small></td>
         </tr>
         <tr>
-                <th>{TXT_TBLSFX}:</th>
-                <td>
-                        <input name="tbl_suffix" class="setting_value_text" type="text" maxlength="80" value="{tbl_suffix}" />
-                        <p><small><b>{DES_TXT_TBLSFX}</b></small></b>
-                </td>
+            <th>{TXT_TBLSFX}:</th>
+            <td>
+                <input name="tbl_suffix" class="setting_value_text" type="text" maxlength="80" value="{tbl_suffix}" />
+                <p><small><b>{DES_TXT_TBLSFX}</b></small></b>
+            </td>
         </tr>
-        </table>
-        
-        <table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
+    </table>
+
+    <table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
         <caption>{TXT_LAYOUT_SETTINGS}</caption>
         <tr>
-                <th>{txt_header}:</td>
-                <td><textarea rows="5" cols="50" name="header" class="setting_value_textarea">{header}</textarea></td>
+            <th>{txt_header}:</td>
+            <td><textarea rows="5" cols="50" name="header" class="setting_value_textarea">{header}</textarea></td>
         </tr>
         <tr>
-                <th>{txt_field_loop}:</td>
-                <td>
-                        <textarea rows="5" cols="50" name="field_loop" class="setting_value_textarea" title="{des_field_loop}">{field_loop}</textarea><br />
-                        <small>{des_field_loop}</small>
-                </td>
+            <th>{txt_field_loop}:</td>
+            <td>
+                <textarea rows="5" cols="50" name="field_loop" class="setting_value_textarea" title="{des_field_loop}">{field_loop}</textarea><br />
+                <small>{des_field_loop}</small>
+            </td>
         </tr>
         <tr>
-                <th>{txt_footer}:</td>
-                <td>
-                        <textarea rows="5" cols="50" name="footer" class="setting_value_textarea" title="{des_footer}">{footer}</textarea><br />
-                        <small>{des_footer}</small>
-                </td>
+            <th>{txt_footer}:</td>
+            <td>
+                <textarea rows="5" cols="50" name="footer" class="setting_value_textarea" title="{des_footer}">{footer}</textarea><br />
+                <small>{des_footer}</small>
+            </td>
         </tr>
-        </table>
-        
-        <table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
+    </table>
+
+    <table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
         <caption>{EMAIL_SETTINGS_1}</caption>
-    <tr>
-                <th>{txt_email_to}:</th>
-                <td>
-                        <textarea name="email_to" class="setting_value_textarea" rows="3" cols="80">{email_to}</textarea><br />
-                        <small>{des_email_to}</small>
-                </td>
-        </tr>
-    <tr>
-                <th>{txt_email_from_field}:</th>
-                <td>
-                        <select name="email_from_field">
-                                <option value="" onclick="javascript: document.getElementById('email_from_f_slave').style.display = 'block';">{TXT_STATIC_ADDR}:</option>
-                                <!-- BEGIN email_from_f_block -->
-                                {options_email_from_f}
-                                <!-- END email_from_f_block -->
-                        </select>
-                        <input type="text" name="email_from" id="email_from_f_slave" class="setting_value_text" style="display: {display_email_from_field}"        value="{email_from}"/>
-                </td>
-        </tr>
-    <tr>
-                <th>{txt_email_replyto_field}:</th>
-                <td>
-                        <select name="email_replyto_field">
-                                <option value="" onclick="javascript: document.getElementById('email_replyto_f_slave').style.display = 'block';">{TXT_STATIC_ADDR}:</option>
-                                <!-- BEGIN email_replyto_f_block -->
-                                {options_email_replyto_f}
-                                <!-- END email_replyto_f_block -->
-                        </select>
-                        <input type="text" name="email_replyto" id="email_replyto_f_slave" class="setting_value_text" style="display: {display_email_replyto_field}"        value="{email_replyto}"/><br />
-                        <small>{des_email_replyto}</small>
-                </td>
-        </tr>
-    <tr>
-                <th>{txt_email_fromname_field}:</th>
-                <td>
-                        <select name="email_fromname_field">
-                                <option value="" onclick="javascript: document.getElementById('email_fromname_f_slave').style.display = 'block';">{TXT_STATIC_NAME}:</option>
-                                <!-- BEGIN email_fromname_f_block -->
-                                {options_email_fromname_f}
-                                <!-- END email_fromname_f_block -->
-                        </select>
-                        <input type="text" name="email_fromname" id="email_fromname_f_slave" class="setting_value_text" style="display: {display_email_fromname_field}"        value="{email_fromname}"/>
-                </td>
+        <tr>
+            <th>{txt_email_to}:</th>
+            <td>
+                <textarea name="email_to" class="setting_value_textarea" rows="3" cols="80">{email_to}</textarea><br />
+                <small>{des_email_to}</small>
+            </td>
         </tr>
         <tr>
-                <th>{txt_email_subject}:</th>
-                <td><input name="email_subject" class="setting_value_text" type="text" title="{des_email_subject}" value="{email_subject}" /></td>
+            <th>{txt_email_from_field}:</th>
+            <td>
+                <select name="email_from_field">
+                    <option value="" onclick="javascript: document.getElementById('email_from_f_slave').style.display = 'block';">{TXT_STATIC_ADDR}:</option>
+                    <!-- BEGIN email_from_f_block -->
+                    {options_email_from_f}
+                    <!-- END email_from_f_block -->
+                </select>
+                <input type="text" name="email_from" id="email_from_f_slave" class="setting_value_text" style="display: {display_email_from_field}"    value="{email_from}"/>
+            </td>
         </tr>
         <tr>
-                <th>{txt_email_text}:<br /><small>({des_email_text})</small></th>
-                <td>
-                        <textarea rows="5" cols="50" name="email_text" class="setting_value_textarea">{email_text}</textarea><br />
-                        <small>{success_options}</small>
-                </td>
+            <th>{txt_email_replyto_field}:</th>
+            <td>
+                <select name="email_replyto_field">
+                    <option value="" onclick="javascript: document.getElementById('email_replyto_f_slave').style.display = 'block';">{TXT_STATIC_ADDR}:</option>
+                    <!-- BEGIN email_replyto_f_block -->
+                    {options_email_replyto_f}
+                    <!-- END email_replyto_f_block -->
+                </select>
+                <input type="text" name="email_replyto" id="email_replyto_f_slave" class="setting_value_text" style="display: {display_email_replyto_field}"    value="{email_replyto}"/><br />
+                <small>{des_email_replyto}</small>
+            </td>
         </tr>
-        </table>
-        
-        <table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
+        <tr>
+            <th>{txt_email_fromname_field}:</th>
+            <td>
+                <select name="email_fromname_field">
+                    <option value="" onclick="javascript: document.getElementById('email_fromname_f_slave').style.display = 'block';">{TXT_STATIC_NAME}:</option>
+                    <!-- BEGIN email_fromname_f_block -->
+                    {options_email_fromname_f}
+                    <!-- END email_fromname_f_block -->
+                </select>
+                <input type="text" name="email_fromname" id="email_fromname_f_slave" class="setting_value_text" style="display: {display_email_fromname_field}"    value="{email_fromname}"/>
+            </td>
+        </tr>
+        <tr>
+            <th>{txt_email_subject}:</th>
+            <td><input name="email_subject" class="setting_value_text" type="text" title="{des_email_subject}" value="{email_subject}" /></td>
+        </tr>
+        <tr>
+            <th>{txt_email_text}:<br /><small>({des_email_text})</small></th>
+            <td>
+                <textarea rows="5" cols="50" name="email_text" class="setting_value_textarea">{email_text}</textarea><br />
+                <small>{success_options}</small>
+            </td>
+        </tr>
+    </table>
+
+    <table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
         <caption>{EMAIL_SETTINGS_2}</caption>
         <tr>
-                <th>{txt_success_email_to}:</th>
-                <td>
-                        <select name="success_email_to">
-                                <option value="">{NONE}</option>
-                                <!-- BEGIN success_email_to_block -->
-                                {options_success_email_to}
-                                <!-- END success_email_to_block -->
-                        </select>
-                </td>
-        </tr>
-    <tr>
-                <th>{txt_success_email_from}:</th>
-                <td><input name="success_email_from" class="setting_value_text" type="text" title="{des_success_email_from}" value="{success_email_from}" /></td>
+            <th>{txt_success_email_to}:</th>
+            <td>
+                <select name="success_email_to">
+                    <option value="">{NONE}</option>
+                    <!-- BEGIN success_email_to_block -->
+                    {options_success_email_to}
+                    <!-- END success_email_to_block -->
+                </select>
+            </td>
         </tr>
         <tr>
-                <th>{txt_success_email_fromname}:</th>
-                <td><input name="success_email_fromname" class="setting_value_text" type="text" title="{des_success_email_fromname}" value="{success_email_fromname}" /></td>
+            <th>{txt_success_email_from}:</th>
+            <td><input name="success_email_from" class="setting_value_text" type="text" title="{des_success_email_from}" value="{success_email_from}" /></td>
         </tr>
         <tr>
-                <th>{txt_success_email_subject}:</th>
-                <td><input name="success_email_subject" class="setting_value_text" type="text" title="{des_success_email_subject}" value="{success_email_subject}" /></td>
+            <th>{txt_success_email_fromname}:</th>
+            <td><input name="success_email_fromname" class="setting_value_text" type="text" title="{des_success_email_fromname}" value="{success_email_fromname}" /></td>
         </tr>
         <tr>
-                <th>{txt_success_email_text}:<br /><small>({des_success_email_text})</small></th>
-                <td>
-                        <textarea rows="5" cols="50" name="success_email_text" class="setting_value_textarea">{success_email_text}</textarea><br />
-                        <small>{success_options}</small>
-                </td>
+            <th>{txt_success_email_subject}:</th>
+            <td><input name="success_email_subject" class="setting_value_text" type="text" title="{des_success_email_subject}" value="{success_email_subject}" /></td>
         </tr>
-        </table>
+        <tr>
+            <th>{txt_success_email_text}:<br /><small>({des_success_email_text})</small></th>
+            <td>
+                <textarea rows="5" cols="50" name="success_email_text" class="setting_value_textarea">{success_email_text}</textarea><br />
+                <small>{success_options}</small>
+            </td>
+        </tr>
+    </table>
 
-        <table cellpadding="0" cellspacing="0" border="0" width="99%">
+    <table cellpadding="0" cellspacing="0" border="0" width="99%">
         <tr>
-                <td align="left">
-                        <button name="save" type="submit" class=""><img src="{MODULE_URL}/images/ok.gif" alt="" width="16" height="16" border="0" /> {TXT_SAVE}</button>
-                </td>
-                <td align="right">
-                        <button class="" onclick="javascript:window.location = '{MOD_CANCEL_URL}'; return false;"><img src="{MODULE_URL}/images/cancel.gif" alt="" width="16" height="16" border="0" /> {TXT_CANCEL}</button>
-                </td>
+            <td align="left">
+                <button name="save" type="submit" class=""><img src="{MODULE_URL}/images/ok.gif" alt="" width="16" height="16" border="0" /> {TXT_SAVE}</button>
+            </td>
+            <td align="right">
+                <button class="" onclick="javascript:window.location = '{MOD_CANCEL_URL}'; return false;"><img src="{MODULE_URL}/images/cancel.gif" alt="" width="16" height="16" border="0" /> {TXT_CANCEL}</button>
+            </td>
         </tr>
     </table>
 </form>        

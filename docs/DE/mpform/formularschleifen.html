@@ -1,0 +1,140 @@
+<!-- quirks for IE -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="de"
+      lang="de">
+<head>
+  <title>MPForm Hilfe - Formularschleifen</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="content-language" content="de" />
+  <meta name="description" content="MPForm - Formularschleifen" />
+  <meta name="keywords" content="Website Baker, Websitebaker, MPForm, Formular, Formularschleifen" />
+  <link rel="stylesheet" type="text/css" href="../../../docs/style/mpformdoku.css" />
+</head>
+
+
+<body>
+<!-- ########## Header-Bereich -->
+  <div id="header">
+      <div class="hthema"><span class="hthema"> MPForm Hilfeseiten</span>
+        <h1>Formularschleifen</h1>
+      </div>
+
+  </div>
+      <div id="topnavigation">
+
+          <div class="eml">
+             <span class="easymultilang_current">
+                <img src="../../../docs/images/de.png" alt="Deutsch" /> Deutsch
+             </span>
+             <span class="easymultilang">
+                <a href='../../../docs/EN/mpform/loops-in-forms.html' title='English'>
+                <img src="../../../docs/images/en.png" alt="English" /> English</a>
+             </span>
+          </div>
+      </div>
+<!-- ********** Ende Header-Bereich -->
+
+  <div id="content-left">
+      <div class="innerwrap">
+       
+<!-- show_menu2 -->
+ <ul class="menu-top menu-1">
+    <li class="menu-1 knot menu-parent" title="MPForm Hilfeseiten"><a href="../../../docs/DE/mpform.html" target="_top" class="menu-1 knot menu-parent">MPForm</a>
+     <ul class="menu-2">
+        <li class="menu-2 leaf menu-sibling menu-first" title="Installation"><a href="../../../docs/DE/mpform/installation.html" target="_top" class="menu-2 leaf menu-sibling menu-first">Installation</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Crashkurs Formularerstellung"><a href="../../../docs/DE/mpform/crashkurs-formularerstellung.html" target="_top" class="menu-2 leaf menu-sibling">Crashkurs Formularerstellung</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Nach dem Absenden des Formulars"><a href="../../../docs/DE/mpform/nach-dem-absenden.html" target="_top" class="menu-2 leaf menu-sibling">Nach dem Absenden </a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Crashkurs Mehrseitige Formulare"><a href="../../../docs/DE/mpform/mehrseitige-formulare.html" target="_top" class="menu-2 leaf menu-sibling">Mehrseitige Formulare</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Standardformular installieren"><a href="../../../docs/DE/mpform/standardformular-installieren.html" target="_top" class="menu-2 leaf menu-sibling">Standardformular installieren</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Hilfetexte f&uuml;r Benutzer"><a href="../../../docs/DE/mpform/hilfetexte.html" target="_top" class="menu-2 leaf menu-sibling">Hilfetexte</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Tabelle oder div"><a href="../../../docs/DE/mpform/tabelle-oder-div.html" target="_top" class="menu-2 leaf menu-sibling">Tabelle oder div</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Private Funktionen"><a href="../../../docs/DE/mpform/private-funktionen.html" target="_top" class="menu-2 leaf menu-sibling">Private Funktionen</a>        </li>
+        <li class="menu-2 leaf menu-current" title="Formularschleifen"><a href="../../../docs/DE/mpform/formularschleifen.html" target="_top" class="menu-2 leaf menu-current">Formularschleifen</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Referenz der Feldtypen"><a href="../../../docs/DE/mpform/referenz-der-feldtypen.html" target="_top" class="menu-2 leaf menu-sibling">Referenz der Feldtypen</a>        </li>
+        <li class="menu-2 knot menu-sibling" title="Optionale Einstellungen von MPForm "><a href="../../../docs/DE/mpform/referenz-der-optionen.html" target="_top" class="menu-2 knot menu-sibling">Referenz der Optionen</a>        </li>
+        <li class="menu-2 leaf menu-sibling menu-last" title="FAQ zu MPForm"><a href="../../../docs/DE/mpform/faq-zu-mpform.html" target="_top" class="menu-2 leaf menu-sibling menu-last">FAQ zu MPForm</a>        </li>
+     </ul>
+    </li>
+ </ul>
+
+      </div>
+  </div>
+<!-- ************ End content-left -->
+
+
+  <div id="mainbody">
+          <div id="content"><a id="top" />
+                          <a class="section_anchor" id="wb_124" name="wb_124"></a><p style="text-align: right;"><a href="../../../docs/DE/mpform/private-funktionen.html" target="_top">Private Funktionen</a> &lt;&lt;&nbsp;&nbsp;&nbsp; ^ <a href="../../../docs/DE/mpform.html" target="_top">MPForm Hilfeseiten</a> ^&nbsp;&nbsp;&nbsp; &gt;&gt; <a href="../../../docs/DE/mpform/referenz-der-feldtypen.html" target="_top">Referenz der Feldtypen</a></p>
+
+<!-- ************ main content -->
+
+<h2>MPForm-Dokumentation: Formularschleifen</h2>
+<p style="text-align: right;">Schwierigkeitsgrad C &nbsp;</p>
+<p>Wenn Sie eine bestimmte Seite aus einem mehrseitigen Formular mehrfach aufrufen wollen,
+  dann brauchen Sie eine Schleife. <br/>
+  Ein Beispiel:
+  Sie m&uuml;ssen eine Frage wie &quot;Geben Sie Namen, Geburtsdatum usw. 
+  Ihrer Kinder an&quot; in einem Formular unterbringen, mit einem separaten Feld f&uuml;r 
+  jedes Datenelement. Die m&ouml;gliche Anzahl von Kindern kann dabei je nach Benutzer 
+  unterschiedlich sein. </p>
+<p>Sie ben&ouml;tigen also eine Schleife, die die gleiche Formularseite immer wieder aufruft, 
+   bis der Benutzer die Frage &quot;Haben Sie weitere Kinder&quot; mit Nein beantwortet.</p>
+<p>Wie kann man das mit einem Formular in Website Baker umsetzen?</p>
+<ul>
+    <li>Auf die Seite vor der Formularschleife platzieren Sie ein Optionsfeld &quot;Haben Sie 
+    Kinder&quot; mit den m&ouml;glichen Antworten Ja und Nein.</li>
+    <li>Auf die Seite mit der Formularschleife platzieren Sie als letztes ein Optionsfeld 
+       &quot;Haben Sie weitere Kinder&quot; mit den m&ouml;glichen Antworten Ja und Nein.</li>
+    <li>In der Datei private.php gibt es eine Funktion private_function_on_success, 
+      die schon darauf ausgelegt ist, dass sie die Schleife ausf&uuml;hrt. 
+      Sie m&uuml;ssen lediglich die 8 vordefinierten Variablen mit den richtigen Werten, 
+      die Sie alle aus dem Backend holen k&ouml;nnen,  belegen.</li>
+</ul>
+<p>Und schon ist die Formularschleife fertig.</p>
+<hr />
+<p>Nun haben ein paar hundert Benutzer Ihren umfangreichen mehrseitigen Fragebogen 
+   ausgef&uuml;llt und Sie sollen eine Statistik der Daten anfertigen. Die beste Methode, 
+   diese Daten im Frontend zur Verf&uuml;gung zu stellen, besteht in der Verwendung des Moduls 
+   <a href="http://www.websitebakers.com/pages/modules/various/csvexport.php">CSV Export</a>. 
+   Beachten Sie die dort angegebenen Sicherheitshinweise!</p>
+<p>Jede Zeile in der exportierten CSV-Datei repr&auml;sentiert die Antworten eines Benutzers 
+   f&uuml;r alle Seiten mit der identischen <strong>Namensendung f&uuml;r die Ergebnistabelle</strong>, 
+   die im Backend eingestellt wird. Diese sollte nicht f&uuml;r andere Formulare in dieser 
+   WB-Installation verwendet werden. </p>
+<p>Website Baker erkennt an Hand der Session-ID, welche Eintr&auml;ge in welche Zeile geh&ouml;ren. 
+   Selbst wenn mehrere Benutzer zeitgleich den Fragebogen ausf&uuml;llen, 
+   wird es keinen Datenm&uuml;ll geben.</p>
+<p>Aber wie ist das bei einer Formularschleife, werden die Daten des ersten Kindes dann mit denen 
+   des zweiten Kindes &uuml;berschrieben? Die Antwort lautet nein, da die Funktion 
+   private_function_on_success f&uuml;r jedes zus&auml;tzliche Kind ein Zeichen an die 
+   Session-ID anh&auml;ngt. Dann landen weitere Kinder einfach in neuen Zeilen, 
+   z. B. k&ouml;nnten sich bei 3 Kindern folgende Session-IDs ergeben:</p>
+<ul>
+    <li>Formular bis zum ersten Kind: w63fr46t</li>
+    <li>zweites Kind: w63fr46t_</li>
+    <li>drittes Kind: w63fr46t__</li>
+    <li>Rest des Formulars: w63fr46t</li>
+</ul>
+<p>Die Zuordnung der Folgekinder ist dann kein Problem, weil die ersten 8 Stellen ja identisch sind.</p>          </div>
+
+
+<!-- ************ Footer -->
+</div></div>
+  <div class="clear-both"></div>
+<div id="footer">
+        <p class="txt">&nbsp; MPForm ist unter GPL ver&ouml;ffentlicht </p>
+ 
+        <ul class="bottomnav">
+          <li class="bottomnav"><a href="#"
+             title="Seite ohne Men&uuml; drucken"
+             onclick="window.print();"><img src="../../../docs/images/print.gif" alt="Drucken" /> <span>Seite drucken</span></a></li>
+
+          <li class="bottomnav"><a href="#top"
+             title="Zum Seitenanfang"
+             onclick="history.go(0);"><img src="../../../docs/images/totop.gif" alt="Nach oben" /> <span>Nach oben</span></a></li>
+        </ul>
+   </div>
+</body></html>
+

@@ -3,60 +3,111 @@
 --------------| Table Layout
 */
 tr.even td {
-        background-color: #fff;
+    background-color: #fff;
 }
 tr.odd td {
-        background-color: #EDF4F9;
+    background-color: #EDF4F9;
 }
 .mod_mpform_wrapper table {
-        border: 1px solid #BFC9DF;
+    border: 1px solid #BFC9DF;
 }
 .mod_mpform_wrapper table tr td{
-        border-bottom: 1px solid #BFC9DF;
+    border-bottom: 1px solid #BFC9DF;
 }
-div.mod_mpform_wrapper   { background-color: #fbfbfb; background-image: url("images/box_bg.png"); background-repeat: repeat-x; background-position: 0 -40px; margin-top: 8px; margin-bottom: 8px; padding: 4px; border: solid 3px #bfc9df }
-table.mod_mpform_wrapper   { background-repeat: repeat-x; margin-bottom: 5px; border: solid 2px #babfca; border-collapse: collapse; }
-.mod_mpform_wrapper thead td, .mod_mpform_wrapper tfoot td  { color: #4c576f; font-weight: bold; background-color: #fff }
-table.mod_mpform_wrapper tbody td      { border-bottom: 1px solid #bfc9df }
-.mod_mpform_wrapper .hilite td  { background-color: #DBFBBA!important }
-.mod_mpform_wrapper thead td, .bakery tfoot td  { font-size: 11px; background-image: url("images/box_bg.png"); background-repeat: repeat-x; background-attachment: scroll; background-position: 0 -40px; border-top: 1px solid #becadb; border-bottom: 1px solid #becadb }
+div.mod_mpform_wrapper { 
+    background-color: #fbfbfb; 
+    background-image: url("images/box_bg.png"); 
+    background-repeat: repeat-x; 
+    background-position: 0 -40px; 
+    margin-top: 8px; 
+    margin-bottom: 8px; 
+    padding: 4px; 
+    border: solid 3px #bfc9df 
+}
+table.mod_mpform_wrapper   { 
+    background-repeat: repeat-x; 
+    margin-bottom: 5px; 
+    border: solid 2px #babfca; 
+    border-collapse: collapse; 
+}
+.mod_mpform_wrapper thead td, 
+.mod_mpform_wrapper tfoot td  { 
+    color: #4c576f; 
+    font-weight: bold; 
+    background-color: #fff 
+}
+table.mod_mpform_wrapper tbody td { 
+    border-bottom: 1px solid #bfc9df 
+}
+.mod_mpform_wrapper .hilite td  { 
+    background-color: #DBFBBA!important 
+}
+.mod_mpform_wrapper thead td, .bakery tfoot td  { 
+    font-size: 11px; 
+    background-image: url("images/box_bg.png"); 
+    background-repeat: repeat-x; 
+    background-attachment: scroll; 
+    background-position: 0 -40px; 
+    border-top: 1px solid #becadb; 
+    border-bottom: 1px solid #becadb 
+}
 
-tr.even, tr.odd    { background-color: #a3baca !important }
-td.group_empty { font-weight: bold; background-color: #f4f2e9; text-align: center }
-tr.nogroup td       { background-color: #edf2f8 }
-
-.dragdrop_handle      { background-color: #ccc; background-image: url("images/dd_grip.gif"); background-position: right center; cursor: move; padding: 0; width: 20px !important; border-style: solid; border-width: 2px 2px 3px; border-color: #cad2d9 #bac5ce }
+tr.even, tr.odd { 
+    background-color: #a3baca !important 
+}
+td.group_empty { 
+    font-weight: bold; 
+    background-color: #f4f2e9; 
+    text-align: center 
+}
+tr.nogroup td { 
+    background-color: #edf2f8 
+}
+.dragdrop_handle { 
+    background-color: #ccc; 
+    background-image: url("images/dd_grip.gif"); 
+    background-position: right center; 
+    cursor: move; 
+    padding: 0; 
+    width: 20px !important; 
+    border-style: solid; 
+    border-width: 2px 2px 3px; 
+    border-color: #cad2d9 #bac5ce 
+}
 .mod_mpform_wrapper table.buttons button{
-        width: 98%;
+    width: 98%;
 }
 td.edit , td.edit_area {
-        font-weight: bold;
+    font-weight: bold;
 }
 
 .edit input {
-        background: white;
-        width: 95% !important;
-        border: grey 1px solid;
-        font-weight: normal;
-        padding: 0 2px 0 2px;
-        color: #000;
-        font-size: 12px;
-        font-family: courier;
+    background: white;
+    width: 95% !important;
+    border: grey 1px solid;
+    font-weight: normal;
+    padding: 0 2px 0 2px;
+    color: #000;
+    font-size: 12px;
+    font-family: courier;
 }
 .edit_area textarea {
-        width: 95% !important;
+    width: 95% !important;
 }
 .edit_area button{
-        font-size: 10px;
-        /* font-weight: bold; */
-        padding: 0 0 0 0 !important;
-        min-width: 100px !important;
+    font-size: 10px;
+    /* font-weight: bold; */
+    padding: 0 0 0 0 !important;
+    min-width: 100px !important;
 }
 
 /*
 --------------| warnings & notifications
 */
-.warning, tr.warning td, .notification, tr.notification td {
+.warning, 
+tr.warning td, 
+.notification, 
+tr.notification td {
     font-size:11px;
     margin-bottom:2px;
     margin-right:2px;
@@ -65,12 +116,14 @@ td.edit , td.edit_area {
     background-image:none !important;
     border:1px solid;
 }
-.warning, tr.warning td {
+.warning, 
+tr.warning td {
     background-color:#FFEFED !important;
     color:#990000 !important;
 
 }
-.notification, tr.notification td {
+.notification, 
+tr.notification td {
     background-color:#EBFAED !important;
     color:#336600 !important;
 }
@@ -84,12 +137,49 @@ table.settings_table    {
     padding: 0;
     border: solid 1px #515d76;
 }
-.settings_table caption           { color: #fff !important; font-size: 16px; font-weight: bold; line-height: 160%; background-color: #515d76; background-image: url("images/box_bg.png"); background-repeat: repeat-x; text-align: left; margin-top: 8px; padding-top: 4px; padding-left: 10px; height: 35px; border: 1px #515d76 }
-.settings_table tr td, .settings_table tr th        { background-image: url("images/box_bg.png"); background-repeat: repeat-x; background-attachment: scroll; background-position: 0 -40px; margin: 0; padding: 4px; border-bottom: 1px solid #becadb }
-.settings_table tr.row_a td, .settings_table tr.row_a th     { background-color: #e0eef8; background-image: none; background-position: 0 -36px; border-top: 1px solid #e0e0e0; border-bottom: 1px solid #999 }
-.settings_table tr.row_b td, .settings_table tr.row_b th     { background-color: #f6faff; background-image: none; background-position: 0 -36px; border-top: 1px solid #e0e0e0; border-bottom: 1px solid #999 }
+.settings_table caption { 
+    color: #fff !important; 
+    font-size: 16px; 
+    font-weight: bold; 
+    line-height: 160%; 
+    background-color: #515d76; 
+    background-image: url("images/box_bg.png"); 
+    background-repeat: repeat-x; 
+    text-align: left; 
+    margin-top: 8px; 
+    padding-top: 4px; 
+    padding-left: 10px; 
+    height: 35px; 
+    border: 1px #515d76 
+}
+.settings_table tr td, 
+.settings_table tr th { 
+    background-image: url("images/box_bg.png"); 
+    background-repeat: repeat-x; 
+    background-attachment: scroll; 
+    background-position: 0 -40px; 
+    margin: 0; 
+    padding: 4px; 
+    border-bottom: 1px solid #becadb 
+}
+.settings_table tr.row_a td, 
+.settings_table tr.row_a th { 
+    background-color: #e0eef8; 
+    background-image: none; 
+    background-position: 0 -36px; 
+    border-top: 1px solid #e0e0e0; 
+    border-bottom: 1px solid #999 
+}
+.settings_table tr.row_b td, 
+.settings_table tr.row_b th { 
+    background-color: #f6faff; 
+    background-image: none; 
+    background-position: 0 -36px; 
+    border-top: 1px solid #e0e0e0; 
+    border-bottom: 1px solid #999 
+}
 .settings_table td {
-        vertical-align: top;
+    vertical-align: top;
 }
 .settings_table th {
     color: #515d76;
@@ -104,24 +194,34 @@ table.settings_table    {
 /*table foot*/
 .settings_table tfoot td,
 .settings_table tfoot th,
-.tfoot td
- { background-color: #e0eef8; background-image: none; background-position: 0 -50px; padding: 5px; border-top: 2px solid #fff; border-bottom: 2px solid #fff }
+.tfoot td { 
+    background-color: #e0eef8; 
+    background-image: none; 
+    background-position: 0 -50px; 
+    padding: 5px; 
+    border-top: 2px solid #fff; 
+    border-bottom: 2px solid #fff 
+}
 /*Child Tables*/
 .settings_table table td,
 .settings_table table th
   { background-image: none }
 
 .settings_table label{
-        font-size: 90%;
-        color: #5C7384;
-        padding-right:9px; 
-        font-weight: bold;
+    font-size: 90%;
+    color: #5C7384;
+    padding-right:9px; 
+    font-weight: bold;
 }
 /*
 --------------| elements
 */
 
-button      { cursor: pointer; padding: 2px 7px 2px 5px; min-width: 150px }
+button      { 
+    cursor: pointer; 
+    padding: 2px 7px 2px 5px; 
+    min-width: 150px 
+}
 button img {
     margin-right: 4px;
     margin-bottom: -2px;
@@ -139,52 +239,133 @@ b {
     margin-top: 30px;
 }
 
-tt { color: #c06 }
+tt { 
+    color: #c06 
+}
 
 
 /*-----------------------------------------------------------*/
-#dragableResult  { color: #000; font-size: 8px; font-family: Courier; background-color: #e0fbcf; margin-top: 80px; margin-right: auto; margin-left: auto; padding: 5px 5px 5px 20%; border: dashed 1px #19861a }
-#dragableTable ul {background-color: #fff; padding:0 ! important}
-
-#dragableTable ul li, #firstgroup  {margin:0 ! important; padding:0 ! important;}
-#dragableTable li, #firstgroup {
-        list-style: none;
-        margin-top: 3px;
-        width: 100%;
-        padding: 2px;
-        color:#fff;
-        border-bottom: 1px dotted #999999;
-        background-color: #E0ECBE;
+#dragableResult  { 
+    color: #000; 
+    font-size: 8px; 
+    font-family: Courier; 
+    background-color: #e0fbcf; 
+    margin-top: 80px; 
+    margin-right: auto; 
+    margin-left: auto; 
+    padding: 5px 5px 5px 20%; 
+    border: dashed 1px #19861a 
+}
+#dragableTable ul {
+    background-color: #fff; 
+    padding:0 ! important
 }
 
-#dragableTable li .sortgroup td, #firstgroup {background-color: #eee; font-size: 14px;}
-#dragableTable li.sortgroup {margin-top:10px;}
-#dragableTable hr {line-height:4px;}
+#dragableTable ul li, #firstgroup  {
+    margin:0 ! important; 
+    padding:0 ! important;
+}
+#dragableTable li, #firstgroup {
+    list-style: none;
+    margin-top: 3px;
+    width: 100%;
+    padding: 2px;
+    color:#fff;
+    border-bottom: 1px dotted #999999;
+    background-color: #E0ECBE;
+}
+
+#dragableTable li .sortgroup td, 
+#firstgroup {
+    background-color: #eee; 
+    font-size: 14px;
+}
+#dragableTable li.sortgroup {
+    margin-top:10px;
+}
+#dragableTable hr {
+    line-height:4px;
+}
 
 /* -------  module form NEW classes for drag n drop -------  */
-.mod_form_wrapper {width: 100%; display: block; border: 1px #333 solid;}
+.mod_form_wrapper {
+    width: 100%; 
+    display: block; 
+    border: 1px #333 solid;
+}
 .mod_form_links a img {border:0;}
 
-.mod_form_group {width: 100%; height: 30px; display: block; border: 1px #00cccc solid; font-size: 12px; background-color: #E7E7E7; }
+.mod_form_group {
+    width: 100%; 
+    height: 30px; 
+    display: block; 
+    border: 1px #00cccc solid; 
+    font-size: 12px; 
+    background-color: #E7E7E7; 
+}
 
 
 /* Picture Chooser */
 
-div#picturechooser {width:80%;  position:absolute; top:10%; left:10%;  display:none;}
+div#picturechooser {
+     width:80%;  
+     position:absolute; 
+     top:10%; 
+     left:10%;  
+     display:none;
+}
 
-table.choosertable .r1 td {height:17px;}
-table.choosertable .r3 td {height:17px;}
-table.choosertable .c1 {width:13px;}
-table.choosertable .c3 {width:13px;}
-table.choosertable .r2 .c1 {width:13px; background: url(img/shadow/shadow_w.png) repeat-y; }
-table.choosertable .r2 .c3 {width:13px; background: url(img/shadow/shadow_e.png) repeat-y; }
-table.choosertable .r1 .c2 {height:17px; background: url(img/shadow/shadow_n.png) repeat-x; text-align:right;}
-table.choosertable .r3 .c2 {height:17px; background: url(img/shadow/shadow_s.png) repeat-x; }
+table.choosertable .r1 td {
+    height:17px;
+}
+table.choosertable .r3 td {
+    height:17px;
+}
+table.choosertable .c1 {
+    width:13px;
+}
+table.choosertable .c3 {
+    width:13px;
+}
+table.choosertable .r2 .c1 {
+    width:13px; 
+    background: url(img/shadow/shadow_w.png) repeat-y; 
+}
+table.choosertable .r2 .c3 {
+    width:13px; 
+    background: url(img/shadow/shadow_e.png) repeat-y; 
+}
+table.choosertable .r1 .c2 {
+    height:17px; 
+    background: url(img/shadow/shadow_n.png) repeat-x; 
+    text-align:right;
+}
+table.choosertable .r3 .c2 {
+    height:17px; 
+    background: url(img/shadow/shadow_s.png) repeat-x; 
+}
+table.choosertable #picturechooserinner {
+    height:500px; 
+    min-width:400px; 
+    padding:20px 10px 0 20px; 
+    background-color:#ddd; 
+    overflow:scroll;
+}
 
-table.choosertable #picturechooserinner {height:500px; min-width:400px; padding:20px 10px 0 20px; background-color:#ddd; overflow:scroll;}
-
-#picturechooserinner .memberpic_preview {float:left; margin:0 10px 10px 0; width:100px; height:100px; overflow:hidden; background-color:#eee;}
-#picturechooserinner .memberpic_preview img {max-width:100px; max-height:120px;border:0; margin:auto;} 
+#picturechooserinner .memberpic_preview {
+    float:left; 
+    margin:0 10px 10px 0; 
+    width:100px; 
+    height:100px; 
+    overflow:hidden; 
+    background-color:#eee;
+}
+#picturechooserinner .memberpic_preview img {
+    max-width:100px; 
+    max-height:120px;
+    border:0; 
+    margin:auto;
+} 
 
 
 /*
@@ -193,136 +374,160 @@ table.choosertable #picturechooserinner {height:500px; min-width:400px; padding:
 
 .mpform  { width: 100% }
 div.mpform fieldset {
-        padding: 0px 6px 6px 6px;
-        margin: 6px 0px 16px 0px;
-        background-color: #ECF3F7;
+    padding: 0px 6px 6px 6px;
+    margin: 6px 0px 16px 0px;
+    background-color: #ECF3F7;
 }
 
 /* IE7 specific: */
 *:first-child+html div.mpform fieldset {
-        padding: 6px 6px 6px 6px;
-        margin: 6px 0px 24px 0px;
+    padding: 6px 6px 6px 6px;
+    margin: 6px 0px 24px 0px;
 }
 
-div.mpform legend  { font-weight: bold; background-color: #ecf3f7; margin: 0 0 20px; padding: 6px 10px 0; border-top: 1px solid #666; border-right: 1px solid #666; border-left: 1px solid #666 }
+div.mpform legend  { 
+    font-weight: bold; 
+    background-color: #ecf3f7; 
+    margin: 0 0 20px; 
+    padding: 6px 10px 0; 
+    border-top: 1px solid #666; 
+    border-right: 1px solid #666; 
+    border-left: 1px solid #666 
+}
 
 /* IE7 specific: */
-*:first-child+html div.mpform legend  { margin: -22px 0 10px; padding: 2px 10px 0 }
+*:first-child+html div.mpform legend  { 
+    margin: -22px 0 10px; 
+    padding: 2px 10px 0 
+}
 
 div.mpform td.setting_name {
-        vertical-align: top;
-        width: 30%;
-        padding: 8px 3px;
+    vertical-align: top;
+    width: 30%;
+    padding: 8px 3px;
 }
 
 div.mpform td.setting_value {
-        width: 70%;
-        padding: 8px 3px;
+    width: 70%;
+    padding: 8px 3px;
 }
 
 .setting_value_text {
-        width: 535px;
+    width: 535px;
 }
 
 .setting_value_textarea {
-        width: 535px;
+    width: 535px;
     height: 80px;
 }
 
-/*div.mpform input.button, input.mod_mpform_edit_css {
-        background-color: #ffa;
-        padding: 4px;
-        border: 2px solid #444;
-        border-left: 1px solid #444;
-        border-top: 1px  solid #444;
-        color: #333;
-}
-
-div.mpform input.button:hover, input.mod_mpform_edit_css:hover {
-        background-color: #ff8;
-}
-
-input.mod_mpform_edit_css {
-        float: right;
-} */
-
 div.mpform {
-        float: left;
+    float: left;
 }
 
 div.mpform input[type=radio] {
-        width: 16px;
+    width: 16px;
 }
 
 div.mpform hr {
-        padding: 0px;
-        margin: 3px;
+    padding: 0px;
+    margin: 3px;
 }
 
 /* from functions.php: */
 .pages_list img {
-        display: block;
+    display: block;
 }
 
 ul, li {
-        list-style: none;
-        margin: 0;
-        padding: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 div.helppage ul li {
-        list-style: disc outside;
-        margin: 6px 20px;
+    list-style: disc outside;
+    margin: 6px 20px;
 }
 
 div.helppage ol li {
-        list-style: decimal outside;
-        margin: 4px;
-        padding: 0;
+    list-style: decimal outside;
+    margin: 4px;
+    padding: 0;
 }
 
 .page_list {
-        display: none;
+    display: none;
 }
 /* Fix for funky spacing on page listing */
 .pages_list li {
-        margin-bottom: -2px;
+    margin-bottom: -2px;
 }
 
 .jsadmin_drag {
-        cursor: move;
+    cursor: move;
 }
 
-.jsadmin_drag a, .jsadmin_drag input, .jsadmin_drag select {
-        cursor: pointer;
+.jsadmin_drag a, 
+.jsadmin_drag input, 
+.jsadmin_drag select {
+    cursor: pointer;
 }
 
 ul.jsadmin_drag_area {
-        border: solid 1px #99f;
+    border: solid 1px #99f;
 }
 /* *** BUTTONS *** */
-.mpform button   { cursor: pointer; padding: 3px 9px 3px 7px }
-.mpform button img   { margin-right: 4px; margin-bottom: -2px; margin-left: 2px }
+.mpform button   { 
+    cursor: pointer; 
+    padding: 3px 9px 3px 7px 
+}
+.mpform button img   { 
+    margin-right: 4px; 
+    margin-bottom: -2px; 
+    margin-left: 2px 
+}
 
 
 /*
 
-        The following CSS declarations needed for proper work with Drag&Drop
-        
+    The following CSS declarations needed for proper work with Drag&Drop
+    
 */
 
 
 /*
 item row hover onmouseover
 */
-tr.frow_hover   { background-color: #f5f8dc }
+tr.frow_hover { background-color: #f5f8dc }
 
 /*
 --------------| Drag& Drop specifics
 */
-//.dragdrop_item      { background-color: #ccc;}
-.downloadGalleryResult      { font-size: 8px; font-family: Courier; text-align: center }
-.dragdrop_download_gallery   { background-color: #d5dde7; width: 15px }
-.dragdrop_handle      { background-color: #ccc; background-image: url("images/dd_grip.gif"); background-position: right center; cursor: move; padding: 0; width: 20px !important; border-style: solid; border-width: 2px 2px 3px; border-color: #cad2d9 #bac5ce }
-.move_up, .move_down   { width: 16px !important }
-.hilite td  { background-color: #DBFBBA!important }
+.downloadGalleryResult { 
+    font-size: 8px; 
+    font-family: Courier; 
+    text-align: center 
+}
+.dragdrop_download_gallery { 
+    background-color: #d5dde7; 
+    width: 15px 
+}
+.dragdrop_handle { 
+    background-color: #ccc; 
+    background-image: url("images/dd_grip.gif"); 
+    background-position: right center; 
+    cursor: move; 
+    padding: 0; 
+    width: 20px !important; 
+    border-style: solid; 
+    border-width: 2px 2px 3px; 
+    border-color: #cad2d9 #bac5ce 
+}
+.move_up, 
+.move_down   { 
+   width: 16px !important 
+}
+.hilite td  { 
+   background-color: #DBFBBA!important 
+}

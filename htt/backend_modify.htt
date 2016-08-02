@@ -1,111 +1,134 @@
 <!-- BEGIN main_block -->
 <div class="mod_{MODULE_DIR}_wrapper">
-<p style="text-align:right;"><a href="{WB_URL}/modules/{MODULE_DIR}/help.php?page_id={PAGE_ID}&section_id={SECTION_ID}" title="{TXT_HELP}"><img src="{WB_URL}/modules/{MODULE_DIR}/images/help.gif" alt="[?]" /></a></p>
+<p style="text-align:right;"><a target="help"  href="{WB_URL}/modules/{MODULE_DIR}/help.php?page_id={PAGE_ID}&section_id={SECTION_ID}" title="{TXT_HELP}"><img src="{WB_URL}/modules/{MODULE_DIR}/images/help.gif" alt="[?]" /></a></p>
 <h2>{TXT_HEADING}</h2>
 <table cellpadding="0" cellspacing="0" border="0" width="100%" class="buttons">
-        <tr>
-                <td>
-                        <form action="{WB_URL}/modules/{MODULE_DIR}/modify_settings.php" method="post">
-                                <input type="hidden" name="section_id" value="{SECTION_ID}" />
-                                <input type="hidden" name="page_id" value="{PAGE_ID}" />
-                                {FTAN}
-                                <button type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/config.png" alt="" />{TXT_SETTINGS}</button>
-                        </form>
-                </td>
-                <td>
-                        <form action="{WB_URL}/modules/{MODULE_DIR}/modify_adv_settings.php" method="post">
-                                <input type="hidden" name="section_id" value="{SECTION_ID}" />
-                                <input type="hidden" name="page_id" value="{PAGE_ID}" />
-                                {FTAN}
-                                <button type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/config.png" alt="" />{TXT_ADV_SETTINGS}</button>
-                        </form>
-                </td>
-                <td>
-                        <form action="{WB_URL}/modules/edit_module_files.php?page_id={PAGE_ID}" 
-                                method="post" style="margin: 0; align:right;">
-                                <input type="hidden" name="page_id" value="{PAGE_ID}" />
-                                <input type="hidden" name="section_id" value="{SECTION_ID}" />
-                                <input type="hidden" name="mod_dir" value="mpform" />
-                                <input type="hidden" name="edit_file" value="frontend.css" />
-                                <input type="hidden" name="action" value="edit" />
-                                {FTAN}
-                                <button type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/css_script.gif" alt="" />{EDIT_CSS}</button>
-                        </form>
-                </td>
-        </tr>
+    <tr>
+        <td>
+            <form action="{WB_URL}/modules/{MODULE_DIR}/modify_settings.php" method="post">
+                <input type="hidden" name="section_id" value="{SECTION_ID}" />
+                <input type="hidden" name="page_id" value="{PAGE_ID}" />
+                {FTAN}
+                <button type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/config.png" alt="" />{TXT_SETTINGS}</button>
+            </form>
+        </td>
+        <td>
+            <form action="{WB_URL}/modules/{MODULE_DIR}/modify_adv_settings.php" method="post">
+                <input type="hidden" name="section_id" value="{SECTION_ID}" />
+                <input type="hidden" name="page_id" value="{PAGE_ID}" />
+                {FTAN}
+                <button type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/config.png" alt="" />{TXT_ADV_SETTINGS}</button>
+            </form>
+        </td>
+        <td>
+            <form action="{WB_URL}/modules/edit_module_files.php?page_id={PAGE_ID}" 
+                method="post" style="margin: 0; align:right;">
+                <input type="hidden" name="page_id" value="{PAGE_ID}" />
+                <input type="hidden" name="section_id" value="{SECTION_ID}" />
+                <input type="hidden" name="mod_dir" value="mpform" />
+                <input type="hidden" name="edit_file" value="frontend.css" />
+                <input type="hidden" name="action" value="edit" />
+                {FTAN}
+                <button type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/css_script.gif" alt="" />{EDIT_CSS}</button>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <form action="{WB_URL}/modules/{MODULE_DIR}/export.php" method="post">
+                <input type="hidden" name="section_id" value="{SECTION_ID}" />
+                <input type="hidden" name="page_id" value="{PAGE_ID}" />
+                {FTAN}
+                <button type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/export.png" alt="" />{TXT_EXPORT_FORM}</button>
+            </form>
+        </td>
+        <td colspan="2">
+            <form action="{WB_URL}/modules/{MODULE_DIR}/import.php" method="post" enctype="multipart/form-data">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" class="buttons"><tr><td width="50%">
+                <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
+                <input type="file" name="importfile" size="80" accept="text/*" />
+            </td><td width="50%">
+                <input type="hidden" name="section_id" value="{SECTION_ID}" />
+                <input type="hidden" name="page_id" value="{PAGE_ID}" />
+                {FTAN}
+                <button type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/import.png" alt="" />{TXT_IMPORT_FORM}</button>
+            </td></tr></table>
+            </form>
+        </td>
+    </tr>
 </table>
 <br />
 <h2>{TEXT_HEADING_F}</h2>
 <form action="{WB_URL}/modules/{MODULE_DIR}/add_field.php" method="post">
-                                <input type="hidden" name="section_id" value="{SECTION_ID}" />
-                                <input type="hidden" name="page_id" value="{PAGE_ID}" />
-                                {FTAN}
-                                <button type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/add_new.png" alt="" />{TXT_FIELDS}</button>
-                        </form>
+                <input type="hidden" name="section_id" value="{SECTION_ID}" />
+                <input type="hidden" name="page_id" value="{PAGE_ID}" />
+                {FTAN}
+                <button type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/add_new.png" alt="" />{TXT_FIELDS}</button>
+            </form>
 <div style="float:right; border:1px solid transparent;height: 20px!important;">
-        <div id="{MODULE_DIR}Results">&nbsp;</div>
+    <div id="{MODULE_DIR}Results">&nbsp;</div>
 </div>
 
 <table cellpadding="2" cellspacing="0" border="0" width="100%" class="dragdrop_form">
-        <!-- BEGIN field_block -->
-                <tr class="frow {ROW_CLASS}" id="field_id_{FIELD_ID}">
-                        <td class="dragdrop_item">&nbsp;</td>                                
-                        <td width="20" style="padding-left:15px;">
-                                <a href="{MODULE_URL}/modify_field.php?page_id={PAGE_ID}&amp;section_id={SECTION_ID}&amp;field_id={FIELD_IDKEY}" title="{TEXT_MODIFY}">
-                                <img src="{MODULE_URL}/images/modify.png" border="0" alt="[{TEXT_MODIFY}]" />
-                                </a>
-                        </td>
-                        <td id="field-{FIELD_ID}" class="inlineEdit" style="padding-left: 5px;">{field_field_title}</td>
-                        <td width="175" title="{TEXT_TYPE}">{type_field}</td>                        
-                        <td>&nbsp;</td>
-                        <td class="required_status">{REQUIRED_ICON}</td>
-                        <td width="20">{multiselect_field}</td>
-                        <td width="20" class="move_position">
-                                <a {MOVE_UP_STYLE} href="{MODULE_URL}/move_up.php?page_id={PAGE_ID}&amp;section_id={SECTION_ID}&amp;field_id={FIELD_ID}&amp;where=up" title="{TEXT_MOVE_UP}"><img src="{IMG_URL}up_16.png" border="0" alt="^" /></a>
-                        </td>
-                        <td width="30" class="move_position">
-                                <a {MOVE_DOWN_STYLE} href="{MODULE_URL}/move_down.php?page_id={PAGE_ID}&amp;section_id={SECTION_ID}&amp;field_id={FIELD_ID}&amp;where=down" title="{TEXT_MOVE_DOWN}"><img src="{IMG_URL}down_16.png" border="0" alt="v" /></a>
-                        </td>
-                        <td class="delete_field" align="right">
-                                <a href="{MODULE_URL}/delete_field.php?page_id={PAGE_ID}&amp;section_id={SECTION_ID}&amp;field_id={FIELD_IDKEY}" title="{TEXT_DELETE}">
-                                        <img id="del_{FIELD_ID}" src="{MODULE_URL}/images/delete.png" rel="{SECTION_ID}" border="0" alt="{TEXT_DELETE}"  title="{TEXT_DELETE}"/>
-                                </a>
-                        </td>
-                        <td width="20">
-                                &nbsp;
-                        </td>
-                        <td class="dragdrop_item">&nbsp;</td>
-                </tr>
-        <!-- END field_block -->
+    <!-- BEGIN field_block -->
+        <tr class="frow {ROW_CLASS}" id="field_id_{FIELD_ID}">
+            <td class="dragdrop_item">&nbsp;</td>                
+            <td width="20" style="padding-left:15px;">
+                <a href="{MODULE_URL}/modify_field.php?page_id={PAGE_ID}&amp;section_id={SECTION_ID}&amp;field_id={FIELD_IDKEY}" title="{TEXT_MODIFY}">
+                <img src="{MODULE_URL}/images/modify.png" border="0" alt="[{TEXT_MODIFY}]" />
+                </a>
+            </td>
+            <td id="field-{FIELD_ID}" class="inlineEdit" style="padding-left: 5px;">{field_field_title}</td>
+            <td width="175" title="{TEXT_TYPE}">{type_field}</td>            
+            <td>&nbsp;</td>
+            <td class="required_status">{REQUIRED_ICON}</td>
+            <td width="20">{multiselect_field}</td>
+            <td width="20" class="move_position">
+                <a {MOVE_UP_STYLE} href="{MODULE_URL}/move_up.php?page_id={PAGE_ID}&amp;section_id={SECTION_ID}&amp;field_id={FIELD_ID}&amp;where=up" title="{TEXT_MOVE_UP}"><img src="{IMG_URL}up_16.png" border="0" alt="^" /></a>
+            </td>
+            <td width="30" class="move_position">
+                <a {MOVE_DOWN_STYLE} href="{MODULE_URL}/move_down.php?page_id={PAGE_ID}&amp;section_id={SECTION_ID}&amp;field_id={FIELD_ID}&amp;where=down" title="{TEXT_MOVE_DOWN}"><img src="{IMG_URL}down_16.png" border="0" alt="v" /></a>
+            </td>
+            <td class="delete_field" align="right">
+                <a href="{MODULE_URL}/delete_field.php?page_id={PAGE_ID}&amp;section_id={SECTION_ID}&amp;field_id={FIELD_IDKEY}" title="{TEXT_DELETE}">
+                    <img id="del_{FIELD_ID}" src="{MODULE_URL}/images/delete.png" rel="{SECTION_ID}" border="0" alt="{TEXT_DELETE}"  title="{TEXT_DELETE}"/>
+                </a>
+            </td>
+            <td width="20">
+                &nbsp;
+            </td>
+            <td class="dragdrop_item">&nbsp;</td>
+        </tr>
+    <!-- END field_block -->
 </table>
 <h2>{TEXT_HEADING_S}</h2>
 <table cellpadding="2" cellspacing="0" border="0" width="100%">
-        <!-- BEGIN submission_block -->
-                        <tr id="submission_id_{field_submission_id}" class="{ROW_CLASS}">
-                        <td width="20" style="padding-left: 5px;">
-                                <a class="pry" title="{TEXT_SUBMISSION_ID}: {field_submission_id}" href="{MODULE_URL}/view_submission.php?page_id={PAGE_ID}&amp;section_id={SECTION_ID}&amp;submission_id={SUBMISSION_ID}" rel="{MODULE_URL}/ajax/pry_submission.php?page_id={PAGE_ID}&amp;section_id={SECTION_ID}&amp;submission_id={field_submission_id}">
-                                        <img src="{MODULE_URL}/images/submission.png" alt="{TEXT_OPEN}" border="0" />
-                                </a>
-                        </td>
-                        <td><small>{TEXT_SUBMISSION_ID}</small>: {field_submission_id}</td>
-                        <td align="right"><i>{TEXT_SUBMITTED}: {field_submission_when}</i></td>
-                        <td align="right" class="delete_submission">
-                                <a href="{MODULE_URL}/delete_submission.php?page_id={PAGE_ID}&amp;section_id={SECTION_ID}&amp;submission_id={submissionIDKEY}" title="{TEXT_DELETE}">
-                                        <img id="del_{field_submission_id}" src="{MODULE_URL}/images/delete.png" rel="{SECTION_ID}" border="0" alt="[x]" />
-                                </a>
-                        </td>
-                        <td>&nbsp;</td>
-                </tr>
-        <!-- END submission_block -->
+    <!-- BEGIN submission_block -->
+            <tr id="submission_id_{field_submission_id}" class="{ROW_CLASS}">
+            <td width="20" style="padding-left: 5px;">
+                <a class="pry" title="{TEXT_SUBMISSION_ID}: {field_submission_id}" href="{MODULE_URL}/view_submission.php?page_id={PAGE_ID}&amp;section_id={SECTION_ID}&amp;submission_id={SUBMISSION_ID}" rel="{MODULE_URL}/ajax/pry_submission.php?page_id={PAGE_ID}&amp;section_id={SECTION_ID}&amp;submission_id={field_submission_id}">
+                    <img src="{MODULE_URL}/images/submission.png" alt="{TEXT_OPEN}" border="0" />
+                </a>
+            </td>
+            <td><small>{TEXT_SUBMISSION_ID}</small>: {field_submission_id}</td>
+            <td align="right"><i>{TEXT_SUBMITTED}: {field_submission_when}</i></td>
+            <td align="right" class="delete_submission">
+                <a href="{MODULE_URL}/delete_submission.php?page_id={PAGE_ID}&amp;section_id={SECTION_ID}&amp;submission_id={submissionIDKEY}" title="{TEXT_DELETE}">
+                    <img id="del_{field_submission_id}" src="{MODULE_URL}/images/delete.png" rel="{SECTION_ID}" border="0" alt="[x]" />
+                </a>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+    <!-- END submission_block -->
 </table>
 </div>
 
 <script type="text/javascript"> 
-        /* <![CDATA[ */
-                var LOAD_DRAGDROP = true;
-                var ICONS = '{WB_URL}/modules/{MODULE_DIR}/images';
-                var RESULTS_CONTAINER = '{MODULE_DIR}Results';
-                var LOAD_CLUETIP = true;
-        /* ]]> */
+    /* <![CDATA[ */
+        var LOAD_DRAGDROP = true;
+        var ICONS = '{WB_URL}/modules/{MODULE_DIR}/images';
+        var RESULTS_CONTAINER = '{MODULE_DIR}Results';
+        var LOAD_CLUETIP = true;
+    /* ]]> */
 </script>
 <!-- END main_block -->

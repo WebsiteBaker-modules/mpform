@@ -1,0 +1,114 @@
+<!-- quirks for IE -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="de"
+      lang="de">
+<head>
+  <title>MPForm Help - Table or div</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="content-language" content="en" />
+  <meta name="description" content="Using table or div in MPForm" />
+  <meta name="keywords" content="Website Baker, Websitebaker, MPForm, Form, table, div" />
+  <link rel="stylesheet" type="text/css" href="../../../docs/style/mpformdoku.css" />
+</head>
+
+
+<body>
+<!-- ########## Header-Bereich -->
+  <div id="header">
+      <div class="hthema"><span class="hthema"> MPForm Help pages</span>
+        <h1>Using table or div in MPForm</h1>
+      </div>
+  </div>
+      <div id="topnavigation">
+          <div class="eml">
+             <span class="easymultilang">
+                <a href='../../../docs/DE/mpform/referenz-der-optionen/tabelle-oder-div.html' title='German'>
+                <img src="../../../docs/images/de.png" alt="German" /> German </a>
+             </span>
+             <span class="easymultilang_current">
+                <img src="../../../docs/images/en.png" alt="English" /> English
+             </span>
+          </div>
+      </div>
+<!-- ********** Ende Header-Bereich -->
+
+  <div id="content-left">
+      <div class="innerwrap">
+       
+<!-- show_menu2 -->
+ <ul class="menu-top menu-1">
+    <li class="menu-1 knot menu-parent" title="MPForm Help pages"><a href="../../../docs/EN/mpform.html" target="_top" class="menu-1 knot menu-parent">MPForm</a>
+     <ul class="menu-2">
+        <li class="menu-2 leaf menu-sibling menu-first" title="Installation"><a href="../../../docs/EN/mpform/installation.html" target="_top" class="menu-2 leaf menu-sibling menu-first">Installation</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Create a form"><a href="../../../docs/EN/mpform/create-a-form.html" target="_top" class="menu-2 leaf menu-sibling">Create a form</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="After submitting a form"><a href="../../../docs/EN/mpform/after-submitting.html" target="_top" class="menu-2 leaf menu-sibling">After submitting</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Multi page forms"><a href="../../../docs/EN/mpform/multi-page-forms.html" target="_top" class="menu-2 leaf menu-sibling">Multi page forms</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="How to install a form"><a href="../../../docs/EN/mpform/install-a-form.html" target="_top" class="menu-2 leaf menu-sibling">Install a form</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Help users"><a href="../../../docs/EN/mpform/help-users.html" target="_top" class="menu-2 leaf menu-sibling">Help users</a>        </li>
+        <li class="menu-2 leaf menu-current" title="Table or div"><a href="../../../docs/EN/mpform/table-or-div.html" target="_top" class="menu-2 leaf menu-current">Table or div</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Private Functions"><a href="../../../docs/EN/mpform/private-functions.html" target="_top" class="menu-2 leaf menu-sibling">Private Functions</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Loops in Forms"><a href="../../../docs/EN/mpform/loops-in-forms.html" target="_top" class="menu-2 leaf menu-sibling">Loops in Forms</a>        </li>
+        <li class="menu-2 leaf menu-sibling" title="Field Types of MPForm"><a href="../../../docs/EN/mpform/field-types.html" target="_top" class="menu-2 leaf menu-sibling">Field Types</a>        </li>
+        <li class="menu-2 knot menu-sibling" title="Settings of MPForm"><a href="../../../docs/EN/mpform/settings-of-mpform.html" target="_top" class="menu-2 knot menu-sibling">Settings of MPForm</a>        </li>
+        <li class="menu-2 leaf menu-sibling menu-last" title="FAQ to MPForm"><a href="../../../docs/EN/mpform/faq-to-mpform.html" target="_top" class="menu-2 leaf menu-sibling menu-last">FAQ to MPForm</a>        </li>
+     </ul>
+    </li>
+ </ul>
+
+      </div>
+  </div>
+<!-- ************ End content-left -->
+
+
+  <div id="mainbody">
+          <div id="content"><a id="top" />
+                          <a class="section_anchor" id="wb_136" name="wb_136"></a><p style="text-align: right;">&nbsp;<a href="../../../docs/EN/mpform/help-users.html" target="_top">Help users</a> &lt;&lt;&nbsp;&nbsp;&nbsp; ^ <a href="../../../docs/EN/mpform.html" target="_top">MPForm Help pages</a> ^&nbsp;&nbsp;&nbsp; &gt;&gt; <a href="../../../docs/EN/mpform/private-functions.html" target="_top">Private Functions</a>&nbsp;</p>
+<p>&nbsp;</p>
+
+<!-- ************ main content -->
+
+<h2>MPForm Documentation: Table or not?</h2>
+<p style="text-align: right;">Level of difficulty: B&nbsp;</p>
+<p>The standard layout for a form is a table layout. Sometimes a layout without tables is more apropriate 
+  This has, for instance, the advantage that in a small browser window or on mobile devices no horizontal 
+  scroll bar is required. Instead, the answers slide from beside the questions to below the questions 
+  automagically. Most users feel this as designed more ergonomically.</p>
+<p>A simple example for a layout without tables could look like this:</p>
+<dl>
+    <dt>Header:</dt>
+    <dd>stays empty<br />
+    </dd>
+    <dt>Field Loop:</dt>
+    <dd><tt>&lt;div class=&quot;questionbox&quot;&gt;{TITLE}{REQUIRED}:&lt;/div&gt;<br />
+    &lt;div class=&quot;answerbox&quot;&gt;{FIELD}&lt;br /&gt;{HELPTXT}&lt;/div&gt;<br />
+    &lt;div class=&quot;newline&quot;&gt;&amp;nbsp;&lt;/div&gt;</tt></dd>
+    <dt>Footer:</dt>
+    <dd><tt>&lt;div class=&quot;submitbox&quot;&gt;<br />
+    &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Submit Form&quot; /&gt;<br />
+    &lt;/div&gt;</tt></dd>
+</dl>
+<p>The classes above are already part of the file frontend.css. </p>
+<p>Please remember that the place holder {HELP} only works in tables. If you use another layout, you need 
+  to use {HELPTXT} instead!</p>          </div>
+
+
+<!-- ************ Footer -->
+</div></div>
+  <div class="clear-both"></div>
+<div id="footer">
+        <p class="txt">&nbsp; MPForm is releaed under GPL </p>
+ 
+        <ul class="bottomnav">
+          <li class="bottomnav"><a href="#"
+             title="Print page without menu"
+             onclick="window.print();"><img src="../../../docs/images/print.gif" alt="Print" /> <span>print page</span></a></li>
+
+          <li class="bottomnav"><a href="#top"
+             title="Go to top"
+             onclick="history.go(0);"><img src="../../../docs/images/totop.gif" alt="Top" /> <span>go up</span></a></li>
+        </ul>
+   </div>
+</body></html>
+
