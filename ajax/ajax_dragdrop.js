@@ -26,7 +26,7 @@ if(jQuery().sortable){
     jQuery(function() { 
         jQuery('.dragdrop_item').addClass('dragdrop_handle'); 
         jQuery(".dragdrop_form .move_position a").remove(); 
-        var sDataString = jQuery(this).sortable("serialize") + '&action=updatePosition';
+        //var sDataString = jQuery(this).sortable("serialize") + '&action=updatePosition';
         
         jQuery(".dragdrop_form tbody").sortable({ 
             appendTo:     'body',

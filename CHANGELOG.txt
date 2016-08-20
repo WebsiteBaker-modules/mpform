@@ -5,10 +5,18 @@ MODULE VERSION HISTORY
 ======================
 
    ------------------------------------------------------------------------------------------------------------------------ 
+        *** 1.2.3 (Martin Hecht: 20-Aug-2016) ***
+        fix query for position in upgrade script, thanks to norhei for reporting
+        fix drag and drop in ajax helper, thanks to florian for reporting
+        honor redirection_timer in ajax notifications, thanks to florian for this hint
+
+        *** 1.2.2 (Martin Hecht: 18-Aug-2016) ***
+        two typo fixes in view_submissions, thanks to norhei for reporting
+
         *** 1.2.1 (Martin Hecht: 02-Aug-2016) ***
         fix the redirection on the help page
         repair the build system which has inserted text by mistake
-        fix curly brace in private.php
+        fix curly brace in private.php, thanks to florian for reporting
 
         *** 1.2.0 (Martin Hecht: 28-Jul-2016) ***
         realign the code (break long lines and properly ident)

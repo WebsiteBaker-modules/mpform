@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.2.1
+ * @version             1.2.3
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -430,10 +430,17 @@ $tpl->set_var(
 // Parse template objects output
 $tpl->parse('main', 'main_block', false);
 $tpl->pparse('output', 'page',false, false);
+
+$redirect_timer 
+    = ((defined('REDIRECT_TIMER')) && (REDIRECT_TIMER <= 10000)) 
+    ? REDIRECT_TIMER 
+    : 0;
+
 ?>
 <script type="text/javascript"> 
     /* <![CDATA[ */
-        var LANGUAGE = '<?php echo LANGUAGE ?>';                
+        var LANGUAGE = '<?php echo LANGUAGE ?>';
+        var REDIRECT_TIMER =   <?php echo $redirect_timer ?>;              
     /* ]]> */
 </script>
 

@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.2.1
+ * @version             1.2.3
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -223,19 +223,6 @@ if ($admin->get_post('type') == 'textfield'
     $iFID = int_not0($admin->get_post_escaped('value'));
     $value_option_separator=MPFORM_DEFAULT_OPT_SEPARATOR; // fallback
     $field_loop='{FIELD}';
-    $des_field_loop =                'Folgende Platzhalter sind m&ouml;glich:<br /> '
-                                   . '&nbsp; {CLASSES} - css-Klasse  '
-                                   . '(abh&auml;ngig von Feldtyp und Fehlerstatus)<br />'
-                                   . '&nbsp; {TITLE} - Bezeichnung des  '
-                                   . 'Formularfeldes<br /> '
-                                   . '&nbsp; {FIELD} - Das Formularfeld<br /> '
-                                   . '&nbsp; {REQUIRED} - Markierung f&uuml;r '
-                                   . 'Pflichtfelder<br /> '
-                                   . '&nbsp; {HELP} - Hilfetext verdeckt,  '
-                                   . 'Javascript erforderlich<br /> '
-                                   . '&nbsp; {HELPTXT} - Hilfetext immer sichtbar<br /> '
-                                   . '&nbsp; {ERRORTEXT} - Fehlertext  '
-                                   . '(nur bei bestimmten Feldtypen)<br />';
     
     // Get settings (we need the value_option_separator)
     $query_settings 

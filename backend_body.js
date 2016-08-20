@@ -2,6 +2,7 @@ var MODULE_URL = WB_URL + '/modules/mpform';
 var ICONS = MODULE_URL + '/images';
 var AJAX_PLUGINS =  MODULE_URL + '/ajax';  // this var could change in the future
 var LANGUAGE = LANGUAGE ? LANGUAGE : 'EN'; // set var LANGUAGE to EN if LANGUAGE not set before
+var REDIRECT_TIMER = REDIRECT_TIMER ? REDIRECT_TIMER : 1500; // ms
 $.insert(AJAX_PLUGINS +"/localization.js"); // load external language file
 
 // @function:       getUrlVars (retrieve GET Parameters)
@@ -91,7 +92,7 @@ $(function() {
             { 
                 // jNotify Settings
                 autoHide : true, // added in v2.0 
-                TimeShown : 1200, // ms
+                TimeShown : REDIRECT_TIMER,
                 HorizontalPosition : 'center', 
                 VerticalPosition : 'top', 
                 ColorOverlay : '#FFF'

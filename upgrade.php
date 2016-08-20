@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.2.1
+ * @version             1.2.3
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -161,16 +161,17 @@ if($database->is_error()) {
 
 // adding new (dummy) field 'position' in version 1.1.15:
 //get settings table to see what needs to be created
+
 $submissionstable=$database->query(
-    "SELECT * FROM"
-        . "  `".TP_MPFORM."submissions`"
+    "SHOW COLUMNS"
+        . " FROM `".TP_MPFORM."submissions`"
+        . " LIKE 'position'"
     );
-$submissions = $submissionstable->fetchRow();
 
 // If not already there, add new field(s) to the existing settings table
 echo'<span class="good"><b>Adding new field(s) to the submissions table</b></span><br />';
 
-if (!isset($submissions['position'])){
+if ($submissionstable->numRows() < 1 ) {
     $qs = "ALTER TABLE `".TP_MPFORM."submissions`"
         . "  ADD `position` INT NOT NULL DEFAULT '0' AFTER `page_id`";
     $database->query($qs);

@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.2.1
+ * @version             1.2.3
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -123,7 +123,7 @@ foreach($lines as $k => $v) {
 echo '</td></tr></table>';
 
 $sModuleUrl =  WB_URL.'/modules/'.basename(dirname(__FILE__));
-$sIconDir = $sModuleUrl.'/images'
+$sIconDir = $sModuleUrl.'/images';
 
 echo '<table cellpadding="0" cellspacing="0" border="0" width="99%">'
     . '<tr>'
@@ -141,7 +141,7 @@ echo '<table cellpadding="0" cellspacing="0" border="0" width="99%">'
        ? $admin->getIDKEY($submission_id)
        : $submission_id)
     . '\');">'
-    . '<img src="
+    . '<img src="'
     . $sIconDir 
     . '/delete.png" alt="" width="16" height="16" border="0" />'
     .  $TEXT['DELETE'] 
