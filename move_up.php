@@ -6,11 +6,12 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.2.3
+ * @version             1.3.0
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
  * @url                 https://github.com/WebsiteBaker-modules/mpform
+ * @url                 https://forum.wbce.org/viewtopic.php?id=661
  * @license             GNU General Public License
  * @platform            2.8.x
  * @requirements        probably php >= 5.3 ?
@@ -19,32 +20,53 @@
 /* This backend file changes the ordering of the fields in the form. */
 require('../../config.php');
 
-// Get id
-if(!isset($_GET['field_id']) OR !is_numeric($_GET['field_id'])) {
-        header("Location: index.php");
-        exit(0);
-} else {
-        $field_id = $_GET['field_id'];
-}
-
-
 require_once(dirname(__FILE__).'/constants.php');
 
-
 // Include WB admin wrapper script
+$update_when_modified = true; // Tells script to update when this page was last updated
+$admin_header = FALSE;
 require(WB_PATH.'/modules/admin.php');
+
+// Get id    
+if ( method_exists( $admin, 'checkIDKEY' ) ) {  
+    $field_id = $admin->checkIDKEY('field_id', false, 'GET');
+    if (!$field_id) {
+        $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'],
+        ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
+        exit();
+    }
+} else {
+    if(!isset($_GET['field_id']) OR !is_numeric($_GET['field_id'])) {
+        $sUrlToGo = ADMIN_URL."/pages/index.php";
+        if(headers_sent())
+          $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'],$sUrlToGo);
+        else 
+          header("Location: ". $sUrlToGo);
+        exit(0);
+    } else {
+        $field_id = $_GET['field_id'];
+    }
+}
+
+$admin->print_header();
 
 // Include the ordering class
 require(WB_PATH.'/framework/class.order.php');
 
 // Create new order object an reorder
-$order = new order(TP_MPFORM.'fields', 'position', 'field_id', 'section_id');
+$order = new order(
+    TP_MPFORM.'fields', 
+    'position', 
+    'field_id', 
+    'section_id'
+);
+
 if($order->move_up($field_id)) {
-        $admin->print_success($TEXT['SUCCESS'], 
-        ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
+    $admin->print_success($TEXT['SUCCESS'], 
+    ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
 } else {
-        $admin->print_error($TEXT['ERROR'],
-        ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
+    $admin->print_error($TEXT['ERROR'],
+    ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
 }
 
 // Print admin footer

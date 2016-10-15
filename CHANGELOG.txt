@@ -5,6 +5,21 @@ MODULE VERSION HISTORY
 ======================
 
    ------------------------------------------------------------------------------------------------------------------------ 
+        *** 1.3.0 (Martin Hecht: 15-Oct-2016) ***
+        add icons for import/export (thanks to norbert and noname8)
+        correct icon in ajax drag&drop helper
+        use IDKEY in move-up and move-down links
+        use IDKEY in ajax helpers
+        fix typo in delete_field.php
+        bugfixes in move-up and move-down noscript fallback 
+        bugfixes in ajax helpers
+        switch to div-layout by default (thanks to florian for insisting)
+        hand over submissions between the pages of a multi form page
+        deny access to following pages unless the previous page has been submitted
+        some clean up in the style files and added classes for help in div-layout
+        update documentation and update standard forms, update style file of docu
+        added French and Italian language support in pear uploader
+
         *** 1.2.3 (Martin Hecht: 20-Aug-2016) ***
         fix query for position in upgrade script, thanks to norhei for reporting
         fix drag and drop in ajax helper, thanks to florian for reporting

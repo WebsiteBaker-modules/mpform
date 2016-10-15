@@ -29,19 +29,22 @@
             var oRecord = $("tr#" + aOpts.DB_COLUMN +'_'+ iRecordID);    
             
             if (confirm(LANG.SURE_DELETE_RECORD)) {                    
-                // pregenerate the data string
-                var sDataString = 'purpose=delete_record&action=delete&DB_RECORD_TABLE='+aOpts.DB_RECORD_TABLE+'&DB_COLUMN='+aOpts.DB_COLUMN+'&MODULE='+aOpts.MODULE+'&iRecordID='+iRecordID+'&iSectionID=' + iSectionID;
 
                 $.ajax({
                     url: MODULE_URL +"/ajax/ajax.php",
                     type: "POST",
                     dataType: 'json',
-                    data: sDataString,                        
+                    data: 'purpose=delete_record&action=delete'
+                         +'&DB_RECORD_TABLE='+aOpts.DB_RECORD_TABLE
+                         +'&DB_COLUMN='+aOpts.DB_COLUMN
+                         +'&MODULE='+aOpts.MODULE
+                         +'&iRecordID='+iRecordID
+                         +'&iSectionID='+iSectionID,
                     success: function(json_respond) {
                         if(json_respond.success == true) {
                             //row.fadeOut('slow');
                             oRecord.fadeOut(1200);    
-                            // alert(json_respond.message + ' ' + sDataString);    // debug
+                            window.location.reload();   
                         } else {
                             alert(json_respond.message);
                         }

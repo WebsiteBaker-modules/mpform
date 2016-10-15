@@ -72,27 +72,49 @@
 
 <h2>MPForm-Dokumentation: Tabelle oder nicht?</h2>
 <p style="text-align: right;">Schwierigkeitsgrad B&nbsp;</p>
-<p>Das Standardlayout f&uuml;r ein Formular ist ein Tabellenlayout. Oft wird jedoch auch ein 
-   tebellenloses Layout gew&uuml;nscht. Das hat zum Beispiel den Vorteil, dass bei kleineren 
+<p>Das Standardlayout f&uuml;r ein Formular basiert auf einem &lt;div&gt;-Layout.
+   Das hat zum Beispiel den Vorteil, dass bei kleineren 
    Browserfenstern oder auf Mobilger&auml;ten statt einen waagerechten Scrollbalken anzuzeigen 
-   die Antworten einfach unter die Fragen rutschen, was ergonomisch als angenehmer empfunden wird.</p>
-<p>Ein einfaches Beispiel f&uuml;r die Umstellung der Optionen auf tabellenloses Layout w&auml;re:</p>
+   die Antworten einfach unter die Fragen rutschen, was ergonomisch als angenehmer empfunden wird.
+   Manchmal wird jedoch ein Tabellenlayout gew&uuml;nscht, bei dem die Positionierung der Elemente
+   strikter kontrolliert ist. Bis Version 1.2.x war dies auch die Default-Einstellung in mpform.
+   </p>
+<p>Ein einfaches Beispiel f&uuml;r ein tabellenloses Layout (dies ist mittlerweile die Standardeinstellung) 
+   sieht wie folgt aus:</p>
 <dl>
     <dt>Kopfzeile:</dt>
     <dd>bleibt leer</dd>
     <dt>Feld Schleife:</dt>
-    <dd><tt>&lt;div class=&quot;questionbox&quot;&gt;{TITLE}{REQUIRED}:&lt;/div&gt;<br />
-    &lt;div class=&quot;answerbox&quot;&gt;{FIELD}&lt;br /&gt;{HELPTXT}&lt;/div&gt;<br />
-    &lt;div class=&quot;newline&quot;&gt;&amp;nbsp;&lt;/div&gt;</tt></dd>
+    <dd><tt>&lt;div class=&quot;questionbox {CLASSES} mpform_title&quot;&gt;{TITLE}{REQUIRED}:<br />
+    &lt;div class=&quot;mpform_help&quot;&gt;{HELP}&lt;/div&gt;&lt;/div&gt;<br />
+    &lt;div class=&quot;answerbox mpform_field&quot;&gt;{FIELD}{ERRORTEXT}&lt;/div&gt;<br />
+    &lt;div class=&quot;newline&quot;&gt;&lt;/div&gt;</tt></dd>
     <dt>Fu&szlig;zeile:</dt>
     <dd><tt>&lt;div class=&quot;submitbox&quot;&gt;<br />
-    &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Submit Form&quot; /&gt;<br />
+    &lt;input type=&quot;submit&quot; name=&quot;submit&quot; class=&quot;mpform_submit&quot; value=&quot;Formular Absenden&quot; /&gt;<br />
     &lt;/div&gt;</tt></dd>
 </dl>
-<p>Die angegebenen Klassen sind bereits in der Datei frontend.css enthalten. Sie k&ouml;nnten jedoch 
-   noch etwas Feinschliff gebrauchen.</p>
-<p>Beachten Sie, dass der Platzhalter {HELP} nur in Tabellen funktioniert. Falls Sie ein anderes 
-   Layout verwenden m&ouml;chten, m&uuml;ssen Sie also {HELPTXT} verwenden!</p>          </div>
+<p>Ein tabellenbasiertes Layout hingegen w&uuml;rde so aussehen:</p>
+<dl>
+    <dt>Kopfzeile:</dt>
+    <dd>&lt;table cellpadding=&quot;2&quot; cellspacing=&quot;0&quot; border=&quot;0&quot;&gt;</dd>
+    <dt>Feld Schleife:</dt>
+    <dd><tt>
+    &lt;tr class=&quot;{CLASSES}&quot;&gt;&lt;td class=&quot;mpform_title&quot;&gt;{TITLE}{REQUIRED}:&lt;/td&gt;<br />
+    &lt;td class=&quot;mpform_help&quot;&gt;{HELP}&lt;/td&gt;<br />
+    &lt;td class=&quot;mpform_field&quot;&gt;{FIELD}{ERRORTEXT}&lt;/td&gt;&lt;/tr&gt;
+    </tt></dd>
+    <dt>Fu&szlig;zeile:</dt>
+    <dd><tt>
+    &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;input type=&quot;submit&quot; name=&quot;submit&quot; class=&quot;mpform_submit&quot; value=&quot;Formular absenden&quot; /&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;/table&gt;
+    </tt></dd>
+</dl>
+<p>Die angegebenen Klassen sind bereits in der Datei frontend.css enthalten. </p>
+<p>Beachten Sie, dass der Platzhalter {HELP} bis Version 1.2.x nur in Tabellen funktioniert hat. 
+   Falls Sie ein anderes Layout verwenden m&ouml;chten, m&uuml;ssen Sie entweder eine 
+   aktuelle Version von mpform einsetzen oder in alten Versionen mussten Sie {HELPTXT} verwenden!</p>          </div>
 
 
 <!-- ************ Footer -->

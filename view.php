@@ -6,11 +6,12 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.2.3
+ * @version             1.3.0
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
  * @url                 https://github.com/WebsiteBaker-modules/mpform
+ * @url                 https://forum.wbce.org/viewtopic.php?id=661
  * @license             GNU General Public License
  * @platform            2.8.x
  * @requirements        probably php >= 5.3 ?
@@ -40,6 +41,13 @@ if((!function_exists('register_frontend_modfiles')
         include_once(WB_PATH .'/modules/mpform/frontend.css');
         echo "\n</style>\n";
 } 
+
+// check if frontend_body.js file needs to be included into the <body></body> of view.php
+if((!function_exists('register_frontend_modfiles_body')
+    || !defined('MOD_FRONTEND_BODY_JAVASCRIPT_REGISTERED'))
+    && file_exists(WB_PATH .'/modules/mpform/frontend_body.js')) {
+        echo '<script src="'.WB_URL.'/modules/mpform/frontend_body.js" type="text/javascript"></script>' . "\n";
+}
 
 require_once(WB_PATH.'/include/captcha/captcha.php');
 

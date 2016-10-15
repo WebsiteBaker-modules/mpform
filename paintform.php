@@ -6,11 +6,12 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.2.3
+ * @version             1.3.0
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
  * @url                 https://github.com/WebsiteBaker-modules/mpform
+ * @url                 https://forum.wbce.org/viewtopic.php?id=661
  * @license             GNU General Public License
  * @platform            2.8.x
  * @requirements        probably php >= 5.3 ?
@@ -182,48 +183,14 @@ if (!function_exists('new_submission_id')) {
 }
 
 if (!function_exists('js_for_help')) {
-function js_for_help() {
-echo <<<JS1
-    <script language="javascript" type="text/javascript">
-    //<![CDATA[
-    var theRowOpened = -2;
-    var theTableOpened = -2;
-    function helpme(id,msg,title,help) {
-        var theTableBody = document.getElementById(id).parentNode.parentNode.parentNode.parentNode.tBodies[0];
-        var row = 1+document.getElementById(id).parentNode.parentNode.rowIndex;
-        if ((theRowOpened == row) && (theTableOpened == theTableBody)) {
-            removeRow(theRowOpened, theTableOpened);
-            theRowOpened = -1;
-        } else {
-            if (theRowOpened > 0) {
-                if(theRowOpened<row) row--;
-                removeRow(theRowOpened, theTableOpened);
-            }
-            insertTableRow(row,msg,title,help,theTableBody);
-            theRowOpened = row;
-            theTableOpened = theTableBody;
-        }
-    }
-    function insertTableRow(row,msg,title,help,theTableBody) {
-        var newCell;
-        var newRow = theTableBody.insertRow(row);
-        newCell = newRow.insertCell(0);
-        newCell = newRow.insertCell(1);
-        newCell.colSpan = 2;
-JS1;
-echo "\n        newCell.className = \"".MPFORM_CLASS_PREFIX."help_box_td\";\n"
-    ."        newCell.innerHTML = \"<div class='".MPFORM_CLASS_PREFIX."help_box_div'>\"\n" 
-    ."            +((title) ? '<h5 class=\"".MPFORM_CLASS_PREFIX."help_box_h5\">'+help+': '\n"
-    ."            +title+'<\/h5><hr class=\"".MPFORM_CLASS_PREFIX."help_box_hr\" noshade=\"noshade\" size=\"1\" />' : '')\n"
-    ."            +'<h6 class=\"".MPFORM_CLASS_PREFIX."help_box_h6\">'+msg+'<\/h6><\/div>'\n";
-echo <<<JS2
-    }
-    function removeRow(row,theTableBody) {
-        theTableBody.deleteRow(row);
-    }
-    //]]>
-    </script>    
-JS2;
+    function js_for_help() {
+        echo '<script language="javascript" type="text/javascript">';
+        echo "//<![CDATA[\n";
+        echo "    var theRowOpened = -2;\n";
+        echo "    var theTableOpened = -2;\n";
+        echo '    var MPFORM_CLASS_PREFIX = "'.MPFORM_CLASS_PREFIX.'";'."\n";
+        echo "//]]>\n";
+        echo "</script>\n";    
     }
 }
 
@@ -244,7 +211,7 @@ if (!function_exists('remove_comments')) {
 if (!function_exists('paint_form')) {
     function paint_form( $iSID /*section_id*/, $aMissing = array(), 
                          $aErrTxt = array(), $isnew = true) {
-        global $database, $MENU, $TEXT, $LANG;
+        global $database, $MENU, $TEXT, $LANG, $admin;
         $mpform_code="";
 
         if($aMissing != array()) {
@@ -289,9 +256,23 @@ if (!function_exists('paint_form')) {
         }
 
         // Set new submission ID in session if it is not a follower on a multipage form
-        if (!$is_following) {
-            $_SESSION['submission_id_'.$iSID] = new_submission_id();
+        if ($is_following) {
+            if (!isset($_SESSION['following_page_'.PAGE_ID])
+                || ($_SESSION['following_page_'.PAGE_ID]!=$_SESSION['submission_id_'.$iSID])) {
+                $sUrlToGo = WB_URL.PAGES_DIRECTORY;
+                if(headers_sent())
+                  $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'],$sUrlToGo);
+                else 
+                  header("Location: ". $sUrlToGo);
+                exit(0);
+            }
+        } else {
+            $new_SID = new_submission_id();
+            $_SESSION['submission_id_'.$iSID] = $new_SID;
+            //$_SESSION['submission_id'] = $new_SID;
         }
+        
+        
         if ($success_page != 'none') {
             $qs 
                 = $database->query(
@@ -303,7 +284,9 @@ if (!function_exists('paint_form')) {
             if($qs->numRows() > 0) {
                 $s = $qs->fetchRow();
                 $sid = $s['section_id'];
-                $_SESSION['submission_id_'.$sid] = substr($_SESSION['submission_id_'.$iSID], 0, 8);
+                $new_SID = substr($_SESSION['submission_id_'.$iSID], 0, 8);
+                $_SESSION['submission_id_'.$sid] = $new_SID;
+                //$_SESSION['submission_id'] = $new_SID;                
             }
         }
 
@@ -848,21 +831,25 @@ if (!function_exists('paint_form')) {
                     }
                 }
 
-                if ($field['type'] != 'html') {
-
-                    $aReplacements['{CLASSES}'] = $classes;
-                    $aReplacements['{ERRORTEXT}'] 
-                        = (isset($aErrTxt[$iFID])) ? '<p>'.$aErrTxt[$iFID].'</p>' : '';
-                    if($field['type'] != '') {
-                        echo str_replace(
-                            array_keys($aReplacements), 
-                            array_values($aReplacements), 
-                            $field_loop
-                        ).PHP_EOL;
-                    }
+                if(($field['type'] == 'hiddenfield') && (!$bTableLayout)){
+                    echo $aReplacements['{FIELD}'].PHP_EOL;
                 } else {
-                    if(($field['extra'] == '') or (preg_match('/form/',$field['extra'])))
-                        echo remove_comments(htmlspecialchars_decode($field['value']));  
+                    if ($field['type'] != 'html') {
+
+                        $aReplacements['{CLASSES}'] = $classes;
+                        $aReplacements['{ERRORTEXT}'] 
+                            = (isset($aErrTxt[$iFID])) ? '<p>'.$aErrTxt[$iFID].'</p>' : '';
+                        if($field['type'] != '') {
+                            echo str_replace(
+                                array_keys($aReplacements), 
+                                array_values($aReplacements), 
+                                $field_loop
+                            ).PHP_EOL;
+                        }
+                    } else {
+                        if(($field['extra'] == '') or (preg_match('/form/',$field['extra'])))
+                            echo remove_comments(htmlspecialchars_decode($field['value']));  
+                    }
                 }
                 if (isset($tmp_field_loop)) {
                     $field_loop = $tmp_field_loop;

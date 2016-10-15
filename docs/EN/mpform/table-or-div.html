@@ -71,27 +71,52 @@
 
 <h2>MPForm Documentation: Table or not?</h2>
 <p style="text-align: right;">Level of difficulty: B&nbsp;</p>
-<p>The standard layout for a form is a table layout. Sometimes a layout without tables is more apropriate 
+<p>The standard layout for a form is based on a &lt;div&gt;-layout. 
   This has, for instance, the advantage that in a small browser window or on mobile devices no horizontal 
   scroll bar is required. Instead, the answers slide from beside the questions to below the questions 
-  automagically. Most users feel this as designed more ergonomically.</p>
-<p>A simple example for a layout without tables could look like this:</p>
+  automagically. Most users feel this as designed more ergonomically.
+  Sometimes however, a table based layout is requested, which is more strict in terms of alignment of 
+  the enclosed elements. Up to version 1.2.x this was the default setting in mpform.
+  </p>
+  
+<p>A simple example for a layout without tables looks like this (this is the default setting now):</p>
 <dl>
     <dt>Header:</dt>
     <dd>stays empty<br />
     </dd>
     <dt>Field Loop:</dt>
-    <dd><tt>&lt;div class=&quot;questionbox&quot;&gt;{TITLE}{REQUIRED}:&lt;/div&gt;<br />
-    &lt;div class=&quot;answerbox&quot;&gt;{FIELD}&lt;br /&gt;{HELPTXT}&lt;/div&gt;<br />
-    &lt;div class=&quot;newline&quot;&gt;&amp;nbsp;&lt;/div&gt;</tt></dd>
+    <dd><tt>&lt;div class=&quot;questionbox {CLASSES} mpform_title&quot;&gt;{TITLE}{REQUIRED}:<br />
+    &lt;div class=&quot;mpform_help&quot;&gt;{HELP}&lt;/div&gt;&lt;/div&gt;<br />
+    &lt;div class=&quot;answerbox mpform_field&quot;&gt;{FIELD}{ERRORTEXT}&lt;/div&gt;<br />
+    &lt;div class=&quot;newline&quot;&gt;&lt;/div&gt;</tt></dd>
     <dt>Footer:</dt>
     <dd><tt>&lt;div class=&quot;submitbox&quot;&gt;<br />
-    &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Submit Form&quot; /&gt;<br />
+    &lt;input type=&quot;submit&quot; name=&quot;submit&quot; class=&quot;mpform_submit&quot; value=&quot;Submit Form&quot; /&gt;<br />
     &lt;/div&gt;</tt></dd>
 </dl>
+<p>a layout based on tables on the other hand would look ass follows:</p>
+<dl>
+    <dt>Header:</dt>
+    <dd>&lt;table cellpadding=&quot;2&quot; cellspacing=&quot;0&quot; border=&quot;0&quot;&gt;</dd>
+    <dt>Field Loop:</dt>
+    <dd><tt>
+    &lt;tr class=&quot;{CLASSES}&quot;&gt;&lt;td class=&quot;mpform_title&quot;&gt;{TITLE}{REQUIRED}:&lt;/td&gt;<br />
+    &lt;td class=&quot;mpform_help&quot;&gt;{HELP}&lt;/td&gt;<br />
+    &lt;td class=&quot;mpform_field&quot;&gt;{FIELD}{ERRORTEXT}&lt;/td&gt;&lt;/tr&gt;
+    </tt></dd>
+    <dt>Footer:</dt>
+    <dd><tt>
+    &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;input type=&quot;submit&quot; name=&quot;submit&quot; class=&quot;mpform_submit&quot; value=&quot;Formular absenden&quot; /&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;/table&gt;
+    </tt></dd>
+</dl>
+  
+
 <p>The classes above are already part of the file frontend.css. </p>
-<p>Please remember that the place holder {HELP} only works in tables. If you use another layout, you need 
-  to use {HELPTXT} instead!</p>          </div>
+<p>Note that in versions until 1.2.x the place holder {HELP} only worked  
+   in tables. If you used another layout, you either need an up-to-date version of mpform
+   or you needed to use {HELPTXT} instead!</p>          </div>
 
 
 <!-- ************ Footer -->

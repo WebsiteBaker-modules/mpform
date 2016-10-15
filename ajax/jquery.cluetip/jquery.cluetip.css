@@ -24,7 +24,7 @@ div.ui-cluetip {
     width: 43px;
     height: 11px;
     position: absolute;
-    background-image: url(images/wait.gif);
+    background-image: url(cluetip_images/wait.gif);
 }
 .cluetip-arrows {
     display: none;

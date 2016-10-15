@@ -7,11 +7,12 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.2.3
+ * @version             1.3.0
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
  * @url                 https://github.com/WebsiteBaker-modules/mpform
+ * @url                 https://forum.wbce.org/viewtopic.php?id=661
  * @license             GNU General Public License
  * @platform            2.8.x
  * @requirements        probably php >= 5.3 ?
@@ -24,25 +25,24 @@
 
 $aJsonRespond = array();
 $aJsonRespond['success'] = false;
-$aJsonRespond['message'] = 'hallo';
+$aJsonRespond['message'] = '';
 $aJsonRespond['icon'] = '';
     
     
 if(!isset($_POST['action']) || !isset($_POST['field_id']) )    
-//if(!isset($_POST['action']))
 {     
-    $aJsonRespond['message'] = 'eins von den parametern gibts nicht';
+    $aJsonRespond['message'] = 'one of the parameters does not exist';
     exit(json_encode($aJsonRespond));
 }
  else 
 {    
     $aRows = $_POST['field_id'];
     require_once('../../../config.php');    
-    // check if user has permissions to access the Bakery module
+    // check if user has permissions to access the mpform module
     require_once(WB_PATH.'/framework/class.admin.php');
-    $admin = new admin('Modules', 'module_view', false, false);
+    $admin = new admin('Pages', 'pages_modify', false, false);
     if (!($admin->is_authenticated() && $admin->get_permission('mpform', 'module'))) {
-        $aJsonRespond['message'] = 'unsuficcient rights';
+        $aJsonRespond['message'] = 'insuficcient rights';
         exit(json_encode($aJsonRespond));
     }
     
@@ -52,17 +52,18 @@ if(!isset($_POST['action']) || !isset($_POST['field_id']) )
     {     
         $i = 1;
         foreach ($aRows as $recID) {
-            // not we sanitize array
+            $id = $admin->checkIDKEY($recID,0,'key',true);
+            // now we sanitize array
             $database->query("UPDATE `".TABLE_PREFIX."mod_mpform_fields`"
                . " SET `position` = '".$i."'"
-               . " WHERE `field_id` = ".intval($recID)." ");
+               . " WHERE `field_id` = ".intval($id)." ");
             $i++;    
             
         }
         if($database->is_error()) {
             $aJsonRespond['success'] = false;
             $aJsonRespond['message'] = 'db query failed: '.$database->get_error();
-            $aJsonRespond['icon'] = 'trash.gif';
+            $aJsonRespond['icon'] = 'cancel.gif';
             exit(json_encode($aJsonRespond));
         }    
     }else{

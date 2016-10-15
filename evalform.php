@@ -6,11 +6,12 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.2.3
+ * @version             1.3.0
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
  * @url                 https://github.com/WebsiteBaker-modules/mpform
+ * @url                 https://forum.wbce.org/viewtopic.php?id=661
  * @license             GNU General Public License
  * @platform            2.8.x
  * @requirements        probably php >= 5.3 ?
@@ -216,15 +217,6 @@ if (!function_exists('eval_form')) {
         $files_to_attach = array();
         $upload_filename = '';
 
-        // Check that submission ID matches
-        if (!isset($_SESSION['submission_id_'.$section_id])
-            OR !isset($_POST['submission_id'])
-            OR $_SESSION['submission_id_'.$section_id] != $_POST['submission_id']) {
-                include_once(WB_PATH .'/modules/mpform/paintform.php');
-                paint_form($section_id);
-                return;
-        }
-
         if(ENABLED_ASP && ( // form faked? Check the honeypot-fields.
             (     !isset($_POST['submitted_when'.$section_id]) 
                OR !isset($_SESSION['submitted_when'.$section_id])) 
@@ -251,6 +243,24 @@ if (!function_exists('eval_form')) {
             );
         if($query_settings->numRows() > 0) {
             $fetch_settings = $query_settings->fetchRow();
+
+            $is_following =           $fetch_settings['is_following'];
+            // Check that submission ID matches
+            if (!isset($_SESSION['submission_id_'.$section_id])
+                OR !isset($_POST['submission_id'])
+                OR $_SESSION['submission_id_'.$section_id] != $_POST['submission_id']) {
+                    if ($is_following) {
+                        $sUrlToGo = WB_URL.PAGES_DIRECTORY;
+                        if(headers_sent())
+                          $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'],$sUrlToGo);
+                        else 
+                          header("Location: ". $sUrlToGo);
+                        exit(0);
+                    }
+                    include_once(WB_PATH .'/modules/mpform/paintform.php');
+                    paint_form($section_id);
+                    return;
+            }
 
             $email_from = $fetch_settings['email_from'];
             if(substr($email_from, 0, 5) == 'field') {
@@ -345,6 +355,9 @@ if (!function_exists('eval_form')) {
         $err_txt = array();
         $html_data_user = '';
         $html_data_site = '';
+        $iSID = $_SESSION['submission_id_'.$section_id];
+        if(isset($_SESSION['html_data_user'.$iSID])) $html_data_user = $_SESSION['html_data_user'.$iSID];
+        if(isset($_SESSION['html_data_site'.$iSID])) $html_data_site = $_SESSION['html_data_site'.$iSID];
 
         $format = DEFAULT_DATE_FORMAT. " " .DEFAULT_TIME_FORMAT;
         $now = date($format);
@@ -1021,8 +1034,11 @@ if (!function_exists('eval_form')) {
         // Now check if the email was sent successfully
         if (isset($success) AND $success == true) {
             // can't do this in captcha module when multiple forms on one page!
-            if (isset($_SESSION['captcha_time'])) unset($_SESSION['captcha_time']);    
-
+            if (isset($_SESSION['captcha_time'])) unset($_SESSION['captcha_time']);
+            
+            $_SESSION['html_data_user'.$iSID] = $html_data_user;
+            $_SESSION['html_data_site'.$iSID] = $html_data_site;
+                
             // execute private function in private.php, if available
             if (function_exists('private_function_on_success')) {
                 $success = private_function_on_success($section_id);
@@ -1037,6 +1053,8 @@ if (!function_exists('eval_form')) {
                     );
                     // delete the referer page reference after it did its work:
                     unset($_SESSION['href']);
+                    unset($_SESSION['html_data_user'.$iSID]);
+                    unset($_SESSION['html_data_site'.$iSID]);
                 } else {
                     $query_menu 
                         = $database->query(
@@ -1051,7 +1069,8 @@ if (!function_exists('eval_form')) {
                            . PAGES_DIRECTORY
                            . $fetch_settings['link']
                            . PAGE_EXTENSION;
-                       echo "<script type='text/javascript'>location.href='".$link."';</script>";
+                       $_SESSION['following_page_'.$success_page]=$iSID;
+                      echo "<script type='text/javascript'>location.href='".$link."';</script>";
                     }
                 }
             }
@@ -1059,6 +1078,8 @@ if (!function_exists('eval_form')) {
             // delete the referer page reference after it did its work:
             unset($_SESSION['href']);
             unset($success);
+            unset($_SESSION['following_page_'.PAGE_ID]);
+
             if (isset($_SESSION['mpf'])) {
               unset ($_SESSION['mpf']);
             }

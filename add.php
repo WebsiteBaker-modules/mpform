@@ -6,11 +6,12 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.2.3
+ * @version             1.3.0
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
  * @url                 https://github.com/WebsiteBaker-modules/mpform
+ * @url                 https://forum.wbce.org/viewtopic.php?id=661
  * @license             GNU General Public License
  * @platform            2.8.x
  * @requirements        probably php >= 5.3 ?
@@ -41,35 +42,24 @@ $query_content
 $setting = $query_content->fetchRow();
 
 // set default values
-$header = '<table class="mpform-maintable"'
-    . ' cellpadding=\"2\"'
-    . ' cellspacing=\"0\"'
-    . ' border=\"0\">';
-$field_loop = '<tr class="{CLASSES}">'
-    . '<td class=\"'.MPFORM_CLASS_PREFIX.'title\">'
+$header = '';
+$field_loop = '<div class="questionbox {CLASSES} '.MPFORM_CLASS_PREFIX.'title\">'
     . '{TITLE}{REQUIRED}:'
-    . '</td>'
-    . '<td class="'.MPFORM_CLASS_PREFIX.'help">'
+    . '<div class="'.MPFORM_CLASS_PREFIX.'help">'
     . '{HELP}'
-    . '</td>'
-    . '<td class="'.MPFORM_CLASS_PREFIX.'field">'
+    . '</div>'
+    . '</div>'
+    . '<div class="answerbox '.MPFORM_CLASS_PREFIX.'field">'
     . '{FIELD}{ERRORTEXT}'
-    . '</td>'
-    . '</tr>';
-$footer = '<tr>'
-    . '<td>'
-    . '</td>'
-    . '<td>'
-    . '</td>'
-    . '<td>'
+    . '</div>'
+    . '<div class="newline"></div>';
+$footer = '<div class="submitbox">'
     . '<input'
     . ' type=\"submit\"'
     . ' name=\"submit\"'
     . ' class=\"'.MPFORM_CLASS_PREFIX.'submit\"'
     . ' value=\"'.$LANG['backend']['TXT_SUBMIT'].'\" />'
-    . '</td>'
-    . '</tr>'
-    . '</table>';
+    . '</div>';
 $heading_html = "<h3>{HEADING}</h3>";
 $short_html = "<b>{TITLE}:</b> {DATA}<br />";
 $long_html = "<b>{TITLE}:</b><br />{DATA}<br /><br />";

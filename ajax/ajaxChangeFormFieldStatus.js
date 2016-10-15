@@ -43,6 +43,7 @@
                             oElement.attr("src", ICONS +"/"+ action +".gif");
                             oElement.attr("title", LANG[json_respond.message]);
                             oElement.animate({opacity: 1});
+                            window.location.reload();                               
                         } else {
                             alert(json_respond.message);
                         }

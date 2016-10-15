@@ -7,11 +7,12 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.2.3
+ * @version             1.3.0
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
  * @url                 https://github.com/WebsiteBaker-modules/mpform
+ * @url                 https://forum.wbce.org/viewtopic.php?id=661
  * @license             GNU General Public License
  * @platform            2.8.x
  * @requirements        probably php >= 5.3 ?
@@ -53,11 +54,16 @@ $aJsonRespond['success'] = FALSE;
         $sDbColumn  = $_POST['DB_COLUMN'];
         $iRecordID = $_POST['iRecordID'];
         $sModuleDIR  = $_POST['MODULE'];    
-        
             
-        // Check if user has enough rights to do this:
         require_once(WB_PATH.'/framework/class.admin.php');
         $admin = new admin('Modules', 'module_view', FALSE, FALSE);    
+        if(!is_numeric($iRecordID)) {
+            if(method_exists( $admin, 'checkIDKEY' ))
+               $iRecordID = $admin->checkIDKEY($iRecordID,-1,'key',true);
+               else $iRecordID = -1;
+        }
+
+        // Check if user has enough rights to do this:
         if (!($admin->is_authenticated() && $admin->get_permission($sModuleDIR, 'module'))) 
         {
             $aJsonRespond['message'] = 'You\'re not allowed to make changes to this Module: '.$sModuleDIR;        
@@ -101,13 +107,7 @@ $aJsonRespond['success'] = FALSE;
         case 'delete_record':
             // Check the Parameters
             if(isset($_POST['action']) && $_POST['action'] == 'delete')    {
-                
-                if(!is_numeric($iRecordID)) {
-                    if(method_exists( $admin, 'checkIDKEY' ))
-                       $iRecordID = $admin->checkIDKEY($iRecordID);
-                       else $iRecordID = -1;
-                }
-            
+                            
                 $query = "DELETE FROM `".$sDbRecordTable."` WHERE `".$sDbColumn."` = '".$iRecordID."' LIMIT 1";
                 $database->query($query);
                 if($database->is_error()) 

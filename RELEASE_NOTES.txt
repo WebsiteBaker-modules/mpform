@@ -1,102 +1,52 @@
-Release Notes for mpForm 1.2.0
-
-New Features
-------------
-
-In the backend of the module you can import and export the whole form
-(including all fields and settings) as xml file. The submissions and
-results tables however are not exported. This mechanism can also be
-used to install the standard forms which is available together with
-the documentation (sse below).
-
-There is a new wizard now, which allows to populate html code sections
-such that div-sections are shown or hidden, depending on the current
-selection of another form element of your choice. They are called
-conditionally displayed blocks. They are not really a field type 
-but you can easily populate a html code block with sophisticated
-code, which you can distribute later across several html sections
-in order to show/hide whole parts of the form.
-
-Hidden fields are now available for inserting data into the form 
-submission which is hidden to the user - this can be useful for handing
-over data between different pages of multi page forms.
-
-Italian language support has been added and the language support in the 
-Ajax helpers has been improved.
-
-Feature Enhancements
---------------------
-
-The switch to enable/disable fields is available to all field types now,
-including html code and headings.
-
-In the past the results tables often were a source of trouble. In this
-version of mpform their structure is always kept up to date. If you happen
-to change the suffix for the results table in the settings, add or copy
-fields the table is created or the column is inserted if needed.
-
-Additionally, if you wish not to make use of the results tables at all,
-you can disable them completely by setting the suffix to the string
-"DISABLED".
-
-For html code fields there is a new switch which allows to specify where
-the code shall be used: In the form on the web page, in the html code
-for the site owner, and/or the html code for the user confirmation.
-
-In html code sections normal html comments can be inserted which are 
-shown in the output as well, but as a new feature, if the inner part
-of the html comment is additionally commented out with php comments,
-it is suppressed in the output: <!--/* vanishing comment */-->
-
-API Changes
------------
-
-The private functions take more arguments now, because the mpform 
-module does not make use of global variables anymore. Of course, the
-usual globals like the database object and the superglobals like the 
-session are available. For details see the private.default.php.
-The examples are more detailed now and better commented.
-
-
-Documentation
--------------
-
-The documentation has been updated and included in the module (I hope
-that the forum lets me upload the file - if it is too large, I'll
-make it available as a separate zip archive).
-
-Bug fixes
----------
-
-The results tables are correctly removed now, when a mpform section is
-removed. In the past unused results tables were kept in the database 
-after removing the forms until one eventually uninstalls the module.
-This change also implies that you should make a backup of the submissions
-when you remove the form. The results table is of course kept in the case
-when multiple forms write to the same results table.
-
+Release Notes for mpForm 1.3.x
 
 General Changes
 ---------------
+By default switched to a div-based layout. All pages created with earlier versions
+of course keep their layout as it is (by default it was a table based layout in the past)
 
-Promised a long time ago and finally finished: The module works in sql 
-strict mode now.
+The style file has been cleaned up and a few new definitions have been added 
+for the help popup dialog in div-based layout. Remember to copy the default style
+files manually (or merge the changes into your local modifications) in order to 
+pick up the improved style settings.
 
-In general the code has been reworked a lot. Long lines have been wrapped
-and properly indented for better readability of the code and to assist
-users when they try to identify a bug. It is not a complete rewrite of the
-code but nearly. Module specific global variables are not used anmore. 
+New Features
+------------
+In multi page forms the access to following pages is denied to all following pages 
+unless the previous page has been submitted successfully
 
-Old code for WB 2.7 has been removed and code for backwards compatibility 
-to versions of WB 2.8 earlier than 2.8.3 have been made consistent throughout
-the whole code. IDKEY and FTAN are two examples. These features are only 
-used when the core supports them. In general it is not recommended to 
-run old versions without such security features. But anyhow, in the previous
-versions of mpform, there were checks which allowed to run without them,
-but not in all parts of the module.
+Feature Improvements
+--------------------
+In multi page forms submissions are handed over between the individual pages so that
+the last page can send confirmation mails about all the submissions of the current page
+and now also all previous pages. The data is stored in the session indexed by the 
+submission id and could in principle be used in the private functions as well. 
 
-When sending http headers to redirect the user to another page, there is 
-an additional check now, if the headers have already been sent. If so, 
-an alternative redirection link is presented to the user. This can help
-when other modules/snippets interfere with the way how the content is 
-buffered or sent to the user.
+The {HELP} placeholder works not only in table based layouts, but in general now.
+
+French and Italian language support did not cover the error messages in the pear
+file uploader tool. These missing language files have been added now.
+
+Security Enhancements
+---------------------
+
+IDKEYs were not used throughout the module. In fact they were only used when 
+Javascript and therefore Ajax was disabled. Now the Ajax-Helpers also use IDKEYs.
+Also the Noscript-fallbacks for moving fields up and down use IDKEYs now.
+
+Documentation
+-------------
+The feature changes described here are also reflected in the documentation.
+The standard forms have also been updated and are based on div-layout now.
+
+Bug fixes
+---------
+In the 1.2.x releases the icons for import/export for these buttons have been missing.
+Now they are included in the module package.
+
+The ajax drag&drop helper did use a wrong url for a icon in one of the message boxes. 
+It has been corrected now.
+
+A few other minor fixes in Ajax-Helpers, and their Noscript-fallbacks.
+
+

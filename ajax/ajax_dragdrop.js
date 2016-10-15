@@ -26,7 +26,6 @@ if(jQuery().sortable){
     jQuery(function() { 
         jQuery('.dragdrop_item').addClass('dragdrop_handle'); 
         jQuery(".dragdrop_form .move_position a").remove(); 
-        //var sDataString = jQuery(this).sortable("serialize") + '&action=updatePosition';
         
         jQuery(".dragdrop_form tbody").sortable({ 
             appendTo:     'body',
@@ -40,17 +39,19 @@ if(jQuery().sortable){
                 jQuery.ajax({
                     type:        'POST',
                     url:         MODULE_URL +'/ajax/ajax_dragdrop.php', 
-                    data:         jQuery(this).sortable("serialize") + '&action=updatePosition', 
+                    data:        jQuery(this).sortable("serialize", { 
+                                     expression: /(.+)[:=](.+)/
+                                 }) + '&action=updatePosition', 
                     dataType:     'json',
                     success:    function(json_respond){
-                        //alert(json_respond.message +' '+sDataString);
                         if( json_respond.success != true ) {                                        
                             alert(json_respond.message);
                         }
                         var INFO_BOX = jQuery("#" + RESULTS_CONTAINER);
                         INFO_BOX.html('<img id="reload_img" src="'+ ICONS +'/' + json_respond.icon +'" alt="" />').fadeIn("slow");    
                         jQuery("#reload_img").fadeOut(2300);    
-
+                        // due to expiring IDKEYs we have to refresh the page
+                        window.location.reload();   
                     }
                 });     
             }                    

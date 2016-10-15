@@ -211,13 +211,9 @@
             <td valign="top">hidden field</td>
             <td valign="top"><code>input type=&quot;hidden&quot;</code></td>
             <td valign="top">handing over values between individual pages of multi page forms</td>
-            <td>in conjunction with the private function 
-              <strong>private_function_before_new_form</strong> this field type can be used to 
-              submit values of a previous page once again. This may help to keep each page simple
-              and at the same time have all values available on the last page for sending them 
-              by email. However, you have to define a hidden field for each field on all subsequent
-              pages of the form. The results table, however, will hold not only the original input
-              values, but the values of teh hidden fields as well.
+            <td>private functions for instance can process these values.
+            since mpform 1.3.x all the submissions of individual pages are handed through at least
+            for sending the confirmation mail at the end.
             </td>
         </tr>
         <tr>
