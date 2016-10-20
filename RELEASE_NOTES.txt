@@ -1,12 +1,5 @@
 Release Notes for mpForm 1.3.x
 
-        *** 1.3.1 (Martin Hecht: 20-Oct-2016) ***
-        add export for results table    
-        introduce constants.user.php and move the defaults for the field loop there
-        let delete_submission.php also delete entries from the results table
-        for this, also introduce submission_id in new results tables
-
-
 General Changes
 ---------------
 By default switched to a div-based layout. All pages created with earlier versions of 
