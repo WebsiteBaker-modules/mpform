@@ -123,6 +123,57 @@
        und erneut zu speichern. Das sollte mpform dazu veranlassen &uuml;ber die vorhandenen Felder 
        zu iterieren und die Ergebnistabelle entsprechend anzupassen. <br />
     </dd>
+    <dt class="faq"><strong>Frage</strong>:
+       Beim Anlegen neuer Abschnitte wird immer ein div-basiertes Layout erzeugt und ich muss die 
+       Einstellungen jedes Mal anpassen. Kann ich dauerhaft auf das in fr&uuml;heren Versionen eingesetzte
+       tabellenbasierte Layout umstellen?
+    </dt>
+    <dd class="faq"><b>Antwort</b>:
+       Ja, Sie k&ouml;nnen das Layout f&uuml;r neu angelegte Abschnitte permanent umstellen, indem
+       Sie eine Datei constants.user.php anlegen, in der SIe das Standardlayout festlegen.
+       Wegen den zu verwendenden Konstanten siehe in der constants.php und definieren Sie entsprechend
+       ihre eigenen Werte f&uuml;r diese Konstanten in constants.user.php.
+    </dd>
+    <dt class="faq"><strong>Frage</strong>:
+       Wenn ich Eintragungen als csv-Datei exportiere tauchen dort die gel&ouml;schten Eintragungen 
+       immer noch auf. Was mache ich falsch?
+    </dt>
+    <dd class="faq"><b>Antowrt</b>:
+       Das kann zwei verschiedene Ursachen haben: MPForm Versionen vor 1.3.1 haben die submission_id 
+       nicht in der Ergebnistabelle abgescpiechert. Wenn Sie die allgemeinen Einstellungen &ouml;ffnen
+       und diese neu abspeichern, wird die entsprechende Spalte zur Ergebnistabelle hinzugef&uuml;gt.
+       Von nun an vorgenommene Eintragungen werden die submission_id nicht nur in den Eintragungen
+       sondern auch in der Ergebnistabelle ber&uuml;cksichtigen. Wenn Sie die Eintragung dann 
+       l&ouuml;schen, wird die entsprechende Zeile auch aus der Ergebnistabelle entfernt.<br/>
+       Ein weiterer Fall sind mehrseitige Formulare: Selbst in aktuellen Versionen wird die Zeile
+       aus der Ergebnistabelle nicht gel&ouml;scht, wenn eine nachfolgende Formularseite abgeschickt
+       wurde (die dann die submission_id in der Ergebnistabelle aktualisiert und weitere Daten
+       hinzugef&uuml;gt hat).
+    </dd>
+    <dt class="faq"><strong>Frage</strong>:
+       Aber wie kann ich dann all die alten Eintragungen loswerden? 
+    </dt>
+    <dd class="faq"><b>Antwort</b>:
+       Die beste Methode ist es den Abschnitt zu exportieren (wobei die Felder und Einstellungen enthalten
+       sind, aber nicht die Eintragungen). Als n&auml;chstes m&uuml;ssen Sie den mpform-Abschnitt komplett
+       l&ouml;schen. Dann erstellen Sie wieder einen neuen MPForm Abschnitt, in den Sie die zuvor exportierten
+       Einstellungen wieder importieren. Durch diese Schritte sind die alten Eintragungen verschwunden.
+    </dd>
+    <dt class="faq"><strong>Frage</strong>: 
+       Ich brauche gar keine Ergebnistabelle. Kann ich sie deaktivieren?
+    </dt>
+    <dd class="faq"><b>Antwort</b>:
+       Ja, indem Sie die Erweiterung einfach auf den String &quot;DISABLED&quot; stellen, aber ein CSV-Export 
+       funktioniert dann nat&uuml;rlich nicht mehr.
+    </dt>
+<!--
+    <dt class="faq"><strong>Question</strong>: 
+
+    </dt>
+    <dd class="faq"><b>Answer</b>:
+
+    </dd>
+-->
 </dl>         
  </div>
 

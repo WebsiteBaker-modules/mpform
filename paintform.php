@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.0
+ * @version             1.3.1
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -35,7 +35,7 @@ if (!function_exists('make_option')) {
         $isnew, 
         $value_option_separator
     ) {
-        $def = strpos($option, IS_DEFAULT);
+        $def = strpos($option, MPFORM_IS_DEFAULT);
         ($def > 0) ? $h = substr($option, 0, $def) : $h = $option;
         $vals=explode($value_option_separator,$h);
         if(count($vals)==1) $vals[1]=$vals[0];
@@ -67,7 +67,7 @@ if (!function_exists('make_checkbox')) {
         $isnew, 
         $value_option_separator
     ) {
-        $def = strpos($option, IS_DEFAULT);
+        $def = strpos($option, MPFORM_IS_DEFAULT);
         ($def > 0) ? $h = substr($option, 0, $def) : $h = $option;
         $vals=explode($value_option_separator,$h);
         if ($mpform_code=="") {
@@ -122,7 +122,7 @@ if (!function_exists('make_radio')) {
         $isnew, 
         $value_option_separator
     ) {
-        $def = strpos($option, IS_DEFAULT);
+        $def = strpos($option, MPFORM_IS_DEFAULT);
         ($def > 0) ? $h = substr($option, 0, $def) : $h = $option;
         $vals=explode($value_option_separator,$h);
         if ($mpform_code=="") {
@@ -269,7 +269,6 @@ if (!function_exists('paint_form')) {
         } else {
             $new_SID = new_submission_id();
             $_SESSION['submission_id_'.$iSID] = $new_SID;
-            //$_SESSION['submission_id'] = $new_SID;
         }
         
         

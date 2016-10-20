@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.0
+ * @version             1.3.1
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -42,24 +42,9 @@ $query_content
 $setting = $query_content->fetchRow();
 
 // set default values
-$header = '';
-$field_loop = '<div class="questionbox {CLASSES} '.MPFORM_CLASS_PREFIX.'title\">'
-    . '{TITLE}{REQUIRED}:'
-    . '<div class="'.MPFORM_CLASS_PREFIX.'help">'
-    . '{HELP}'
-    . '</div>'
-    . '</div>'
-    . '<div class="answerbox '.MPFORM_CLASS_PREFIX.'field">'
-    . '{FIELD}{ERRORTEXT}'
-    . '</div>'
-    . '<div class="newline"></div>';
-$footer = '<div class="submitbox">'
-    . '<input'
-    . ' type=\"submit\"'
-    . ' name=\"submit\"'
-    . ' class=\"'.MPFORM_CLASS_PREFIX.'submit\"'
-    . ' value=\"'.$LANG['backend']['TXT_SUBMIT'].'\" />'
-    . '</div>';
+$header = MPFORM_HEADER;
+$field_loop = MPFORM_FIELD_LOOP;
+$footer = MPFORM_FOOTER;
 $heading_html = "<h3>{HEADING}</h3>";
 $short_html = "<b>{TITLE}:</b> {DATA}<br />";
 $long_html = "<b>{TITLE}:</b><br />{DATA}<br /><br />";

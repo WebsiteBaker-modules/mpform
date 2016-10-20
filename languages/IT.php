@@ -7,7 +7,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.0
+ * @version             1.3.1
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -148,6 +148,7 @@ $LANG['backend'] = array(
     'TXT_SETTINGS'                => 'Opzioni generali',
     'TXT_EDIT_CSS'                => 'Impostazioni CSS',
     'TXT_EXPORT_FORM'             => 'Export modulo',
+    'TXT_EXPORT_SUBMISSIONS'      => 'Export iscrizioni',
     'TXT_IMPORT_FORM'             => 'Import modulo',
     'txt_import_err_wrong_module' => 'solo l&apos;importazione di tipo di modulo '
                                    . '&quot;mpform&quot; &eacute; supportato',

@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.0
+ * @version             1.3.1
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -23,9 +23,22 @@ if (!defined('WB_PATH'))  {
     exit("Cannot access this file directly"); 
 }
 
-if(!defined('IS_DEFAULT')){  
+// obtain module directory
+$mod_dir = basename(dirname(__FILE__));
+
+// include module.functions.php (introduced with WB 2.7)
+@include_once(WB_PATH . '/framework/module.functions.php');
+
+// include the module language file depending on the backend language of the current user
+if (!@include(get_module_language_file($mod_dir))) return;
+
+if(file_exists(dirname(__FILE__).'/constants.user.php')){
+    include(dirname(__FILE__).'/constants.user.php');
+}
+
+if(!defined('MPFORM_IS_DEFAULT')){  
     // marker for default checkboxes or radiobuttons    
-    define('IS_DEFAULT', '{(*#)}');
+    define('MPFORM_IS_DEFAULT', '{(*#)}');
 }
 
 if(!defined('MPFORM_CLASS_PREFIX')){ 
@@ -48,7 +61,7 @@ if(!defined('MPFORM_DIV_WRAPPER')){
 }
 
 if(ENABLED_ASP) { 
-    if(!function_exists('print_asp_honeypots')){
+    if(!function_exists('draw_asp_honeypots')){
         function draw_asp_honeypots($iSectionID) {
             $sTimeStamp = time();
             $_SESSION['submitted_when'.$iSectionID] = $sTimeStamp; 
@@ -112,4 +125,35 @@ if(ENABLED_ASP) {
 
 if(!defined('MPFORM_DEFAULT_OPT_SEPARATOR')){
     define('MPFORM_DEFAULT_OPT_SEPARATOR', "&#0;");
+}
+
+if(!defined('MPFORM_HEADER')){
+    define('MPFORM_HEADER','');
+}
+
+
+if(!defined('MPFORM_FIELD_LOOP')){
+    define('MPFORM_FIELD_LOOP', 
+      '<div class="questionbox {CLASSES} '.MPFORM_CLASS_PREFIX.'title\">'
+    . '{TITLE}{REQUIRED}:'
+    . '<div class="'.MPFORM_CLASS_PREFIX.'help">'
+    . '{HELP}'
+    . '</div>'
+    . '</div>'
+    . '<div class="answerbox '.MPFORM_CLASS_PREFIX.'field">'
+    . '{FIELD}{ERRORTEXT}'
+    . '</div>'
+    . '<div class="newline"></div>');
+}
+
+
+if(!defined('MPFORM_FOOTER')){
+    define('MPFORM_FOOTER', 
+      '<div class="submitbox">'
+    . '<input'
+    . ' type=\"submit\"'
+    . ' name=\"submit\"'
+    . ' class=\"'.MPFORM_CLASS_PREFIX.'submit\"'
+    . ' value=\"'.$LANG['backend']['TXT_SUBMIT'].'\" />'
+    . '</div>');
 }

@@ -1,9 +1,18 @@
 Release Notes for mpForm 1.3.x
 
+        *** 1.3.1 (Martin Hecht: 20-Oct-2016) ***
+        add export for results table    
+        introduce constants.user.php and move the defaults for the field loop there
+        let delete_submission.php also delete entries from the results table
+        for this, also introduce submission_id in new results tables
+
+
 General Changes
 ---------------
-By default switched to a div-based layout. All pages created with earlier versions
-of course keep their layout as it is (by default it was a table based layout in the past)
+By default switched to a div-based layout. All pages created with earlier versions of 
+course keep their layout as it is (by default it was a table based layout in the past).
+In constants.php new constants are defined for the default settings of the field loop,
+and constants.user.php is introduced as a place for user-defined override of these.
 
 The style file has been cleaned up and a few new definitions have been added 
 for the help popup dialog in div-based layout. Remember to copy the default style
@@ -14,6 +23,9 @@ New Features
 ------------
 In multi page forms the access to following pages is denied to all following pages 
 unless the previous page has been submitted successfully
+
+The submissions shown in the backend (more precisely the entries of the results table)
+can now be exported as csv file from the backend.
 
 Feature Improvements
 --------------------
@@ -27,6 +39,11 @@ The {HELP} placeholder works not only in table based layouts, but in general now
 French and Italian language support did not cover the error messages in the pear
 file uploader tool. These missing language files have been added now.
 
+When deleting submissions in the backend, also the corresponding entries in 
+the results table can be removed now. This works for newly created results tables
+and also for new entries in existing tables when the general settings are saved
+in the backend once again.
+
 Security Enhancements
 ---------------------
 
@@ -38,6 +55,8 @@ Documentation
 -------------
 The feature changes described here are also reflected in the documentation.
 The standard forms have also been updated and are based on div-layout now.
+Special issues concerting the update to the 1.3-series are addressed in the faq page.
+
 
 Bug fixes
 ---------
@@ -47,6 +66,7 @@ Now they are included in the module package.
 The ajax drag&drop helper did use a wrong url for a icon in one of the message boxes. 
 It has been corrected now.
 
-A few other minor fixes in Ajax-Helpers, and their Noscript-fallbacks.
+A few other minor fixes in Ajax-Helpers, and their Noscript-fallbacks, and in 
+view_submission.php
 
 

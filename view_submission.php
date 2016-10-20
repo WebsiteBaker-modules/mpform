@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.0
+ * @version             1.3.1
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -131,7 +131,7 @@ echo '<table cellpadding="0" cellspacing="0" border="0" width="99%">'
     . '<td align="left">'
     . '<button class="" onclick="javascript: confirm_link(\''
     . $TEXT['ARE_YOU_SURE']
-    . ', '
+    . "', '"
     . $sModuleUrl
     . '/delete_submission.php?page_id='
     . $page_id

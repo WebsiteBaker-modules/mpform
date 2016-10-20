@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.0
+ * @version             1.3.1
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -51,6 +51,14 @@ if ( method_exists( $admin, 'checkIDKEY' ) ) {
     }
 }
 
+// find out section_id
+$res  = $database->query("SELECT "
+        . "`section_id` FROM `".TP_MPFORM."submissions`"
+        . " WHERE `submission_id` = '$submission_id'"
+        );
+$rec = $res->fetchRow();
+$section_id = $rec['section_id'];
+
 // Delete row
 $database->query(
     "DELETE FROM ".TP_MPFORM."submissions"
@@ -62,9 +70,43 @@ if($database->is_error()) {
     $admin->print_error($database->get_error(), 
         ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
 } else {
-    $admin->print_success($TEXT['SUCCESS'], 
-        ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
-}
 
+
+    // find results table 
+    $ts = $database->query("SELECT "
+        . "`tbl_suffix` FROM `".TP_MPFORM."settings` "
+        . "WHERE `section_id` = '".$section_id."'"
+        );
+
+    $setting = $ts->fetchRow();
+    $suffix = $setting['tbl_suffix'];
+    if ($suffix != "DISABLED"){
+        
+        $results = TP_MPFORM."results_" . $suffix;
+ 
+        // Check whether results table contains submission_id
+        $res = $database->query("SHOW COLUMNS"
+            . " FROM `$results` "
+            . " LIKE 'submission_id'"
+            );
+        if ($res->numRows() > 0 ) {
+            $database->query(
+                "DELETE FROM `$results` "
+                    . " WHERE submission_id = '$submission_id'"
+            );
+        }
+
+        if($database->is_error()) {
+            $admin->print_error($database->get_error(), 
+                ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
+        } else {
+            $admin->print_success($TEXT['SUCCESS'], 
+                ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
+        }
+    } else {
+        $admin->print_success($TEXT['SUCCESS'], 
+            ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
+    }
+}
 // Print admin footer
 $admin->print_footer();

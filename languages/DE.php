@@ -7,7 +7,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.0
+ * @version             1.3.1
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -154,17 +154,18 @@ $LANG['backend'] = array(
                                    . '(nur bei bestimmten Feldtypen)<br />',
     'des_footer'                  => 'Folgender Platzhalter ist m&ouml;glich:<br /> '
                                    . '&nbsp; {SUBMIT} - Abschicken-Button',
-    'TXT_MODIFY_FIELD'             => 'Feld (ID: %s) bearbeiten',
-    'TXT_ADD_FIELD'                => 'Feld hinzuf&uuml;gen',
-    'TXT_SETTINGS'                 => 'Allgemeine Optionen',
-    'TXT_EDIT_CSS'                 => 'CSS-Einstellungen',
-    'TXT_EXPORT_FORM'              => 'Formular exportieren',
-    'TXT_IMPORT_FORM'              => 'Formular Importieren',
-    'txt_import_err_wrong_module'  => 'Import ist nur f&uuml;r '
+    'TXT_MODIFY_FIELD'            => 'Feld (ID: %s) bearbeiten',
+    'TXT_ADD_FIELD'               => 'Feld hinzuf&uuml;gen',
+    'TXT_SETTINGS'                => 'Allgemeine Optionen',
+    'TXT_EDIT_CSS'                => 'CSS-Einstellungen',
+    'TXT_EXPORT_FORM'             => 'Formular exportieren',
+    'TXT_EXPORT_SUBMISSIONS'      => 'Eintragungen exportieren',
+    'TXT_IMPORT_FORM'             => 'Formular Importieren',
+    'txt_import_err_wrong_module' => 'Import ist nur f&uuml;r '
                                    . 'Modul Typ &quot;mpform&quot; unterst&uuml;tzt',
-    'txt_import_err_not_empty'     => 'Es gibt bereits Formularfelder in diesem Formular.  '
+    'txt_import_err_not_empty'    => 'Es gibt bereits Formularfelder in diesem Formular.  '
                                    . 'Import ist nur f&uuml;r leere Abschnitte unterst&uuml;tzt.',
-    'txt_import_warning'           => 'Warnung: Formulareintragungen werden beim Import/Export '
+    'txt_import_warning'          => 'Warnung: Formulareintragungen werden beim Import/Export '
                                    . 'nicht mit &uuml;bernommen.',
     'txt_you_have_selected'       => 'Sie haben ausgew&auml;hlt:',
     'des_conditional_div'         => "Generierter Code - Sie wollen wahrscheinlich den Inhalt der \n"

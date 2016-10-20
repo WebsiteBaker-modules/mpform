@@ -102,6 +102,15 @@
     <!-- END field_block -->
 </table>
 <h2>{TEXT_HEADING_S}</h2>
+<form action="{WB_URL}/modules/{MODULE_DIR}/export_submissions.php" method="post">
+                <input type="hidden" name="section_id" value="{SECTION_ID}" />
+                <input type="hidden" name="page_id" value="{PAGE_ID}" />
+                {FTAN}
+                <button type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/export.png" alt="" />{TXT_EXPORT_SUBMISSIONS}</button>
+            </form>
+<div style="float:right; border:1px solid transparent;height: 20px!important;">
+    <div id="{MODULE_DIR}Submissions">&nbsp;</div>
+</div>
 <table cellpadding="2" cellspacing="0" border="0" width="100%">
     <!-- BEGIN submission_block -->
             <tr id="submission_id_{field_submission_id}" class="{ROW_CLASS}">

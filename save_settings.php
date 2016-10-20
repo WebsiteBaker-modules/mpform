@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.0
+ * @version             1.3.1
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -188,6 +188,7 @@ if (!($database->is_error()) and ($tbl_suffix != "DISABLED")) {
              . " `started_when` INT NOT NULL DEFAULT '0' ,"   // time when first form was sent to browser
              . " `submitted_when` INT NOT NULL DEFAULT '0' ," // time when last form was sent back to server
              . " `referer` VARCHAR( 255 ) NOT NULL, "         // referer page
+             . " `submission_id` INT NOT NULL DEFAULT '0', "  // comes from submissions table
              . " PRIMARY KEY ( `session_id` ) "
              . " )";
          $database->query($sSQL);
@@ -232,6 +233,25 @@ if (!($database->is_error()) and ($tbl_suffix != "DISABLED")) {
              }
          }
     }
+    // Check whether results table contains submission_id
+    $res = $database->query("SHOW COLUMNS"
+        . " FROM `$results` "
+        . " LIKE 'submission_id'"
+        );
+    if ($res->numRows() < 1 ) {
+        // Insert new column into database
+        $sSQL = "ALTER TABLE `$results`"
+              . " add `submission_id` INT NOT NULL DEFAULT '0' AFTER `referer`";
+        $database->query($sSQL);
+
+        if($database->is_error()) {    
+            $admin->print_header();
+            $admin->print_error("could not add submission_id to results table", $sUrlToGo);    
+            $admin->print_footer();
+            exit(0);
+        }
+    }
+
 }
 
 // check if there is a db error, otherwise say successful

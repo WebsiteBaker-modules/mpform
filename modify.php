@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.0
+ * @version             1.3.1
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -96,7 +96,7 @@ $tpl->set_var(
         'EDIT_CSS'           => $LANG['backend']['TXT_EDIT_CSS'],
         'TXT_EXPORT_FORM'    => $LANG['backend']['TXT_EXPORT_FORM'],
         'TXT_IMPORT_FORM'    => $LANG['backend']['TXT_IMPORT_FORM'],
-        
+        'TXT_EXPORT_SUBMISSIONS' => $LANG['backend']['TXT_EXPORT_SUBMISSIONS'],
     )
 );
 

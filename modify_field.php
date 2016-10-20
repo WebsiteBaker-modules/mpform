@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.0
+ * @version             1.3.1
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -280,7 +280,7 @@ switch ($type) {
         $option_count = 0;
         $list = explode(',', $form['value']);
         foreach($list AS $option_value) {
-            $def = strpos($option_value, IS_DEFAULT);
+            $def = strpos($option_value, MPFORM_IS_DEFAULT);
             if ($def > 0) {
                 $ovalue = substr($option_value, 0, $def);
                 $cv = " checked='checked'";

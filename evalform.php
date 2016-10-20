@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.0
+ * @version             1.3.1
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -943,6 +943,14 @@ if (!function_exists('eval_form')) {
                                 }
                             }
                         }
+                        $query_submissions 
+                            = $database->query(
+                                "SELECT submission_id"
+                                . " FROM ".TP_MPFORM."submissions"
+                                . " ORDER BY `submission_id` DESC LIMIT 1"
+                            );
+                        $res = $query_submissions->fetchRow();
+                        $submission_id = $res['submission_id'];
                         if ($suffix != "DISABLED"){
                             $query_submitted 
                                = $database->query(
@@ -968,6 +976,18 @@ if (!function_exists('eval_form')) {
                                                  . '`' 
                                                  . " = ''";
                                 }
+
+                                // Check whether results table contains submission_id
+                                $res = $database->query("SHOW COLUMNS"
+                                    . " FROM ".TP_MPFORM."results_$suffix"
+                                    . " LIKE 'submission_id'"
+                                    );
+                                if ($res->numRows() > 0 ) {
+                                    $field_empty .= ', `submission_id`' 
+                                                 . " = '"
+                                                 . $submission_id
+                                                 . "'";
+                                }
                                 $qs = "INSERT INTO ".TP_MPFORM."results_$suffix"
                                     . " SET "
                                     . "`session_id` = '$us', "
@@ -984,6 +1004,18 @@ if (!function_exists('eval_form')) {
                                 }
                             }
                             if ($success != false){ 
+                                // Check whether results table contains submission_id
+                                $res = $database->query("SHOW COLUMNS"
+                                    . " FROM ".TP_MPFORM."results_$suffix"
+                                    . " LIKE 'submission_id'"
+                                    );
+                                if ($res->numRows() > 0 ) {
+                                    $mpform_fields .= ', `submission_id`' 
+                                                   . " = '"
+                                                   . $submission_id
+                                                   . "'";
+                                }
+                                  
                                 $qs = "UPDATE ".TP_MPFORM."results_$suffix"
                                   . " SET "
                                   . str_replace($lf, " ", $mpform_fields) 

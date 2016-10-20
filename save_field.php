@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.0
+ * @version             1.3.1
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -155,6 +155,7 @@ if ($suffix != "DISABLED"){
             . " `started_when` INT NOT NULL DEFAULT '0' ,"   // time when first form was sent to browser
             . " `submitted_when` INT NOT NULL DEFAULT '0' ," // time when last form was sent back to server
             . " `referer` VARCHAR( 255 ) NOT NULL, "         // referer page
+            . " `submission_id` INT NOT NULL DEFAULT '0', "  // comes from submissions table
             . " PRIMARY KEY ( `session_id` ) "
             . " )";
         $database->query($sSQL);
@@ -190,7 +191,7 @@ if(is_numeric($list_count)) {
             $default = 0;
         }
         if($admin->get_post('value'.$i) != '') {
-            ($default == $i) ? $defcode = IS_DEFAULT : $defcode = '';
+            ($default == $i) ? $defcode = MPFORM_IS_DEFAULT : $defcode = '';
             $values[] = preg_replace("/&amp;(#?[a-zA-Z0-9]+);/","&\\1;",
                 str_replace(array(",", "[[", "]]"), 
                     array("&#44;", '', ''),
@@ -274,7 +275,7 @@ if ($admin->get_post('type') == 'textfield'
                 . ");\n";    
             $options = explode(',', $value);
             foreach ($options as $idx => $option){
-                $def = strpos($option, IS_DEFAULT);
+                $def = strpos($option, MPFORM_IS_DEFAULT);
                 ($def > 0) ? $h = substr($option, 0, $def) : $h = $option;
                 $vals=explode($value_option_separator,$h);
                 if(count($vals)==1) $vals[1]=$vals[0];
@@ -310,7 +311,7 @@ if ($admin->get_post('type') == 'textfield'
                or ($field['type'] == 'radio')){ 
             $options = explode(',', $value);
             foreach ($options as $idx => $option){
-                $def = strpos($option, IS_DEFAULT);
+                $def = strpos($option, MPFORM_IS_DEFAULT);
                 ($def > 0) ? $h = substr($option, 0, $def) : $h = $option;
                 $vals=explode($value_option_separator,$h);
                 $v = $vals[0];

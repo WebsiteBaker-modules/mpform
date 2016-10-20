@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.0
+ * @version             1.3.1
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -94,7 +94,8 @@ require_once(dirname(__FILE__).'/constants.php');
     $database->query($mod_mpform);
     
     $database->query("DROP TABLE IF EXISTS `".TP_MPFORM."submissions`");
-    $mod_mpform = "CREATE TABLE `".TP_MPFORM."submissions` ( `submission_id` INT NOT NULL AUTO_INCREMENT,"
+    $mod_mpform = "CREATE TABLE `".TP_MPFORM."submissions` ("
+        . " `submission_id` INT NOT NULL AUTO_INCREMENT,"
         . " `section_id` INT NOT NULL DEFAULT '0' ,"
         . " `page_id` INT NOT NULL DEFAULT '0' ,"
         . " `position` INT NOT NULL DEFAULT '0' ,"
