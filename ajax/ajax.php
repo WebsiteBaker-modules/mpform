@@ -30,22 +30,55 @@ $aJsonRespond['success'] = FALSE;
         exit(json_encode($aJsonRespond));
     }
 
+	/**
+	 *	A simple mini-validator function
+	 */
+	function mpFormTestPost( $aFields, &$respose ) {
+		foreach ($aFields as $key=>$options) {
+			if( !isset($_POST[ $key ]) ) {
+				$respose['message'] = "key not submitted";
+				return false;
+			}
+			
+			switch( $options['type'] ) {
+				case 'not_0':
+					if( $_POST[ $key ] === 0 ) return false;
+					break;
+				
+				case 'int':
+					if(!is_numeric($_POST[ $key ])) return false;
+					break;
+		
+				case 'str':
+					if(!is_string( $_POST[ $key ]))  return false;
+					if(isset($options['values'])) {
+						if(!in_array( $_POST[ $key ], $options['values'] )) return false;
+					}
+					break;
+			
+				default:
+					// no "type" match
+					return false;
+			}
+		}
+		return true;
+	}
 
+	/**
+	 *	A list for the $_POST values/keys we want to test.
+	 */
+	$fields = array(
+		'iRecordID' 		=> array( 'type' => 'not_0' ),
+		'iSectionID' 		=> array( 'type' => 'int' ),
+		'purpose'			=> array( 'type' => 'str' ),
+		'DB_RECORD_TABLE'	=> array( 'type' => 'str' , 'values' => array( 'mpform_fields' , 'mpform_submissions' ) ),
+		'DB_COLUMN'			=> array( 'type' => 'str' , 'values' => array( 'field_id', 'submission_id' ) ),
+		'MODULE'			=> array( 'type' => 'str' , 'values' => array( 'mpform' ) )
+	);
+	
 
-    // check if arguments are set
-    if (    
-        isset($_POST['iRecordID']) && $_POST['iRecordID'] !=0
-        && isset($_POST['iSectionID']) && is_numeric($_POST['iSectionID'])
-        && isset($_POST['purpose']) && is_string($_POST['purpose'])
-        && isset($_POST['DB_RECORD_TABLE']) && is_string($_POST['DB_RECORD_TABLE'])
-        && (  ($_POST['DB_RECORD_TABLE'] == 'mpform_fields') 
-           || ($_POST['DB_RECORD_TABLE'] == 'mpform_submissions'))
-        && isset($_POST['DB_COLUMN']) && is_string($_POST['DB_COLUMN'])
-        && (  ($_POST['DB_COLUMN'] == 'field_id') 
-           || ($_POST['DB_COLUMN'] == 'submission_id'))
-        && isset($_POST['MODULE']) && is_string($_POST['MODULE'])
-        && (  ($_POST['MODULE'] == 'mpform'))
-    )
+	// check if arguments are set
+	if ( true === mpFormTestPost( $fields, $aJsonRespond ) )
     {
         // require config for Core Constants
         require('../../../config.php');
@@ -71,7 +104,7 @@ $aJsonRespond['success'] = FALSE;
             exit(json_encode($aJsonRespond));
         }
         
-    } else    {
+    } else {
         $aJsonRespond['message'] = 'Post arguments missing';
         $aJsonRespond['success'] = FALSE;
         exit(json_encode($aJsonRespond));
