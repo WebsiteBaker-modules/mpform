@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.1
+ * @version             1.3.2
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -171,6 +171,11 @@ switch ($type) {
         } else {
             $rows = 5;
         }
+        if (isset($cr[2]) and is_numeric($cr[2])) {
+            $maxlength = $cr[2];
+        } else {
+            $maxlength = '';
+        }
         $fieldtypeoption = "<tr>\n"
         ."<th>". $TEXT['WIDTH'] .":</th>\n"
         ."<td><input type='text' name='width' value='$cols'"
@@ -185,6 +190,11 @@ switch ($type) {
         ."<th>". $LANG['backend']['TXT_DEFAULT'] .":</th>\n"
         ."<td><textarea name='value' cols='50' rows='5'"
         ." style='width: 98%; height: 100px;'>". $form['value'] ."</textarea></td>\n"
+        ."</tr>\n"
+        ."<tr>\n"
+        ."<th>". $TEXT['LENGTH'] .":</th>\n"
+        ."<td><input type='text' name='maxlength' value='". $maxlength 
+        ."' style='width: 98%;' maxlength='3' /></td>\n"
         ."</tr>\n";
         break;
     case 'conditional': // get all fields
@@ -398,6 +408,22 @@ if( $type != 'heading'
         $fieldtypeoption .= '<td><textarea name="help"  cols="50" rows="5"'
             .' style="width: 98%; height: 100px;">'
             . $form['help'] ."</textarea></td>\n</tr>\n";
+
+
+        // obtain field loop from the database to check if we need the template at all
+        $table = TP_MPFORM.'settings';
+        $sql = "SELECT `field_loop`"
+             . " FROM `$table`"
+             . " WHERE `section_id` = '$section_id'";
+        $sql_result = $database->query($sql);
+        $settings = $sql_result->fetchRow();
+        if(preg_match('/{TEMPLATE}/',$settings['field_loop'])){ 
+            $fieldtypeoption .= "<tr>\n<th>". $TEXT['FIELD'].' '.$TEXT['TEMPLATE'] .":</th>\n";
+            $fieldtypeoption .= '<td><textarea name="template" cols="50" rows="5" maxlength="250"'
+                .' style="width: 98%; height: 100px;">'
+                . $form['template'] ."</textarea><br />"
+                . "<small>".$LANG['backend']['des_field_template']."</small></td>\n</tr>\n";
+        }            
 }
 
 $tpl->set_var('VAL_TYPE_OPTIONS', $fieldtypeoption);

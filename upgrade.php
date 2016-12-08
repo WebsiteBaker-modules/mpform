@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.1
+ * @version             1.3.2
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -127,6 +127,32 @@ if (isset($settings['radio_html'])){
         echo $database->get_error().'<br />';
     } else {
         echo "Removed unnecessary fields successfully<br />";
+    }
+}
+
+
+
+// adding fields new in version 1.3.2
+//get fields table to see what needs to be created
+$fieldstable
+    = $database->query(
+        "SELECT *"
+        . " FROM  `".TP_MPFORM."fields`"
+    );
+$fields = $fieldstable->fetchRow();
+
+
+// If not already there, add new fields to the existing fields table
+echo'<span class="good"><b>Adding new fields to the fields table</b></span><br />';
+
+if (!isset($fields['success_text'])){
+    $qs = "ALTER TABLE `".TP_MPFORM."fields`"
+        . " ADD `template` VARCHAR(255) NOT NULL DEFAULT '' AFTER `extra`";
+    $database->query($qs);
+    if($database->is_error()) {
+        echo $database->get_error().'<br />';
+    } else {
+        echo "Added new field `template` successfully<br />";
     }
 }
 

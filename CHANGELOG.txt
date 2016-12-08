@@ -4,10 +4,22 @@ mpForm wbCMS Content Module
 MODULE VERSION HISTORY 
 ======================
 
-		*** 1.3.1.1 (Dietrich Roland Pehlke: 14-Nov-2016) ***
-		- Bugfix for deleting fields in backend
-		- Set version up to 1.3.1.1 
    ------------------------------------------------------------------------------------------------------------------------ 
+        *** 1.3.2 (Martin Hecht: 08-Dec-2016) ***
+        fix language files (thanks to florian for reporting)
+        merge Bugfix for deleting fields in backend (Dietrich Roland Pehlke: 14-Nov-2016)
+        added maxlength option for textareas (thanks to alexx for suggesting)
+        add place holder {EMAIL} within mail templates (thanks to John for suggesting)
+        introduce field templates to locally override the field loop if desired
+        support mod_opf_Email as a replacement of the classical email output filter
+        updated documentation in a few places and the hints in the backend
+        highlight missing required radio/checkbox fields (thanks to alexx for reporting)
+        keep uploaded files when returning to paintform (thanks to alexx for suggesting)
+        correctly enclose  body in tags in html mails (thanks to astrid for reporting)
+        add more css classes for more styling flexibility (gottfried, florian)
+        insert newlines in xml export for better readability (request by gottfried)
+        insert field number in backend overview (thanks to gottfried for suggesting)
+
         *** 1.3.1 (Martin Hecht: 20-Oct-2016) ***
         add export for results table
         introduce constants.user.php and move the defaults for the field loop there

@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.1
+ * @version             1.3.2
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -45,6 +45,7 @@ require_once(dirname(__FILE__).'/constants.php');
         . " `required` INT NOT NULL DEFAULT '0' ,"
         . " `value` TEXT NOT NULL ,"
         . " `extra` TEXT NOT NULL ,"
+        . " `template` VARCHAR(255) NOT NULL DEFAULT '' ,"
         . " `help` TEXT NULL ,"
         . " PRIMARY KEY ( `field_id` ) "
         . " )";

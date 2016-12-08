@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.1
+ * @version             1.3.2
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -91,6 +91,7 @@ if($admin->get_post('title') == '' OR $admin->get_post('type') == '') {
 } else {
     $title  = str_replace(array("[[", "]]"), '', $admin->get_post_escaped('title'));
     $type = str_replace(array("[[", "]]"), '', $admin->get_post_escaped('type'));
+    $template = str_replace(array("[[", "]]"), '', $admin->get_post_escaped('template'));
     if (isset($_POST['required'])) {
         $required = $admin->get_post_escaped('required');
     } else {
@@ -131,7 +132,8 @@ $database->query(
         . " SET title = '$title',"
         . " type = '$type',"
         . " required = '$required',"
-        . " help = '$help'"
+        . " help = '$help',"
+        . " template = '$template'"
         . " WHERE field_id = '$field_id'");
 if($database->is_error()) {
     $admin->print_header();

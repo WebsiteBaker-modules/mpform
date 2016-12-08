@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.1
+ * @version             1.3.2
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -137,4 +137,4 @@ while ($r=$q->fetchRow()) {
 
 header("Content-Type: text/plain");
 header("Content-Disposition: attachment; filename=results_$section_id.csv");
-foreach ($lines as $l) echo "$l;\n";
+foreach ($lines as $l) echo "$l;\r\n";

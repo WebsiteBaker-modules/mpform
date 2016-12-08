@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.1
+ * @version             1.3.2
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -120,7 +120,9 @@ if ($results && $row = $results->fetchRow()) {
         $admin->print_footer();
         exit;
     } else {
-        $lines[] = "<export_section>    \t<module>    \t\t<name>".$row['module']."</name>";
+        $lines[] = "<export_section>";
+        $lines[] = "\t<module>";
+        $lines[] = "\t\t<name>".$row['module']."</name>";
         $sql = "SELECT * FROM ".TABLE_PREFIX ."addons where directory = '".$row['module']."'";
         $results = $database->query($sql);
         if ($results && $row2 = $results->fetchRow()) {
@@ -132,7 +134,7 @@ if ($results && $row = $results->fetchRow()) {
             $lines[] = "\t\t<warning><![CDATA[". $warn_modules[$row['module']] ."]]></warning>";
         }
         */
-        $lines[] = "\t</module>    ";
+        $lines[] = "\t</module>";
 
         $sql = "SHOW TABLES";
         $result = $database->query($sql);
@@ -154,12 +156,11 @@ if ($results && $row = $results->fetchRow()) {
                 while ($results2 && $row2 = $results2->fetchRow()) {
                     if (!$inside_tab) {
                         $tn = substr($row[0], strlen(TABLE_PREFIX));
-                        $lines[] 
-                            = "<export_section_table>    \t\t"
-                            . "<tablename>$tn</tablename>";
+                        $lines[] = "\t<export_section_table>";
+                        $lines[] = "\t\t<tablename>$tn</tablename>";
                         $inside_tab = true;
                     }
-                    $lines[] = "\t<export_section_row>";
+                    $lines[] = "\t\t<export_section_row>";
                     $i = 0;
                     foreach ($row2 as $k => $v) {
                         $i++;
@@ -167,25 +168,25 @@ if ($results && $row = $results->fetchRow()) {
                             if ($i % 2 == 0) {
                                 $cv = addslashes($v);
                                 $lines[] 
-                                    = "\t\t<export_section_field>"
+                                    = "\t\t\t<export_section_field>"
                                     . "<fieldn>$k</fieldn>"
                                     . "<fieldv><![CDATA[" .$cv. "]]></fieldv>"
                                     . "</export_section_field>";
                             }
                         }
                     }
-                    $lines[] = "\t</export_section_row>";
+                    $lines[] = "\t\t</export_section_row>";
                 }
                 if ($inside_tab) {
-                    $lines[] = "</export_section_table>    ";
+                    $lines[] = "\t</export_section_table>";
                     $inside_tab = false;
                 }
             }
         }    
 
-        $lines[] = "</export_section>    ";
+        $lines[] = "</export_section>";
     }
 }
 header("Content-Type: text/plain");
 header("Content-Disposition: attachment; filename=section_$section_id.xml");
-foreach ($lines as $l) echo "$l";
+foreach ($lines as $l) echo "$l\r\n";

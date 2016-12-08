@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.1
+ * @version             1.3.2
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -228,7 +228,7 @@ if($num_fields > 0) {
                 'MOVE_DOWN_STYLE'    => (($pos != $num_fields) ? '' : 'style="display:none"'),
                 // Alternate row color (even/odd zebra style):                
                 'ROW_CLASS'          => $pos %2  ? 'even' : 'odd', 
-                'field_field_title'  => $field['title'],
+                'field_field_title'  => $field['title'].' (ID: '.$field['field_id'].')',
                 'field_title'        => $field['title'],
                 'type_field'         => $rt,
                 'entrytype'          => $entrytype,        

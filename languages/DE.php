@@ -7,7 +7,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.1
+ * @version             1.3.2
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -115,7 +115,9 @@ $LANG['backend'] = array(
                                    . '&nbsp; {IP} - die IP-Adresse des Absenders<br /> '
                                    . '&nbsp; {DATE} - Datum und Uhrzeit<br />'
                                    . '&nbsp; {USER} - Name des '
-                                   . 'angemeldeten Benutzers<br />',
+                                   . 'angemeldeten Benutzers<br />'
+                                   . '&nbsp; {EMAIL} - eingegebene Email oder die '
+                                   . 'des angemeldeten Benutzers<br />',
     'des_success_email_text'      => 'Inhalt der Best&auml;tigungs-email  '
                                    . 'an den Absender',
     'des_email_text'              => 'Inhalt der email an den Sitebetreiber',
@@ -151,7 +153,23 @@ $LANG['backend'] = array(
                                    . 'Javascript erforderlich<br /> '
                                    . '&nbsp; {HELPTXT} - Hilfetext immer sichtbar<br /> '
                                    . '&nbsp; {ERRORTEXT} - Fehlertext  '
-                                   . '(nur bei bestimmten Feldtypen)<br />',
+                                   . '(nur bei bestimmten Feldtypen)<br /> '
+                                   . '&nbsp; {TEMPLATE} - Inhalt des '
+                                   . 'Feldtemplate f&uuml;r das jeweilige Feld<br />',
+    'des_field_template'          => 'dies wird in der Feldschleife f&uuml;r den Platzhalter {TEMPLATE} '
+                                   . 'eingesetzt, folgende Platzhalter sind m&ouml;glich:<br /> '
+                                   . '&nbsp; {CLASSES} - css-Klasse  '
+                                   . '(abh&auml;ngig von Feldtyp und Fehlerstatus)<br />'
+                                   . '&nbsp; {TITLE} - Bezeichnung des  '
+                                   . 'Formularfeldes<br /> '
+                                   . '&nbsp; {FIELD} - Das Formularfeld<br /> '
+                                   . '&nbsp; {REQUIRED} - Markierung f&uuml;r '
+                                   . 'Pflichtfelder<br /> '
+                                   . '&nbsp; {HELP} - Hilfetext verdeckt,  '
+                                   . 'Javascript erforderlich<br /> '
+                                   . '&nbsp; {HELPTXT} - Hilfetext immer sichtbar<br /> '
+                                   . '&nbsp; {ERRORTEXT} - Fehlertext  '
+                                   . '(nur bei bestimmten Feldtypen)<br />',                                   
     'des_footer'                  => 'Folgender Platzhalter ist m&ouml;glich:<br /> '
                                    . '&nbsp; {SUBMIT} - Abschicken-Button',
     'TXT_MODIFY_FIELD'            => 'Feld (ID: %s) bearbeiten',
@@ -255,14 +273,14 @@ $LANG['frontend'] = array(
                                    . 'erlaubt sind nur %d Byte!',
     'err_partial_upload'         => 'Nur ein Teil der Datei wurde hochgeladen!',
     'err_no_upload'              => 'Die Datei wurde nicht hochgeladen!',
-    'err_upload'                 => "Fehler beim Hochladen der Datei:  '
-                                   . '%s (%s), bitte versuchen Sie es nochmals!",
-    'select'                     => "Bitte ausw&auml;hlen...",
-    'select_recip'               => "Sie m&uuml;ssen einen Empf&auml;nger  '
-                                   . 'f&uuml;r das Formular ausw&auml;hlen",
-    'REQUIRED_FIELDS'            => "Bitte die rot markierten Angaben  '
-                                   . 'erg&auml;nzen bzw. korrigieren!",
-    'INCORRECT_CAPTCHA'          => "Die eingegebene Pr&uuml;fziffer  '
-                                   . 'ist nicht korrekt.",
-    'VERIFICATION'               => "Pr&uuml;fcode (SPAM-Schutz)"
+    'err_upload'                 => 'Fehler beim Hochladen der Datei:  '
+                                   . '%s (%s), bitte versuchen Sie es nochmals!',
+    'select'                     => 'Bitte ausw&auml;hlen...',
+    'select_recip'               => 'Sie m&uuml;ssen einen Empf&auml;nger  '
+                                   . 'f&uuml;r das Formular ausw&auml;hlen',
+    'REQUIRED_FIELDS'            => 'Bitte die rot markierten Angaben  '
+                                   . 'erg&auml;nzen bzw. korrigieren!',
+    'INCORRECT_CAPTCHA'          => 'Die eingegebene Pr&uuml;fziffer  '
+                                   . 'ist nicht korrekt.',
+    'VERIFICATION'               => 'Pr&uuml;fcode (SPAM-Schutz)'
 );

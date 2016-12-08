@@ -7,7 +7,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.1
+ * @version             1.3.2
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -107,7 +107,8 @@ $LANG['backend'] = array(
                                    . '&nbsp; {IP} - the IP address of the sender<br /> '
                                    . '&nbsp; {DATE} - date and time<br /> '
                                    . '&nbsp; {USER} - name of the logged on user<br />
-    ',
+                                   . '&nbsp; {EMAIL} - Email entered in the form or '
+                                   . 'the one of the logged on user<br />',
     'des_success_email_text'      => 'Content of the confirmation email to the sender',
     'des_email_text'              => 'Content of the email to the site owner',
     'fieldset_start'              => 'Fieldset (start)',
@@ -140,7 +141,21 @@ $LANG['backend'] = array(
                                    . 'requires Javascript<br /> '
                                    . '&nbsp; {HELPTXT} - help text always visible<br /> '
                                    . '&nbsp; {ERRORTEXT} - error text  '
-                                   . '(only for certain field types)<br />',
+                                   . '(only for certain field types)<br />'
+                                   . '&nbsp; {TEMPLATE} - content of the field template '
+                                   . 'for the current field<br />',
+    'des_field_template'          => 'in the field loop this is inserted for the place holder {TEMPLATE}. '
+                                   . 'The following place holders are possible:<br /> '
+                                   . '&nbsp; {CLASSES} - css class  '
+                                   . '(dependent from field type and error status)<br /> '
+                                   . '&nbsp; {TITLE} - title of the form field<br /> '
+                                   . '&nbsp; {FIELD} - the field itself<br /> '
+                                   . '&nbsp; {REQUIRED} - mark for mandatory fields<br /> '
+                                   . '&nbsp; {HELP} - hidden help text,  '
+                                   . 'requires Javascript<br /> '
+                                   . '&nbsp; {HELPTXT} - help text always visible<br /> '
+                                   . '&nbsp; {ERRORTEXT} - error text  '
+                                   . '(only for certain field types)<br />',                                   
     'des_footer'                  => 'The following place holder is possible:<br /> '
                                    . '&nbsp; {SUBMIT} - Submit button',
     'TXT_MODIFY_FIELD'            => 'Edit Field (ID: %s)',
@@ -222,8 +237,8 @@ $LANG['backend_adv'] = array(
 
 // Text outputs for the frontend
 $LANG['frontend'] = array(
-    'MAX_FILESIZE'                => "Maximum filesize: %d Kilobyte<br /> '
-                                   . 'Allowed file types: %s",
+    'MAX_FILESIZE'                => 'Maximum filesize: %d Kilobyte<br /> '
+                                   . 'Allowed file types: %s',
     'integer_error'               => 'Integer numbers must be figures only',
     'decimal_error'               => 'Please enter a valid decimal number',
     'err_too_large'               => 'File size is %d byte,  '
@@ -236,10 +251,10 @@ $LANG['frontend'] = array(
                                    . '%s (%s), please try again!',
     'select'                      => "Please select...",
     'select_recip'                => "You need to select a recipient for the form",
-    'REQUIRED_FIELDS'             => "Please complete or correct the fields  '
-                                   . 'in red color!",
-    'INCORRECT_CAPTCHA'           => "The verification number  '
+    'REQUIRED_FIELDS'             => 'Please complete or correct the fields  '
+                                   . 'in red color!',
+    'INCORRECT_CAPTCHA'           => 'The verification number  '
                                    . '(also known as Captcha)  '
-                                   . 'that you entered is incorrect.",
+                                   . 'that you entered is incorrect.',
     'VERIFICATION'                => "Verification code (SPAM protection)"
 );

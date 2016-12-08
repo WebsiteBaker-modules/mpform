@@ -7,7 +7,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.1
+ * @version             1.3.2
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -110,7 +110,9 @@ $LANG['backend'] = array(
                                    . 'de pagina waarvandaan het formulier is '
                                    . ' opgeroepen<br /> '
                                    . '&nbsp; {IP} - het IP-adres van de afzender<br />'
-                                   . '&nbsp; {DATE} - datum en tijd<br />',
+                                   . '&nbsp; {DATE} - datum en tijd<br />'
+                                   . '&nbsp; {USER} - name of the logged on user<br />
+                                   . '&nbsp; {EMAIL} - Email entered in the form or '
     'des_success_email_text'      => 'Inhoud van de bevestigingsmail aan de afzender',
     'des_email_text'              => 'Inhoud van de e-mail aan de site-eigenaar',
     'fieldset_start'              => 'Veldset (start)',
@@ -144,7 +146,23 @@ $LANG['backend'] = array(
                                    . '(vereist Javascript om te tonen)<br /> '
                                    . '&nbsp; {HELPTXT} - altijd zichtbare helptekst<br /> '
                                    . '&nbsp; {ERRORTEXT} - fouttekst  '
-                                   . '(alleen voor bepaalde veldtypen)<br />',
+                                   . '(alleen voor bepaalde veldtypen)<br />'
+                                   . '&nbsp; {TEMPLATE} - inhoud van het veld sjabloon '
+                                   . 'voor het huidige veld<br />',
+    'des_field_template'          => 'in het veld lus wordt deze geplaatst is voor '
+                                   . 'de plaats houder {TEMPLATE}. '
+                                   . 'De volgende codes zijn mogelijk:<br />'
+                                   . '&nbsp; {CLASSES} - CSS-class (afhankelijk '
+                                   . 'van het formulierveld en foutstatus)<br />'
+                                   . '&nbsp; {TITLE} - naam van het formulierveld<br />'
+                                   . '&nbsp; {FIELD} - het formulierveld zelf<br />'
+                                   . '&nbsp; {REQUIRED} - markering voor  '
+                                   . 'verplichte velden<br /> '
+                                   . '&nbsp; {HELP} - initieel verborgen helptekst '
+                                   . '(vereist Javascript om te tonen)<br /> '
+                                   . '&nbsp; {HELPTXT} - altijd zichtbare helptekst<br /> '
+                                   . '&nbsp; {ERRORTEXT} - fouttekst  '
+                                   . '(alleen voor bepaalde veldtypen)<br />',                                   
     'des_footer'                  => 'De volgende code is mogelijk:<br /> '
                                    . '&nbsp; {SUBMIT} - Verzendknop',
     'TXT_MODIFY_FIELD'            => 'Bewerken veld (ID: %s)',
@@ -230,8 +248,8 @@ $LANG['backend_adv'] = array(
 $LANG['frontend'] = array(
     'integer_error'               => 'Cijfervelden kunnen alleen cijfers bevatten.',
     'decimal_error'               => 'Geef een juist decimaal nummer',
-    'MAX_FILESIZE'                => "Max. bestandsgrootte: %d Kilobyte<br /> '
-                                   . 'Toegestane bestandstypen: %s",
+    'MAX_FILESIZE'                => 'Max. bestandsgrootte: %d Kilobyte<br /> '
+                                   . 'Toegestane bestandstypen: %s',
     'err_too_large'               => 'Bestandsgrootte is groter dan de max.  '
                                    . 'grootte van %d bytes!',
     'err_too_large2'              => 'Bestand is te groot, max. %d byte  '
@@ -241,12 +259,12 @@ $LANG['frontend'] = array(
     'err_upload'                  => 'Er is een fout opgetreden bij uploaden  '
                                    . 'van bestand %s (%s). Probeer opnieuw svp!',
     'select'                      => "Maak een keuze...",
-    'select_recip'                => "U dient een ontvanger voor het  '
-                                   . 'formulier te kiezen!",
-    'REQUIRED_FIELDS'             => "Vul de rood gemarkeerde velden  '
-                                   . 'alsnog of juist in!",
-    'INCORRECT_CAPTCHA'           => "Het verificatienummer dat is ingevuld  '
-                                   . 'is onjuist.",
+    'select_recip'                => 'U dient een ontvanger voor het  '
+                                   . 'formulier te kiezen!',
+    'REQUIRED_FIELDS'             => 'Vul de rood gemarkeerde velden  '
+                                   . 'alsnog of juist in!',
+    'INCORRECT_CAPTCHA'           => 'Het verificatienummer dat is ingevuld  '
+                                   . 'is onjuist.',
     'VERIFICATION'                => "Verification code (SPAM protection)"
 );
 

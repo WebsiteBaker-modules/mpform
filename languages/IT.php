@@ -7,7 +7,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.1
+ * @version             1.3.2
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -107,7 +107,9 @@ $LANG['backend'] = array(
                                    . 'nella pagina da cui il modulo &eacute; stato chiamato <br /> '
                                    . '&nbsp; {IP} - l&apos;indirizzo IP del mittente<br /> '
                                    . '&nbsp; {DATE} - la data e l&apos;ora<br /> '
-                                   . '&nbsp; {USER} - nome del connesso utente<br />',
+                                   . '&nbsp; {USER} - nome del connesso utente<br />
+                                   . '&nbsp; {EMAIL} - Email inserito oppure quella del '
+                                   . 'connesso utente<br />'',
     'des_success_email_text'      => 'Contenuto della e-mail di conferma al mittente',
     'des_email_text'              => 'Contenuto del messaggio al proprietario del sito',
     'fieldset_start'              => 'Fieldset (start)',
@@ -140,7 +142,22 @@ $LANG['backend'] = array(
                                    . 'Richiede JavaScript <br />'
                                    . '&nbsp; {HELPTXT} - testo della guida sempre visibile <br /> '
                                    . '&nbsp; {ERRORTEXT} - testo di errore '
-                                   . '(Solo per alcuni tipi di campo) <br />',
+                                   . '(Solo per alcuni tipi di campo) <br />'
+                                   . '&nbsp; {TEMPLATE} - contenuto del modello di campo per '
+                                   . 'il campo corrente<br />',
+    'des_field_template'          => 'nel ciclo campo questo &eacute; inserito per il modello '
+                                   . 'segnaposto {TEMPLATE}. '
+                                   . 'I seguenti segnaposto sono possibili: <br />'
+                                   . '&nbsp; {CLASSES} - classe css  '
+                                   . '(Dipende dal tipo di campo e lo stato di errore) <br />'
+                                   . '&nbsp; {TITLE} - titolo del campo modulo <br /> '
+                                   . '&nbsp; {FIELD} - il campo stesso <br /> '
+                                   . '&nbsp; {REQUIRED} - marchio per campi obbligatori <br /> '
+                                   . '&nbsp; {HELP} - nascosto testo di aiuto, '
+                                   . 'Richiede JavaScript <br />'
+                                   . '&nbsp; {HELPTXT} - testo della guida sempre visibile <br /> '
+                                   . '&nbsp; {ERRORTEXT} - testo di errore '
+                                   . '(Solo per alcuni tipi di campo) <br />',                                   
     'des_footer'                  => 'Il seguente segnaposto &eacute; possibile: <br /> '
                                    . '&nbsp; {SUBMIT} - pulsante Submit',
     'TXT_MODIFY_FIELD'            => 'Modifica campo (ID: %s)',
@@ -227,8 +244,8 @@ $LANG['backend_adv'] = array(
 
 // Text outputs for the frontend
 $LANG['frontend'] = array(
-    'MAX_FILESIZE'                => "Massima dimensione:% d Kilobyte <br /> '
-                                   . 'Tipi di file consentiti: %s",
+    'MAX_FILESIZE'                => 'Massima dimensione:% d Kilobyte <br /> '
+                                   . 'Tipi di file consentiti: %s',
     'integer_error'               => 'numeri interi devono essere figure solo',
     'decimal_error'               => 'Si prega di inserire un numero decimale valida',
     'err_too_large'               => 'dimensione del file &eacute; %d byte,  '
@@ -241,11 +258,11 @@ $LANG['frontend'] = array(
                                    . '%s (%s), si prega di riprovare!',
     'select'                      => "Seleziona ...",
     'select_recip'                => "&Eacute; necessario selezionare un destinatario per la forma",
-    'REQUIRED_FIELDS'             => "Si prega di completare o correggere i campi  '
-                                   . 'in colore rosso!",
-    'INCORRECT_CAPTCHA'           => "Il numero di verifica '
+    'REQUIRED_FIELDS'             => 'Si prega di completare o correggere i campi  '
+                                   . 'in colore rosso!',
+    'INCORRECT_CAPTCHA'           => 'Il numero di verifica '
                                    . '(Noto anche come Captcha) '
-                                   . 'che hai inserito non &eacute; corretta.",
+                                   . 'che hai inserito non &eacute; corretta.',
     'VERIFICATION'                => "Codice di verifica (antispam)"
         
 );

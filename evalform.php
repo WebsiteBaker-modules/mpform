@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.1
+ * @version             1.3.2
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -168,7 +168,8 @@ if (!function_exists('mpform_mailx')) {
 
         // define information to send out
         $myMail->Subject = $subject;                    // SUBJECT
-        $myMail->Body = $htmlmessage;                   // CONTENT (HTML)
+        $myMail->Body = '<html><head></head><body>'
+                      .        $htmlmessage.'</body></html>';  // CONTENT (HTML)
         $myMail->AltBody = $plaintext;                  // CONTENT (PLAINTEXT)
 
         if (is_array($file_attached)) {
@@ -209,10 +210,20 @@ if (!function_exists('eval_form')) {
                 $filter_settings['email_filter'] = 0;
             }
         } else {
-            // no output filter used, define default settings
-            $filter_settings['email_filter'] = 0;
-        }
+            if(class_exists('Settings') && defined('WBCE_VERSION')){
+                $filter_settings = array(
+                    'sys_rel'         => 0,
+                    'email_filter'    => 0,
+                    'mailto_filter'   => 1,
+                    'at_replacement'  => Settings::Get('opf_at_replacement', '(at)') ,
+                    'dot_replacement' => Settings::Get('opf_dot_replacement', '(dot)')
+                 );
 
+            } else {
+                // no output filter used, define default settings
+                $filter_settings['email_filter'] = 0;
+            }
+        }
 
         $files_to_attach = array();
         $upload_filename = '';
@@ -614,6 +625,10 @@ if (!function_exists('eval_form')) {
                         }
                     } elseif($field['type'] == 'filename') {
                         $err_txt[$field_id] = "";
+                        $tmp_html_user = "";
+                        $tmp_html_site = "";
+                        $tmp_filenames = "";
+                        $tmp_files_to_attach = array();
                         // locally we use a copy of max_file_size 
                         $tmp_max_file_size = $max_file_size;
                         $file_counter=0;
@@ -677,7 +692,7 @@ if (!function_exists('eval_form')) {
                                                . $newfilename; 
 
                                             if ($attach_file == 1) {
-                                                $files_to_attach[
+                                                $tmp_files_to_attach[
                                                     WB_PATH
                                                     . $upload_files_folder
                                                     . "/"
@@ -701,24 +716,46 @@ if (!function_exists('eval_form')) {
                                             // displaying  file size in KB
                                             $fs = sprintf("%.1f", $fs / 1024);  
 
-                                            $html_data_user 
+                                            $tmp_html_user 
                                                 .= str_replace(
                                                     array('{TITLE}', '{DATA}'), 
                                                     array($field['title'], "$filename ($fs KB)"), 
                                                     $short_html
                                                 );
-                                            $html_data_site 
+                                            $tmp_html_site 
                                                 .= str_replace(
                                                     array('{TITLE}', '{DATA}', '{SIZE}'), 
                                                     array($field['title'], $file_url, $fs), 
                                                     $uploadfile_html
                                                 );
+                                            $tmp_filenames .= "$filename ($fs KB) ";
                                         }
                                     }
                                 }
                             }
-                        } elseif ($field['required']==1) {
-                            $fer[]=$field_id;
+                            if($file_counter>0){
+                                $_SESSION['mpf']['datafield'.$field_id]
+                                    = array(
+                                        'user' => $tmp_html_user,
+                                        'site' => $tmp_html_site,
+                                        'files' => $tmp_files_to_attach,
+                                        'filenames' => $tmp_filenames
+                                    );                        
+                                $html_data_user .= $tmp_html_user;
+                                $html_data_site .= $tmp_html_site;
+                                $files_to_attach = array_merge($files_to_attach, $tmp_files_to_attach);
+                            }
+                        } 
+                        if ($file_counter==0) {
+                            if(isset($_SESSION['mpf']['datafield'.$field_id]['user'])) 
+                                $html_data_user .= $_SESSION['mpf']['datafield'.$field_id]['user'];
+                            if(isset($_SESSION['mpf']['datafield'.$field_id]['site'])) 
+                                $html_data_site .= $_SESSION['mpf']['datafield'.$field_id]['site'];
+                            $files_to_attach = array_merge($files_to_attach, $tmp_files_to_attach);
+                            if ( ($field['required']==1)
+                                 && ( (!isset($_SESSION['mpf']['datafield'.$field_id]['user']))
+                                    ||(!isset($_SESSION['mpf']['datafield'.$field_id]['site'])) )) 
+                                $fer[]=$field_id;
                         }
                         // assumption: $_FILES is in the same order as filenames 
                         // in $[field] then, we can shift it so that the next time 
@@ -799,8 +836,8 @@ if (!function_exists('eval_form')) {
                     // might consist of lists of addresses
                     $body 
                         = str_replace(
-                            array('{DATA}', '{REFERER}', '{IP}', '{DATE}', '{USER}'), 
-                            array($html_data_site, $_SESSION['href'], $ip, $now, $wb_user), 
+                            array('{DATA}', '{REFERER}', '{IP}', '{DATE}', '{USER}', '{EMAIL}'), 
+                            array($html_data_site, $_SESSION['href'], $ip, $now, $wb_user, $success_email_to), 
                             $email_text
                         );
                     $q = $database->query(
@@ -859,8 +896,8 @@ if (!function_exists('eval_form')) {
                 if ($success==true AND $success_email_to != '') {
                     $user_body 
                         = str_replace(
-                             array('{DATA}', '{REFERER}', '{IP}', '{DATE}', '{USER}'), 
-                             array($html_data_user, $_SESSION['href'], $ip, $now, $wb_user), 
+                             array('{DATA}', '{REFERER}', '{IP}', '{DATE}', '{USER}', '{EMAIL}'), 
+                             array($html_data_user, $_SESSION['href'], $ip, $now, $wb_user, $success_email_to), 
                              $success_email_text
                          );
                     if (
@@ -894,8 +931,8 @@ if (!function_exists('eval_form')) {
                     $started_when = $_SESSION['submitted_when'.$section_id];
                     $body 
                         = str_replace(
-                            array('{DATA}', '{REFERER}', '{IP}', '{DATE}', '{USER}'), 
-                            array($html_data_site, $_SESSION['href'], $ip, $now, $wb_user), 
+                            array('{DATA}', '{REFERER}', '{IP}', '{DATE}', '{USER}', '{EMAIL}'), 
+                            array($html_data_site, $_SESSION['href'], $ip, $now, $wb_user, $success_email_to), 
                             $submissions_text
                         );
                     $body = mpform_escape_string($body);
@@ -1079,8 +1116,8 @@ if (!function_exists('eval_form')) {
             if ($success == true) {
                 if ($success_page=='none') {
                     echo str_replace(
-                        array('{DATA}', '{REFERER}', '{IP}', '{DATE}', '{USER}'), 
-                        array($html_data_user, $_SESSION['href'], $ip, $now, $wb_user), 
+                        array('{DATA}', '{REFERER}', '{IP}', '{DATE}', '{USER}', '{EMAIL}'), 
+                        array($html_data_user, $_SESSION['href'], $ip, $now, $wb_user, $success_email_to), 
                         $success_text
                     );
                     // delete the referer page reference after it did its work:

@@ -140,7 +140,7 @@ div.mpform div.submitbox input {
 .mpform_error .mpform_field,
 .captcha_err  .mpform_title,
 .captcha_err  .mpform_field {
-    color: red;
+    color: red !important;
 }
 
 .mpform_field {
@@ -162,10 +162,15 @@ div.mpform div.submitbox input {
 .mpform_err_textarea,
 .mpform_err_text, 
 .mpform_err_radio, 
+.mpform_err_radio_label, 
 .mpform_err_select,
+.mpform_err_select_label,
+.mpform_err_checkbox,
+.mpform_err_checkbox_label,
+.captcha_err,
 .captcha_err input {
-    background-color:#F4A4A4; 
-    border: 1px solid red;
+    background-color:#F4A4A4 !important; 
+    border: 1px solid red !important;
 }
 
 div.mpform_missing {

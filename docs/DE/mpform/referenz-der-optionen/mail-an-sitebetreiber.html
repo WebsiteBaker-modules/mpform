@@ -113,12 +113,13 @@
        Adressen gesendet, die sich in den spitzen Klammern dahinter befinden.</p>
     </dd>
     <dt>Absenderadresse</dt>
-    <dd>Um nicht als SPAM eingestuft zu werden, m&uuml;ssen emails eine Absenderadresse enthalten. 
-       Im Prinzip sind sie selbst ja der Absender, denn die email an Sie oder Ihre Mitarbeiter 
-       stammt ja von ihrer eigenen Webseite. Sie k&ouml;nnen entweder eine feste email-Adresse 
+    <dd>Um nicht als SPAM eingestuft zu werden, m&uuml;ssen Emails eine Absenderadresse enthalten. 
+       Im Prinzip sind Sie selbst ja der Absender, denn die Email an Sie oder Ihre Mitarbeiter stammt 
+       ja von Ihrer eigenen Webseite. Sie k&ouml;nnen entweder eine <strong>feste email-Adresse</strong> 
        angeben (z.B. webformular@...) oder Sie fragen den Benutzer nach seiner email-Adresse 
        (mit einem Formularfeld des Typs <strong>E-Mail-Adresse</strong>) und verwenden diese 
-       als Absenderadresse.<br />
+       als Absenderadresse oder Sie w&auml;hlen <strong>E-Mail des angemeldeten Bennutzers</strong>
+       aus. <br />
     </dd>
     <dt>Antwortadresse</dt>
     <dd> Mit diesem Feld k&ouml;nnen Sie eine vom Absender abweichende Antwortadresse festlegen.
@@ -138,7 +139,11 @@
        die im Backend vergegeben wurde.     </dd>
     <dt>Text</dt>
     <dd>Das ist der eigentliche Inhalt der email. Die angegebenen Platzhalter werden mit den 
-       jeweiligen Inhalten ersetzt. {DATA} steht f&uuml;r alle eingegebenen Daten.<br />
+       jeweiligen Inhalten ersetzt. {DATA} steht f&uuml;r alle eingegebenen Daten.
+       {REFERER} gibt die Seite an, von der der Benutzer auf das Formular kam, {IP} ist die IP-Adresse,
+       von der der Benutzer auf das Formular zugegriffen hat, {DATE} das aktuelle Datum, 
+       {USER} wird mit dem Benutzernamen ausgef&uuml;llt, wenn der Benutzer angemeldet ist und {EMAIL}
+       ist die Absender-email-Adresse wie oben eingestellt. <br />
     </dd>
 </dl>
 <p><span style="color: rgb(255, 0, 0);">Achtung Fallstrick: 

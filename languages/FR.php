@@ -7,7 +7,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.1
+ * @version             1.3.2
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -129,7 +129,9 @@ $LANG['backend'] = array(
                                    . 'le formulaire<br /> '
                                    . '&nbsp; {DATE} - date et heure<br /> '
                                    . '&nbsp; {USER} - nom de l&apos;utilisateur '
-                                   . ' connect&eacute;<br />',
+                                   . ' connect&eacute;<br />
+                                   . '&nbsp; {EMAIL} - Email sais&eacute; ou cette de '
+                                   . 'l&apos;utilisateur connect&eacute;<br />',
     'des_success_email_text'      => 'Contenu de l&apos;email de confirmation '
                                    . 'envoy&eacute; &agrave; l&apos;internaute',
     'des_email_text'              => 'Contenu de l&apos;email envoy&eacute;  '
@@ -155,6 +157,23 @@ $LANG['backend'] = array(
     'ro_entry'                    => 'lecture seulement',
     'disabled_entry'              => 'd&eacute;sactiv&eacute;e',
     'des_field_loop'              => 'Vous pouvez utiliser les variables suivantes:<br /> '
+                                   . '&nbsp; {CLASSES} - classe css (selon le type de  '
+                                   . 'champ et l&apos;&eacute;tat d&apos;erreur)<br /> '
+                                   . '&nbsp; {TITLE} - titre du champ<br /> '
+                                   . '&nbsp; {FIELD} - contenu du champ<br /> '
+                                   . '&nbsp; {REQUIRED} - marqueur pour les  '
+                                   . 'champs obligatoires<br /> '
+                                   . '&nbsp; {HELP} - texte d&apos;aide cach&eacute;, '
+                                   . 'n&eacute;cessite Javascript<br /> '
+                                   . '&nbsp; {HELPTXT} - texte d&apos;aide  '
+                                   . 'visible en permanence<br /> '
+                                   . '&nbsp; {ERRORTEXT} - texte d&apos;erreur '
+                                   . '(seulement pour certains types de champs)<br />'
+                                   . '&nbsp; {TEMPLATE} - Contenu du mod&egrave;le de '
+                                   . 'champ pour le champ en cours <br />',                                   
+    'des_field_template'          => 'Dans la boucle de champ, elle est ins&eacute;r&eacute;e '
+                                   . 'pour le support de lieu {TEMPLATE}. '
+                                   . 'Vous pouvez utiliser les variables suivantes:<br /> '
                                    . '&nbsp; {CLASSES} - classe css (selon le type de  '
                                    . 'champ et l&apos;&eacute;tat d&apos;erreur)<br /> '
                                    . '&nbsp; {TITLE} - titre du champ<br /> '
@@ -267,8 +286,8 @@ $LANG['backend_adv'] = array(
 
 // Text outputs for the frontend
 $LANG['frontend'] = array(
-    'MAX_FILESIZE'                => "Taille maximum du fichier: %d Kilo-octets<br /> '
-                                   . 'Types de fichiers permis: %s",
+    'MAX_FILESIZE'                => 'Taille maximum du fichier: %d Kilo-octets<br /> '
+                                   . 'Types de fichiers permis: %s',
     'integer_error'               => 'Veuillez saisir des chiffres seulement pour  '
                                    . 'composer un nombre entier',
     'decimal_error'               => 'Veuillez saisir un nombre  '

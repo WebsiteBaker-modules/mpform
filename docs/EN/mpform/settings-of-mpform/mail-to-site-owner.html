@@ -111,18 +111,19 @@
        The real sender is you, because the email has been sent from your own web site. 
        You either can set a static address&nbsp; (e.b. web-form@...) or you ask the user 
        for his own email address (with a field of type <strong>E-Mail-Address</strong>) 
-       and use that one.
+       and use that one or you select <strong>E-Mail of the logged on user</strong>
+       <br />
     </dd>
     <dt>&quot;From&quot;&nbsp;name</dt>
     <dd>This field works along the lines of the previous. If you want to use the name of the user, 
       you need to use a Text filed (single line).<br />
     </dd>
     <dt>&quot;Reply To&quot;&nbsp;address</dt>
-    <dd>With this field you can specify an address for the &quot;reply-to&quot;-field wich differs
-      from the &quot;from&quot;-address. This field behaves exactly as the one for the 
+    <dd>With this field you can specify an address for the &quot;reply-to&quot;-field which differs
+      from the &quot;From&quot;-address. This field behaves exactly as the one for the 
       &quot;From&quot; address. If you insert an email address here, that one is used for the 
       &quot;reply-to&quot; field of the email. If you leave this field empty, the 
-      &quot;from&quot;-address is used instead. 
+      &quot;From&quot;-address is used instead. 
       <br />
     </dd>
     <dt>Subject</dt>
@@ -132,7 +133,10 @@
        subject defined in the backend. </dd>
     <dt>Text</dt>
     <dd>This is the real content of the email. Place holders will be replaced by the content. 
-       {DATA} stands for the entire user input.<br />
+       {DATA} stands for the entire user input.
+       {REFERER} contains the page from where the user has accessed the form, {DATE} is the current date, 
+       {USER} contains the user name in case the user is registered and logged into website baker
+       and {EMAIL} is the From address as it is adjusted above. <br />
     </dd>
 </dl>
 <p><span style="color: rgb(255, 0, 0);">Attention Pitfall: </span>

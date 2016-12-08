@@ -3,7 +3,18 @@
  * todo list for upcoming releases:
  * ================================
  *
- * currently, this list is empty. If you find bugs or if you would like to
- * propose a new feature which you consider useful, do not hesitate to contact me.
+ * (If you find bugs or if you would like to propose a new feature which you 
+ * consider useful, do not hesitate to contact me)
+ *
+ * split template into several parts (might be needed to meet some users requirements)
+ * and/or insert user-defined class into field like with template 
+ *
+ * requests by Astrid:
+ *
+ * 1.) Wenn im Formular mehrere Empf&auml;nger vorhanden sind und es ein Feld gibt, den jeweiligen Empf&auml;nger auszuw&auml;hlen, w&auml;re es super, wenn man bei der Antwortmail ebenfalls ausw&auml;hlen kann, dass die Antwortmail dann auch VON der ausgew&auml;hlten Empf&auml;ngeradresse versendet wird. Denn der Empf&auml;nger dieser Antwortmail wird evtl. durch einfaches Antworten auf diese Mail antworten wollen und landet dann nicht dort, wo er eigentlich landen wollte...
+ *
+ * 2.) Es w&auml;re ebenfalls toll, wenn der Absendername aus mehreren Feldern bestehen k&ouml;nnte. Ist immer doof, wenn man Nachname und Vorname als getrennte Felder definiert, f&uuml;r den Absender dann aber sich f&uuml;r eins der Felder entscheiden muss...
+ *
+ * 3.) Au&szlig;erdem w&auml;re es toll, wenn in die Betreffzeile der Mail an den Sitebetreiber auch eines oder mehrere der Felder mit integriert werden k&ouml;nnten. Das macht es dann dem Empf&auml;nger leichter, die eingehenden Mails zu sortieren.
  *
  */

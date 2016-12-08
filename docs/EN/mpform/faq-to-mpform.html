@@ -160,6 +160,22 @@
        Yes, just set the suffix to the string &quot;DISABLED&quot;, but be aware that export as csv file
        won&apos;t work, then.
     </dd>
+    <dt class="faq"><strong>Question</strong>: 
+       How can I modify the appearance of my form?
+    </dt>
+    <dd class="faq"><b>Antwort</b>:
+       As described in <a href="../../../docs/EN/mpform/table-or-div.html" >Table or div</a>
+       the field loop, which is executed to produce the output of the form, can be customized with quite
+       some flexibility. In the loop the place holder {CLASSES} which contains CSS classes can be used. 
+       Those classes may be configured in the frontend.css file in order to influence the appearance.
+       Since version 1.3.2 the place holder {TEMPLATE} may be used as well, and as soon as it is contained
+       in the field loop, an additional input appears when creating or modifying fields, which lets
+       you define what will be inserted instead of this place holder when rendering this particular field.
+       In this replacement string, again the same place holders are allowed as in the field loop itself.
+       Even without this template mechanism you can insert a few fields of type HTML, e.g. to force a
+       line break in floating layouts. In addition, the fields themselves contain additional classes now,
+       which allow a more flexible layout using CSS. 
+    </dd> 
 <!--
     <dt class="faq"><strong>Question</strong>: 
 

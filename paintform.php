@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.1
+ * @version             1.3.2
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -91,7 +91,7 @@ if (!function_exists('make_checkbox')) {
                . ' value="'.$v.'"'
                . ' checked="checked" />'
                . '<label for="'.$label_id.'"'
-               . 'class="'.MPFORM_CLASS_PREFIX.'checkbox_label">'
+               . 'class="'.$sErrClass.'checkbox_label">'
                . $vals[1]
                . '</label>'.$seperator.PHP_EOL; 
         } else {
@@ -102,7 +102,7 @@ if (!function_exists('make_checkbox')) {
             . ' name="field'.$field_id.'['.$idx.']"'
             . ' value="'.$v.'" />'
             . '<label for="'.$label_id.'"'
-            . ' class="'.MPFORM_CLASS_PREFIX.'checkbox_label">'
+            . ' class="'.$sErrClass.'checkbox_label">'
             . $vals[1]
             . '</label>'.$seperator.PHP_EOL; 
         }    
@@ -147,7 +147,7 @@ if (!function_exists('make_radio')) {
             . ' checked="checked" />'
             . '<label'
             . ' for="'.$label_id.'"'
-            . ' class="'.MPFORM_CLASS_PREFIX.'radio_label">'
+            . ' class="'.$sErrClass.'radio_label">'
             . $vals[1]
             . '</label>'.$seperator.PHP_EOL; 
         } else {
@@ -159,7 +159,7 @@ if (!function_exists('make_radio')) {
             . ' value="'.$v.'" />'
             . '<label'
             . ' for="'.$label_id.'" '
-            . 'class="'.MPFORM_CLASS_PREFIX.'radio_label">'
+            . 'class="'.$sErrClass.'radio_label">'
             .  $vals[1]
             . '</label>'.$seperator.PHP_EOL; 
         }
@@ -358,9 +358,11 @@ if (!function_exists('paint_form')) {
                 // Set field values
                 $iFID = $field['field_id'];
                 $value = $field['value'];
-                $classes = 'fid'.$iFID; 
-                $classes .= ' '.MPFORM_CLASS_PREFIX. $field['type'];
+                $classes = 'fid'.$iFID.' '.MPFORM_CLASS_PREFIX. $field['type'];
+                $field_classes = MPFORM_CLASS_PREFIX.'field_'.$iFID
+                            .' '.MPFORM_CLASS_PREFIX.'field_'.$field['type'];
                 //echo $field['extra'];
+
                 if ($field['extra'] == '') {
                     $maxlength = '';
                 } else {
@@ -423,8 +425,8 @@ if (!function_exists('paint_form')) {
                             . ' value="'
                             .(isset($_SESSION['mpf']['field'.$iFID])
                                 ? $_SESSION['mpf']['field'.$iFID]:$value).'" '
-                                . 'class="'.$sErrClass.'text" '
-                                . "$readonly />";
+                            . ' class="'.$field_classes.' '.$sErrClass.'text" '
+                            . "$readonly />";
                     break;
 
                     case 'hiddenfield': 
@@ -436,8 +438,8 @@ if (!function_exists('paint_form')) {
                             . ' value="'
                             .(isset($_SESSION['mpf']['field'.$iFID])
                                 ? $_SESSION['mpf']['field'.$iFID]:$value).'" '
-                                . 'class="'.$sErrClass.'text" '
-                                . "$readonly />";
+                            . ' class="'.$field_classes.' '.$sErrClass.'text" '
+                            . "$readonly />";
                         $aReplacements['{TITLE}'] = '';
                     break;
 
@@ -451,8 +453,8 @@ if (!function_exists('paint_form')) {
                             . ' value="'
                             .(isset($_SESSION['mpf']['field'.$iFID])
                                 ?$_SESSION['mpf']['field'.$iFID]:$value).'" '
-                                . 'class="'.$sErrClass.'text" '
-                                . "$readonly />";
+                            . ' class="'.$field_classes.' '.$sErrClass.'text" '
+                            . "$readonly />";
                     break;        
 
                     case 'integer_number': 
@@ -474,8 +476,8 @@ if (!function_exists('paint_form')) {
                             .' value="'
                             .(isset($_SESSION['mpf']['field'.$iFID])
                                 ?$_SESSION['mpf']['field'.$iFID]:$value).'"'
-                                . ' class="'.$sErrClass.'text" '
-                                . "$readonly />";
+                            . ' class="'.$field_classes.' '.$sErrClass.'text" '
+                            . "$readonly />";
                     break;
 
                     case 'decimal_number': 
@@ -498,8 +500,8 @@ if (!function_exists('paint_form')) {
                             . ' value="'
                             .(isset($_SESSION['mpf']['field'.$iFID])
                                 ?$_SESSION['mpf']['field'.$iFID]:$value).'"'
-                                . ' class="'.$sErrClass.'text" '
-                                . "$readonly />";
+                            . ' class="'.$field_classes.' '.$sErrClass.'text" '
+                            . "$readonly />";
                     break; 
 
                     case 'filename': 
@@ -545,7 +547,9 @@ if (!function_exists('paint_form')) {
                             . ' multiple="multiple"'
                             . ' id="field'.$iFID.'" '.$sMaxLength
                             . ' value="'.$sValue.'"'
-                            . ' class="'.$sErrClass.'text" />';
+                            . ' class="'.$field_classes.' '.$sErrClass.'text" />'
+                            . (isset($_SESSION['mpf']['datafield'.$iFID]['filenames'])?
+                                ($_SESSION['mpf']['datafield'.$iFID]['filenames']):'');
                         $first_MAX = false;
                     break; 
 
@@ -561,6 +565,11 @@ if (!function_exists('paint_form')) {
                         } else {
                             $rows = 5;
                         }
+                        if (isset($cr[2]) and is_numeric($cr[2])) {
+                            $maxlength = ' maxlength='.$cr[2];
+                        } else {
+                            $maxlength = '';
+                        }
                         $sContent 
                             = (isset($_SESSION['mpf']['field'.$iFID])
                                 ?$_SESSION['mpf']['field'.$iFID]
@@ -570,9 +579,10 @@ if (!function_exists('paint_form')) {
                             = '<textarea'
                                 . ' name="field'.$iFID.'"'
                                 . ' id="field'.$iFID.'"'
-                                . ' class="'.$sErrClass.'textarea"'
+                                . ' class="'.$field_classes.' '.$sErrClass.'textarea" '
                                 . ' cols="'.$cols.'"'
                                 . ' rows="'.$rows.'" '
+                                . $maxlength
                                 . $readonly
                                 . '>'
                                 . $sContent
@@ -608,7 +618,7 @@ if (!function_exists('paint_form')) {
                                  . ' name="field'.$iFID.'[]"'
                                  . ' id="field'.$iFID.'" '
                                  . $extras 
-                                 . ' class="'.$sErrClass.'select">'
+                                 . ' class="'.$field_classes.' '.$sErrClass.'select">'
                                  . implode($options)
                                  . '</select>';
                     break; 
@@ -640,7 +650,7 @@ if (!function_exists('paint_form')) {
                             = '<select'
                             . ' name="field'.$iFID.'[]"'
                             . ' id="field'.$iFID.'"'
-                            . ' class="'.$sErrClass.'select">';
+                            . ' class="'.$field_classes.' '.$sErrClass.'select">';
                         $aReplacements['{FIELD}'] .= implode($options);
                         $aReplacements['{FIELD}'] .= '</select>';
                     break; 
@@ -701,7 +711,7 @@ if (!function_exists('paint_form')) {
                                     ?$_SESSION['mpf']['field'.$iFID]
                                     :array()
                                 ), 
-                                $sErrClass, 
+                                $field_classes." ".$sErrClass, 
                                 $isnew, 
                                 $value_option_separator
                             );
@@ -730,7 +740,7 @@ if (!function_exists('paint_form')) {
                                     ?$_SESSION['mpf']['field'.$iFID]
                                     :''
                                 ), 
-                                $sErrClass, 
+                                $field_classes." ".$sErrClass, 
                                 $isnew, 
                                 $value_option_separator
                             );
@@ -756,8 +766,8 @@ if (!function_exists('paint_form')) {
                             ?$_SESSION['mpf']['field'.$iFID]
                             :'')
                         .'"'
-                        .$maxlength
-                        .' class="'.$sErrClass.'email" '
+                        . $maxlength
+                        . 'class="'.$field_classes.' '.$sErrClass.'email" '
                         ."$readonly />";       
                     break; 
 
@@ -780,7 +790,7 @@ if (!function_exists('paint_form')) {
                             . $maxlength
                             . ' value="'
                             . $sValue
-                            . '" class="'.$sErrClass.'date" />'
+                            . '" class="'.$field_classes.' '.$sErrClass.'date" />'                            
                             . '</td>'
                             . PHP_EOL
                             .'<td>'
@@ -830,6 +840,8 @@ if (!function_exists('paint_form')) {
                     }
                 }
 
+                $aReplacements['{TEMPLATE}'] = $field['template'];
+
                 if(($field['type'] == 'hiddenfield') && (!$bTableLayout)){
                     echo $aReplacements['{FIELD}'].PHP_EOL;
                 } else {
@@ -863,8 +875,9 @@ if (!function_exists('paint_form')) {
             } else {
                 $classes = 'captcha';
             }
-
+            
             $aReplacements = array (
+                '{TEMPLATE}'  => '',
                 '{FIELD_ID}'  => 'captcha',
                 '{TITLE}'     => $LANG['frontend']['VERIFICATION'],
                 '{REQUIRED}'  => '<span class="'.MPFORM_CLASS_PREFIX.'required">*</span>',
