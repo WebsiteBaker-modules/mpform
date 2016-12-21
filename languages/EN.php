@@ -7,7 +7,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.2
+ * @version             1.3.3
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -106,7 +106,7 @@ $LANG['backend'] = array(
                                    . 'the page from where the form has been called<br /> '
                                    . '&nbsp; {IP} - the IP address of the sender<br /> '
                                    . '&nbsp; {DATE} - date and time<br /> '
-                                   . '&nbsp; {USER} - name of the logged on user<br />
+                                   . '&nbsp; {USER} - name of the logged on user<br />'
                                    . '&nbsp; {EMAIL} - Email entered in the form or '
                                    . 'the one of the logged on user<br />',
     'des_success_email_text'      => 'Content of the confirmation email to the sender',
@@ -136,6 +136,7 @@ $LANG['backend'] = array(
                                    . '(dependent from field type and error status)<br /> '
                                    . '&nbsp; {TITLE} - title of the form field<br /> '
                                    . '&nbsp; {FIELD} - the field itself<br /> '
+                                   . '&nbsp; {FORMATTED_FIELD} - allows additional CSS classes<br /> '
                                    . '&nbsp; {REQUIRED} - mark for mandatory fields<br /> '
                                    . '&nbsp; {HELP} - hidden help text,  '
                                    . 'requires Javascript<br /> '
@@ -143,19 +144,23 @@ $LANG['backend'] = array(
                                    . '&nbsp; {ERRORTEXT} - error text  '
                                    . '(only for certain field types)<br />'
                                    . '&nbsp; {TEMPLATE} - content of the field template '
-                                   . 'for the current field<br />',
+                                   . 'for the current field, {TEMPLATE1} for the first '
+                                   . 'line, {TEMPLATE2} the second one...<br />',
     'des_field_template'          => 'in the field loop this is inserted for the place holder {TEMPLATE}. '
                                    . 'The following place holders are possible:<br /> '
                                    . '&nbsp; {CLASSES} - css class  '
                                    . '(dependent from field type and error status)<br /> '
                                    . '&nbsp; {TITLE} - title of the form field<br /> '
                                    . '&nbsp; {FIELD} - the field itself<br /> '
+                                   . '&nbsp; {FORMATTED_FIELD} - allows additional CSS classes<br /> '
                                    . '&nbsp; {REQUIRED} - mark for mandatory fields<br /> '
                                    . '&nbsp; {HELP} - hidden help text,  '
                                    . 'requires Javascript<br /> '
                                    . '&nbsp; {HELPTXT} - help text always visible<br /> '
                                    . '&nbsp; {ERRORTEXT} - error text  '
                                    . '(only for certain field types)<br />',                                   
+    'txt_extraclasses'            => 'CSS classes',
+    'des_extraclasses'            => 'these CSS classes are additionally applied inside of the field',
     'des_footer'                  => 'The following place holder is possible:<br /> '
                                    . '&nbsp; {SUBMIT} - Submit button',
     'TXT_MODIFY_FIELD'            => 'Edit Field (ID: %s)',

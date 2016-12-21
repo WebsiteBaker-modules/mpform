@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.2
+ * @version             1.3.3
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -234,7 +234,9 @@ if (!function_exists('paint_form')) {
             $aSettings              = $query_settings->fetchRow();
             $header                 = str_replace('{WB_URL}', WB_URL, $aSettings['header']);
             $field_loop             = $aSettings['field_loop'];
-            $footer                 = str_replace('{WB_URL}', WB_URL, $aSettings['footer']);
+            $footer                 = str_replace(array('{WB_URL}', '{SUBMIT}', '{SUBMIT_TEXT}'), 
+                                                      array(WB_URL, MPFORM_SUBMIT_BUTTON, $LANG['backend']['TXT_SUBMIT']), 
+                                                  $aSettings['footer']);
             $use_captcha            = $aSettings['use_captcha'];
             $is_following           = $aSettings['is_following'];
             $value_option_separator = $aSettings['value_option_separator'];
@@ -358,9 +360,16 @@ if (!function_exists('paint_form')) {
                 // Set field values
                 $iFID = $field['field_id'];
                 $value = $field['value'];
+                $extraclasses = $field['extraclasses'];
+                if(! (preg_match('/{FORMATTED_FIELD}/',$aSettings['field_loop']) ||
+                   ( preg_match('/{TEMPLATE/',$aSettings['field_loop'])
+                   && preg_match('/{FORMATTED_FIELD}/',$field['template'])) )) 
+                        $extraclasses = '';
+                if($extraclasses!='') $extraclasses.=' ';
                 $classes = 'fid'.$iFID.' '.MPFORM_CLASS_PREFIX. $field['type'];
-                $field_classes = MPFORM_CLASS_PREFIX.'field_'.$iFID
-                            .' '.MPFORM_CLASS_PREFIX.'field_'.$field['type'];
+                $field_classes = $extraclasses
+                               .MPFORM_CLASS_PREFIX.'field_'.$iFID.' '
+                               .MPFORM_CLASS_PREFIX.'field_'.$field['type'];
                 //echo $field['extra'];
 
                 if ($field['extra'] == '') {
@@ -384,6 +393,20 @@ if (!function_exists('paint_form')) {
 
                 $aReplacements = array();
 
+                // put the template in the first index of the replacements
+                $aReplacements['{TEMPLATE}'] = $field['template'];
+                $aReplacements['{TEMPLATE0}'] 
+                    = preg_replace(array("/\n/","/\r/"),'',$field['template']);
+                $tmp_tpl = explode("\n", $field['template']);
+                for($tpl_idx = 1; $tpl_idx < 10; $tpl_idx++){
+                    $aReplacements['{TEMPLATE'.$tpl_idx.'}'] = "";
+                }
+                $tpl_idx=1;
+                foreach ($tmp_tpl as $curr_idx){
+                    $aReplacements['{TEMPLATE'.$tpl_idx.'}'] = trim($curr_idx);
+                    $tpl_idx++;
+                }
+                
                 // FieldID        
                 $aReplacements['FIELD_ID'] = $iFID;
 
@@ -840,14 +863,14 @@ if (!function_exists('paint_form')) {
                     }
                 }
 
-                $aReplacements['{TEMPLATE}'] = $field['template'];
-
                 if(($field['type'] == 'hiddenfield') && (!$bTableLayout)){
                     echo $aReplacements['{FIELD}'].PHP_EOL;
                 } else {
                     if ($field['type'] != 'html') {
 
                         $aReplacements['{CLASSES}'] = $classes;
+                        if(isset($aReplacements['{FIELD}']))
+                            $aReplacements['{FORMATTED_FIELD}'] = $aReplacements['{FIELD}'];
                         $aReplacements['{ERRORTEXT}'] 
                             = (isset($aErrTxt[$iFID])) ? '<p>'.$aErrTxt[$iFID].'</p>' : '';
                         if($field['type'] != '') {
@@ -882,13 +905,16 @@ if (!function_exists('paint_form')) {
                 '{TITLE}'     => $LANG['frontend']['VERIFICATION'],
                 '{REQUIRED}'  => '<span class="'.MPFORM_CLASS_PREFIX.'required">*</span>',
                 '{FIELD}'     => "'; call_captcha('all', '', $iSID); echo '",
+                '{FORMATTED_FIELD}' => "'; call_captcha('all', '', $iSID); echo '",
                 '{HELP}'      => '',
                 '{HELPTXT}'   => '',
                 '{CLASSES}'   => $classes,
                 '{ERRORTEXT}' => (isset($aErrTxt['captcha'.$iSID])) 
                                ? $aErrTxt['captcha'.$iSID] : ''
             );
-
+            for($tpl_idx = 0; $tpl_idx < 10; $tpl_idx++){
+                $aReplacements['{TEMPLATE'.$tpl_idx.'}'] = "";
+            }
             $sReplacedLoopField 
                 = str_replace(
                     array_keys($aReplacements), 

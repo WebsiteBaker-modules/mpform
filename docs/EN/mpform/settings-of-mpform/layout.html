@@ -84,11 +84,15 @@
 <p><img src="../../../../docs/EN/images/OE2.png"  alt="" /></p>
 <p>When the form is prepared for submission to the user&apos;s browser, the programm goes through a loop 
    for each field and replaces the place holders set in <strong>Field Loop</strong> with the corresponding 
-   contents.</p>
+   contents. If the field loop contains the place holder {TEMPLATE}, an additional input field appears
+   in the backend when editing fields. In this input field you can specify the replacement for this place
+   holder for this particular field. If you use {TEMPLATE1}, {TEMPLATE2} etc. this refers to the respctive
+   line of that input field.</p>
 <p><strong>Header </strong>contains the html code which is printed before the first field.</p>
 <p><strong>Footer </strong>contains the html code which is printed after the last field.</p>
-<p>By default the form comes with a table layout with 3 columns. You can also choose to create 
-   the form without a table, but with &lt;div&gt; instead.</p>          </div>
+<p>By default the form comes with a div based layout. However, you can also choose to create 
+   the form with a table layout instead.</p>          
+</div>
 
 
 <!-- ************ Footer -->

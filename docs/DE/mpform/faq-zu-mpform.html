@@ -181,7 +181,13 @@
        der Feldschleife selbst. Auch ohne diesen Template-Mechanismus k&ouml;nnen Felder vom Typ HTML
        dazwischen geschoben werden, um beispielsweise Zeilen-Umbr&uuml;che bei einem Floating Layout 
        zu erzwingen. Dar&uuml;ber hinaus enthalten die Felder selbst nun zus&auml;tzliche Klassen,
-       die eine flexiblere Formatierung mittels CSS erlauben. 
+       die eine flexiblere Formatierung mittels CSS erlauben. Seit Version 1.3.3 stehen 
+       auch die Platzhalter {TEMPLATE1} ... {TEMPLATE9} zur Verf&uuml;gung, um die erste bis
+       neunte Zeile des Feldtemplates abzurufen. F&uuml;r Felder, bei denen das lokale Template
+       weniger Zeilen enth&auml;lt, enthalten die &uuml;brigen Platzhalter den Leerstring.
+       Wird in der Feldschleife oder im Template der Platzhalter {FORMATTED_FIELD} anstatt {FIELD} verwendet,
+       so erscheint ein weiteres Eingabefeld im Backend, in dem vom Nutzer eigene CSS-Klassen speziell
+       f&uuml;r das aktuelle Feld angegeben werden k&ouml;nnen.
     </dd> 
    
 <!--

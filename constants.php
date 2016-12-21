@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.2
+ * @version             1.3.3
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -150,10 +150,17 @@ if(!defined('MPFORM_FIELD_LOOP')){
 if(!defined('MPFORM_FOOTER')){
     define('MPFORM_FOOTER', 
       '<div class="submitbox">'
-    . '<input'
-    . ' type=\"submit\"'
-    . ' name=\"submit\"'
-    . ' class=\"'.MPFORM_CLASS_PREFIX.'submit\"'
-    . ' value=\"'.$LANG['backend']['TXT_SUBMIT'].'\" />'
+    . '{SUBMIT}'
     . '</div>');
 }
+
+
+if(!defined('MPFORM_SUBMIT_BUTTON')){
+    define('MPFORM_SUBMIT_BUTTON', 
+      '<input'
+    . ' type="submit"'
+    . ' name="submit"'
+    . ' class="'.MPFORM_CLASS_PREFIX.'submit"'
+    . ' value="{SUBMIT_TEXT}" />');
+}
+

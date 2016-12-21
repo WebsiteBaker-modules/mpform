@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.2
+ * @version             1.3.3
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -103,11 +103,11 @@ if (!function_exists('NewWbMailer')) {
     function NewWbMailer()
     {
         if (!class_exists('WbMailer', false)) {
-        // its wb < 2.8.3 sp4(?)
-        if (!class_exists('wbmailer', false)) {
-            include_once(WB_PATH.'/include/phpmailer/class.phpmailer.php');
-            include_once(WB_PATH.'/framework/class.wbmailer.php');
-        }
+            // its wb < 2.8.3 sp4(?)
+            if (!class_exists('wbmailer', false)) {
+                include_once(WB_PATH.'/include/phpmailer/class.phpmailer.php');
+                include_once(WB_PATH.'/framework/class.wbmailer.php');
+            }
             return new wbmailer();
         } else {
             return new WbMailer();
@@ -125,7 +125,7 @@ if (!function_exists('mpform_mailx')) {
         $htmlmessage = preg_replace('/[\r\n]/', "<br />\n", $message);
         $plaintext = preg_replace(",<br />,", "\r\n", $message);
         $plaintext = preg_replace(",</h.>,", "\r\n", $plaintext);
-        $plaintext = htmlspecialchars_decode(preg_replace(",</?\w+>,", " ", $plaintext), ENT_NOQUOTES);
+        $plaintext = htmlspecialchars_decode(preg_replace(",<[^>]+>,", " ", $plaintext), ENT_NOQUOTES);
 
         // create PHPMailer object and define default settings
         $myMail = NewWbMailer();
@@ -255,7 +255,7 @@ if (!function_exists('eval_form')) {
         if($query_settings->numRows() > 0) {
             $fetch_settings = $query_settings->fetchRow();
 
-            $is_following =           $fetch_settings['is_following'];
+            $is_following = $fetch_settings['is_following'];
             // Check that submission ID matches
             if (!isset($_SESSION['submission_id_'.$section_id])
                 OR !isset($_POST['submission_id'])
@@ -296,12 +296,17 @@ if (!function_exists('eval_form')) {
 
             $email_fromname = $fetch_settings['email_fromname'];
             if(substr($email_fromname, 0, 5) == 'field') {
-                // Set the email from field to what the user entered in the specified field
-                $email_fromname 
-                    = htmlspecialchars(
-                        $admin->get_post_escaped($email_fromname), 
-                        ENT_QUOTES
-                    );
+                // Set the email from field to what the user entered in the specified fields
+                $email_fromname = explode (",", $email_fromname);
+                $fromnames = array();
+                foreach($email_fromname as $fromname){ 
+                    $fromnames[] 
+                        = htmlspecialchars(
+                            $admin->get_post_escaped($fromname), 
+                            ENT_QUOTES
+                        );
+                }
+                $email_fromname = implode(' ', $fromnames);
             }
             if ($email_fromname == 'wbu') {
                 $email_fromname = $admin->get_display_name();
@@ -325,7 +330,26 @@ if (!function_exists('eval_form')) {
             $success_text =           $fetch_settings['success_text'];
             $submissions_text =       $fetch_settings['submissions_text'];
             $success_email_from =     $fetch_settings['success_email_from'];
+            if(substr($success_email_from, 0, 5) == 'field') {
+                // Set the email from field to what the user selected in the specified field
+                $success_email_from = $admin->add_slashes($_POST[$success_email_from]);
+                if(is_array($success_email_from))$success_email_from = $success_email_from[0];
+                $success_email_from = htmlspecialchars($success_email_from);  
+            }
+            if ($success_email_from == 'wbu') {
+                $success_email_from = $admin->get_email();
+            }
+            
             $success_email_fromname = $fetch_settings['success_email_fromname'];
+            if(substr($success_email_fromname, 0, 5) == 'field') {
+                // Set the name from field to what the user selected in the specified field
+                $success_email_fromname = $admin->add_slashes($_POST[$success_email_fromname]);
+                if(is_array($success_email_fromname))$success_email_fromname = $success_email_fromname[0];
+                $success_email_fromname = htmlspecialchars($success_email_fromname);  
+            }
+            if ($success_email_fromname == 'wbu') {
+                $success_email_fromname = $admin->get_display_name();
+            }
             $success_email_text =     $fetch_settings['success_email_text'];
             $success_email_subject =  $fetch_settings['success_email_subject'];        
             $max_submissions =        $fetch_settings['max_submissions'];
@@ -395,7 +419,7 @@ if (!function_exists('eval_form')) {
         }
 
         // Create blank "required" array
-        $mpform_fields = "";    // for results table
+        $mpform_fields = array();    // for results table
         $mailto = "";
 
         // Get list of fields
@@ -786,10 +810,8 @@ if (!function_exists('eval_form')) {
                     if($field['type'] == 'integer_number') $curr_field = '0';
                     if ($field['type'] == 'decimal_number') $curr_field = '0.0';
                 }
-                if (strlen($mpform_fields) > 0) {
-                    $mpform_fields .= ", ";
-                }
-                $mpform_fields .= "field" . $field_id . " = " . $curr_field . " ";
+                
+                $mpform_fields["$field_id"] = $curr_field;
             } // end of field loop
         }
 
@@ -799,6 +821,18 @@ if (!function_exists('eval_form')) {
             $html_data_user = preg_replace('/<\/?'.$tag.'[^<>]*>/i',"",$html_data_user);
             $html_data_site = preg_replace('/<\/?'.$tag.'[^<>]*>/i',"",$html_data_site);
         }
+        $tmp_mpform_fields = "";
+        // replace place holders in subject lines and "serialize" for database statement below
+        foreach($mpform_fields as $mpfid => $mpfval){
+            if (strlen($tmp_mpform_fields) > 0) {
+                $tmp_mpform_fields .= ", ";
+            }
+            $tmp_mpform_fields .= "field" . $mpfid . " = " . $mpfval . " ";
+            $mpfval = preg_replace(array("/^'/","/'\$/"), '', $mpfval);
+            $email_subject = str_replace("{FIELD".$mpfid."}", $mpfval, $email_subject);
+            $success_email_subject = str_replace("{FIELD".$mpfid."}", $mpfval, $success_email_subject);
+        }
+        $mpform_fields = $tmp_mpform_fields;
         // Check if the user forgot to enter values into all the required fields
         if($fer != array()) {
             // paint form again:
@@ -834,6 +868,7 @@ if (!function_exists('eval_form')) {
                 if($success==true AND $email_to != '') {  
                     // $email_to is set in the backend, 
                     // might consist of lists of addresses
+                    $recip_list = "";
                     $body 
                         = str_replace(
                             array('{DATA}', '{REFERER}', '{IP}', '{DATE}', '{USER}', '{EMAIL}'), 
@@ -849,14 +884,14 @@ if (!function_exists('eval_form')) {
                     );
                     if ($q->numRows() > 0 and $mailto != "") {  
                         // $mailto contains recipient as selected by user
-                        // recipient selectet by user: 
+                        // recipient selected by user: 
                         // different linebreaks
                         $arrtorep= array("\r\n","\n\r","\r");
                         $email_to = str_replace($arrtorep, "\n", $email_to);
                         $emails = preg_split('/\n/', $email_to);
                         foreach ($emails as $recip) {
                             if (strpos($recip, $mailto) === 0) {
-                                $mailto .= $recip.",";
+                                $recip_list .= $recip.",";
                             }
                         }
                     }
@@ -868,7 +903,7 @@ if (!function_exists('eval_form')) {
                         $emails = preg_split('/\n/', $email_to);
                         foreach ($emails as $recip) {  
                             if ($recip != '') {
-                                $mailto .= $recip.",";
+                                $recip_list .= $recip.",";
                             }
                         }
                     }
@@ -879,7 +914,7 @@ if (!function_exists('eval_form')) {
                         mpform_mailx(
                             $email_from, 
                             $email_replyto, 
-                            $mailto, 
+                            $recip_list, 
                             $email_subject, 
                             $body, 
                             $email_fromname, 
@@ -898,8 +933,41 @@ if (!function_exists('eval_form')) {
                         = str_replace(
                              array('{DATA}', '{REFERER}', '{IP}', '{DATE}', '{USER}', '{EMAIL}'), 
                              array($html_data_user, $_SESSION['href'], $ip, $now, $wb_user, $success_email_to), 
-                             $success_email_text
+                             htmlspecialchars_decode($success_email_text)
                          );
+
+                    $q = $database->query(
+                        "SELECT *"
+                        . " FROM ".TP_MPFORM."fields"
+                        . " WHERE section_id = '$section_id'"
+                        . " and type = 'email_recip'"
+                        . " LIMIT 1"
+                    );
+                    if ($q->numRows() > 0 and $mailto != "") {  
+                        // $mailto contains recipient as selected by user
+                        // recipient selected by user: 
+                        // different linebreaks
+                        $arrtorep= array("\r\n","\n\r","\r");
+                        $success_email_from = str_replace($arrtorep, "\n", $success_email_from);
+                        $emails = preg_split('/\n/', $success_email_from);
+
+                        foreach ($emails as $recip) {
+                            if (strpos($recip, $mailto) === 0) {
+                                 $success_email_from = preg_replace(array("/.*</","/>.*/"), '', $recip);
+                                 break;
+                            }
+                        }
+                    }
+                    if ($mailto =="") {
+                        // take the first one from the list:
+
+                        $arrtorep= array("\r\n","\n\r","\r");
+                        $success_email_from = str_replace($arrtorep, "\n", $success_email_from);
+                        $emails = preg_split('/\n/', $success_email_from);
+                        if(is_array($success_email_from)) $success_email_from = $success_email_from[0];
+                    }
+                    //echo $success_email_from;
+
                     if (
                         ! mpform_mailx(
                             $success_email_from, 

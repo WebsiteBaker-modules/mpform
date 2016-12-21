@@ -7,7 +7,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.2
+ * @version             1.3.3
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -96,7 +96,7 @@ $LANG['backend'] = array(
 
     'txt_success_text'            => 'testo successo',
     'des_success_text'            => 'Se no &quot;Pagina successiva&quot; &eacute; impostato, il testo '
-                                   . 'verr&aacute; mostrato dopo che il modulo &eacute; stato '
+                                   . 'verr&aacute; mostrato dopo che il modulo &eacute; stato '
                                    . 'compilato senza alcun errore.',
     'txt_submissions_text'        => 'Il trasferimento dei dati al tavolo mpform_submissions',
     'des_submissions_text'        => 'questo testo sar&aacute; scritto nel campo '
@@ -107,9 +107,9 @@ $LANG['backend'] = array(
                                    . 'nella pagina da cui il modulo &eacute; stato chiamato <br /> '
                                    . '&nbsp; {IP} - l&apos;indirizzo IP del mittente<br /> '
                                    . '&nbsp; {DATE} - la data e l&apos;ora<br /> '
-                                   . '&nbsp; {USER} - nome del connesso utente<br />
+                                   . '&nbsp; {USER} - nome del connesso utente<br />'
                                    . '&nbsp; {EMAIL} - Email inserito oppure quella del '
-                                   . 'connesso utente<br />'',
+                                   . 'connesso utente<br />',
     'des_success_email_text'      => 'Contenuto della e-mail di conferma al mittente',
     'des_email_text'              => 'Contenuto del messaggio al proprietario del sito',
     'fieldset_start'              => 'Fieldset (start)',
@@ -137,6 +137,7 @@ $LANG['backend'] = array(
                                    . '(Dipende dal tipo di campo e lo stato di errore) <br />'
                                    . '&nbsp; {TITLE} - titolo del campo modulo <br /> '
                                    . '&nbsp; {FIELD} - il campo stesso <br /> '
+                                   . '&nbsp; {FORMATTED_FIELD} - permette classi CSS aggiuntivi<br /> '
                                    . '&nbsp; {REQUIRED} - marchio per campi obbligatori <br /> '
                                    . '&nbsp; {HELP} - nascosto testo di aiuto, '
                                    . 'Richiede JavaScript <br />'
@@ -144,7 +145,8 @@ $LANG['backend'] = array(
                                    . '&nbsp; {ERRORTEXT} - testo di errore '
                                    . '(Solo per alcuni tipi di campo) <br />'
                                    . '&nbsp; {TEMPLATE} - contenuto del modello di campo per '
-                                   . 'il campo corrente<br />',
+                                   . 'il campo corrente, {TEMPLATE1} per la prima linea, '
+                                   . '{TEMPLATE2} per la seconda...<br />',
     'des_field_template'          => 'nel ciclo campo questo &eacute; inserito per il modello '
                                    . 'segnaposto {TEMPLATE}. '
                                    . 'I seguenti segnaposto sono possibili: <br />'
@@ -152,12 +154,15 @@ $LANG['backend'] = array(
                                    . '(Dipende dal tipo di campo e lo stato di errore) <br />'
                                    . '&nbsp; {TITLE} - titolo del campo modulo <br /> '
                                    . '&nbsp; {FIELD} - il campo stesso <br /> '
+                                   . '&nbsp; {FORMATTED_FIELD} - permette classi CSS aggiuntivi<br /> '
                                    . '&nbsp; {REQUIRED} - marchio per campi obbligatori <br /> '
                                    . '&nbsp; {HELP} - nascosto testo di aiuto, '
                                    . 'Richiede JavaScript <br />'
                                    . '&nbsp; {HELPTXT} - testo della guida sempre visibile <br /> '
                                    . '&nbsp; {ERRORTEXT} - testo di errore '
                                    . '(Solo per alcuni tipi di campo) <br />',                                   
+    'txt_extraclasses'            => 'classi CSS',
+    'des_extraclasses'            => 'queste classe CSS sono inoltre applicati all&apos;interno del campo',
     'des_footer'                  => 'Il seguente segnaposto &eacute; possibile: <br /> '
                                    . '&nbsp; {SUBMIT} - pulsante Submit',
     'TXT_MODIFY_FIELD'            => 'Modifica campo (ID: %s)',
@@ -173,7 +178,7 @@ $LANG['backend'] = array(
                                    . 'Importazione &egrave; supportata solo per '
                                    . 'le sezioni vuote.',
     'txt_import_warning'          => 'Attenzione: Inseriti non vengono trasferiti '
-                                   . 'durante l'importazione / esportazione',
+                                   . 'durante l&apos;importazione / esportazione',
     'txt_you_have_selected'       => 'Hai selezionato',
     'des_conditional_div'         => "Codice generato - probabilmente si desidera modificare il contenuto\n"
                                    . "     delle sezioni div e si potrebbe desiderare di spostare la\n"
@@ -181,7 +186,7 @@ $LANG['backend'] = array(
                                    . "     sezione HTML. Se si modificano le opzioni di %s &egrave;\n"
                                    . "     necessario aggiornare questo codice manualmente\n"
                                    . "     (o si avvia di nuovo cambiando il tipo di nuovo al\n"
-                                   . "     blocco di visualizzazione condizionale)                         
+                                   . "     blocco di visualizzazione condizionale) "                        
 );
 
 $LANG['backend_adv'] = array(

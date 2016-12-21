@@ -5,6 +5,28 @@ MODULE VERSION HISTORY
 ======================
 
    ------------------------------------------------------------------------------------------------------------------------ 
+
+        *** 1.3.3 (Martin Hecht: 19-Dec-2016) ***
+        fix the local template so that indeed all place holders are allowed there
+        introduce {TEMPLATE1} ... {TEMPLATE9} for a single line of the local template
+        correctly decode html special charcacters for html emails (thanks to astrid)
+        allow to specify success_email_from by field or by logged on user (astrid)
+        for consitency also allow to specify success_email_fromname by field
+        fix missing single quote in most of the language files (thanks to colinax)
+        allow to select multiple name fields for the sender name (astrid)
+        allow place holders {FIELD...} in subject lines (request by astrid)
+        fixed default form footer and correctly implement place holder {SUBMIT} 
+        correct the html code in the backend template for the basic settings
+        offer a setting for user defined classes inside the fields and
+        introduce place hoder {FORMATTED_FIELD} in the field loop for that (florian, gottfried)
+        avoid collision of the {TEMPLATE} place holder with the template for heading fields
+        correctly detect if we use table layout or not for the output of headings
+        repair update script to add the column for the field template (colinax)
+        avoid multiply including the department in notification mails
+        trim email_to when saving basic settings 
+        update documentation and example forms
+        
+
         *** 1.3.2 (Martin Hecht: 08-Dec-2016) ***
         fix language files (thanks to florian for reporting)
         merge Bugfix for deleting fields in backend (Dietrich Roland Pehlke: 14-Nov-2016)
@@ -42,6 +64,8 @@ MODULE VERSION HISTORY
         some clean up in the style files and added classes for help in div-layout
         update documentation and update standard forms, update style file of docu
         added French and Italian language support in pear uploader
+
+------------------------------------------------------------------------------------------------------------------------ 
 
         *** 1.2.3 (Martin Hecht: 20-Aug-2016) ***
         fix query for position in upgrade script, thanks to norhei for reporting

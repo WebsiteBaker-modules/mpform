@@ -116,7 +116,8 @@
     </dd>
     <dt>&quot;From&quot;&nbsp;name</dt>
     <dd>This field works along the lines of the previous. If you want to use the name of the user, 
-      you need to use a Text filed (single line).<br />
+      you need to use a Text field (single line). If you have several ones, e.g. first name and last name, 
+      you can also select multiple fields here.<br />
     </dd>
     <dt>&quot;Reply To&quot;&nbsp;address</dt>
     <dd>With this field you can specify an address for the &quot;reply-to&quot;-field which differs
@@ -130,7 +131,9 @@
     <dd>This is the Subject header line of the email. 
        There is a field type <strong>E-Mail Subject (Suffix)</strong>. 
        If you use this type of field in your form, its content will be added to the content of the 
-       subject defined in the backend. </dd>
+       subject defined in the backend. You can insert place holders of the form {FIELD42}, which
+       let you insert the value submitted by that field for the place holder.
+</dd>
     <dt>Text</dt>
     <dd>This is the real content of the email. Place holders will be replaced by the content. 
        {DATA} stands for the entire user input.

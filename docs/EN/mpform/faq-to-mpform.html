@@ -174,7 +174,12 @@
        In this replacement string, again the same place holders are allowed as in the field loop itself.
        Even without this template mechanism you can insert a few fields of type HTML, e.g. to force a
        line break in floating layouts. In addition, the fields themselves contain additional classes now,
-       which allow a more flexible layout using CSS. 
+       which allow a more flexible layout using CSS.  Since version 1.3.3 the place holders
+       {TEMPLATE1} ... {TEMPLATE9} are available, too, which contain the first to the nineth line of the
+       field template. For fields whose local template contains less lines, the remaining place
+       holders contain the empty string. When in the field loop or in the template the place holder 
+       {FORMATTED_FIELD} is used instead of {FIELD}, another input appears in the backend, where the 
+       user can define his own css classes explicitly for the current field.
     </dd> 
 <!--
     <dt class="faq"><strong>Question</strong>: 

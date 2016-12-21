@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.2
+ * @version             1.3.3
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -74,7 +74,6 @@ $update_keys = array(
     'header',
     'field_loop',
     'footer',
-    'field_loop',
     'email_to',
     'email_from',
     'email_replyto',
@@ -98,7 +97,9 @@ foreach($update_keys as $key) {
 $upd_extra = array(
     'email_from_field',
     'email_replyto_field',
-    'email_fromname_field'
+    'email_fromname_field',
+    'success_email_from_field',
+    'success_email_fromname_field'
 );
 foreach($upd_extra as $key) {
     ${$key} = (isset($_POST[$key])) ? $admin->get_post_escaped($key) : '';
@@ -134,7 +135,7 @@ foreach ($emails as $recip) {
     if ($ok)
     $temp_email_to .= "$recip\n";      // only take valid lines
 }
-$email_to = $temp_email_to;
+$email_to = trim($temp_email_to);
 
 if (!$admin->validate_email($email_from)) {
     $email_from = '';    
@@ -146,13 +147,47 @@ if (!$admin->validate_email($success_email_from)) {
     $success_email_from = '';
 }
 
-
 $email_fromname = htmlspecialchars($email_fromname, ENT_QUOTES);
 $email_subject = htmlspecialchars($email_subject, ENT_QUOTES);
 $success_email_fromname = htmlspecialchars($success_email_fromname, ENT_QUOTES);
 $success_email_subject = htmlspecialchars($success_email_subject, ENT_QUOTES);
 $success_email_text = htmlspecialchars($success_email_text, ENT_QUOTES);
 // end of data cleaning
+
+if(is_array($email_fromname_field)&&!empty($email_fromname_field)){
+    // check which ones were there already
+    $query_settings 
+       = $database->query(
+           "SELECT `email_fromname`"
+               . " FROM ".TP_MPFORM."settings"
+               . " WHERE section_id = '$section_id'"
+        );
+    $curr_email_fromname = array();
+    if($query_settings->numRows() > 0) {
+        $fetch_settings = $query_settings->fetchRow();
+        $curr_email_fromname = $fetch_settings['email_fromname'];
+        if(substr($curr_email_fromname, 0, 5) == 'field') {
+            $curr_email_fromname = explode (",", $curr_email_fromname);
+        }
+    }
+    // now we have an array which contains the previous fromname fields
+    $tmp_fromname_field = array();
+    // pick out the ones we already had and which are still in the current choice
+    foreach($curr_email_fromname as $tmp_frmn){
+        if(in_array($tmp_frmn, $email_fromname_field)){
+            $tmp_fromname_field[] = $tmp_frmn;
+        }
+    }
+    // finally add the ones which are selected in addition to these
+    foreach($email_fromname_field as $tmp_frmn){
+        if((!in_array($tmp_frmn, $tmp_fromname_field))
+            && (substr($tmp_frmn, 0, 5) == 'field')) {
+                $tmp_fromname_field[] = $tmp_frmn;
+        }
+    }
+    // now we have the previous ones at the beginning, new ones at the end. Let's implode:
+    $email_fromname_field = implode(",", $tmp_fromname_field);
+}
 
 if ($email_from_field != '')
     $email_from = $email_from_field; // use a field of the form as sender's address
@@ -162,6 +197,10 @@ if ($email_replyto == '')
     $email_replyto = $email_from;
 if ($email_fromname_field != '')
     $email_fromname = $email_fromname_field; //  use a field of the form as sender's name
+if ($success_email_from_field != '')
+    $success_email_from = $success_email_from_field; // use a field of the form as sender's address
+if ($success_email_fromname_field != '')
+    $success_email_fromname = $success_email_fromname_field; //  use a field of the form as sender's name
 
 // now loop over update values and create the SQL query string (this way we do not forget values)
 // - no need to protect this anymore because post-values were already protected above 

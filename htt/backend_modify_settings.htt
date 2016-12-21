@@ -54,18 +54,18 @@
     <table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
         <caption>{TXT_LAYOUT_SETTINGS}</caption>
         <tr>
-            <th>{txt_header}:</td>
+            <th>{txt_header}:</th>
             <td><textarea rows="5" cols="50" name="header" class="setting_value_textarea">{header}</textarea></td>
         </tr>
         <tr>
-            <th>{txt_field_loop}:</td>
+            <th>{txt_field_loop}:</th>
             <td>
                 <textarea rows="5" cols="50" name="field_loop" class="setting_value_textarea" title="{des_field_loop}">{field_loop}</textarea><br />
                 <small>{des_field_loop}</small>
             </td>
         </tr>
         <tr>
-            <th>{txt_footer}:</td>
+            <th>{txt_footer}:</th>
             <td>
                 <textarea rows="5" cols="50" name="footer" class="setting_value_textarea" title="{des_footer}">{footer}</textarea><br />
                 <small>{des_footer}</small>
@@ -110,7 +110,7 @@
         <tr>
             <th>{txt_email_fromname_field}:</th>
             <td>
-                <select name="email_fromname_field">
+                <select name="email_fromname_field[]" multiple>
                     <option value="" onclick="javascript: document.getElementById('email_fromname_f_slave').style.display = 'block';">{TXT_STATIC_NAME}:</option>
                     <!-- BEGIN email_fromname_f_block -->
                     {options_email_fromname_f}
@@ -147,11 +147,27 @@
         </tr>
         <tr>
             <th>{txt_success_email_from}:</th>
-            <td><input name="success_email_from" class="setting_value_text" type="text" title="{des_success_email_from}" value="{success_email_from}" /></td>
+            <td>
+                <select name="success_email_from_field">
+                    <option value="" onclick="javascript: document.getElementById('success_email_from_f_slave').style.display = 'block';">{TXT_STATIC_ADDR}:</option>
+                    <!-- BEGIN success_email_from_f_block -->
+                    {options_success_email_from_f}
+                    <!-- END success_email_from_f_block -->
+                </select>
+                <input name="success_email_from" id="success_email_from_f_slave" class="setting_value_text" type="text" title="{des_success_email_from}" style="display: {display_success_email_from_field}" value="{success_email_from}" />
+            </td>
         </tr>
         <tr>
             <th>{txt_success_email_fromname}:</th>
-            <td><input name="success_email_fromname" class="setting_value_text" type="text" title="{des_success_email_fromname}" value="{success_email_fromname}" /></td>
+            <td>
+                <select name="success_email_fromname_field">
+                    <option value="" onclick="javascript: document.getElementById('success_email_fromname_f_slave').style.display = 'block';">{TXT_STATIC_NAME}:</option>
+                    <!-- BEGIN success_email_fromname_f_block -->
+                    {options_success_email_fromname_f}
+                    <!-- END success_email_fromname_f_block -->
+                </select>
+               <input name="success_email_fromname" id="success_email_fromname_f_slave" class="setting_value_text" type="text" style="display: {display_success_email_fromname_field}" title="{des_success_email_fromname}" value="{success_email_fromname}" />
+            </td>
         </tr>
         <tr>
             <th>{txt_success_email_subject}:</th>

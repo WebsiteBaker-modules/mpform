@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.2
+ * @version             1.3.3
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -417,13 +417,22 @@ if( $type != 'heading'
              . " WHERE `section_id` = '$section_id'";
         $sql_result = $database->query($sql);
         $settings = $sql_result->fetchRow();
-        if(preg_match('/{TEMPLATE}/',$settings['field_loop'])){ 
+        if(preg_match('/{FORMATTED_FIELD}/',$settings['field_loop']) ||
+           ( preg_match('/{TEMPLATE/',$settings['field_loop'])
+           && preg_match('/{FORMATTED_FIELD}/',$form['template'])) ){ 
+            $fieldtypeoption .= "<tr>\n<th>". $LANG['backend']['txt_extraclasses'] .":</th>\n";
+            $fieldtypeoption .= '<td><textfield name="extraclasses" maxlength="250"'
+                .' style="width: 98%;">'
+                . $form['extraclasses'] ."</textfield><br />"
+                . "<small>".$LANG['backend']['des_extraclasses']."</small></td>\n</tr>\n";
+        }            
+        if(preg_match('/{TEMPLATE/',$settings['field_loop'])){ 
             $fieldtypeoption .= "<tr>\n<th>". $TEXT['FIELD'].' '.$TEXT['TEMPLATE'] .":</th>\n";
-            $fieldtypeoption .= '<td><textarea name="template" cols="50" rows="5" maxlength="250"'
+            $fieldtypeoption .= '<td><textarea name="fieldtemplate" cols="50" rows="5" maxlength="250"'
                 .' style="width: 98%; height: 100px;">'
                 . $form['template'] ."</textarea><br />"
                 . "<small>".$LANG['backend']['des_field_template']."</small></td>\n</tr>\n";
-        }            
+        }
 }
 
 $tpl->set_var('VAL_TYPE_OPTIONS', $fieldtypeoption);

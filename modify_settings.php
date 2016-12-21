@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.2
+ * @version             1.3.3
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -101,6 +101,8 @@ foreach($settings as $key => $value) {
 $email_from_value = $setting['email_from'];
 $email_replyto_value = $setting['email_replyto'];
 $email_fromname_value = $setting['email_fromname']; 
+$success_email_from_value = $setting['success_email_from'];
+$success_email_fromname_value = $setting['success_email_fromname']; 
 
 // replace static template placeholders with values from language file
 $tpl->set_var(
@@ -138,6 +140,12 @@ $tpl->set_var(
         'des_email_subject'          => '',
         'txt_email_subject'          => $TEXT['SUBJECT'],
         'des_success_email_to'       => '',
+        'success_email_from'         => ((substr($settings['success_email_from'], 0, 5) != 'field') 
+                                         && ($settings['success_email_from'] != 'wbu') 
+                                         ? $settings['success_email_from'] : ''),
+        'success_email_fromname'     => ((substr($settings['success_email_fromname'], 0, 5) != 'field') 
+                                         && ($settings['success_email_fromname'] != 'wbu') 
+                                         ? $settings['success_email_fromname'] : ''),
         'des_success_email_from'     => '',
         'des_success_email_fromname' => '',
         'des_success_email_subject'  => '',
@@ -157,7 +165,7 @@ $tpl->set_var(
 
 
 // returns list of email fields from the form
-function give_me_address_list(&$tpl, $curr_value, $java=true, $fname = '', $wbt){    
+function give_me_address_list(&$tpl, $curr_value, $java=true, $fname = '', $wbt, $listtype='email'){    
     global $database, $section_id, $TEXT;
     $tpl->set_block('main_block', $fname.'_block' , $fname);
     $rt = false;
@@ -182,7 +190,7 @@ function give_me_address_list(&$tpl, $curr_value, $java=true, $fname = '', $wbt)
             "SELECT `field_id`,`title`"
                 . " FROM `".TP_MPFORM."fields`"
                 . " WHERE `section_id` = '$section_id'"
-                . " AND (`type` = 'email')"
+                . " AND (`type` = '$listtype')"
                 . " ORDER BY `position` ASC");
     if($query_email_fields->numRows() > 0) {
         while($field = $query_email_fields->fetchRow()) {
@@ -207,7 +215,7 @@ function give_me_address_list(&$tpl, $curr_value, $java=true, $fname = '', $wbt)
 }
 
 // returns list of text fields from the form
-function give_me_name_list(&$tpl, $curr_value, $java=true, $fname = '', $wbt){  
+function give_me_name_list(&$tpl, $curr_value, $java=true, $fname = '', $wbt, $listtype='textfield'){  
     global $database, $section_id, $TEXT;
     $tpl->set_block('main_block', $fname.'_block' , $fname);
     $rt = false;
@@ -232,13 +240,13 @@ function give_me_name_list(&$tpl, $curr_value, $java=true, $fname = '', $wbt){
             "SELECT `field_id`,`title`"
             . " FROM `".TP_MPFORM."fields`"
             . " WHERE `section_id` = '$section_id'"
-            . " AND (`type` = 'textfield')"
+            . " AND (`type` = '$listtype')"
             . " ORDER BY `position` ASC"
         );
     if($query_email_fields->numRows() > 0) {
         while($field = $query_email_fields->fetchRow()) {
             $s = "<option value=\"field".$field['field_id']."\"";
-            if($curr_value == 'field'.$field['field_id']) {
+            if(preg_match('/field'.$field['field_id'].'\b/',$curr_value)) {
                 $s .= " selected='selected'";
                 $rt = true;
             }
@@ -323,6 +331,35 @@ $tpl->set_var(
     'display_email_replyto_field', 
     (($rt3) ? 'none' : 'block')
 );
+
+$rt4 
+    = give_me_address_list(
+        $tpl,
+        $success_email_from_value, 
+        true, 
+        'success_email_from_f', 
+        $LANG['backend']['TXT_USER_ADDR'],
+        'email_recip'
+    );
+$tpl->set_var(
+    'display_success_email_from_field', 
+    (($rt4) ? 'none' : 'block')
+);
+
+$rt5 
+    = give_me_name_list(
+        $tpl,
+        $success_email_fromname_value, 
+        true, 
+        'success_email_fromname_f', 
+        $LANG['backend']['TXT_USER_NAME'],
+        'email_recip'
+    );
+$tpl->set_var(
+    'display_success_email_fromname_field', 
+    (($rt5) ? 'none' : 'block')
+);
+
 
 give_me_address_list(
     $tpl,

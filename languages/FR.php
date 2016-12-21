@@ -7,7 +7,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.2
+ * @version             1.3.3
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -129,7 +129,7 @@ $LANG['backend'] = array(
                                    . 'le formulaire<br /> '
                                    . '&nbsp; {DATE} - date et heure<br /> '
                                    . '&nbsp; {USER} - nom de l&apos;utilisateur '
-                                   . ' connect&eacute;<br />
+                                   . ' connect&eacute;<br />'
                                    . '&nbsp; {EMAIL} - Email sais&eacute; ou cette de '
                                    . 'l&apos;utilisateur connect&eacute;<br />',
     'des_success_email_text'      => 'Contenu de l&apos;email de confirmation '
@@ -161,6 +161,8 @@ $LANG['backend'] = array(
                                    . 'champ et l&apos;&eacute;tat d&apos;erreur)<br /> '
                                    . '&nbsp; {TITLE} - titre du champ<br /> '
                                    . '&nbsp; {FIELD} - contenu du champ<br /> '
+                                   . '&nbsp; {FORMATTED_FIELD} - permet des classes CSS '
+                                   . ' suppl&eacute;mentaires<br /> '
                                    . '&nbsp; {REQUIRED} - marqueur pour les  '
                                    . 'champs obligatoires<br /> '
                                    . '&nbsp; {HELP} - texte d&apos;aide cach&eacute;, '
@@ -170,7 +172,9 @@ $LANG['backend'] = array(
                                    . '&nbsp; {ERRORTEXT} - texte d&apos;erreur '
                                    . '(seulement pour certains types de champs)<br />'
                                    . '&nbsp; {TEMPLATE} - Contenu du mod&egrave;le de '
-                                   . 'champ pour le champ en cours <br />',                                   
+                                   . 'champ pour le champ en cours, {TEMPLATE1} pour '
+                                   . 'la premi&egrave;re ligne, {TEMPLATE2} '
+                                   . 'la seconde...<br />',
     'des_field_template'          => 'Dans la boucle de champ, elle est ins&eacute;r&eacute;e '
                                    . 'pour le support de lieu {TEMPLATE}. '
                                    . 'Vous pouvez utiliser les variables suivantes:<br /> '
@@ -178,6 +182,8 @@ $LANG['backend'] = array(
                                    . 'champ et l&apos;&eacute;tat d&apos;erreur)<br /> '
                                    . '&nbsp; {TITLE} - titre du champ<br /> '
                                    . '&nbsp; {FIELD} - contenu du champ<br /> '
+                                   . '&nbsp; {FORMATTED_FIELD} - permet des classes CSS '
+                                   . ' suppl&eacute;mentaires<br /> '
                                    . '&nbsp; {REQUIRED} - marqueur pour les  '
                                    . 'champs obligatoires<br /> '
                                    . '&nbsp; {HELP} - texte d&apos;aide cach&eacute;, '
@@ -186,8 +192,10 @@ $LANG['backend'] = array(
                                    . 'visible en permanence<br /> '
                                    . '&nbsp; {ERRORTEXT} - texte d&apos;erreur '
                                    . '(seulement pour certains types de champs)<br />',
-    'des_footer'                  => 'Vous pouvez utiliser la variable suivante:<br />
-    '
+    'txt_extraclasses'            => 'Classes CSS',
+    'des_extraclasses'            => 'ces classes CSS sont en outre appliqu&eacute;es '
+                                   . '&agrave; l&apos;interi&eacute;rieur du champ',
+    'des_footer'                  => 'Vous pouvez utiliser la variable suivante:<br />'
                                    . '&nbsp; {SUBMIT} - bouton de validation',
     'TXT_MODIFY_FIELD'            => 'Edition Champ (ID: %s)',
     'TXT_ADD_FIELD'               => 'Ajouter Champ',

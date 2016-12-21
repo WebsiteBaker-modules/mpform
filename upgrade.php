@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.2
+ * @version             1.3.3
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -145,7 +145,7 @@ $fields = $fieldstable->fetchRow();
 // If not already there, add new fields to the existing fields table
 echo'<span class="good"><b>Adding new fields to the fields table</b></span><br />';
 
-if (!isset($fields['success_text'])){
+if (!isset($fields['template'])){
     $qs = "ALTER TABLE `".TP_MPFORM."fields`"
         . " ADD `template` VARCHAR(255) NOT NULL DEFAULT '' AFTER `extra`";
     $database->query($qs);
@@ -153,6 +153,17 @@ if (!isset($fields['success_text'])){
         echo $database->get_error().'<br />';
     } else {
         echo "Added new field `template` successfully<br />";
+    }
+}
+
+if (!isset($fields['extraclasses'])){
+    $qs = "ALTER TABLE `".TP_MPFORM."fields`"
+        . " ADD `extraclasses` VARCHAR(255) NOT NULL DEFAULT '' AFTER `template`";
+    $database->query($qs);
+    if($database->is_error()) {
+        echo $database->get_error().'<br />';
+    } else {
+        echo "Added new field `extraclasses` successfully<br />";
     }
 }
 

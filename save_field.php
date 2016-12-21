@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.2
+ * @version             1.3.3
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -91,7 +91,12 @@ if($admin->get_post('title') == '' OR $admin->get_post('type') == '') {
 } else {
     $title  = str_replace(array("[[", "]]"), '', $admin->get_post_escaped('title'));
     $type = str_replace(array("[[", "]]"), '', $admin->get_post_escaped('type'));
-    $template = str_replace(array("[[", "]]"), '', $admin->get_post_escaped('template'));
+    $fieldtemplate = $admin->get_post_escaped('fieldtemplate');    
+    if($fieldtemplate==null)$fieldtemplate='';
+    $fieldtemplate = str_replace(array("[[", "]]"), '', $fieldtemplate);
+    $extraclasses = $admin->get_post_escaped('extraclasses');
+    if($extraclasses == null)$extraclasses='';
+    $extraclasses = str_replace(array("[[", "]]"), '', $extraclasses);
     if (isset($_POST['required'])) {
         $required = $admin->get_post_escaped('required');
     } else {
@@ -129,11 +134,12 @@ if ($broken) {
 // Update row
 $database->query(
     "UPDATE ".TP_MPFORM."fields"
-        . " SET title = '$title',"
-        . " type = '$type',"
-        . " required = '$required',"
-        . " help = '$help',"
-        . " template = '$template'"
+        . " SET `title` = '$title',"
+        . " `type` = '$type',"
+        . " `required` = '$required',"
+        . " `template` = '$fieldtemplate',"
+        . " `extraclasses` = '$extraclasses',"
+        . " `help` = '$help'"
         . " WHERE field_id = '$field_id'");
 if($database->is_error()) {
     $admin->print_header();
@@ -143,12 +149,15 @@ if($database->is_error()) {
 
 // Check whether results table exists, create it if not
 $ts = $database->query(
-    "SELECT `tbl_suffix`"
+    "SELECT `tbl_suffix`,`header`"
     . " FROM `".TP_MPFORM."settings`"
     . " WHERE `section_id` = '".$section_id."'"
     );
 $setting = $ts->fetchRow();
 $suffix = $setting['tbl_suffix'];
+$header = $settings['header'];
+$bTableLayout = (stripos($header, "<table") !== false);  
+
 if ($suffix != "DISABLED"){
     $results = TP_MPFORM."results_" . $suffix;
     $oTestQuery = $database->query("SHOW TABLES LIKE '".$results."'");
@@ -430,8 +439,11 @@ if ($admin->get_post('type') == 'textfield'
             . " WHERE field_id = '$field_id'");
 } elseif ($admin->get_post('type') == 'heading') {
     $extra = str_replace(array("[[", "]]"), '', $admin->get_post_escaped('template'));
-    if(trim($extra) == '') 
-        $extra = '<tr><td class="mpform_heading" colspan="3">{TITLE}{FIELD}</td></tr>';
+    if(trim($extra) == ''){ 
+        $extra = '{TITLE}{FIELD}';
+        if($bTableLayout)
+           $extra = '<tr><td class="mpform_heading" colspan="3">'.$extra.'</td></tr>';
+    }
     $database->query(
         "UPDATE ".TP_MPFORM."fields"
             . " SET value = '',"

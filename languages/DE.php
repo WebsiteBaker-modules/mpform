@@ -7,7 +7,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.2
+ * @version             1.3.3
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -147,6 +147,7 @@ $LANG['backend'] = array(
                                    . '&nbsp; {TITLE} - Bezeichnung des  '
                                    . 'Formularfeldes<br /> '
                                    . '&nbsp; {FIELD} - Das Formularfeld<br /> '
+                                   . '&nbsp; {FORMATTED_FIELD} - erlaubt zus&auml;tzliche CSS Klassen<br /> '
                                    . '&nbsp; {REQUIRED} - Markierung f&uuml;r '
                                    . 'Pflichtfelder<br /> '
                                    . '&nbsp; {HELP} - Hilfetext verdeckt,  '
@@ -155,7 +156,9 @@ $LANG['backend'] = array(
                                    . '&nbsp; {ERRORTEXT} - Fehlertext  '
                                    . '(nur bei bestimmten Feldtypen)<br /> '
                                    . '&nbsp; {TEMPLATE} - Inhalt des '
-                                   . 'Feldtemplate f&uuml;r das jeweilige Feld<br />',
+                                   . 'Feldtemplate f&uuml;r das jeweilige Feld, '
+                                   . '{TEMPLATE1} f&uuml;r die erste Zeile, '
+                                   . '{TEMPLATE2} f&uuml;r die zweite.... <br />',
     'des_field_template'          => 'dies wird in der Feldschleife f&uuml;r den Platzhalter {TEMPLATE} '
                                    . 'eingesetzt, folgende Platzhalter sind m&ouml;glich:<br /> '
                                    . '&nbsp; {CLASSES} - css-Klasse  '
@@ -163,6 +166,7 @@ $LANG['backend'] = array(
                                    . '&nbsp; {TITLE} - Bezeichnung des  '
                                    . 'Formularfeldes<br /> '
                                    . '&nbsp; {FIELD} - Das Formularfeld<br /> '
+                                   . '&nbsp; {FORMATTED_FIELD} - erlaubt zus&auml;tzliche CSS Klassen<br /> '
                                    . '&nbsp; {REQUIRED} - Markierung f&uuml;r '
                                    . 'Pflichtfelder<br /> '
                                    . '&nbsp; {HELP} - Hilfetext verdeckt,  '
@@ -170,6 +174,8 @@ $LANG['backend'] = array(
                                    . '&nbsp; {HELPTXT} - Hilfetext immer sichtbar<br /> '
                                    . '&nbsp; {ERRORTEXT} - Fehlertext  '
                                    . '(nur bei bestimmten Feldtypen)<br />',                                   
+    'txt_extraclasses'            => 'CSS Klassen',
+    'des_extraclasses'            => 'diese CSS Klassen werden zus&auml;thlich innerhalb des Feldes verwendet',
     'des_footer'                  => 'Folgender Platzhalter ist m&ouml;glich:<br /> '
                                    . '&nbsp; {SUBMIT} - Abschicken-Button',
     'TXT_MODIFY_FIELD'            => 'Feld (ID: %s) bearbeiten',
