@@ -6,9 +6,9 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.3
+ * @version             1.3.4
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
- * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
+ * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
  * @url                 https://github.com/WebsiteBaker-modules/mpform
  * @url                 https://forum.wbce.org/viewtopic.php?id=661
@@ -117,8 +117,8 @@ if (!function_exists('NewWbMailer')) {
 
 if (!function_exists('mpform_mailx')) {
     // Validate send email
-    function mpform_mailx($fromaddress, $replytoaddress, $toaddress, 
-                          $subject, $message, $fromname='', $file_attached='') {
+    function mpform_mailx($fromaddress, $replytoaddress, $toaddress, $subject, 
+                          $message, $email_css, $fromname='', $file_attached='') {
 
         $fromaddress = preg_replace('/[\r\n]/', '', $fromaddress);
         $subject = preg_replace('/[\r\n]/', '', $subject);
@@ -168,7 +168,7 @@ if (!function_exists('mpform_mailx')) {
 
         // define information to send out
         $myMail->Subject = $subject;                    // SUBJECT
-        $myMail->Body = '<html><head></head><body>'
+        $myMail->Body = '<html><head><style>'.$email_css.'</style></head><body>'
                       .        $htmlmessage.'</body></html>';  // CONTENT (HTML)
         $myMail->AltBody = $plaintext;                  // CONTENT (PLAINTEXT)
 
@@ -326,6 +326,7 @@ if (!function_exists('eval_form')) {
 
             $email_subject =          $fetch_settings['email_subject'];
             $email_text =             $fetch_settings['email_text'];
+            $email_css =              $fetch_settings['email_css'];
             $success_page =           $fetch_settings['success_page'];
             $success_text =           $fetch_settings['success_text'];
             $submissions_text =       $fetch_settings['submissions_text'];
@@ -351,6 +352,7 @@ if (!function_exists('eval_form')) {
                 $success_email_fromname = $admin->get_display_name();
             }
             $success_email_text =     $fetch_settings['success_email_text'];
+            $success_email_css  =     $fetch_settings['success_email_css'];
             $success_email_subject =  $fetch_settings['success_email_subject'];        
             $max_submissions =        $fetch_settings['max_submissions'];
             $stored_submissions =     $fetch_settings['stored_submissions'];
@@ -385,7 +387,6 @@ if (!function_exists('eval_form')) {
             $wb_email = '';
         }
 
-        //$email_body = '';
         $fer = array();
         $err_txt = array();
         $html_data_user = '';
@@ -495,6 +496,23 @@ if (!function_exists('eval_form')) {
                                 );
                             $post_field = $field_value;
                         }
+                        
+                        $aReplacements = array();
+
+                        // put the template in the first index of the replacements
+                        $aReplacements['{TEMPLATE}'] = $field['template'];
+                        $aReplacements['{TEMPLATE0}'] 
+                            = preg_replace(array("/\n/","/\r/"),'',$field['template']);
+                        $tmp_tpl = explode("\n", $field['template']);
+                        for($tpl_idx = 1; $tpl_idx < 10; $tpl_idx++){
+                            $aReplacements['{TEMPLATE'.$tpl_idx.'}'] = "";
+                        }
+                        $tpl_idx=1;
+                        foreach ($tmp_tpl as $curr_idx){
+                            $aReplacements['{TEMPLATE'.$tpl_idx.'}'] = trim($curr_idx);
+                            $tpl_idx++;
+                        }
+                        
                         if($field['type'] == 'email' 
                             AND $admin->validate_email($post_field) == false) {
                                 $err_txt[$field_id] = $MESSAGE['USERS']['INVALID_EMAIL'];
@@ -520,17 +538,17 @@ if (!function_exists('eval_form')) {
                         }
 
                         if ($field['type'] == 'heading') {
-                            //$email_body .= $field_value."\n";
+                            $aReplacements['{HEADING}'] = $field['title'];
                             $html_data_user 
                                 .= str_replace(
-                                    '{HEADING}', 
-                                    $field['title'], 
+                                    array_keys($aReplacements), 
+                                    array_values($aReplacements), 
                                     $heading_html
                                 );
                             $html_data_site 
                                 .= str_replace(
-                                    '{HEADING}', 
-                                    $field['title'], 
+                                    array_keys($aReplacements), 
+                                    array_values($aReplacements), 
                                     $heading_html
                                 );
                         } elseif ($field['type'] == 'email_recip') {
@@ -542,17 +560,18 @@ if (!function_exists('eval_form')) {
                                 $fer[]=$field_id;
                             }
                             $recip = htmlspecialchars($post_field[0], ENT_QUOTES);
-                            //$email_body .= $field['title'].': '.$recip."\n";
+                            $aReplacements['{TITLE}'] =  $field['title'];
+                            $aReplacements['{DATA}']  =  $recip;
                             $html_data_user 
                                 .= str_replace(
-                                    array('{TITLE}', '{DATA}'), 
-                                    array($field['title'], $recip), 
+                                    array_keys($aReplacements), 
+                                    array_values($aReplacements), 
                                     $short_html
                                 );
                             $html_data_site 
                                 .= str_replace(
-                                    array('{TITLE}', '{DATA}'), 
-                                    array($field['title'], $recip), 
+                                    array_keys($aReplacements), 
+                                    array_values($aReplacements),
                                     $short_html
                                 );
                             if ($mailto == "") { 
@@ -562,58 +581,66 @@ if (!function_exists('eval_form')) {
                         } elseif ($field['type'] == 'email_subj') {
                             $email_subject .= " ". $field_value;
                             $success_email_subject .= " ". $field_value;
+                            $aReplacements['{TITLE}'] =  $field['title'];
+                            $aReplacements['{DATA}']  =  $field_value;
                             $html_data_user 
                                 .= str_replace(
-                                    array('{TITLE}', '{DATA}'), 
-                                    array($field['title'], $field_value), 
+                                    array_keys($aReplacements), 
+                                    array_values($aReplacements), 
                                     $short_html
                                 );
                             $html_data_site 
                                 .= str_replace(
-                                    array('{TITLE}', '{DATA}'), 
-                                    array($field['title'], $field_value), 
+                                    array_keys($aReplacements), 
+                                    array_values($aReplacements),
                                     $short_html
                                 );
                         } elseif (!is_array($post_field)) {
                             if ($field['type'] == 'email') {
+                                $aReplacements['{TITLE}'] =  $field['title'];
+                                $aReplacements['{DATA}']  =  $field_value;
                                 $html_data_user 
                                     .= str_replace(
-                                        array('{TITLE}', '{DATA}'), 
-                                        array($field['title'], $field_value), 
+                                        array_keys($aReplacements), 
+                                        array_values($aReplacements), 
                                         $email_html
                                     );
                                 $html_data_site 
                                     .= str_replace(
-                                        array('{TITLE}', '{DATA}'), 
-                                        array($field['title'], $field_value), 
+                                        array_keys($aReplacements), 
+                                        array_values($aReplacements),
                                         $email_html
                                     );
                             } elseif ($field['type'] == 'textarea') {
                                 // Test for duplicate (msdos-like) LF
                                 $lines = str_replace("\r\n", "<br />", $field_value);  
+                                $aReplacements['{TITLE}'] =  $field['title'];
+                                $aReplacements['{DATA}']  =  $lines;
                                 $html_data_user 
                                     .= str_replace(
-                                        array('{TITLE}', '{DATA}'), 
-                                        array($field['title'], $lines), 
+                                        array_keys($aReplacements), 
+                                        array_values($aReplacements), 
                                         $long_html
                                     );
                                 $html_data_site 
-                                   .= str_replace(
-                                       array('{TITLE}', '{DATA}'), 
-                                       array($field['title'], $lines), 
-                                       $long_html
-                                   );
+                                    .= str_replace(
+                                        array_keys($aReplacements), 
+                                        array_values($aReplacements),
+                                        $long_html
+                                    );
                             } else {
+                                $aReplacements['{TITLE}'] =  $field['title'];
+                                $aReplacements['{DATA}']  =  $field_value;
                                 $html_data_user 
                                     .= str_replace(
-                                        array('{TITLE}', '{DATA}'), 
-                                        array($field['title'], $field_value), 
+                                        array_keys($aReplacements), 
+                                        array_values($aReplacements), 
                                         $short_html
                                     );
                                 $html_data_site 
                                     .= str_replace(
-                                        array('{TITLE}', '{DATA}'), 
-                                        array($field['title'], $field_value), 
+                                        array_keys($aReplacements), 
+                                        array_values($aReplacements),
                                         $short_html
                                     );
                             }
@@ -634,18 +661,21 @@ if (!function_exists('eval_form')) {
                             }
                             $curr_field = substr($curr_field, 0, -2);
                             $curr_field .= "'";
+                            $aReplacements['{TITLE}'] =  $field['title'];
+                            $aReplacements['{DATA}']  =  $lines;
                             $html_data_user 
                                 .= str_replace(
-                                    array('{TITLE}', '{DATA}'), 
-                                    array($field['title'], $lines), 
+                                    array_keys($aReplacements), 
+                                    array_values($aReplacements), 
                                     $long_html
                                 );
                             $html_data_site 
                                 .= str_replace(
-                                    array('{TITLE}', '{DATA}'), 
-                                    array($field['title'], $lines), 
+                                    array_keys($aReplacements), 
+                                    array_values($aReplacements),
                                     $long_html
                                 );
+
                         }
                     } elseif($field['type'] == 'filename') {
                         $err_txt[$field_id] = "";
@@ -656,7 +686,8 @@ if (!function_exists('eval_form')) {
                         // locally we use a copy of max_file_size 
                         $tmp_max_file_size = $max_file_size;
                         $file_counter=0;
-                        if (count($_FILES['field'.$field_id]['name'])){
+                        if ((($field['required'] & 4) == 0) // skip disabled fields
+                            && (count($_FILES['field'.$field_id]['name'])!=0)){
                             foreach($_FILES['field'.$field_id]['name'] as $f => $name) { 
                                 if($name != ""){
                                     if($tmp_max_file_size<=0){
@@ -739,17 +770,20 @@ if (!function_exists('eval_form')) {
                                             // convert to human readable string for 
                                             // displaying  file size in KB
                                             $fs = sprintf("%.1f", $fs / 1024);  
-
+                                            $aReplacements['{TITLE}'] =  $field['title'];
+                                            $aReplacements['{DATA}']  =  "$filename ($fs KB)";
                                             $tmp_html_user 
                                                 .= str_replace(
-                                                    array('{TITLE}', '{DATA}'), 
-                                                    array($field['title'], "$filename ($fs KB)"), 
+                                                    array_keys($aReplacements), 
+                                                    array_values($aReplacements), 
                                                     $short_html
                                                 );
+                                            $aReplacements['{DATA}']  = $file_url;
+                                            $aReplacements['{SIZE}']  = $fs;
                                             $tmp_html_site 
                                                 .= str_replace(
-                                                    array('{TITLE}', '{DATA}', '{SIZE}'), 
-                                                    array($field['title'], $file_url, $fs), 
+                                                    array_keys($aReplacements), 
+                                                    array_values($aReplacements),
                                                     $uploadfile_html
                                                 );
                                             $tmp_filenames .= "$filename ($fs KB) ";
@@ -916,7 +950,8 @@ if (!function_exists('eval_form')) {
                             $email_replyto, 
                             $recip_list, 
                             $email_subject, 
-                            $body, 
+                            $body,
+                            $success_email_css, 
                             $email_fromname, 
                             $files_to_attach
                         )
@@ -932,7 +967,7 @@ if (!function_exists('eval_form')) {
                     $user_body 
                         = str_replace(
                              array('{DATA}', '{REFERER}', '{IP}', '{DATE}', '{USER}', '{EMAIL}'), 
-                             array($html_data_user, $_SESSION['href'], $ip, $now, $wb_user, $success_email_to), 
+                             array($html_data_user, $_SESSION['href'], $ip, $now, $wb_user, $success_email_to),
                              htmlspecialchars_decode($success_email_text)
                          );
 
@@ -975,6 +1010,7 @@ if (!function_exists('eval_form')) {
                             $success_email_to, 
                             $success_email_subject, 
                             $user_body, 
+                            $email_css,
                             $success_email_fromname
                         )
                     ) {

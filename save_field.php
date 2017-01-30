@@ -6,9 +6,9 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.3
+ * @version             1.3.4
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
- * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
+ * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
  * @url                 https://github.com/WebsiteBaker-modules/mpform
  * @url                 https://forum.wbce.org/viewtopic.php?id=661
@@ -91,7 +91,9 @@ if($admin->get_post('title') == '' OR $admin->get_post('type') == '') {
 } else {
     $title  = str_replace(array("[[", "]]"), '', $admin->get_post_escaped('title'));
     $type = str_replace(array("[[", "]]"), '', $admin->get_post_escaped('type'));
-    $fieldtemplate = $admin->get_post_escaped('fieldtemplate');    
+    $fieldtemplate = '';
+    if(isset($_POST['fieldtemplate']))
+        $fieldtemplate = $admin->get_post_escaped('fieldtemplate');    
     if($fieldtemplate==null)$fieldtemplate='';
     $fieldtemplate = str_replace(array("[[", "]]"), '', $fieldtemplate);
     $extraclasses = $admin->get_post_escaped('extraclasses');
@@ -155,7 +157,7 @@ $ts = $database->query(
     );
 $setting = $ts->fetchRow();
 $suffix = $setting['tbl_suffix'];
-$header = $settings['header'];
+$header = $setting['header'];
 $bTableLayout = (stripos($header, "<table") !== false);  
 
 if ($suffix != "DISABLED"){

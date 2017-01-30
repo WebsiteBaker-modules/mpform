@@ -7,9 +7,9 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.3
+ * @version             1.3.4
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
- * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
+ * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
  * @url                 https://github.com/WebsiteBaker-modules/mpform
  * @url                 https://forum.wbce.org/viewtopic.php?id=661
@@ -110,6 +110,10 @@ $LANG['backend'] = array(
                                    . '&nbsp; {EMAIL} - Email entered in the form or '
                                    . 'the one of the logged on user<br />',
     'des_success_email_text'      => 'Content of the confirmation email to the sender',
+    'des_success_email_css'       => 'CSS for the confirmation email to the sender',
+    'des_email_css'               => 'CSS for the email to the site owner',
+    'txt_email_css'               => 'Email Style',
+    'txt_success_email_css'       => 'Success Email Style',
     'des_email_text'              => 'Content of the email to the site owner',
     'fieldset_start'              => 'Fieldset (start)',
     'fieldset_end'                => 'Fieldset (end)',
@@ -199,20 +203,20 @@ $LANG['backend_adv'] = array(
                                    . 'E-Mail Subject,  '
                                    . 'Date,  '
                                    . 'Number<br /> '
-                                   . 'Place holders: {TITLE} and {DATA}',
+                                   . 'Place holders: {TITLE}, {DATA}, and {TEMPLATE}',
     'txt_long_html'               => 'Potentially multi row input fields',
     'des_long_html'               => 'Used for types:  '
                                    . 'Long Text,  '
                                    . 'Checkbox group,  '
                                    . 'Select box<br /> '
-                                   . 'Place holders: {TITLE} and {DATA}',
+                                   . 'Place holders: {TITLE}, {DATA}, and {TEMPLATE}',
     'txt_email_html'              => 'E-Mail Address',
     'des_email_html'              => 'Used for type:  '
                                    . 'E-Mail Address<br /> '
-                                   . 'Place holders: {TITLE} and {DATA}',
+                                   . 'Place holders: {TITLE}, {DATA}, and {TEMPLATE}',
     'txt_uploadfile_html'         => 'Upload File',
     'des_uploadfile_html'         => 'Used for type: Upload File<br /> '
-                                   . 'Place holders: {TITLE} and {DATA}',
+                                   . 'Place holders: {TITLE}, {DATA}, {SIZE}, and {TEMPLATE}',
     'SPECIAL_SETTINGS'            => 'Special Settings',
     'txt_enum'                    => 'Start value for Radio and Checkbox',
     'des_enum'                    => 'Default behaviour: If this field is empty,  '

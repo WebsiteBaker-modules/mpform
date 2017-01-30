@@ -6,9 +6,9 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.3
+ * @version             1.3.4
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
- * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
+ * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
  * @url                 https://github.com/WebsiteBaker-modules/mpform
  * @url                 https://forum.wbce.org/viewtopic.php?id=661
@@ -83,10 +83,12 @@ $update_keys = array(
     'success_text',
     'submissions_text',
     'email_text',
+    'email_css',
     'success_email_to',
     'success_email_from',
     'success_email_fromname',
     'success_email_text',
+    'success_email_css',
     'success_email_subject',
     'is_following',
     'tbl_suffix'
@@ -152,6 +154,7 @@ $email_subject = htmlspecialchars($email_subject, ENT_QUOTES);
 $success_email_fromname = htmlspecialchars($success_email_fromname, ENT_QUOTES);
 $success_email_subject = htmlspecialchars($success_email_subject, ENT_QUOTES);
 $success_email_text = htmlspecialchars($success_email_text, ENT_QUOTES);
+
 // end of data cleaning
 
 if(is_array($email_fromname_field)&&!empty($email_fromname_field)){

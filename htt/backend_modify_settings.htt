@@ -130,6 +130,12 @@
                 <small>{success_options}</small>
             </td>
         </tr>
+        <tr>
+            <th>{txt_email_css}:<br /><small>({des_email_css})</small></th>
+            <td>
+                <textarea rows="5" cols="50" name="email_css" class="setting_value_textarea">{email_css}</textarea><br />
+            </td>
+        </tr>
     </table>
 
     <table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
@@ -178,6 +184,12 @@
             <td>
                 <textarea rows="5" cols="50" name="success_email_text" class="setting_value_textarea">{success_email_text}</textarea><br />
                 <small>{success_options}</small>
+            </td>
+        </tr>
+        <tr>
+            <th>{txt_success_email_css}:<br /><small>({des_success_email_css})</small></th>
+            <td>
+                <textarea rows="5" cols="50" name="success_email_css" class="setting_value_textarea">{success_email_css}</textarea><br />
             </td>
         </tr>
     </table>

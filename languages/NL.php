@@ -7,9 +7,9 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.3
+ * @version             1.3.4
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
- * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
+ * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
  * @url                 https://github.com/WebsiteBaker-modules/mpform
  * @url                 https://forum.wbce.org/viewtopic.php?id=661
@@ -115,6 +115,10 @@ $LANG['backend'] = array(
                                    . '&nbsp; {EMAIL} - Email entered in the form or '
     'des_success_email_text'      => 'Inhoud van de bevestigingsmail aan de afzender',
     'des_email_text'              => 'Inhoud van de e-mail aan de site-eigenaar',
+    'des_success_email_css'       => 'CSS van de bevestigingsmail aan de afzender',
+    'des_email_css'               => 'CSS van de e-mail aan de site-eigenaar',
+    'txt_email_css'               => 'Email Style',
+    'txt_success_email_css'       => 'Success Email Style',
     'fieldset_start'              => 'Veldset (start)',
     'fieldset_end'                => 'Veldset (eind)',
     'integer_number'              => 'Numerieke waarde',
@@ -206,21 +210,21 @@ $LANG['backend_adv'] = array(
                                    . 'E-mailonderwerp,  '
                                    . 'Datum,  '
                                    . 'Nummer<br /> '
-                                   . 'Codes: {TITLE} en {DATA}',
+                                   . 'Codes: {TITLE}, {DATA} en {TEMPLATE}',
     'txt_long_html'               => 'Invoer op meerdere regels',
     'des_long_html'               => 'Gebruikt voor typen:  '
                                    . 'Lange tekst,  '
                                    . 'Aankruisvakje,  '
                                    . 'Keuzemenu<br /> '
-                                   . 'Codes: {TITLE} en {DATA}',
+                                   . 'Codes: {TITLE}, {DATA} en {TEMPLATE}',
     'txt_email_html'              => 'E-mailadres',
     'des_email_html'              => 'Gebruikt voor type:  '
                                    . 'E-mailadres<br /> '
-                                   . 'Codes: {TITLE} en {DATA}',
+                                   . 'Codes: {TITLE}, {DATA} en {TEMPLATE}',
     'txt_uploadfile_html'         => 'Uploaden bestand',
     'des_uploadfile_html'         => 'Gebruikt voor type:  '
                                    . 'Uploaden bestand<br /> '
-                                   . 'Codes: {TITLE} en {DATA}',
+                                   . 'Codes: {TITLE}, {DATA}, {SIZE} en {TEMPLATE}',
     'SPECIAL_SETTINGS'            => 'Speciale instellingen',
     'txt_enum'                    => 'Startwaarde voor Radiobutton en Aankruisvakje',
     'des_enum'                    => 'Standaard gedrag:  '

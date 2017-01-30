@@ -7,9 +7,9 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.3
+ * @version             1.3.4
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
- * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
+ * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
  * @url                 https://github.com/WebsiteBaker-modules/mpform
  * @url                 https://forum.wbce.org/viewtopic.php?id=661
@@ -134,6 +134,12 @@ $LANG['backend'] = array(
                                    . 'l&apos;utilisateur connect&eacute;<br />',
     'des_success_email_text'      => 'Contenu de l&apos;email de confirmation '
                                    . 'envoy&eacute; &agrave; l&apos;internaute',
+    'des_success_email_css'       => 'CSS pour l&apos;email de confirmation '
+                                   . 'envoy&eacute; &agrave; l&apos;internaute',
+    'des_email_css'               => 'CSS de l&apos;email envoy&eacute; '
+                                   . 'au gestionnaire du site',
+    'txt_email_css'               => 'Email Style',
+    'txt_success_email_css'       => 'Success Email Style',
     'des_email_text'              => 'Contenu de l&apos;email envoy&eacute;  '
                                    . 'au gestionnaire du site',
     'fieldset_start'              => 'Ensemble de champs (d&eacute;but)',
@@ -242,21 +248,21 @@ $LANG['backend_adv'] = array(
                                    . 'Objet de l&apos;email,  '
                                    . 'Date,  '
                                    . 'Nombre<br /> '
-                                   . 'Variables: {TITLE} et {DATA}',
+                                   . 'Variables: {TITLE}, {DATA} et {TEMPLATE}',
     'txt_long_html'               => 'Zone de saisie <br/>(multi-lignes)',
     'des_long_html'               => 'Utilis&eacute; pour les types:  '
                                    . 'Texte long,  '
                                    . 'Groupe de checkbox,  '
                                    . 'S&eacute;lection des bo&icirc;tes<br /> '
-                                   . 'Variables: {TITLE} et {DATA}',
+                                   . 'Variables: {TITLE}, {DATA} et {TEMPLATE}',
     'txt_email_html'              => 'Adresse email',
     'des_email_html'              => 'Utilis&eacute; pour type:  '
                                    . 'Adresse email<br /> '
-                                   . 'Variables: {TITLE} et {DATA}',
+                                   . 'Variables: {TITLE}, {DATA} et {TEMPLATE}',
     'txt_uploadfile_html'         => 'Envoi de fichiers <br/>(Upload)',
     'des_uploadfile_html'         => 'Utilis&eacute; pour type:  '
                                    . 'Envoi de fichiers<br /> '
-                                   . 'Variables: {TITLE} et {DATA}',
+                                   . 'Variables: {TITLE}, {DATA}, {SIZE} et {TEMPLATE}',
     'SPECIAL_SETTINGS'            => 'R&eacute;glages sp&eacute;ciaux',
     'txt_enum'                    => 'Valeur initiale des boutons Radio et Checkbox',
     'des_enum'                    => 'Comportement par d&eacute;faut:  '

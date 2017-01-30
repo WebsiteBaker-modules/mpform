@@ -6,9 +6,9 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.3
+ * @version             1.3.4
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
- * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
+ * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
  * @url                 https://github.com/WebsiteBaker-modules/mpform
  * @url                 https://forum.wbce.org/viewtopic.php?id=661
@@ -64,6 +64,7 @@ require_once(dirname(__FILE__).'/constants.php');
         . " `email_fromname` VARCHAR(255) NOT NULL DEFAULT '' ,"
         . " `email_subject` VARCHAR(255) NOT NULL DEFAULT '' ,"
         . " `email_text` TEXT NOT NULL ,"
+        . " `email_css` TEXT NOT NULL ,"
         . " `success_page` TEXT NOT NULL ,"
         . " `success_text` TEXT NOT NULL ,"
         . " `submissions_text` TEXT NOT NULL ,"
@@ -71,6 +72,7 @@ require_once(dirname(__FILE__).'/constants.php');
         . " `success_email_from` VARCHAR(255) NOT NULL DEFAULT '' ,"
         . " `success_email_fromname` VARCHAR(255) NOT NULL DEFAULT '' ,"
         . " `success_email_text` TEXT NOT NULL ,"
+        . " `success_email_css` TEXT NOT NULL ,"
         . " `success_email_subject` VARCHAR(255) NOT NULL DEFAULT '' ,"
         . " `stored_submissions` INT NOT NULL DEFAULT '0' ,"
         . " `max_submissions` INT NOT NULL DEFAULT '0' ,"
@@ -198,11 +200,13 @@ require_once(dirname(__FILE__).'/constants.php');
     .     "`footer` = '', "
     .     "`email_to` = '', "
     .     "`email_text` = '', "
+    .     "`email_css` = '', "
     .     "`success_page` = '', "
     .     "`success_text` = '', "
     .     "`submissions_text` = '', "
     .     "`success_email_to` = '', "
     .     "`success_email_text` = '', "
+    .     "`success_email_css` = '', "
     .     "`heading_html` = '', "
     .     "`short_html` = '', "
     .     "`long_html` = '', "

@@ -6,9 +6,9 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.3
+ * @version             1.3.4
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
- * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
+ * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
  * @url                 https://github.com/WebsiteBaker-modules/mpform
  * @url                 https://forum.wbce.org/viewtopic.php?id=661
@@ -107,6 +107,29 @@ if (!isset($settings['email_replyto'])){
         echo $database->get_error().'<br />';
     } else {
         echo "Added new field `email_replyto` successfully<br />";
+    }
+}
+
+// new in 1.3.4
+if (!isset($settings['email_css'])){
+    $qs = "ALTER TABLE `".TP_MPFORM."settings`"
+        . "  ADD `email_css` TEXT NOT NULL AFTER `email_text`";
+    $database->query($qs);
+    if($database->is_error()) {
+        echo $database->get_error().'<br />';
+    } else {
+        echo "Added new field `email_css` successfully<br />";
+    }
+}
+
+if (!isset($settings['success_email_css'])){
+    $qs = "ALTER TABLE `".TP_MPFORM."settings`"
+        . "  ADD `success_email_css` TEXT NOT NULL AFTER `success_email_text`";
+    $database->query($qs);
+    if($database->is_error()) {
+        echo $database->get_error().'<br />';
+    } else {
+        echo "Added new field `success_email_css` successfully<br />";
     }
 }
 

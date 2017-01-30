@@ -6,9 +6,9 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.3
+ * @version             1.3.4
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
- * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
+ * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
  * @url                 https://github.com/WebsiteBaker-modules/mpform
  * @url                 https://forum.wbce.org/viewtopic.php?id=661
@@ -76,6 +76,7 @@ $email_text = 'The following data was submitted:<br />{DATA}'
     . 'Referer page: {REFERER}'
     . '<br />'
     . 'IP address: {IP}';
+$email_css = '';
 $success_email_to = '';
 $success_email_from = $admin->get_email();
 $success_email_fromname = '';
@@ -83,6 +84,7 @@ $success_email_text = 'Thank you for submitting your data.'
     . ' We received the following data:'
     . '<br />'."\n".'{DATA}'
     . '<br />'."\n";
+$success_email_css = '';
 $success_email_subject = $LANG['backend']['EMAIL_SUC_SUBJ'];
 $max_submissions = 50;
 $stored_submissions = 1000;
@@ -111,6 +113,7 @@ $SQL = "INSERT INTO `".TP_MPFORM."settings`"
      . " `email_fromname` = '".$email_fromname."', "
      . " `email_subject` = '".$email_subject."', "
      . " `email_text` = '".$email_text."', "
+     . " `email_css` = '".$email_css."', "
      . " `success_page` = '".$success_page."', "
      . " `success_text` = '".$success_text."', "
      . " `submissions_text` = '".$submissions_text."', "
@@ -118,6 +121,7 @@ $SQL = "INSERT INTO `".TP_MPFORM."settings`"
      . " `success_email_from` = '".$success_email_from."', "
      . " `success_email_fromname` = '".$success_email_fromname."', "
      . " `success_email_text` = '".$success_email_text."', "
+     . " `success_email_css` = '".$success_email_css."', "
      . " `success_email_subject` = '".$success_email_subject."', "
      . " `max_submissions` = '".$max_submissions."', "
      . " `stored_submissions` = '".$stored_submissions."', "

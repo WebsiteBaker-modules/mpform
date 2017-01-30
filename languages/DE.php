@@ -7,9 +7,9 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.3
+ * @version             1.3.4
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
- * @copyright           (c) 2009 - 2016, Website Baker Org. e.V.
+ * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
  * @url                 https://github.com/WebsiteBaker-modules/mpform
  * @url                 https://forum.wbce.org/viewtopic.php?id=661
@@ -120,6 +120,11 @@ $LANG['backend'] = array(
                                    . 'des angemeldeten Benutzers<br />',
     'des_success_email_text'      => 'Inhalt der Best&auml;tigungs-email  '
                                    . 'an den Absender',
+    'des_success_email_css'       => 'CSS f&uuml;r die Best&auml;tigungs-email  '
+                                   . 'an den Absender',
+    'des_email_css'               => 'CSS f&uuml;r die email an den Sitebetreiber',
+    'txt_email_css'               => 'Email Style',
+    'txt_success_email_css'       => 'Success Email Style',
     'des_email_text'              => 'Inhalt der email an den Sitebetreiber',
     'fieldset_start'              => 'Fieldset (Start)',
     'fieldset_end'                => 'Fieldset (Ende)',
@@ -219,21 +224,21 @@ $LANG['backend_adv'] = array(
                                    . 'E-Mail-Betreff,  '
                                    . 'Datum,  '
                                    . 'Zahl<br /> '
-                                   . 'Platzhalter: {TITLE} und {DATA}',
+                                   . 'Platzhalter: {TITLE}, {DATA} und {TEMPLATE}',
     'txt_long_html'               => 'Potentiell mehrzeilige Eingaben',
     'des_long_html'               => 'Wird verwendet f&uuml;r Typen:  '
                                    . 'Langtext,  '
                                    . 'Kontrollk&auml;stchen,  '
                                    . 'Auswahlliste<br /> '
-                                   . 'Platzhalter: {TITLE} und {DATA}',
+                                   . 'Platzhalter: {TITLE}, {DATA} und {TEMPLATE}',
     'txt_email_html'              => 'E-Mail-Adresse',
     'des_email_html'              => 'Wird verwendet f&uuml;r Typ:  '
                                    . 'E-Mail-Adresse<br /> '
-                                   . 'Platzhalter: {TITLE} und {DATA}',
+                                   . 'Platzhalter: {TITLE}, {DATA} und {TEMPLATE}',
     'txt_uploadfile_html'         => 'Datei-Upload',
     'des_uploadfile_html'         => 'Wird verwendet f&uuml;r Typ:  '
                                    . 'Datei-Upload<br /> '
-                                   . 'Platzhalter: {TITLE} und {DATA}',
+                                   . 'Platzhalter: {TITLE}, {DATA}, {SIZE} und {TEMPLATE}',
     'SPECIAL_SETTINGS'            => 'Spezielle Einstellungen',
     'txt_enum'                    => 'Startwert f&uuml;r Radio und Checkbox',
     'des_enum'                    => 'Standardverhalten:  '
