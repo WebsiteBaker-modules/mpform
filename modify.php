@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.4
+ * @version             1.3.5
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -221,7 +221,8 @@ if($num_fields > 0) {
             array(
                 'FTAN'               => $admin->getFTAN(),
                 'FIELD_ID'           => $field['field_id'],
-                'FIELD_IDKEY'        => ( method_exists( $admin, 'getIDKEY' ) 
+                'FIELD_IDKEY'        => ((method_exists( $admin, 'getIDKEY' )
+                                          && (!(defined('MPFORM_SKIP_IDKEY')&&(MPFORM_SKIP_IDKEY))))
                                           ? $admin->getIDKEY($field['field_id'])
                                           : $field['field_id']),
                 'MOVE_UP_STYLE'      => (($pos != 1) ? '' : 'style="display:none"'),
@@ -258,13 +259,15 @@ if($query_submissions->numRows() > 0) {
         $pos++;
         $tpl->set_var(
             array(
-                'SUBMISSION_ID'          => method_exists( $admin, 'getIDKEY' )  
+                'SUBMISSION_ID'          => (method_exists( $admin, 'getIDKEY' )  
+                                              && (!(defined('MPFORM_SKIP_IDKEY')&&(MPFORM_SKIP_IDKEY))))
                                             ? $admin->getIDKEY($submission['submission_id']) 
                                             : $submission['submission_id'],
                                             // Alternate row color (even/odd zebra style):
                 'ROW_CLASS'              => $pos %2  ? 'even' : 'odd', 
                 'field_submission_id'    => $submission['submission_id'],
-                'submissionIDKEY'        => method_exists( $admin, 'getIDKEY')
+                'submissionIDKEY'        => (method_exists( $admin, 'getIDKEY')
+                                              && (!(defined('MPFORM_SKIP_IDKEY')&&(MPFORM_SKIP_IDKEY))))
                                             ? $admin->getIDKEY($field['submission_id'])
                                             : $field['submission_id'],
                 'field_submission_when'  => date(TIME_FORMAT.', '.DATE_FORMAT, 

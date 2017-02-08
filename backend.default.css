@@ -217,12 +217,12 @@ table.settings_table    {
 --------------| elements
 */
 
-button      { 
+button.mod_mpform_button     { 
     cursor: pointer; 
     padding: 2px 7px 2px 5px; 
     min-width: 150px 
 }
-button img {
+button.mod_mpform_button img {
     margin-right: 4px;
     margin-bottom: -2px;
     margin-left: 2px;

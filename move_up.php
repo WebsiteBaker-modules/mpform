@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.4
+ * @version             1.3.5
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -30,18 +30,20 @@ require(WB_PATH.'/modules/admin.php');
 // Get id    
 if ( method_exists( $admin, 'checkIDKEY' ) ) {  
     $field_id = $admin->checkIDKEY('field_id', false, 'GET');
-    if (!$field_id) {
+    if ((!$field_id) 
+        && (!(defined('MPFORM_SKIP_IDKEY')&&(MPFORM_SKIP_IDKEY)))) {
         $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'],
-        ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
+            ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
         exit();
     }
 } else {
-    if(!isset($_GET['field_id']) OR !is_numeric($_GET['field_id'])) {
+    if((!isset($_GET['field_id']) OR !is_numeric($_GET['field_id']))
+        && (!(defined('MPFORM_SKIP_IDKEY')&&(MPFORM_SKIP_IDKEY)))) {
         $sUrlToGo = ADMIN_URL."/pages/index.php";
         if(headers_sent())
-          $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'],$sUrlToGo);
+            $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'],$sUrlToGo);
         else 
-          header("Location: ". $sUrlToGo);
+            header("Location: ". $sUrlToGo);
         exit(0);
     } else {
         $field_id = $_GET['field_id'];

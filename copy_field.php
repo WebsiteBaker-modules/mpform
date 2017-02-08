@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.4
+ * @version             1.3.5
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -41,7 +41,8 @@ $oldfield_id
       ? $admin->checkIDKEY('oldfield_id', false, 'GET')
       : $_GET['oldfield_id'];
       
-if (!$oldfield_id) {
+if ((!$oldfield_id)
+    && (!(defined('MPFORM_SKIP_IDKEY')&&(MPFORM_SKIP_IDKEY)))) {
     $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'], 
         ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
     exit();
@@ -152,8 +153,9 @@ if ($suffix != "DISABLED"){
 }
 
 // Say that a new record has been added, then redirect to modify page
-if (method_exists( $admin, 'getIDKEY' )) {
-  $field_id = $admin->getIDKEY($field_id);
+if ((method_exists( $admin, 'getIDKEY' )) 
+    && (!(defined('MPFORM_SKIP_IDKEY')&&(MPFORM_SKIP_IDKEY)))){
+    $field_id = $admin->getIDKEY($field_id);
 }
 if($database->is_error()) {
     $admin->print_header();

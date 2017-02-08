@@ -146,10 +146,10 @@
     <table cellpadding="0" cellspacing="0" border="0" width="99%">
         <tr>
             <td align="left">
-                <button name="save" type="submit" class=""><img src="{MODULE_URL}/images/ok.gif" alt="" width="16" height="16" border="0" /> {TXT_SAVE}</button>
+                <button name="save" type="submit" class="mod_mpform_button"><img src="{MODULE_URL}/images/ok.gif" alt="" width="16" height="16" border="0" /> {TXT_SAVE}</button>
             </td>
             <td align="right">
-                <button class="" onclick="javascript:window.location = '{MOD_CANCEL_URL}'; return false;"><img src="{MODULE_URL}/images/cancel.gif" alt="" width="16" height="16" border="0" /> {TXT_CANCEL}</button>
+                <button class="mod_mpform_button" onclick="javascript:window.location = '{MOD_CANCEL_URL}'; return false;"><img src="{MODULE_URL}/images/cancel.gif" alt="" width="16" height="16" border="0" /> {TXT_CANCEL}</button>
             </td>
         </tr>
     </table>

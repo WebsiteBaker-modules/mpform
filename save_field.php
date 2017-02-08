@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.4
+ * @version             1.3.5
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -31,7 +31,8 @@ if (!@include(get_module_language_file($mod_dir))) return;
 
 
 // Get id
-if(!isset($_POST['field_id']) OR !is_numeric($_POST['field_id'])) {
+if((!isset($_POST['field_id']) OR !is_numeric($_POST['field_id']))
+    && (!(defined('MPFORM_SKIP_ID_CHECK')&&(MPFORM_SKIP_ID_CHECK)))) {
     $sUrlToGo = ADMIN_URL."/pages/index.php";
     if(headers_sent())
       $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'],$sUrlToGo);
@@ -48,8 +49,8 @@ require_once(WB_PATH.'/modules/mpform/constants.php');
 $update_when_modified = TRUE; // Tells script to update when this page was last updated
 $admin_header = FALSE;
 require(WB_PATH.'/modules/admin.php');
-if ( method_exists( $admin, 'checkFTAN' ) && (!$admin->checkFTAN()))
-{
+if (( method_exists( $admin, 'checkFTAN' ) && (!$admin->checkFTAN()))
+    && (!(defined('MPFORM_SKIP_FTAN')&&(MPFORM_SKIP_FTAN)))){
     $admin->print_header();
     $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'],
          ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
@@ -57,7 +58,8 @@ if ( method_exists( $admin, 'checkFTAN' ) && (!$admin->checkFTAN()))
     exit();
 }
 
-if ( method_exists( $admin, 'checkIDKEY' ) ) { 
+if (( method_exists( $admin, 'checkIDKEY' ))
+    && (!(defined('MPFORM_SKIP_IDKEY')&&(MPFORM_SKIP_IDKEY)))) {
     $fid = $admin->getIDKEY($field_id);
 } else {
     $fid = $field_id;
@@ -124,7 +126,8 @@ if($query_settings->numRows() > 0) {
     $isnewfield = $fetch_settings['title'] == "";
     $broken = $fetch_settings['page_id'] != $page_id;
 }
-if ($broken) {
+if (($broken)
+    && (!(defined('MPFORM_SKIP_ID_CHECK')&&(MPFORM_SKIP_ID_CHECK)))) {
     $sUrlToGo = ADMIN_URL."/pages/index.php";
     if(headers_sent())
       $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'],$sUrlToGo);

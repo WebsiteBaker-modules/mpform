@@ -9,9 +9,9 @@
 <table cellpadding="0" cellspacing="0" border="0" width="99%">
     <tr>
           <td align="right">
-              <button id="add_field" type="submit" name="add"><img src="{MODULE_URL}/images/add_new.gif" alt="" width="16" height="16" border="0" /> {TXT_ADD_FIELD}</button>
+              <button id="add_field" class="mod_mpform_button" type="submit" name="add"><img src="{MODULE_URL}/images/add_new.gif" alt="" width="16" height="16" border="0" /> {TXT_ADD_FIELD}</button>
                 &nbsp;
-              <button id="copy_field" type="submit" name="copy"><img src="{MODULE_URL}/images/duplicate.gif" alt="" width="16" height="16" border="0" /> {TXT_COPY_FIELD}</button>
+              <button id="copy_field" class="mod_mpform_button" type="submit" name="copy"><img src="{MODULE_URL}/images/duplicate.gif" alt="" width="16" height="16" border="0" /> {TXT_COPY_FIELD}</button>
           </td>
     </tr>
 </table>
@@ -44,10 +44,10 @@
 <table cellpadding="0" cellspacing="0" border="0" width="99%">
     <tr>
         <td align="left">
-            <button id="save_settings" type="submit" name="save"><img src="{MODULE_URL}/images/ok.gif" alt="" width="16" height="16" border="0" /> {TXT_SAVE}</button>
+            <button id="save_settings" class="mod_mpform_button" type="submit" name="save"><img src="{MODULE_URL}/images/ok.gif" alt="" width="16" height="16" border="0" /> {TXT_SAVE}</button>
         </td>
         <td align="right">
-        <button type="button" onclick="javascript: window.location = '{ADMIN_URL}/pages/modify.php?page_id={PAGE_ID}';"><img src="{MODULE_URL}/images/cancel.gif" alt="" width="16" height="16" border="0" /> {TXT_CANCEL}</button>
+        <button type="button" class="mod_mpform_button"  onclick="javascript: window.location = '{ADMIN_URL}/pages/modify.php?page_id={PAGE_ID}';"><img src="{MODULE_URL}/images/cancel.gif" alt="" width="16" height="16" border="0" /> {TXT_CANCEL}</button>
         </td>
     </tr>
 </table>

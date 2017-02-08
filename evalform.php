@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.4
+ * @version             1.3.5
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -129,6 +129,11 @@ if (!function_exists('mpform_mailx')) {
 
         // create PHPMailer object and define default settings
         $myMail = NewWbMailer();
+
+        if(defined('DEBUG') && DEBUG){
+                $myMail->set('SMTPDebug', 2));    // Enable verbose debug output
+                $myMail->set('Debugoutput', 'error_log');
+        }
 
         // set user defined from address
         if ($fromaddress!='') {

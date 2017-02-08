@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.4
+ * @version             1.3.5
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -45,9 +45,10 @@ if (method_exists( $admin, 'checkIDKEY' )) {
 } else {
    $submission_id = (int) $_GET['submission_id'];
 }
-if (!$submission_id) {
+if ((!$submission_id)
+    && (!(defined('MPFORM_SKIP_IDKEY')&&(MPFORM_SKIP_IDKEY)))) {
     $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'],
-    ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
+        ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
     exit();
 }
 
@@ -129,7 +130,7 @@ $sIconDir = $sModuleUrl.'/images';
 echo '<table cellpadding="0" cellspacing="0" border="0" width="99%">'
     . '<tr>'
     . '<td align="left">'
-    . '<button class="" onclick="javascript: confirm_link(\''
+    . '<button class="mod_mpform_button" onclick="javascript: confirm_link(\''
     . $TEXT['ARE_YOU_SURE']
     . "', '"
     . $sModuleUrl
@@ -138,7 +139,8 @@ echo '<table cellpadding="0" cellspacing="0" border="0" width="99%">'
     . '&section_id='
     . $section_id
     . '&submission_id='
-    . (method_exists( $admin, 'getIDKEY' )
+    . ((method_exists( $admin, 'getIDKEY') 
+       && (!(defined('MPFORM_SKIP_IDKEY')&&(MPFORM_SKIP_IDKEY))))
        ? $admin->getIDKEY($submission_id)
        : $submission_id)
     . '\');">'
@@ -149,7 +151,7 @@ echo '<table cellpadding="0" cellspacing="0" border="0" width="99%">'
     . '</button>'
     . '</td>'
     . '<td align="right">'
-    . '<button onclick="javascript: window.location = \''
+    . '<button class="mod_mpform_button" onclick="javascript: window.location = \''
     . ADMIN_URL
     . '/pages/modify.php?page_id='
     . $page_id

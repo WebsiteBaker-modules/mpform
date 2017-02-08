@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.4
+ * @version             1.3.5
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -164,3 +164,32 @@ if(!defined('MPFORM_SUBMIT_BUTTON')){
     . ' value="{SUBMIT_TEXT}" />');
 }
 
+
+// when you face problems with generic security exceptions where you would not expect them,
+// you can disable each type of security check separately for debugging purposes and at your own risk
+
+// FTAN was quite often a problem, especially in older WB versions. Anyhow, here you can disable the check 
+/*
+if(!defined('MPFORM_SKIP_FTAN')){
+    define('MPFORM_SKIP_FTAN',true);
+}
+*/
+
+
+// MPForm has some internal plausibility checks of the submitted ids against the ones in the database.
+// If you face problems with theses, you can disable the check in the hope that things dont't get worse...
+/*
+if(!defined('MPFORM_SKIP_ID_CHECK')){
+    define('MPFORM_SKIP_ID_CHECK',true);
+}
+*/
+
+
+// similar to FTANS the IDKEYs are a WB built-in security feature. They expire once the data sent by forms
+// is verified against them, or the same page is called from another window in the same session.
+// You can disable the encoding of the ids and also the decoding and test with the following setting:   
+/*
+if(!defined('MPFORM_SKIP_IDKEY')){
+    define('MPFORM_SKIP_IDKEY',true);
+}
+*/

@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.4
+ * @version             1.3.5
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -55,7 +55,8 @@ $query_content
 $setting = $query_content->fetchRow();
 
 // protect from cross page reading
-if ($setting['page_id'] != $page_id) {  
+if (($setting['page_id'] != $page_id)
+    && (!(defined('MPFORM_SKIP_ID_CHECK')&&(MPFORM_SKIP_ID_CHECK)))) {
     $sUrlToGo = ADMIN_URL."/pages/index.php";
     if(headers_sent())
       $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'],$sUrlToGo);

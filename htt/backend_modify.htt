@@ -9,7 +9,7 @@
                 <input type="hidden" name="section_id" value="{SECTION_ID}" />
                 <input type="hidden" name="page_id" value="{PAGE_ID}" />
                 {FTAN}
-                <button type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/config.png" alt="" />{TXT_SETTINGS}</button>
+                <button class="mod_mpform_button" type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/config.png" alt="" />{TXT_SETTINGS}</button>
             </form>
         </td>
         <td>
@@ -17,7 +17,7 @@
                 <input type="hidden" name="section_id" value="{SECTION_ID}" />
                 <input type="hidden" name="page_id" value="{PAGE_ID}" />
                 {FTAN}
-                <button type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/config.png" alt="" />{TXT_ADV_SETTINGS}</button>
+                <button class="mod_mpform_button" type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/config.png" alt="" />{TXT_ADV_SETTINGS}</button>
             </form>
         </td>
         <td>
@@ -29,7 +29,7 @@
                 <input type="hidden" name="edit_file" value="frontend.css" />
                 <input type="hidden" name="action" value="edit" />
                 {FTAN}
-                <button type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/css_script.gif" alt="" />{EDIT_CSS}</button>
+                <button class="mod_mpform_button" type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/css_script.gif" alt="" />{EDIT_CSS}</button>
             </form>
         </td>
     </tr>
@@ -39,7 +39,7 @@
                 <input type="hidden" name="section_id" value="{SECTION_ID}" />
                 <input type="hidden" name="page_id" value="{PAGE_ID}" />
                 {FTAN}
-                <button type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/export.png" alt="" />{TXT_EXPORT_FORM}</button>
+                <button class="mod_mpform_button" type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/export.png" alt="" />{TXT_EXPORT_FORM}</button>
             </form>
         </td>
         <td colspan="2">
@@ -51,7 +51,7 @@
                 <input type="hidden" name="section_id" value="{SECTION_ID}" />
                 <input type="hidden" name="page_id" value="{PAGE_ID}" />
                 {FTAN}
-                <button type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/import.png" alt="" />{TXT_IMPORT_FORM}</button>
+                <button class="mod_mpform_button" type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/import.png" alt="" />{TXT_IMPORT_FORM}</button>
             </td></tr></table>
             </form>
         </td>
@@ -63,7 +63,7 @@
                 <input type="hidden" name="section_id" value="{SECTION_ID}" />
                 <input type="hidden" name="page_id" value="{PAGE_ID}" />
                 {FTAN}
-                <button type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/add_new.png" alt="" />{TXT_FIELDS}</button>
+                <button class="mod_mpform_button" type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/add_new.png" alt="" />{TXT_FIELDS}</button>
             </form>
 <div style="float:right; border:1px solid transparent;height: 20px!important;">
     <div id="{MODULE_DIR}Results">&nbsp;</div>
@@ -106,7 +106,7 @@
                 <input type="hidden" name="section_id" value="{SECTION_ID}" />
                 <input type="hidden" name="page_id" value="{PAGE_ID}" />
                 {FTAN}
-                <button type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/export.png" alt="" />{TXT_EXPORT_SUBMISSIONS}</button>
+                <button class="mod_mpform_button" type="submit"><img src="{WB_URL}/modules/{MODULE_DIR}/images/export.png" alt="" />{TXT_EXPORT_SUBMISSIONS}</button>
             </form>
 <div style="float:right; border:1px solid transparent;height: 20px!important;">
     <div id="{MODULE_DIR}Submissions">&nbsp;</div>

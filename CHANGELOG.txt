@@ -6,11 +6,17 @@ MODULE VERSION HISTORY
 
    ------------------------------------------------------------------------------------------------------------------------ 
 
+        *** 1.3.5 (Martin Hecht: 08-Feb-2017) ***
+        in DEBUG mode enable verbose logging for smtp
+        introduce backend css class mod_mpform_button to avoid style collsions 
+        added constants to control handling of security checks for easier debugging
+
         *** 1.3.4 (Martin Hecht: 30-Jan-2017) ***
         allow use of {TEMPLATE} place holders in notification mails (request by gottfried)
         implement css for mails (to site owner and to submitter)
         fix warning in disabled file upload fields (thanks to dbs for reporting)
         fix warning when saving fields
+        updated sample forms and documentation
 
         *** 1.3.3 (Martin Hecht: 19-Dec-2016) ***
         fix the local template so that indeed all place holders are allowed there
