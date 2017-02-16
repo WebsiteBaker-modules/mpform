@@ -7,7 +7,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.6
+ * @version             1.3.7
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -113,6 +113,7 @@ $LANG['backend'] = array(
                                    . '&nbsp; {DATE} - date and time<br />'
                                    . '&nbsp; {USER} - name of the logged on user<br />'
                                    . '&nbsp; {EMAIL} - Email entered in the form or '
+                                   . 'the one of the logged on user<br />',
     'des_success_email_text'      => 'Content of the confirmation email  '
                                    . 'to the sender',
     'des_email_text'              => 'Content of the email to the site owner',

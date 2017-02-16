@@ -6,7 +6,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.6
+ * @version             1.3.7
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -263,7 +263,9 @@ if (!function_exists('paint_form')) {
                 || ($_SESSION['following_page_'.PAGE_ID]!=$_SESSION['submission_id_'.$iSID])) {
                 $sUrlToGo = WB_URL.PAGES_DIRECTORY;
                 if(headers_sent())
-                  $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS'],$sUrlToGo);
+                  $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS']
+                  .' (ID_CHECK) '.__FILE__.':'.__LINE__,
+                  $sUrlToGo);
                 else 
                   header("Location: ". $sUrlToGo);
                 exit(0);

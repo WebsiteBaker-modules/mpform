@@ -5,6 +5,10 @@ MODULE VERSION HISTORY
 ======================
 
    ------------------------------------------------------------------------------------------------------------------------ 
+        *** 1.3.7 (Martin Hecht: 17-Feb-2017) ***
+        improve error messages in case of generic security access violations
+        fix syntax error in a few language files (thanks to jacobi22)
+
         *** 1.3.6 (Martin Hecht: 09-Feb-2017) ***
         Hotfix: remove duplicate closing brace in evalform (thanks to jacobi22)
 
