@@ -14,7 +14,7 @@
  * @url                 https://forum.wbce.org/viewtopic.php?id=661
  * @license             GNU General Public License
  * @platform            2.8.x
- * @requirements        probably php >= 5.3 ?
+ * @requirements        php >= 5.3
  *
  **/
 /* This file exports the whole section (excluding the submissions) to an xml file.
@@ -85,10 +85,25 @@ $query_content
 $fetch_settings = $query_content->fetchRow();
 $suffix = $fetch_settings['tbl_suffix'];
 
-$headline = '"session_id","started_when","referer"';
+$res = $database->query("SELECT field_id, title, position FROM `".TP_MPFORM."fields` WHERE `section_id` = $section_id");
+if($database->is_error()) {
+    $admin->print_header();
+    $admin->print_error($database->get_error(), 
+        ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
+    $admin->print_footer();
+    exit;
+}
+
+$fields = array();
+while ($row = $res->fetchRow()) {
+	$fields['field'.$row['field_id']] = array(
+		"title" => $row['title'],
+		"position" => $row['position']
+	);
+}
+
 $res = $database->query("SHOW COLUMNS"
     . " FROM ".TP_MPFORM."results_$suffix"
-    . " LIKE 'field%'"
     );
 
 if($database->is_error()) {
@@ -99,13 +114,35 @@ if($database->is_error()) {
     exit;
 }
 
+$columns = array();
+$counter = 0;
 while($results_col = $res->fetchRow()) {
-    $headline .= ',"'
-                 . $results_col['Field']
-                 . '"';
+	$colname = $results_col['Field'];
+	$position = 0 - $res->numRows() + $counter++;
+	$title = $colname;
+
+	if (isset($fields[$results_col['Field']])) {
+		$field = $fields[$results_col['Field']];
+		$title = $field["title"];
+		$position = $field["position"];
+	}
+
+	$columns[$colname] = array(
+		"title" => $title,
+		"position" => $position
+	);
 }
 
-$qs= "SELECT * FROM ".TP_MPFORM."results_$suffix";
+uasort($columns, function($a, $b) {
+	return $a['position'] - $b['position'];
+});
+
+$column_names = array();
+foreach ($columns as $key => $elem) {
+	$column_names[$key] = $elem["title"];
+}
+
+$qs= "SELECT ".join(',', array_keys($column_names))." FROM ".TP_MPFORM."results_$suffix";
 
 if($database->is_error()) {
     $admin->print_header();
@@ -119,7 +156,7 @@ if($database->is_error()) {
 $q = $database->query($qs);
 
 $lines = array();
-$lines[] = "$headline";
+$lines[] = '"'.join('","', $column_names).'"';
 
 
 // print rest of file:
