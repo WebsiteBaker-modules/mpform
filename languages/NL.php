@@ -7,7 +7,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.8
+ * @version             1.3.8.3
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -48,7 +48,6 @@ $LANG['backend'] = array(
                                    . 'van het formulier op ',
     'EMAIL_SUC_SUBJ'              => 'Uw ingezonden webformulier',
     'VERIFICATION'                => 'Verificatie (anti-spam maatregel)',
-    'HELP'                        => 'Hulp voor',
     'TXT_COPY_FIELD'              => 'Veld kopi&euml;ren',
     'TXT_ADD_FIELD'               => 'Veld toevoegen',
     'ROWS'                        => 'Hoogte (aantal regels)',

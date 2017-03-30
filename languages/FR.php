@@ -7,7 +7,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.8
+ * @version             1.3.8.3
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -57,7 +57,6 @@ $LANG['backend'] = array(
     'EMAIL_SUC_SUBJ'              => 'Votre demande &agrave;  '
                                    . '&eacute;t&eacute; envoy&eacute;e',
     'VERIFICATION'                => 'V&eacute;rification (protection anti-SPAM)',
-    'HELP'                        => 'Aide pour',
     'TXT_COPY_FIELD'              => 'Dupliquer Champ',
     'TXT_ADD_FIELD'               => 'Ajouter Champ',
     'ROWS'                        => 'Lignes',

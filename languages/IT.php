@@ -7,7 +7,7 @@
  *  
  * @category            page
  * @module              mpform
- * @version             1.3.8
+ * @version             1.3.8.3
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -47,7 +47,6 @@ $LANG['backend'] = array(
     'EMAIL_SUC_TEXT'              => 'Grazie per presentando il modulo',
     'EMAIL_SUC_SUBJ'              => 'Hai presentato un modulo',
     'VERIFICATION'                => 'di verifica (antispam)',
-    'HELP'                        => 'Aiuto per',
     'TXT_COPY_FIELD'              => 'Copiare casella',
     'TXT_ADD_FIELD'               => 'Aggiungi casella',
     'ROWS'                        => 'Righe',
