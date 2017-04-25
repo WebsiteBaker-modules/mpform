@@ -3,10 +3,10 @@
  * WebsiteBaker CMS module: mpForm
  * ===============================
  * This module allows you to create customised online forms, such as a feedback form with file upload and customizable email notifications. mpForm allows forms over one or more pages, loops of forms, conditionally displayed sections within a single page, and many more things.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module. Since 1.2.0 forms can be imported and exported directly in the module.
- *  
+ *
  * @category            page
  * @module              mpform
- * @version             1.3.8.3
+ * @version             1.3.9
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -38,7 +38,7 @@ if((!isset($_POST['field_id']) OR !is_numeric($_POST['field_id']))
       $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS']
       .' (ID_CHECK) '.__FILE__.':'.__LINE__,
       $sUrlToGo);
-    else 
+    else
       header("Location: ". $sUrlToGo);
     exit(0);
 } else {
@@ -55,7 +55,7 @@ if (( method_exists( $admin, 'checkFTAN' ) && (!$admin->checkFTAN()))
     && (!(defined('MPFORM_SKIP_FTAN')&&(MPFORM_SKIP_FTAN)))){
     $admin->print_header();
     $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS']
-         .' (FTAN) '.__FILE__.':'.__LINE__,    
+         .' (FTAN) '.__FILE__.':'.__LINE__,
          ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
     $admin->print_footer();
     exit();
@@ -74,11 +74,11 @@ function int_not0($s) {
 }
 
 // no need for the user to put a title in the end of a fieldset or html code:
-if( $admin->get_post('title') == '' 
-    AND $admin->get_post('type') == 'fieldset_end') 
+if( $admin->get_post('title') == ''
+    AND $admin->get_post('type') == 'fieldset_end')
         $_POST['title'] = "end of fieldset";
 
-if( $admin->get_post('title') == '' 
+if( $admin->get_post('title') == ''
     AND $admin->get_post('type') == 'html')
         $_POST['title'] = "HTML code";
 
@@ -98,7 +98,7 @@ if($admin->get_post('title') == '' OR $admin->get_post('type') == '') {
     $type = str_replace(array("[[", "]]"), '', $admin->get_post_escaped('type'));
     $fieldtemplate = '';
     if(isset($_POST['fieldtemplate']))
-        $fieldtemplate = $admin->get_post_escaped('fieldtemplate');    
+        $fieldtemplate = $admin->get_post_escaped('fieldtemplate');
     if($fieldtemplate==null)$fieldtemplate='';
     $fieldtemplate = str_replace(array("[[", "]]"), '', $fieldtemplate);
     $extraclasses = $admin->get_post_escaped('extraclasses');
@@ -112,13 +112,13 @@ if($admin->get_post('title') == '' OR $admin->get_post('type') == '') {
     if (isset($_POST['disabled'])) {
         $required = intval($required) | 4;
     }
-    $help = str_replace(array("[[", "]]"), '', 
+    $help = str_replace(array("[[", "]]"), '',
         htmlspecialchars($admin->get_post_escaped('help'), ENT_QUOTES));
 }
 
 // is this a new field or an attack?
 $broken = TRUE;
-$query_settings 
+$query_settings
    = $database->query(
        "SELECT *"
            . " FROM ".TP_MPFORM."fields"
@@ -136,7 +136,7 @@ if (($broken)
       $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS']
       .' (ID_CHECK) '.__FILE__.':'.__LINE__,
       $sUrlToGo);
-    else 
+    else
       header("Location: ". $sUrlToGo);
     exit(0);
 }
@@ -166,7 +166,7 @@ $ts = $database->query(
 $setting = $ts->fetchRow();
 $suffix = $setting['tbl_suffix'];
 $header = $setting['header'];
-$bTableLayout = (stripos($header, "<table") !== false);  
+$bTableLayout = (stripos($header, "<table") !== false);
 
 if ($suffix != "DISABLED"){
     $results = TP_MPFORM."results_" . $suffix;
@@ -202,10 +202,10 @@ $list_count = $admin->add_slashes($admin->get_post('list_count'));
 if(is_numeric($list_count)) {
     $values = array();
     for($i = 1; $i <= $list_count; $i++) {
-        if (isset($_POST['isdefault']) 
+        if (isset($_POST['isdefault'])
             and (is_numeric($_POST['isdefault']))) {
             $default = $_POST['isdefault'];
-        } elseif ( isset($_POST['isdefault'.$i]) 
+        } elseif ( isset($_POST['isdefault'.$i])
                    and (is_numeric($_POST['isdefault'.$i]))) {
             $default = $_POST['isdefault'.$i];
         } else {
@@ -214,7 +214,7 @@ if(is_numeric($list_count)) {
         if($admin->get_post('value'.$i) != '') {
             ($default == $i) ? $defcode = MPFORM_IS_DEFAULT : $defcode = '';
             $values[] = preg_replace("/&amp;(#?[a-zA-Z0-9]+);/","&\\1;",
-                str_replace(array(",", "[[", "]]"), 
+                str_replace(array(",", "[[", "]]"),
                     array("&#44;", '', ''),
                     htmlspecialchars($admin->add_slashes(
                         $admin->get_post('value'.$i)),
@@ -234,7 +234,7 @@ if ($admin->get_post('type') == 'textfield'
   or $admin->get_post('type') == 'integer_number'
   or $admin->get_post('type') == 'decimal_number') {
     $length = int_not0($admin->get_post_escaped('length'));
-    $value = str_replace(array("[[", "]]"), '', 
+    $value = str_replace(array("[[", "]]"), '',
         htmlspecialchars($admin->get_post_escaped('value'), ENT_QUOTES));
     $database->query(
         "UPDATE ".TP_MPFORM."fields"
@@ -246,9 +246,9 @@ if ($admin->get_post('type') == 'textfield'
     $iFID = int_not0($admin->get_post_escaped('value'));
     $value_option_separator=MPFORM_DEFAULT_OPT_SEPARATOR; // fallback
     $field_loop='{FIELD}';
-    
+
     // Get settings (we need the value_option_separator)
-    $query_settings 
+    $query_settings
         = $database->query(
             "SELECT *"
                 . " FROM ".TP_MPFORM."settings"
@@ -261,7 +261,7 @@ if ($admin->get_post('type') == 'textfield'
         if($value_option_separator=="") $value_option_separator=MPFORM_DEFAULT_OPT_SEPARATOR; // fallback
     }
 
-    $query_field 
+    $query_field
         = $database->query(
             "SELECT *"
                 . " FROM ".TP_MPFORM."fields"
@@ -269,14 +269,14 @@ if ($admin->get_post('type') == 'textfield'
                 . " ORDER BY position ASC"
         );
     $value = '';
-    
+
     if($query_field->numRows() > 0) {
-         $field = $query_field->fetchRow();
-        $conditional_divs         
+        $field = $query_field->fetchRow();
+        $conditional_divs
             = "\n<!--/* "
             . sprintf($LANG['backend']['des_conditional_div'], $field['title'])
             . " */-->\n";
-        $conditional_js_handler 
+        $conditional_js_handler
             = "\n".'<script type="text/javascript">'."\n"
             . 'function EventHandler_fid'
             . $iFID
@@ -285,7 +285,7 @@ if ($admin->get_post('type') == 'textfield'
         $value = $field['value'];
         $bad = array("%", "+");
 
-        if($field['type'] == 'select'){ 
+        if($field['type'] == 'select'){
             $conditional_js_call
                 .= 'document.getElementById("'
                 . 'field'.$iFID
@@ -293,7 +293,7 @@ if ($admin->get_post('type') == 'textfield'
                 . '"change",'
                 . 'EventHandler_fid'
                 . $iFID
-                . ");\n";    
+                . ");\n";
             $options = explode(',', $value);
             foreach ($options as $idx => $option){
                 $def = strpos($option, MPFORM_IS_DEFAULT);
@@ -303,7 +303,7 @@ if ($admin->get_post('type') == 'textfield'
                 if (!(substr($option, 0, 2) == '[=') && ($option != ']')){
                     $label_i = urlencode($option) . $iFID;
                     $label_id = 'wb_'.str_replace($bad, "", $label_i);
-                    $conditional_divs 
+                    $conditional_divs
                         .= '<div id="div_'
                         . $label_id
                         . '" style="display:none;">'
@@ -318,7 +318,7 @@ if ($admin->get_post('type') == 'textfield'
                         . '")'
                         . "\n  "
                         . '? document.getElementById("div_'
-                        . $label_id 
+                        . $label_id
                         . '").style.display = "block"'
                         . "\n  "
                         . ': document.getElementById("div_'
@@ -328,8 +328,8 @@ if ($admin->get_post('type') == 'textfield'
                 }
             }
 
-        } elseif (($field['type'] == 'checkbox') 
-               or ($field['type'] == 'radio')){ 
+        } elseif (($field['type'] == 'checkbox')
+               or ($field['type'] == 'radio')){
             $options = explode(',', $value);
             foreach ($options as $idx => $option){
                 $def = strpos($option, MPFORM_IS_DEFAULT);
@@ -339,7 +339,7 @@ if ($admin->get_post('type') == 'textfield'
                 if(count($vals)==1) $vals[1]=$vals[0];
                 $label_i = urlencode($option) . $iFID;
                 $label_id = 'wb_'.str_replace($bad, "", $label_i);
-                    $conditional_divs 
+                    $conditional_divs
                         .= '<div id="div_'
                         . $label_id
                         . '" style="display:none;">'
@@ -352,7 +352,7 @@ if ($admin->get_post('type') == 'textfield'
                         . '").checked '
                         . "\n  "
                         . '? document.getElementById("div_'
-                        . $label_id 
+                        . $label_id
                         . '").style.display = "block"'
                         . "\n  "
                         . ': document.getElementById("div_'
@@ -374,7 +374,7 @@ if ($admin->get_post('type') == 'textfield'
             '{FIELD_ID}'  => "$field_id",
             '{TITLE}'     => '',
             '{REQUIRED}'  => '',
-            '{FIELD}'     => $conditional_divs 
+            '{FIELD}'     => $conditional_divs
                            . $conditional_js_handler
                            . $conditional_js_call
                            . 'EventHandler_fid'
@@ -388,10 +388,10 @@ if ($admin->get_post('type') == 'textfield'
         );
 
 
-        $value 
+        $value
             = str_replace(
-                array_keys($aReplacements), 
-                array_values($aReplacements), 
+                array_keys($aReplacements),
+                array_values($aReplacements),
                 $field_loop
             ).PHP_EOL;
         $newtype = 'html';
@@ -418,7 +418,7 @@ if ($admin->get_post('type') == 'textfield'
          );
 
 } elseif ($admin->get_post('type') == 'textarea') {
-    $value = str_replace(array("[[", "]]"), '', 
+    $value = str_replace(array("[[", "]]"), '',
         htmlspecialchars($admin->get_post_escaped('value'), ENT_QUOTES));
     $width = int_not0($admin->get_post_escaped('width'));
     $rows  = int_not0($admin->get_post_escaped('rows'));
@@ -429,12 +429,12 @@ if ($admin->get_post('type') == 'textfield'
             . " WHERE field_id = '$field_id'"
         );
 } elseif ($admin->get_post('type') == 'html') {
-    $value 
+    $value
        = str_replace(
-          array("[[", "]]"), 
-           '', 
+          array("[[", "]]"),
+           '',
            htmlspecialchars(
-               $admin->get_post_escaped('value'), 
+               $admin->get_post_escaped('value'),
                ENT_QUOTES
            )
     );
@@ -449,7 +449,7 @@ if ($admin->get_post('type') == 'textfield'
             . " WHERE field_id = '$field_id'");
 } elseif ($admin->get_post('type') == 'heading') {
     $extra = str_replace(array("[[", "]]"), '', $admin->get_post_escaped('template'));
-    if(trim($extra) == ''){ 
+    if(trim($extra) == ''){
         $extra = '{TITLE}{FIELD}';
         if($bTableLayout)
            $extra = '<tr><td class="mpform_heading" colspan="3">'.$extra.'</td></tr>';
@@ -461,7 +461,7 @@ if ($admin->get_post('type') == 'textfield'
             . " WHERE field_id = '$field_id'"
         );
 } elseif ($admin->get_post('type') == 'select') {
-    $extra 
+    $extra
         = int_not0($admin->get_post_escaped('size'))
         . ','
         . $admin->get_post_escaped('multiselect');
@@ -472,10 +472,10 @@ if ($admin->get_post('type') == 'textfield'
             . " WHERE field_id = '$field_id'"
         );
 } elseif ($admin->get_post('type') == 'checkbox') {
-    $extra 
+    $extra
         = str_replace(
            array("[[", "]]"),
-           '', 
+           '',
            $admin->get_post_escaped('seperator')
         );
     if ($extra=="" and $isnewfield) $extra = "<br />";   // set default value
@@ -487,9 +487,9 @@ if ($admin->get_post('type') == 'textfield'
     );
 } elseif ($admin->get_post('type') == 'date') {
     $length = int_not0($admin->get_post_escaped('length'));
-    $value 
-        = str_replace(array("[[", "]]"), 
-            '', 
+    $value
+        = str_replace(array("[[", "]]"),
+            '',
             htmlspecialchars(
                 $admin->get_post_escaped('value'), ENT_QUOTES
             )
@@ -501,10 +501,10 @@ if ($admin->get_post('type') == 'textfield'
              . " WHERE field_id = '$field_id'"
     );
 } elseif ($admin->get_post('type') == 'radio') {
-    $extra 
+    $extra
         = str_replace(
-            array("[[", "]]"), 
-            '', 
+            array("[[", "]]"),
+            '',
             $admin->get_post_escaped('seperator')
         );
     if ($extra=="" and $isnewfield) $extra = "<br />";   // set default value
@@ -522,7 +522,7 @@ $sModuleUrl =  WB_URL.'/modules/'.basename(dirname(__FILE__));
 if ($database->is_error()) {
     $admin->print_header();
     $admin->print_error(
-        $database->get_error(), 
+        $database->get_error(),
         $sModuleUrl.'/modify_field.php'
         .'?page_id='.$page_id
         .'&section_id='.$section_id
@@ -530,7 +530,7 @@ if ($database->is_error()) {
     );
     $admin->print_footer();
 } else {
-    if (isset($_POST['copy'])) {        
+    if (isset($_POST['copy'])) {
         $sUrlToGo =  $sModuleUrl
                 .'/copy_field.php'
                 .'?page_id='.$page_id
@@ -539,9 +539,9 @@ if ($database->is_error()) {
                 .'&success=copy';
         if(headers_sent())
           $admin->print_success($TEXT['SUCCESS'],$sUrlToGo);
-        else 
+        else
           header("Location: ". $sUrlToGo);
-    } elseif (isset($_POST['add'])) {        
+    } elseif (isset($_POST['add'])) {
         $sUrlToGo = $sModuleUrl
             .'/add_field.php'
             .'?page_id='.$page_id
@@ -549,7 +549,7 @@ if ($database->is_error()) {
             .'&success=save';
         if(headers_sent())
           $admin->print_success($TEXT['SUCCESS'],$sUrlToGo);
-        else 
+        else
           header("Location: ". $sUrlToGo);
     } else {
         $sUrlToGo =   $sModuleUrl
@@ -560,7 +560,7 @@ if ($database->is_error()) {
             .'&success=save';
         if(headers_sent())
           $admin->print_success($TEXT['SUCCESS'],$sUrlToGo);
-        else 
+        else
           header("Location: ". $sUrlToGo);
     }
 }

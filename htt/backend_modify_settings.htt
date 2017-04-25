@@ -13,11 +13,11 @@
                 <input type="radio" name="is_following" id="is_following_true" value="1" {is_following_true_checked} />
                 <label for="is_following_true">{TXT_YES}</label>
                 <input type="radio" name="is_following" id="is_following_false" value="0" {is_following_false_checked} />
-                <label for="is_following_false">{TXT_NO}</label>            
+                <label for="is_following_false">{TXT_NO}</label>
                 <br />
                 <small>{des_is_following}</small>
             </td>
-        </tr>    
+        </tr>
         <tr>
             <th>{txt_success_page}:</th>
             <td>
@@ -204,6 +204,6 @@
             </td>
         </tr>
     </table>
-</form>        
+</form>
 </div>
 <!-- END main_block -->

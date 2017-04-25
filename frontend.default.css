@@ -7,7 +7,7 @@
 }
 
 .calendar .combo {
-    z-index: 99; 
+    z-index: 99;
 }
 
 
@@ -118,7 +118,7 @@ div.mpform div.submitbox {
 
 div.mpform div.submitbox input {
     cursor: pointer;
-    border: 2px solid #999;        
+    border: 2px solid #999;
     color:#666;
     text-align: center;
     width: 200px;
@@ -126,7 +126,7 @@ div.mpform div.submitbox input {
 }
 /* <<<<<<<<< Layout without main table */
 
-.mpform_title, 
+.mpform_title,
 .mpform_help {
     font-weight: normal;
     vertical-align: top;
@@ -149,32 +149,32 @@ div.mpform div.submitbox input {
     padding:6px;
 }
 
-.mpform_date, 
-.mpform_email, 
-.mpform_textarea, 
-.mpform_text, 
+.mpform_date,
+.mpform_email,
+.mpform_textarea,
+.mpform_text,
 .mpform_select {
     background-color:#F4F4f4;
 }
 
-.mpform_err_date, 
-.mpform_err_email, 
+.mpform_err_date,
+.mpform_err_email,
 .mpform_err_textarea,
-.mpform_err_text, 
-.mpform_err_radio, 
-.mpform_err_radio_label, 
+.mpform_err_text,
+.mpform_err_radio,
+.mpform_err_radio_label,
 .mpform_err_select,
 .mpform_err_select_label,
 .mpform_err_checkbox,
 .mpform_err_checkbox_label,
 .captcha_err,
 .captcha_err input {
-    background-color:#F4A4A4 !important; 
+    background-color:#F4A4A4 !important;
     border: 1px solid red !important;
 }
 
 div.mpform_missing {
-    background-color: red; 
+    background-color: red;
     border: 2px solid yellow;
     color: yellow;
     font-weight: bold;
@@ -182,26 +182,26 @@ div.mpform_missing {
 }
 
 .mpform_textfield.mpform_readonly input.mpform_text {
-    background-color: #ddd; 
+    background-color: #ddd;
 }
 
 /* old classes: */
-.mpform_date:hover, 
-.mpform_email:hover, 
-.mpform_textarea:hover, 
+.mpform_date:hover,
+.mpform_email:hover,
+.mpform_textarea:hover,
 .mpform_text:hover,
-.mpform_radio:hover, 
-.mpform_select:hover, 
-.mpform_checkbox:hover, 
+.mpform_radio:hover,
+.mpform_select:hover,
+.mpform_checkbox:hover,
 .mpform_err_date:hover,
-.mpform_err_email:hover, 
-.mpform_err_textarea:hover, 
-.mpform_err_text:hover, 
+.mpform_err_email:hover,
+.mpform_err_textarea:hover,
+.mpform_err_text:hover,
 .mpform_err_radio:hover,
-.mpform_err_select:hover, 
+.mpform_err_select:hover,
 .mpform_err_checkbox:hover {
     background-color: white;
-} 
+}
 
 .mpform_date,
 .mpform_err_date{
@@ -212,25 +212,25 @@ div.mpform_missing {
     cursor: pointer;
     border: 0;
     vertical-align: middle;
-}        
+}
 .mpform_email,
 .mpform_err_email {
     width:410px;
 }
 
-.mpform_text, 
+.mpform_text,
 .mpform_err_text {
     width:410px;
-} 
-.mpform_radio, 
+}
+.mpform_radio,
 .mpform_err_radio{
     width: 18px;
 }
-.mpform_checkbox, 
+.mpform_checkbox,
 .mpform_err_checkbox{
     width: 24px;
 }
-.mpform_select, 
+.mpform_select,
 .mpform_err_select{
     width:410px;
 }
@@ -250,7 +250,7 @@ div.mpform_missing {
 }
 
 span.mpform_required {
-    color:red;        
+    color:red;
 }
 
 span.mpform_small {
@@ -260,7 +260,7 @@ span.mpform_small {
 
 .captcha input {
     background-color:#F4F4F4;
-    border: 1px solid #CCCCCC;        
+    border: 1px solid #CCCCCC;
 }
 
 .captcha .captcha_expl{
@@ -268,12 +268,12 @@ span.mpform_small {
 }
 
 .mpform_a_img{
-    border:0;        
+    border:0;
 }
 .mpform_img_help{
     border:0;
     width:16px;
-    height:16px; 
+    height:16px;
 }
 
 .mpform_help_box_td{
@@ -295,7 +295,7 @@ span.mpform_small {
 
 h5.mpform_help_box_h5 {
     color:#fff;
-    background-color:#5587B1; 
+    background-color:#5587B1;
     font-size:1.0em;
     font-weight:bold;
     margin:0;
@@ -326,17 +326,17 @@ div.mpform_results {
 
 /*** Popup box for displaying the help text ***/
 .HelpDiv {
-    display: none; 
-    position: fixed; 
-    z-index: 99; 
-    padding-top: 100px; 
+    display: none;
+    position: fixed;
+    z-index: 99;
+    padding-top: 100px;
     left: 0;
     top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4); 
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
 }
 
 .HelpDiv-content {
@@ -365,11 +365,11 @@ div.mpform_results {
 
 /*  deprecated definitions, only for forms created with mpform < 0.3.0
         mpform_td_help is now called mpform_help
-*/        
+*/
 
 .mpform_td_help{
     width: 16px;
     vertical-align: top;
 }
-                
-                                                                                                                                                
+
+

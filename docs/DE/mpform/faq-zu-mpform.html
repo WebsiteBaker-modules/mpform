@@ -38,7 +38,7 @@
 
   <div id="content-left">
       <div class="innerwrap">
-       
+
 <!-- show_menu2 -->
  <ul class="menu-top menu-1">
     <li class="menu-1 knot menu-parent" title="MPForm Hilfeseiten"><a href="../../../docs/DE/mpform.html" target="_top" class="menu-1 knot menu-parent">MPForm</a>
@@ -72,59 +72,59 @@
 
 <h2>H&auml;ufig gestellte Fragen zu MPForm</h2>
 <dl>
-    <dt class="faq"><b>Frage</b>: Nun wird Website Baker ja bereits mit dem <strong>Form</strong>-Modul 
+    <dt class="faq"><b>Frage</b>: Nun wird Website Baker ja bereits mit dem <strong>Form</strong>-Modul
        geliefert, wozu sollte man dann eigentlich das <strong>MPForm </strong>installieren?</dt>
-    <dd class="faq"><b>Antwort</b>: Sie sollten das Modul nur installieren, wenn Sie an die Grenzen 
-      der M&ouml;glichkeiten des Form-Moduls gesto&szlig;en sind. MPForm bietet mehr M&ouml;glichkeiten, 
+    <dd class="faq"><b>Antwort</b>: Sie sollten das Modul nur installieren, wenn Sie an die Grenzen
+      der M&ouml;glichkeiten des Form-Moduls gesto&szlig;en sind. MPForm bietet mehr M&ouml;glichkeiten,
       erfordert daher aber auch einen h&ouml;heren Einarbeitungsaufwand.<br />
     </dd>
-    <dt class="faq"><b>Frage</b>: Mein Formular enth&auml;lt ein Datumsfeld. Wenn ich aber das 
+    <dt class="faq"><b>Frage</b>: Mein Formular enth&auml;lt ein Datumsfeld. Wenn ich aber das
        Kalender-Symbol anklicke, wird kein Kalender angezeigt?</dt>
-    <dd class="faq"><b>Antwort</b>: Der verwendete Javascript-Kalender enth&auml;lt in manchen Versionen 
-       eine Macke: 
-       Falls im Mainbody-Style absolute Positionierung und Z-Index verwendet werden, wird der Kalender 
-       hinter statt vor dem Hauptfenster angezeigt. Sie m&uuml;ssen also die Datei screen.css Ihres 
-       Templates entsprechend anpassen und alles wird gut. 
+    <dd class="faq"><b>Antwort</b>: Der verwendete Javascript-Kalender enth&auml;lt in manchen Versionen
+       eine Macke:
+       Falls im Mainbody-Style absolute Positionierung und Z-Index verwendet werden, wird der Kalender
+       hinter statt vor dem Hauptfenster angezeigt. Sie m&uuml;ssen also die Datei screen.css Ihres
+       Templates entsprechend anpassen und alles wird gut.
      <br />
     </dd>
-    <dt class="faq"><b>Frage</b>: Wie kann ich eine Einverst&auml;ndniserkl&auml;rung mit l&auml;ngerem 
+    <dt class="faq"><b>Frage</b>: Wie kann ich eine Einverst&auml;ndniserkl&auml;rung mit l&auml;ngerem
        Text (oder mit einem Link auf meine AGB) in das Formular integrieren?</dt>
-    <dd class="faq"><b>Antwort</b>: F&uuml;r beliebigen HTML-Text k&ouml;nnen Sie ein HTML-Feld verwenden. 
-       Wenn Sie darunter ein einzelnes Kontrollk&auml;stchen als Pflichtfeld setzen, kann der Benutzer 
+    <dd class="faq"><b>Antwort</b>: F&uuml;r beliebigen HTML-Text k&ouml;nnen Sie ein HTML-Feld verwenden.
+       Wenn Sie darunter ein einzelnes Kontrollk&auml;stchen als Pflichtfeld setzen, kann der Benutzer
        sein Formular nur abschicken, nachdem er Ihren Bedingungen zugestimmt hat. <br />
     </dd>
-    <dt class="faq"><b>Frage</b>: Ist es m&ouml;glich, ein Feld dynamisch in Abh&auml;ngigkeit von 
+    <dt class="faq"><b>Frage</b>: Ist es m&ouml;glich, ein Feld dynamisch in Abh&auml;ngigkeit von
        irgendwelchen Bedingungen vorzubelegen?</dt>
-    <dd class="faq"><b>Antwort</b>: Ja, Sie m&uuml;ssen dazu vor der Generierung der Seite die richtige 
+    <dd class="faq"><b>Antwort</b>: Ja, Sie m&uuml;ssen dazu vor der Generierung der Seite die richtige
        SESSION-Variable setzen:
     <ol>
-        <li>Bekommen Sie heraus, wie die ID des Feldes und wie die section_id des Formulars lauten 
+        <li>Bekommen Sie heraus, wie die ID des Feldes und wie die section_id des Formulars lauten
            (das steht z.B. im Backend in den Feldeigenschaften)</li>
-        <li>Ihren Code schreiben Sie in der Datei private.php in die Funktion 
+        <li>Ihren Code schreiben Sie in der Datei private.php in die Funktion
            private_function_before_new_form. <br />
-        Um das Feld mit der ID 42 im Formular im Abschnitt 24 mit &quot;Standardwert&quot; vorzubelegen 
+        Um das Feld mit der ID 42 im Formular im Abschnitt 24 mit &quot;Standardwert&quot; vorzubelegen
         also z.B.<br />
-        <tt>         if ($section_id == 24) {                 
-           $_SESSION['field42'] = &quot;Standardwert&quot;;                 
+        <tt>    if ($section_id == 24) {
+           $_SESSION['field42'] = &quot;Standardwert&quot;;
            return true;         }
         </tt></li>
     </ol>
     Eventuell macht es dann auch Sinn, das Feld auf read only zu setzen.<br />
     Handelt es sich um ein Multi-Auswahlfeld, so schreiben Sie z.B.:<br />
     <tt> $_SESSION['field42']=array('eins','zwei');</tt>     </dd>
-    <dt class="faq"><b>Frage</b>: Ich bekomme folgende Fehlermeldung: Fatal error: Call to a member 
-      function numRows() on a non-object in \modules\mpform\evalform.php on line 533 
+    <dt class="faq"><b>Frage</b>: Ich bekomme folgende Fehlermeldung: Fatal error: Call to a member
+      function numRows() on a non-object in \modules\mpform\evalform.php on line 533
        - woran kann das liegen?</dt>
-    <dd class="faq"><b>Antwort</b>: Wahrscheinlich haben Sie Namenserweiterung f&uuml;r die 
-       Ergebnistabelle ge&auml;ndert, nachdem Sie bereits ein Formularfeld angelegt hatten. 
+    <dd class="faq"><b>Antwort</b>: Wahrscheinlich haben Sie Namenserweiterung f&uuml;r die
+       Ergebnistabelle ge&auml;ndert, nachdem Sie bereits ein Formularfeld angelegt hatten.
        Ab Version 1.2.x sollte dieses Problem nicht mehr auftreten, aber wenn Sie die Namenserweiterung
-       unter einer fr&uuml;heren Version von mpform ge&auml;ndert haben, nachdem bereits Felder 
-       angelegt wurden, kann es helfen, einfach im Backend die allgemeinen Optionen aufzurufen 
-       und erneut zu speichern. Das sollte mpform dazu veranlassen &uuml;ber die vorhandenen Felder 
+       unter einer fr&uuml;heren Version von mpform ge&auml;ndert haben, nachdem bereits Felder
+       angelegt wurden, kann es helfen, einfach im Backend die allgemeinen Optionen aufzurufen
+       und erneut zu speichern. Das sollte mpform dazu veranlassen &uuml;ber die vorhandenen Felder
        zu iterieren und die Ergebnistabelle entsprechend anzupassen. <br />
     </dd>
     <dt class="faq"><strong>Frage</strong>:
-       Beim Anlegen neuer Abschnitte wird immer ein div-basiertes Layout erzeugt und ich muss die 
+       Beim Anlegen neuer Abschnitte wird immer ein div-basiertes Layout erzeugt und ich muss die
        Einstellungen jedes Mal anpassen. Kann ich dauerhaft auf das in fr&uuml;heren Versionen eingesetzte
        tabellenbasierte Layout umstellen?
     </dt>
@@ -135,15 +135,15 @@
        ihre eigenen Werte f&uuml;r diese Konstanten in constants.user.php.
     </dd>
     <dt class="faq"><strong>Frage</strong>:
-       Wenn ich Eintragungen als csv-Datei exportiere tauchen dort die gel&ouml;schten Eintragungen 
+       Wenn ich Eintragungen als csv-Datei exportiere tauchen dort die gel&ouml;schten Eintragungen
        immer noch auf. Was mache ich falsch?
     </dt>
     <dd class="faq"><b>Antowrt</b>:
-       Das kann zwei verschiedene Ursachen haben: MPForm Versionen vor 1.3.1 haben die submission_id 
+       Das kann zwei verschiedene Ursachen haben: MPForm Versionen vor 1.3.1 haben die submission_id
        nicht in der Ergebnistabelle abgescpiechert. Wenn Sie die allgemeinen Einstellungen &ouml;ffnen
        und diese neu abspeichern, wird die entsprechende Spalte zur Ergebnistabelle hinzugef&uuml;gt.
        Von nun an vorgenommene Eintragungen werden die submission_id nicht nur in den Eintragungen
-       sondern auch in der Ergebnistabelle ber&uuml;cksichtigen. Wenn Sie die Eintragung dann 
+       sondern auch in der Ergebnistabelle ber&uuml;cksichtigen. Wenn Sie die Eintragung dann
        l&ouuml;schen, wird die entsprechende Zeile auch aus der Ergebnistabelle entfernt.<br/>
        Ein weiterer Fall sind mehrseitige Formulare: Selbst in aktuellen Versionen wird die Zeile
        aus der Ergebnistabelle nicht gel&ouml;scht, wenn eine nachfolgende Formularseite abgeschickt
@@ -151,7 +151,7 @@
        hinzugef&uuml;gt hat).
     </dd>
     <dt class="faq"><strong>Frage</strong>:
-       Aber wie kann ich dann all die alten Eintragungen loswerden? 
+       Aber wie kann ich dann all die alten Eintragungen loswerden?
     </dt>
     <dd class="faq"><b>Antwort</b>:
        Die beste Methode ist es den Abschnitt zu exportieren (wobei die Felder und Einstellungen enthalten
@@ -159,14 +159,14 @@
        l&ouml;schen. Dann erstellen Sie wieder einen neuen MPForm Abschnitt, in den Sie die zuvor exportierten
        Einstellungen wieder importieren. Durch diese Schritte sind die alten Eintragungen verschwunden.
     </dd>
-    <dt class="faq"><strong>Frage</strong>: 
+    <dt class="faq"><strong>Frage</strong>:
        Ich brauche gar keine Ergebnistabelle. Kann ich sie deaktivieren?
     </dt>
     <dd class="faq"><b>Antwort</b>:
-       Ja, indem Sie die Erweiterung einfach auf den String &quot;DISABLED&quot; stellen, aber ein CSV-Export 
+       Ja, indem Sie die Erweiterung einfach auf den String &quot;DISABLED&quot; stellen, aber ein CSV-Export
        funktioniert dann nat&uuml;rlich nicht mehr.
     </dt>
-    <dt class="faq"><strong>Frage</strong>: 
+    <dt class="faq"><strong>Frage</strong>:
        Wie kann ich das Erscheinungsbild meines Formulars anpassen?
     </dt>
     <dd class="faq"><b>Antwort</b>:
@@ -174,31 +174,31 @@
        kann die Feldschleife, die bei der Ausgabe des Formulars durchlaufen wird, recht flexibel angepasst
        werden. Innerhalb der Schleife kann der Platzhalter {CLASSES} verwendet werden, der CSS-Klassen
        enth&auml;lt, mit denen die Darstellung aus dem frontend.css style files heraus angepasst werden kann.
-       Seit Version 1.3.2 ist au&szlig;erdem der Platzhalter {TEMPLATE} erlaubt, und sobald dieser in 
+       Seit Version 1.3.2 ist au&szlig;erdem der Platzhalter {TEMPLATE} erlaubt, und sobald dieser in
        der Feldschleife enthalten ist, erscheint beim Anlegen und Bearbeiten eines Feldes zus&auml;tzlich
        die M&ouml;glichkeit, einen Text einzugeben, der speziell f&uuml;r dieses Feld an der Stelle in
        der Feldschleife auftaucht. In diesem Text sind wiederum die gleichen Platzhalter erlaubt, wie in
        der Feldschleife selbst. Auch ohne diesen Template-Mechanismus k&ouml;nnen Felder vom Typ HTML
-       dazwischen geschoben werden, um beispielsweise Zeilen-Umbr&uuml;che bei einem Floating Layout 
+       dazwischen geschoben werden, um beispielsweise Zeilen-Umbr&uuml;che bei einem Floating Layout
        zu erzwingen. Dar&uuml;ber hinaus enthalten die Felder selbst nun zus&auml;tzliche Klassen,
-       die eine flexiblere Formatierung mittels CSS erlauben. Seit Version 1.3.3 stehen 
+       die eine flexiblere Formatierung mittels CSS erlauben. Seit Version 1.3.3 stehen
        auch die Platzhalter {TEMPLATE1} ... {TEMPLATE9} zur Verf&uuml;gung, um die erste bis
        neunte Zeile des Feldtemplates abzurufen. F&uuml;r Felder, bei denen das lokale Template
        weniger Zeilen enth&auml;lt, enthalten die &uuml;brigen Platzhalter den Leerstring.
        Wird in der Feldschleife oder im Template der Platzhalter {FORMATTED_FIELD} anstatt {FIELD} verwendet,
        so erscheint ein weiteres Eingabefeld im Backend, in dem vom Nutzer eigene CSS-Klassen speziell
        f&uuml;r das aktuelle Feld angegeben werden k&ouml;nnen.
-    </dd> 
-   
+    </dd>
+
 <!--
-    <dt class="faq"><strong>Frage</strong>: 
+    <dt class="faq"><strong>Frage</strong>:
 
     </dt>
     <dd class="faq"><b>Antwort</b>:
 
     </dd>
 -->
-</dl>         
+</dl>
  </div>
 
 
@@ -207,7 +207,7 @@
   <div class="clear-both"></div>
 <div id="footer">
         <p class="txt">&nbsp; MPForm ist unter GPL ver&ouml;ffentlicht </p>
- 
+
         <ul class="bottomnav">
           <li class="bottomnav"><a href="#"
              title="Seite ohne Men&uuml; drucken"

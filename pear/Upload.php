@@ -238,7 +238,7 @@ class HTTP_Upload_Error extends PEAR
                 'nl'    => 'Deze bestandsnaam is niett gedefineerd in het formulier als &lt;input type="file" name=?&gt;.'
                 )
         );
-***/                
+***/
     }
 
     /**
@@ -302,7 +302,7 @@ class HTTP_Upload extends HTTP_Upload_Error
      * @var array
      */
     var $files = array();
-    
+
     /**
      * Contains the desired chmod for uploaded files
      * @var int
@@ -506,7 +506,7 @@ class HTTP_Upload extends HTTP_Upload_Error
     /**
      * Sets the chmod to be used for uploaded files
      *
-     * @param int Desired mode 
+     * @param int Desired mode
      */
     function setChmod($mode)
     {
@@ -580,7 +580,7 @@ class HTTP_Upload_File extends HTTP_Upload_Error
      * @access  public
      */
     function HTTP_Upload_File($name = null, $tmp = null,  $formname = null,
-                              $type = null, $size = null, $error = null, 
+                              $type = null, $size = null, $error = null,
                               $chmod = HTTP_UPLOAD_DEFAULT_CHMOD)
     {
         $this->HTTP_Upload_Error();

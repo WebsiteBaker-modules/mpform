@@ -3,10 +3,10 @@
  * WebsiteBaker CMS module: mpForm
  * ===============================
  * This module allows you to create customised online forms, such as a feedback form with file upload and customizable email notifications. mpForm allows forms over one or more pages, loops of forms, conditionally displayed sections within a single page, and many more things.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module. Since 1.2.0 forms can be imported and exported directly in the module.
- *  
+ *
  * @category            page
  * @module              mpform
- * @version             1.3.8.3
+ * @version             1.3.9
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -95,7 +95,7 @@ if (!isset($settings['value_option_separator'])){
     } else {
         echo "Added new field `value_option_separator` successfully<br />";
     }
-} 
+}
 
 // new in 1.1.20
 
@@ -133,7 +133,7 @@ if (!isset($settings['success_email_css'])){
     }
 }
 
-    
+
 // removing fields never ever used:
 if (isset($settings['radio_html'])){
     $qs = "ALTER TABLE `".TP_MPFORM."settings`"
@@ -191,7 +191,7 @@ if (!isset($fields['extraclasses'])){
 }
 
 // Remove bug in Search Query body (below version 0.1.3)
-$query_body_code 
+$query_body_code
     = " [TP]pages.page_id = "
         . " [TP]mod_mpform_settings.page_id "
         . " AND [TP]mod_mpform_settings.header "
@@ -249,18 +249,18 @@ $mpath = WB_PATH.'/modules/mpform/';
 // If not already there, copy the css files
 echo'<span class="good"><b>Adding putting css files in place</b></span><br />';
 
-if (!file_exists($mpath.'frontend.css')) { 
-    rename($mpath.'frontend.default.css', $mpath.'frontend.css') ; 
+if (!file_exists($mpath.'frontend.css')) {
+    rename($mpath.'frontend.default.css', $mpath.'frontend.css') ;
     echo "frontend.css<br />";
 }
 
-if (!file_exists($mpath.'backend.css')) { 
-    rename($mpath.'backend.default.css', $mpath.'backend.css') ; 
+if (!file_exists($mpath.'backend.css')) {
+    rename($mpath.'backend.default.css', $mpath.'backend.css') ;
     echo "backend.css<br />";
 }
 
-if (!file_exists($mpath.'private.php')) { 
-    rename($mpath.'private.default.php', $mpath.'private.php') ; 
+if (!file_exists($mpath.'private.php')) {
+    rename($mpath.'private.default.php', $mpath.'private.php') ;
     echo "private.php<br />";
 }
 

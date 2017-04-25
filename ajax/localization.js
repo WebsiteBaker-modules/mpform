@@ -1,11 +1,11 @@
 switch(LANGUAGE){
-    case 'DE':    
+    case 'DE':
         LANG = {
             ARE_YOU_SURE : 'Sind Sie sicher?',
             BACK : 'Zurück',
             RENAME : 'umbenennen',
             SURE_DELETE_RECORD : 'Soll dieser Datensatz wirklich geloescht werden?',
-            CLOSE: 'schliessen',        
+            CLOSE: 'schliessen',
             CANCEL: 'abbrechen',
             SAVE: 'speichern',
             DOUBLECLICK_TO_EDIT: 'Doppelklick, um den Titel umzubenennen',
@@ -13,7 +13,7 @@ switch(LANGUAGE){
             SETTINGS_SAVED: 'Einstellungen wurden gespeichert',
             SUCCESS: 'Erfolgreich',
             PLEASE_CHOOSE_TYPE: 'bitte Typ auswaehlen',
-            ADD_TITLE: 'Feldtitel hinzufügen',            
+            ADD_TITLE: 'Feldtitel hinzufügen',
             required_field : 'Pflichtfeld',
             readonly_field : 'nicht veraenderbar',
             optional_field : 'freiwillig',

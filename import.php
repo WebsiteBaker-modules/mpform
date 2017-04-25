@@ -3,10 +3,10 @@
  * WebsiteBaker CMS module: mpForm
  * ===============================
  * This module allows you to create customised online forms, such as a feedback form with file upload and customizable email notifications. mpForm allows forms over one or more pages, loops of forms, conditionally displayed sections within a single page, and many more things.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module. Since 1.2.0 forms can be imported and exported directly in the module.
- *  
+ *
  * @category            page
  * @module              mpform
- * @version             1.3.8.3
+ * @version             1.3.9
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -39,7 +39,7 @@ require_once(dirname(__FILE__).'/constants.php');
 $mod_dir = basename(dirname(__FILE__));
 
 // include the module language file depending on the backend language of the current user
-if (!@include(get_module_language_file($mod_dir))) return;  
+if (!@include(get_module_language_file($mod_dir))) return;
 
 
 // tell the admin wrapper to update the DB settings when this page was last updated
@@ -51,7 +51,7 @@ if (( method_exists( $admin, 'checkFTAN' )  && (!$admin->checkFTAN()))
     && (!(defined('MPFORM_SKIP_FTAN')&&(MPFORM_SKIP_FTAN)))) {
     $admin->print_header();
     $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS']
-        .' (FTAN) '.__FILE__.':'.__LINE__,        
+        .' (FTAN) '.__FILE__.':'.__LINE__,
         ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
     $admin->print_footer();
     exit();
@@ -64,7 +64,7 @@ $query_content = $database->query(
     "SELECT *"
     . " FROM ".TABLE_PREFIX."sections"
     . " WHERE section_id = '$section_id'");
-    
+
 $res = $query_content->fetchRow();
 if (($res['page_id'] != $page_id)
     && (!(defined('MPFORM_SKIP_ID_CHECK')&&(MPFORM_SKIP_ID_CHECK)))) {
@@ -73,7 +73,7 @@ if (($res['page_id'] != $page_id)
       $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS']
       .' (ID_CHECK) '.__FILE__.':'.__LINE__,
       $sUrlToGo);
-    else 
+    else
       header("Location: ". $sUrlToGo);
     exit(0);
 }
@@ -81,7 +81,7 @@ if (($res['page_id'] != $page_id)
 // obtain module directory
 $curr_dir = dirname(__FILE__);
 
-// convert page/section id to numbers 
+// convert page/section id to numbers
 // (already checked by /modules/admin.php but kept for consistency)
 $page_id = (isset($_POST['page_id'])) ? (int) $_POST['page_id'] : '';
 $section_id = (isset($_POST['section_id'])) ? (int) $_POST['section_id'] : '';
@@ -107,7 +107,7 @@ if($import_module_name != "mpform"){
 
 // check if there are some fields already:
 
-$query_fields 
+$query_fields
     = $database->query(
         "SELECT *"
         . " FROM `".TP_MPFORM."fields`"
@@ -116,16 +116,16 @@ $query_fields
 if($query_fields->numRows() > 0) {
     $err = $LANG['backend']['txt_import_err_not_empty'];
 }
-   
+
 /* skip these version checks now, once this is integrated into mpform
 
 echo "<p>DEBUG: Importing content into section "
-     . $section_id 
+     . $section_id
      . " on page "
-     . $page_id 
+     . $page_id
      . " <br />Module: $import_module_name - Version "
-     . $xml->module->version 
-     . "</p>\n"; 
+     . $xml->module->version
+     . "</p>\n";
 
 $sql = "SELECT *"
      . " FROM ".TABLE_PREFIX ."addons"
@@ -153,7 +153,7 @@ if ($results && $row = $results->fetchRow()) {
 } else $err = "Module <b>"
             . $xml->module->name
             . "</b> - Version <b>"
-            . $xml->module->version 
+            . $xml->module->version
             . "</b> is required to be installed before you can import this section!";
 */
 
@@ -165,12 +165,12 @@ if ($err!=""){
 }
 
 /* this is not included anymore in current exports:
-if (isset($xml->module->warning)) 
+if (isset($xml->module->warning))
     echo "<p>Warning: <b>"
          . $xml->module->warning
          . "</b></p>\n";
 // instead we include a fixed mpform warning: */
- 
+
 echo "<p>"
      . $LANG['backend']['txt_import_warning']
      . "</p>\n";
@@ -190,7 +190,7 @@ while ($i < $num_tables) {
     $n = $i+1;
     $tn = TABLE_PREFIX . $xml->export_section_table[$i]->tablename;
     // echo "<p>DEBUG: Table $n: <b>$tn</b></p>\n";
-    
+
     // does table have an autoincrement field??
     $sql = "SHOW COLUMNS FROM `$tn` WHERE extra LIKE 'auto_increment'";
     $results = $database->query($sql);
@@ -201,19 +201,19 @@ while ($i < $num_tables) {
         $aif = "";
         // echo "<p>DEBUG: This table has no auto_increment field.</p>\n";
     }
-    
+
     // mpform might create an own table for each section
-    $mpform_extra_f 
-        = ($xml->export_section_table[$i]->tablename == 'mod_mpform_fields') 
+    $mpform_extra_f
+        = ($xml->export_section_table[$i]->tablename == 'mod_mpform_fields')
         ? true : false;
-    
+
     $num_rows = count($xml->export_section_table[$i]->export_section_row);
     // echo "<p>DEBUG: This table has <b>$num_rows</b> rows</p>\n";
-    
+
     // looping through table rows
     $j = 0;
     while ($j < $num_rows) {
-        $num_fields 
+        $num_fields
             = count(
                 $xml
                 ->export_section_table[$i]
@@ -295,15 +295,15 @@ if ($mpform_import_fields != "") {
             $database->query($s);
         }
     }
-    
+
     // Insert new column into database
     $sql = "ALTER TABLE `$results` $mpform_import_fields";
     $database->query($sql);
 }
 
-/* we do not have to change the module type anymore since the import 
+/* we do not have to change the module type anymore since the import
    is already inside of a mpform section
-   
+
 if ($ok) {
     $sql = "UPDATE "
          . TABLE_PREFIX."sections"
@@ -320,7 +320,7 @@ if ($ok) {
 
 */
 
-$admin->print_success($TEXT['SUCCESS'],    
+$admin->print_success($TEXT['SUCCESS'],
 ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
 
 $admin->print_footer();

@@ -3,10 +3,10 @@
  * WebsiteBaker CMS module: mpForm
  * ===============================
  * This module allows you to create customised online forms, such as a feedback form with file upload and customizable email notifications. mpForm allows forms over one or more pages, loops of forms, conditionally displayed sections within a single page, and many more things.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module. Since 1.2.0 forms can be imported and exported directly in the module.
- *  
+ *
  * @category            page
  * @module              mpform
- * @version             1.3.8.3
+ * @version             1.3.9
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -80,7 +80,7 @@ if($get_user->numRows() != 0) {
         </tr>
         <tr>
             <td colspan="2" style="background-color:#ccc; height:10px;">
-                
+
             </td>
         </tr>
         <tr>
@@ -93,7 +93,7 @@ if($get_user->numRows() != 0) {
                             $hr[0] = substr($hr[0],0,-1);
                             $hr[1] = substr($hr[1],0,-2);
                             $v = $hr[0]."[url]".$hr[1]."[/url]".$hr[2];
-                            echo str_replace(array('[url]','[/url]'), array('<a href="','" target="_blank">'.$hr[1].'</a>'), $v); 
+                            echo str_replace(array('[url]','[/url]'), array('<a href="','" target="_blank">'.$hr[1].'</a>'), $v);
                         } else {
                             echo $v;
                         }
@@ -101,6 +101,6 @@ if($get_user->numRows() != 0) {
                     }
                 ?>
             </td>
-        </tr>    
+        </tr>
     </tbody>
 </table>

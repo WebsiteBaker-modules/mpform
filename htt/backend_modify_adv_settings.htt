@@ -53,7 +53,7 @@
             </td>
         </tr>
     </table>
-    
+
     <table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
         <caption>{TXT_UPLOAD_SETTINGS}</caption>
         <tr>
@@ -116,9 +116,9 @@
         <tr>
             <th>{txt_stored_submissions}:</th>
             <td><input name="stored_submissions" class="setting_value_text" type="text" title="{des_stored_submissions}" value="{stored_submissions}" /></td>
-        </tr>    
+        </tr>
     </table>
-    
+
     <table class="settings_table" cellpadding="2" cellspacing="0" border="0" width="100%">
         <caption>{SPECIAL_SETTINGS}</caption>
         <tr>
@@ -142,7 +142,7 @@
             </td>
         </tr>
     </table>
-    
+
     <table cellpadding="0" cellspacing="0" border="0" width="99%">
         <tr>
             <td align="left">
@@ -153,6 +153,6 @@
             </td>
         </tr>
     </table>
-</form>    
+</form>
 </div>
 <!-- END main_block -->

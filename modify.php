@@ -3,10 +3,10 @@
  * WebsiteBaker CMS module: mpForm
  * ===============================
  * This module allows you to create customised online forms, such as a feedback form with file upload and customizable email notifications. mpForm allows forms over one or more pages, loops of forms, conditionally displayed sections within a single page, and many more things.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module. Since 1.2.0 forms can be imported and exported directly in the module.
- *  
+ *
  * @category            page
  * @module              mpform
- * @version             1.3.8.3
+ * @version             1.3.9
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -43,7 +43,7 @@ $database->query("DELETE FROM "
 );
 
 // include template parser class and set template
-if (file_exists(WB_PATH . '/include/phplib/template.inc')) 
+if (file_exists(WB_PATH . '/include/phplib/template.inc'))
     require_once(WB_PATH . '/include/phplib/template.inc');
 $tpl = new Template(dirname(__FILE__) . '/htt/');
 $tpl->set_unknowns('keep');
@@ -68,13 +68,13 @@ $tpl->set_var(
         'LANGUAGE'           => LANGUAGE,
         'MODULE_URL'         => WB_URL.'/modules/'.$mod_dir,
         'FTAN'               => method_exists( $admin, 'getFTAN' )  ? $admin->getFTAN() : '',
-        
+
         // variables from global WB language files
         'TXT_SAVE'           => $TEXT['SAVE'],
         'TXT_CANCEL'         => $TEXT['CANCEL'],
         'TXT_HELP'           => $MENU['HELP'],
         'TEXT_HEADING_F'     => $TEXT['MODIFY'].'/'.$TEXT['DELETE'].' '.$TEXT['FIELD'] ,
-        'TEXT_HEADING_S'     => $TEXT['SUBMISSIONS'], 
+        'TEXT_HEADING_S'     => $TEXT['SUBMISSIONS'],
         'TEXT_DELETE'        => $TEXT['DELETE'],
         'TEXT_ARE_YOU_SURE'  => str_replace(' ', '%20', $TEXT['ARE_YOU_SURE']),
         'TEXT_FIELD'         => $TEXT['FIELD'],
@@ -109,7 +109,7 @@ require_once(WB_PATH.'/modules/'.$mod_dir.'/functions.php');
 $tpl->set_block('main_block', 'field_block' , 'field_loop');
 
 // Loop through existing fields
-$query_fields 
+$query_fields
     = $database->query(
         "SELECT *"
         . " FROM `".TP_MPFORM."fields`"
@@ -119,65 +119,65 @@ $num_fields = $query_fields->numRows();
 $pos = 0;
 if($num_fields > 0) {
     while($field = $query_fields->fetchRow()) {
-        $pos++;    
-        
+        $pos++;
+
         // switch the different Form Field Types
         switch ($field['type']){
-            case 'textfield':       
-                $rt = $TEXT['SHORT_TEXT'];                  
+            case 'textfield':
+                $rt = $TEXT['SHORT_TEXT'];
             break;
-            case 'textarea':        
-                $rt = $TEXT['LONG_TEXT'];                   
+            case 'textarea':
+                $rt = $TEXT['LONG_TEXT'];
             break;
-            case 'hiddenfield':       
-                $rt = $LANG['backend']["hiddenfield"];                  
+            case 'hiddenfield':
+                $rt = $LANG['backend']["hiddenfield"];
             break;
-            case 'heading':         
-                $rt = $TEXT['HEADING'];                     
+            case 'heading':
+                $rt = $TEXT['HEADING'];
             break;
-            case 'select':          
-                $rt = $TEXT['SELECT_BOX'];                  
+            case 'select':
+                $rt = $TEXT['SELECT_BOX'];
             break;
-            case 'checkbox':        
-                $rt = $TEXT['CHECKBOX_GROUP'];              
+            case 'checkbox':
+                $rt = $TEXT['CHECKBOX_GROUP'];
             break;
-            case 'radio':           
-                $rt = $TEXT['RADIO_BUTTON_GROUP'];          
+            case 'radio':
+                $rt = $TEXT['RADIO_BUTTON_GROUP'];
             break;
-            case 'filename':        
-                $rt = $TEXT['UPLOAD_FILES'];                
+            case 'filename':
+                $rt = $TEXT['UPLOAD_FILES'];
             break;
-            case 'date';            
-                $rt = $TEXT['DATE'];                        
+            case 'date';
+                $rt = $TEXT['DATE'];
             break;
-            case 'email':           
-                $rt = $TEXT['EMAIL_ADDRESS'];               
+            case 'email':
+                $rt = $TEXT['EMAIL_ADDRESS'];
             break;
-            case 'fieldset_start':  
-                $rt = $LANG['backend']['fieldset_start'];   
+            case 'fieldset_start':
+                $rt = $LANG['backend']['fieldset_start'];
             break;
-            case 'fieldset_end':    
-                $rt = $LANG['backend']['fieldset_end'];     
+            case 'fieldset_end':
+                $rt = $LANG['backend']['fieldset_end'];
             break;
-            case 'integer_number':  
-                $rt = $LANG['backend']['integer_number'];   
+            case 'integer_number':
+                $rt = $LANG['backend']['integer_number'];
             break;
-            case 'decimal_number':  
-                $rt = $LANG['backend']['decimal_number'];   
+            case 'decimal_number':
+                $rt = $LANG['backend']['decimal_number'];
             break;
-            case 'email_recip':     
-                $rt = $LANG['backend']['email_recip'];      
+            case 'email_recip':
+                $rt = $LANG['backend']['email_recip'];
             break;
-            case 'email_subj':      
-                $rt = $LANG['backend']['email_subj'];       
+            case 'email_subj':
+                $rt = $LANG['backend']['email_subj'];
             break;
-            case 'html':            
+            case 'html':
                 $rt = $LANG['backend']['HTML'];
             break;
-            case 'conditional':        
-                $rt = $LANG['backend']['conditional'];                 
+            case 'conditional':
+                $rt = $LANG['backend']['conditional'];
             break;
-            default:                
+            default:
                 $rt = '';
         }
         $multiselect_field='';
@@ -187,16 +187,16 @@ if($num_fields > 0) {
                 .(($field['extra'][1] == 'multiple') ? $TEXT['YES'] : $TEXT['NO']);
             $multiselect_img = WB_URL.'/modules/'.$mod_dir.'/images/'
                 .(($field['extra'][1] == 'multiple') ? "select_multiple.gif" : "select.gif");
-            $multiselect_field 
+            $multiselect_field
                 = "<img src='$multiselect_img' border='0'"
                 . " alt='$multiselect_txt' title='$multiselect_txt' />";
         }
-        
+
         switch($field['required']){
             case 1:
                 $entry = $LANG['backend']['compulsory_entry'];
                 $entrytype = 'required';
-            break;            
+            break;
             case 2:
                 $entry = $LANG['backend']['ro_entry'];
                 $entrytype = "readonly";
@@ -204,18 +204,18 @@ if($num_fields > 0) {
             case 0:
                 $entry = $LANG['backend']['optional_entry'];
                 $entrytype = "optional";
-            break;    
+            break;
             default:
                 $entry = $LANG['backend']['disabled_entry'];
                 $entrytype = "disabled";
-            break;    
-        } 
+            break;
+        }
         $sIconSrc = WB_URL. "/modules/".$mod_dir."/images/".$entrytype.".gif";
-        $sRequiredIcon 
+        $sRequiredIcon
             = sprintf('<img id="req_%s" rel="%d" src="'.$sIconSrc.'" alt="" title="%s" />',
-                 $field['field_id'], $section_id, $entry 
+                 $field['field_id'], $section_id, $entry
             );
-        
+
         // set vars for this field
         $tpl->set_var(
             array(
@@ -227,13 +227,13 @@ if($num_fields > 0) {
                                           : $field['field_id']),
                 'MOVE_UP_STYLE'      => (($pos != 1) ? '' : 'style="display:none"'),
                 'MOVE_DOWN_STYLE'    => (($pos != $num_fields) ? '' : 'style="display:none"'),
-                // Alternate row color (even/odd zebra style):                
-                'ROW_CLASS'          => $pos %2  ? 'even' : 'odd', 
+                // Alternate row color (even/odd zebra style):
+                'ROW_CLASS'          => $pos %2  ? 'even' : 'odd',
                 'field_field_title'  => $field['title'].' (ID: '.$field['field_id'].')',
                 'field_title'        => $field['title'],
                 'type_field'         => $rt,
-                'entrytype'          => $entrytype,        
-                'REQUIRED_ICON'      => $sRequiredIcon,        
+                'entrytype'          => $entrytype,
+                'REQUIRED_ICON'      => $sRequiredIcon,
                 'multiselect_field'  => $multiselect_field,
             )
         );
@@ -246,7 +246,7 @@ if($num_fields > 0) {
 $tpl->set_block('main_block', 'submission_block' , 'submission_loop');
 
 // Query submissions table
-$query_submissions 
+$query_submissions
     = $database->query(
         "SELECT * FROM `".TP_MPFORM."submissions`"
            . " WHERE section_id = '$section_id'"
@@ -259,18 +259,18 @@ if($query_submissions->numRows() > 0) {
         $pos++;
         $tpl->set_var(
             array(
-                'SUBMISSION_ID'          => (method_exists( $admin, 'getIDKEY' )  
+                'SUBMISSION_ID'          => (method_exists( $admin, 'getIDKEY' )
                                               && (!(defined('MPFORM_SKIP_IDKEY')&&(MPFORM_SKIP_IDKEY))))
-                                            ? $admin->getIDKEY($submission['submission_id']) 
+                                            ? $admin->getIDKEY($submission['submission_id'])
                                             : $submission['submission_id'],
                                             // Alternate row color (even/odd zebra style):
-                'ROW_CLASS'              => $pos %2  ? 'even' : 'odd', 
+                'ROW_CLASS'              => $pos %2  ? 'even' : 'odd',
                 'field_submission_id'    => $submission['submission_id'],
                 'submissionIDKEY'        => (method_exists( $admin, 'getIDKEY')
                                               && (!(defined('MPFORM_SKIP_IDKEY')&&(MPFORM_SKIP_IDKEY))))
                                             ? $admin->getIDKEY($field['submission_id'])
                                             : $field['submission_id'],
-                'field_submission_when'  => date(TIME_FORMAT.', '.DATE_FORMAT, 
+                'field_submission_when'  => date(TIME_FORMAT.', '.DATE_FORMAT,
                                                  $submission['submitted_when']),
             )
         );
@@ -283,16 +283,16 @@ if($query_submissions->numRows() > 0) {
 $tpl->parse('main', 'main_block', false);
 $tpl->pparse('output', 'page', false, false);
 
-$redirect_timer 
-    = ((defined('REDIRECT_TIMER')) && (REDIRECT_TIMER <= 10000)) 
-    ? REDIRECT_TIMER 
+$redirect_timer
+    = ((defined('REDIRECT_TIMER')) && (REDIRECT_TIMER <= 10000))
+    ? REDIRECT_TIMER
     : 0;
 
 
 ?>
-<script type="text/javascript"> 
-    /* <![CDATA[ */    
-        var LANGUAGE = '<?php echo LANGUAGE ?>'; 
-        var REDIRECT_TIMER =   <?php echo $redirect_timer ?>;              
+<script type="text/javascript">
+    /* <![CDATA[ */
+        var LANGUAGE = '<?php echo LANGUAGE ?>';
+        var REDIRECT_TIMER =   <?php echo $redirect_timer ?>;
     /* ]]> */
 </script>

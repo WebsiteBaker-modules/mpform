@@ -3,10 +3,10 @@
  * WebsiteBaker CMS module: mpForm
  * ===============================
  * This module allows you to create customised online forms, such as a feedback form with file upload and customizable email notifications. mpForm allows forms over one or more pages, loops of forms, conditionally displayed sections within a single page, and many more things.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module. Since 1.2.0 forms can be imported and exported directly in the module.
- *  
+ *
  * @category            page
  * @module              mpform
- * @version             1.3.8.3
+ * @version             1.3.9
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -48,13 +48,13 @@ if (method_exists( $admin, 'checkIDKEY' )) {
 if ((!$submission_id)
     && (!(defined('MPFORM_SKIP_IDKEY')&&(MPFORM_SKIP_IDKEY)))) {
     $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS']
-        .' (IDKEY) '.__FILE__.':'.__LINE__,    
+        .' (IDKEY) '.__FILE__.':'.__LINE__,
         ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
     exit();
 }
 
 // Get submission details
-$query_content 
+$query_content
     = $database->query(
         "SELECT *"
             . " FROM `".TP_MPFORM."submissions`"
@@ -63,7 +63,7 @@ $query_content
 $submission = $query_content->fetchRow();
 
 // Get the user details of whoever did this submission
-$query_user 
+$query_user
     = "SELECT username,display_name"
        . " FROM `".TABLE_PREFIX."users`"
        . " WHERE `user_id` = '".$submission['submitted_by']."'";
@@ -113,10 +113,10 @@ foreach($lines as $k => $v) {
         $hr[1] = substr($hr[1],0,-2);
         $v = $hr[0]."[url]".$hr[1]."[/url]".$hr[2];
         echo str_replace(
-            array('[url]','[/url]'), 
-            array('<a href="','" target="_blank">'.$hr[1].'</a>'), 
+            array('[url]','[/url]'),
+            array('<a href="','" target="_blank">'.$hr[1].'</a>'),
             $v
-        ); 
+        );
     } else {
         echo $v;
     }
@@ -140,15 +140,15 @@ echo '<table cellpadding="0" cellspacing="0" border="0" width="99%">'
     . '&section_id='
     . $section_id
     . '&submission_id='
-    . ((method_exists( $admin, 'getIDKEY') 
+    . ((method_exists( $admin, 'getIDKEY')
        && (!(defined('MPFORM_SKIP_IDKEY')&&(MPFORM_SKIP_IDKEY))))
        ? $admin->getIDKEY($submission_id)
        : $submission_id)
     . '\');">'
     . '<img src="'
-    . $sIconDir 
+    . $sIconDir
     . '/delete.png" alt="" width="16" height="16" border="0" />'
-    .  $TEXT['DELETE'] 
+    .  $TEXT['DELETE']
     . '</button>'
     . '</td>'
     . '<td align="right">'

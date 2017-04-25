@@ -3,10 +3,10 @@
  * WebsiteBaker CMS module: mpForm
  * ===============================
  * This module allows you to create customised online forms, such as a feedback form with file upload and customizable email notifications. mpForm allows forms over one or more pages, loops of forms, conditionally displayed sections within a single page, and many more things.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module. Since 1.2.0 forms can be imported and exported directly in the module.
- *  
+ *
  * @category            page
  * @module              mpform
- * @version             1.3.8.3
+ * @version             1.3.9
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -27,10 +27,10 @@ $update_when_modified = true; // Tells script to update when this page was last 
 $admin_header = FALSE;
 require(WB_PATH.'/modules/admin.php');
 
-// Get id    
-if ( method_exists( $admin, 'checkIDKEY' ) ) {  
+// Get id
+if ( method_exists( $admin, 'checkIDKEY' ) ) {
     $field_id = $admin->checkIDKEY('field_id', false, 'GET');
-    if ((!$field_id) 
+    if ((!$field_id)
         && (!(defined('MPFORM_SKIP_IDKEY')&&(MPFORM_SKIP_IDKEY)))) {
         $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS']
             .' (IDKEY) '.__FILE__.':'.__LINE__,
@@ -45,7 +45,7 @@ if ( method_exists( $admin, 'checkIDKEY' ) ) {
             $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS']
             .' (ID_CHECK) '.__FILE__.':'.__LINE__,
             $sUrlToGo);
-        else 
+        else
             header("Location: ". $sUrlToGo);
         exit(0);
     } else {
@@ -60,14 +60,14 @@ require(WB_PATH.'/framework/class.order.php');
 
 // Create new order object an reorder
 $order = new order(
-    TP_MPFORM.'fields', 
-    'position', 
-    'field_id', 
+    TP_MPFORM.'fields',
+    'position',
+    'field_id',
     'section_id'
 );
 
 if($order->move_up($field_id)) {
-    $admin->print_success($TEXT['SUCCESS'], 
+    $admin->print_success($TEXT['SUCCESS'],
     ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
 } else {
     $admin->print_error($TEXT['ERROR'],

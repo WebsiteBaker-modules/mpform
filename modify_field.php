@@ -3,10 +3,10 @@
  * WebsiteBaker CMS module: mpForm
  * ===============================
  * This module allows you to create customised online forms, such as a feedback form with file upload and customizable email notifications. mpForm allows forms over one or more pages, loops of forms, conditionally displayed sections within a single page, and many more things.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module. Since 1.2.0 forms can be imported and exported directly in the module.
- *  
+ *
  * @category            page
  * @module              mpform
- * @version             1.3.8.3
+ * @version             1.3.9
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -40,22 +40,22 @@ module_header_footer($page_id, $mod_dir);
 // Get id
 if ( method_exists( $admin, 'checkIDKEY' ) ) {
     $field_id = $admin->checkIDKEY('field_id', false, 'GET');
-    if ((!$field_id) 
+    if ((!$field_id)
         && (!(defined('MPFORM_SKIP_IDKEY')&&(MPFORM_SKIP_IDKEY)))) {
         $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS']
-            .' (IDKEY) '.__FILE__.':'.__LINE__,        
+            .' (IDKEY) '.__FILE__.':'.__LINE__,
             ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
         exit();
     }
 } else {
-    if((!isset($_GET['field_id']) || !is_numeric($_GET['field_id'])) 
+    if((!isset($_GET['field_id']) || !is_numeric($_GET['field_id']))
         && (!(defined('MPFORM_SKIP_IDKEY')&&(MPFORM_SKIP_IDKEY)))) {
         $sUrlToGo = ADMIN_URL."/pages/index.php";
         if(headers_sent())
             $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS']
             .' (IDKEY) '.__FILE__.':'.__LINE__,
             $sUrlToGo);
-        else 
+        else
                header("Location: ". $sUrlToGo);
         exit(0);
     } else {
@@ -64,7 +64,7 @@ if ( method_exists( $admin, 'checkIDKEY' ) ) {
 }
 
 // Get header and footer
-$query_content 
+$query_content
     = $database->query(
         "SELECT *"
             . " FROM ".TP_MPFORM."fields"
@@ -77,28 +77,28 @@ if($type == '') {
 }
 
 // protect from cross page reading
-if (($form['page_id'] != $page_id) 
+if (($form['page_id'] != $page_id)
     && (!(defined('MPFORM_SKIP_ID_CHECK')&&(MPFORM_SKIP_ID_CHECK)))) {
     $sUrlToGo = ADMIN_URL."/pages/index.php";
     if(headers_sent())
         $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS']
         .' (ID_CHECK) '.__FILE__.':'.__LINE__,
         $sUrlToGo);
-    else 
+    else
         header("Location: ". $sUrlToGo);
     exit(0);
 }
 
 // include template parser class and set template
-if (file_exists(WB_PATH . '/include/phplib/template.inc')) 
+if (file_exists(WB_PATH . '/include/phplib/template.inc'))
     require_once(WB_PATH . '/include/phplib/template.inc');
 $tpl = new Template(dirname(__FILE__) . '/htt/');
 
-// define how to handle unknown variables 
+// define how to handle unknown variables
 //(default:='remove', during development use 'keep' or 'comment')
 $tpl->set_unknowns('keep');
 
-// define debug mode (default:=0 (disabled), 1:=variable assignments, 
+// define debug mode (default:=0 (disabled), 1:=variable assignments,
 // 2:=calls to get variable, 4:=show internals)
 $tpl->debug = 0;
 
@@ -125,7 +125,7 @@ $fieldtypes = array (
     "decimal_number" => $LANG['backend']['decimal_number'],
     "html"           => $LANG['backend']['HTML'],
     "hiddenfield"    => $LANG['backend']["hiddenfield"],
-    "conditional"    => $LANG['backend']["conditional"]    
+    "conditional"    => $LANG['backend']["conditional"]
 );
 foreach ($fieldtypes as $k => $v) {
     $selected = ($k == $type) ? " selected=\"selected\">" : ">";
@@ -151,19 +151,19 @@ switch ($type) {
     case 'email_subj':
         $fieldtypeoption = "<tr>\n"
         ."<th>". $TEXT['LENGTH'] .":</th>\n"
-        ."<td><input type='text' name='length' value='". $form['extra'] 
+        ."<td><input type='text' name='length' value='". $form['extra']
         ."' style='width: 98%;' maxlength='3' /></td>\n"
         ."</tr>\n"
         ."<tr>\n"
         ."<th>". $LANG['backend']['TXT_DEFAULT'] .":</th>\n"
-        ."<td><input type='text' name='value' value='". $form['value'] 
+        ."<td><input type='text' name='value' value='". $form['value']
         ."' style='width: 98%;' /></td>\n"
         ."</tr>\n";
         break;
     case 'hiddenfield':
         $fieldtypeoption = "<tr>\n"
         ."<th>". $LANG['backend']['TXT_DEFAULT'] .":</th>\n"
-        ."<td><input type='text' name='value' value='". $form['value'] 
+        ."<td><input type='text' name='value' value='". $form['value']
         ."' style='width: 98%;' /></td>\n"
         ."</tr>\n";
         break;
@@ -201,12 +201,12 @@ switch ($type) {
         ."</tr>\n"
         ."<tr>\n"
         ."<th>". $TEXT['LENGTH'] .":</th>\n"
-        ."<td><input type='text' name='maxlength' value='". $maxlength 
+        ."<td><input type='text' name='maxlength' value='". $maxlength
         ."' style='width: 98%;' maxlength='3' /></td>\n"
         ."</tr>\n";
         break;
     case 'conditional': // get all fields
-        $query_fields 
+        $query_fields
             = $database->query(
                 "SELECT *"
                 . " FROM `".TP_MPFORM."fields`"
@@ -222,24 +222,24 @@ switch ($type) {
              . '<select name="value" class="requiredInput" id="select_value" style="width: 30%;">'
              . '<option value="">'
              . $TEXT['PLEASE_SELECT']
-             . '...</option>'; 
+             . '...</option>';
             while($field = $query_fields->fetchRow()) {
               $fieldtypeoption .= '<option value="'.$field['field_id'].'">'.$field['title']."</option>\n";
             }
             $fieldtypeoption .= "</select></td></tr>\n";
-        }        
+        }
         break;
     case 'html':
         $use_in_form="";
         $use_in_site_html="";
         $use_in_user_html="";
         if(($form['extra'] == '') or (preg_match('/form/',$form['extra'])))
-            $use_in_form=" checked='checked'"; 
+            $use_in_form=" checked='checked'";
         if(($form['extra'] == '') or (preg_match('/site/',$form['extra'])))
             $use_in_site_html=" checked='checked'";
         if(($form['extra'] == '') or (preg_match('/user/',$form['extra'])))
             $use_in_user_html=" checked='checked'";
-        
+
         $fieldtypeoption = "<tr>\n"
         ."<th>". $LANG['backend']['HTML'] .":</th>\n"
         ."<td><textarea name='value' cols='80' rows='8'"
@@ -258,31 +258,31 @@ switch ($type) {
     case 'date':
         $fieldtypeoption = "<tr>\n"
         ."<th>". $TEXT['LENGTH'] .":</th>\n"
-        ."<td><input type='text' name='length' value='". $form['extra'] 
+        ."<td><input type='text' name='length' value='". $form['extra']
         ."' style='width: 98%;' maxlength='3' /></td>\n"
         ."</tr>\n"
         ."<tr>\n"
         ."<th>". $LANG['backend']['TXT_DEFAULT'] .":</th>\n"
-        ."<td><input type='text' name='value' value='". $form['value'] 
+        ."<td><input type='text' name='value' value='". $form['value']
         ."' style='width: 98%;' /></td>\n"
         ."</tr>\n";
         break;
     case 'email':
         $fieldtypeoption = "<tr>\n"
         ."<th>". $TEXT['LENGTH'] .":</th>\n"
-        ."<td><input type='text' name='length' value='". $form['extra'] 
+        ."<td><input type='text' name='length' value='". $form['extra']
         ."' style='width: 98%;' maxlength='3' /></td>\n"
         ."</tr>\n"
         ."<tr>\n"
         ."<th>". $LANG['backend']['TXT_DEFAULT'] .":</th>\n"
-        ."<td><input type='text' name='value' value='". $form['value'] 
+        ."<td><input type='text' name='value' value='". $form['value']
         ."' style='width: 98%;' /></td>\n"
         ."</tr>\n";
         break;
     case 'filename':
         $fieldtypeoption = "<tr>\n"
         ."<th>". $TEXT['LENGTH'] .":</th>\n"
-        ."<td><input type='text' name='length' value='". $form['extra'] 
+        ."<td><input type='text' name='length' value='". $form['extra']
         ."' style='width: 98%;' maxlength='3' /></td>\n"
         ."</tr>\n";
         break;
@@ -294,7 +294,7 @@ switch ($type) {
         //."<tr>\n"
         ."<th>". $LANG['backend']['TXT_LIST'] .":</th>\n"
         ."<td>";
-            
+
         $option_count = 0;
         $list = explode(',', $form['value']);
         foreach($list AS $option_value) {
@@ -357,26 +357,26 @@ if($type == 'select') {
     $fieldtypeoption .= '<label for="multiselect_false">';
     $fieldtypeoption .= $TEXT['NO'] ."</label></td>\n</tr>\n";
 }
-if($type == 'checkbox' OR $type == 'radio') { 
+if($type == 'checkbox' OR $type == 'radio') {
     $fieldtypeoption .= "<tr>\n<th>". $TEXT['SEPERATOR'] .":</th>\n";
-    $fieldtypeoption .= '<td><input type="text" name="seperator" value="'. $form['extra'] 
+    $fieldtypeoption .= '<td><input type="text" name="seperator" value="'. $form['extra']
         .'" style="width: 98%;" />'."</td>\n</tr>\n";
 }
 
 $fieldtypeoption .= "<tr>\n<th>". $LANG['backend']['entry'] .":</th>\n<td>";
 
-if( $type != 'heading' 
-    AND $type != 'fieldset_start' 
-    AND $type != 'fieldset_end' 
-    AND $type != 'none' 
-    AND $type != 'html' 
-    AND $type != 'conditional') { 
+if( $type != 'heading'
+    AND $type != 'fieldset_start'
+    AND $type != 'fieldset_end'
+    AND $type != 'none'
+    AND $type != 'html'
+    AND $type != 'conditional') {
         $fieldtypeoption .= '<input type="radio"'
             .' name="required" id="required_true" value="1"';
         if(($form['required'] & 3 ) == 1 OR $type == 'email_recip') {
             $fieldtypeoption .= ' checked="checked"';
         }
-        $fieldtypeoption .= " />";    
+        $fieldtypeoption .= " />";
         $fieldtypeoption .= '<label for="required_true">'
            . $LANG['backend']['compulsory_entry'] ."</label>\n";
         $fieldtypeoption .= '<input type="radio" name="required"'
@@ -403,15 +403,15 @@ if(($form['required'] & 4) != 0){
 }
 $fieldtypeoption .= " />";
 $fieldtypeoption .= '<label for="disabled">'
-    .$LANG['backend']['disabled_entry'] 
+    .$LANG['backend']['disabled_entry']
     ."</label></td>\n</tr>\n";
 
-if( $type != 'heading' 
-    AND $type != 'fieldset_start' 
-    AND $type != 'fieldset_end' 
-    AND $type != 'none' 
-    AND $type != 'html' 
-    AND $type != 'conditional') { 
+if( $type != 'heading'
+    AND $type != 'fieldset_start'
+    AND $type != 'fieldset_end'
+    AND $type != 'none'
+    AND $type != 'html'
+    AND $type != 'conditional') {
         $fieldtypeoption .= "<tr>\n<th>". $MENU['HELP'] .":</th>\n";
         $fieldtypeoption .= '<td><textarea name="help"  cols="50" rows="5"'
             .' style="width: 98%; height: 100px;">'
@@ -433,14 +433,14 @@ if( $type != 'heading'
            preg_match('/{TEMPLATE/',$settings['long_html']) ||
            preg_match('/{TEMPLATE/',$settings['email_html']) ||
            preg_match('/{TEMPLATE/',$settings['uploadfile_html'])
-          ){ 
+          ){
             $fieldtypeoption .= "<tr>\n<th>". $LANG['backend']['txt_extraclasses'] .":</th>\n";
             $fieldtypeoption .= '<td><textfield name="extraclasses" maxlength="250"'
                 .' style="width: 98%;">'
                 . $form['extraclasses'] ."</textfield><br />"
                 . "<small>".$LANG['backend']['des_extraclasses']."</small></td>\n</tr>\n";
-        }            
-        if(preg_match('/{TEMPLATE/',$settings['field_loop'])){ 
+        }
+        if(preg_match('/{TEMPLATE/',$settings['field_loop'])){
             $fieldtypeoption .= "<tr>\n<th>". $TEXT['FIELD'].' '.$TEXT['TEMPLATE'] .":</th>\n";
             $fieldtypeoption .= '<td><textarea name="fieldtemplate" cols="50" rows="5" maxlength="250"'
                 .' style="width: 98%; height: 100px;">'
@@ -466,7 +466,7 @@ $tpl->set_var(
         'TXT_PLEASE_SELECT' => $TEXT['PLEASE_SELECT'],
         'MODULE_URL'        => WB_URL.'/modules/'.$mod_dir,
         'FTAN'              => method_exists( $admin, 'getFTAN' ) ? $admin->getFTAN() : '',
-        
+
         // module settings
         'MODULE_DIR'        => $mod_dir,
         'TXT_TYPE'          => $LANG['backend']['TXT_TYP'],
@@ -481,16 +481,16 @@ $tpl->set_var(
 $tpl->parse('main', 'main_block', false);
 $tpl->pparse('output', 'page',false, false);
 
-$redirect_timer 
-    = ((defined('REDIRECT_TIMER')) && (REDIRECT_TIMER <= 10000)) 
-    ? REDIRECT_TIMER 
+$redirect_timer
+    = ((defined('REDIRECT_TIMER')) && (REDIRECT_TIMER <= 10000))
+    ? REDIRECT_TIMER
     : 0;
 
 ?>
-<script type="text/javascript"> 
+<script type="text/javascript">
     /* <![CDATA[ */
         var LANGUAGE = '<?php echo LANGUAGE ?>';
-        var REDIRECT_TIMER =   <?php echo $redirect_timer ?>;              
+        var REDIRECT_TIMER =   <?php echo $redirect_timer ?>;
     /* ]]> */
 </script>
 

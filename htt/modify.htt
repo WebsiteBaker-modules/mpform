@@ -9,7 +9,7 @@
         <td align="right">
             {TEXT_CURRENT_PAGE}:
             <b>{PAGE_TITLE}</b> (page_id: {PAGE_ID} - section_id: {SECTION_ID})<br />
-            &nbsp; 
+            &nbsp;
             <a href="{ADMIN_URL}/pages/settings.php?page_id={PAGE_ID}">{TEXT_CHANGE_SETTINGS}</a>
             <font style="display: {DISPLAY_MANAGE_SECTIONS}">-</font>
             <a href="{ADMIN_URL}/pages/sections.php?page_id={PAGE_ID}" style="display: {DISPLAY_MANAGE_SECTIONS}">{TEXT_MANAGE_SECTIONS}</a>

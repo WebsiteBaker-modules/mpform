@@ -4,10 +4,10 @@
  * WebsiteBaker CMS module: mpForm
  * ===============================
  * This module allows you to create customised online forms, such as a feedback form with file upload and customizable email notifications. mpForm allows forms over one or more pages, loops of forms, conditionally displayed sections within a single page, and many more things.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module. Since 1.2.0 forms can be imported and exported directly in the module.
- *  
+ *
  * @category            page
  * @module              mpform
- * @version             1.3.8.3
+ * @version             1.3.9
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -127,13 +127,13 @@ $LANG['backend'] = array(
     'email_subj'                  => 'E-mailonderwerp (achtervoegsel)',
     'module_name'                 => 'Multi Purpose Form',
     'TXT_SUBMIT'                  => 'Verzenden',
-    'HTML'                        => "HTML-Code",        
+    'HTML'                        => "HTML-Code",
     'TXT_WHERE_USE_HTML'          => "activated in",
     'TXT_USE_IN_FORM'             => "the form",
     'TXT_USE_IN_SITE_HTML'        => "in the notification to the site owner",
     'TXT_USE_IN_USER_HTML'        => "in the notification to the user",
     'conditional'                 => "conditionally displayed block",
-    'dependency'                  => "depending on",    
+    'dependency'                  => "depending on",
     'entry'                       => "Invoer is",
     'compulsory_entry'            => "verplicht",
     'optional_entry'              => "optioneel",
@@ -155,7 +155,7 @@ $LANG['backend'] = array(
                                    . '&nbsp; {TEMPLATE} - inhoud van het veld sjabloon '
                                    . 'voor het huidige veld, {TEMPLATE1} voor de eerste lijn, '
                                    . '{TEMPLATE2} de tweete...<br />',
-                                   
+
     'des_field_template'          => 'in het veld lus wordt deze geplaatst is voor '
                                    . 'de plaats houder {TEMPLATE}. '
                                    . 'De volgende codes zijn mogelijk:<br />'
@@ -170,7 +170,7 @@ $LANG['backend'] = array(
                                    . '(vereist Javascript om te tonen)<br /> '
                                    . '&nbsp; {HELPTXT} - altijd zichtbare helptekst<br /> '
                                    . '&nbsp; {ERRORTEXT} - fouttekst  '
-                                   . '(alleen voor bepaalde veldtypen)<br />',                                   
+                                   . '(alleen voor bepaalde veldtypen)<br />',
     'txt_extraclasses'            => 'CSS-klassen',
     'des_extraclasses'            => 'deze CSS-klassen zijn bovendien toegepast binnenkant van het veld',
     'des_footer'                  => 'De volgende code is mogelijk:<br /> '
@@ -194,7 +194,7 @@ $LANG['backend'] = array(
                                    . "     update this generated code manually (or you start again by\n"
                                    . "     changing the type back to conditionally display block)"
 );
-        
+
 $LANG['backend_adv'] = array(
     'adv_settings'                => 'Geavanceerde instellingen',
     'CAPTCHA_CONTROL_HINT'        => 'Captcha choice and settings can be performed '
@@ -237,7 +237,7 @@ $LANG['backend_adv'] = array(
                                    . 'van de tekst getoond.',
      'TXT_VALUE_OPTION_SEPARATOR' => "Waarde optie separator touwtje",
     'TXT_DATE_FORMAT'             => "Datumnotatie",
-    'TXT_ASP_SETTINGS'            => 'Spam-protectie', 
+    'TXT_ASP_SETTINGS'            => 'Spam-protectie',
      'des_date_format'            => 'Datumnotatie, bijv. %d-%m-%Y',
     'TXT_UPLOAD_FILE_FOLDER'      => "Upload-folder",
     'TXT_UPLOAD_ONLY_EXTS'        => "Toegestane bestandstype(n)",
@@ -251,7 +251,7 @@ $LANG['backend_adv'] = array(
                                    . 'bijv. doc,pdf,xls,jpg,gif,png,tif,bmp.',
     'help_filemask'               => 'Rechten voor geupload bestand, bijv. 0640',
     'help_dirmask'                => 'Rechten voor upload-folder, bijv. 0750'
- 
+
 );
 
 // Text outputs for the frontend

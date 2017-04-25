@@ -1,8 +1,8 @@
 /**
  *   wbAjax Plugin
- *   Plugin to change the status of Form Fields (required, readonly, optional, disabled) 
+ *   Plugin to change the status of Form Fields (required, readonly, optional, disabled)
  *   without a new page load (no reload)
- */    
+ */
 
 /*
     ajaxChangeFormFieldStatus OPTIONS
@@ -10,15 +10,15 @@
     MODULE = 'modulename',                    // (string)
     DB_RECORD_TABLE: 'modulename_table',    // (string)
     DB_COLUMN: 'item_id',                     // (string) the key column you will use as reference
-    sFTAN: ''                                 // (string) FTAN 
+    sFTAN: ''                                 // (string) FTAN
 
 */
-    
+
 (function($) {
-    $.fn.ajaxChangeFormFieldStatus = function(options) {        
+    $.fn.ajaxChangeFormFieldStatus = function(options) {
             var aOpts = $.extend({}, $.fn.ajaxChangeFormFieldStatus.defaults, options);
             $(this).find('img').css('cursor', 'pointer');
-            
+
             $(this).click(function() {
                 var oElement = $(this).find('img');
                 var iRecordID = oElement.attr("id").substring(4);
@@ -38,12 +38,12 @@
                     success: function(json_respond)
                     {
                         if(json_respond.success == true) {
-                            
+
                             oElement.animate({opacity: 0.55}), 'fast';
                             oElement.attr("src", ICONS +"/"+ action +".gif");
                             oElement.attr("title", LANG[json_respond.message]);
                             oElement.animate({opacity: 1});
-                            window.location.reload();                               
+                            window.location.reload();
                         } else {
                             alert(json_respond.message);
                         }

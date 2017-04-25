@@ -3,10 +3,10 @@
  * WebsiteBaker CMS module: mpForm
  * ===============================
  * This module allows you to create customised online forms, such as a feedback form with file upload and customizable email notifications. mpForm allows forms over one or more pages, loops of forms, conditionally displayed sections within a single page, and many more things.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module. Since 1.2.0 forms can be imported and exported directly in the module.
- *  
+ *
  * @category            page
  * @module              mpform
- * @version             1.3.8.3
+ * @version             1.3.9
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -33,12 +33,12 @@ require_once(dirname(__FILE__).'/constants.php');
 if (!include(get_module_language_file($mod_dir))) return;
 
 // update db schema
-$query_content 
+$query_content
     = $database->query(
         "SELECT *"
             . " FROM ".TP_MPFORM."settings"
     );
-    
+
 $setting = $query_content->fetchRow();
 
 // set default values
@@ -59,7 +59,7 @@ $email_replyto = '';
 $email_fromname = '';
 $email_subject = $LANG['backend']['EMAIL_SUBJECT'];
 $success_page = 'none';
-$success_text 
+$success_text
     = '<div'
     . ' class="'.MPFORM_CLASS_PREFIX.'results">'
     . 'Thank you for submitting your data. We received the following data:'
@@ -93,7 +93,7 @@ $attach_file = 0;
 $upload_file_mask = STRING_FILE_MODE;
 $upload_dir_mask = STRING_DIR_MODE;
 $upload_only_exts = "jpg,gif,png,tif,bmp,pdf";
-if(extension_loaded('gd') AND function_exists('imageCreateFromJpeg')) { 
+if(extension_loaded('gd') AND function_exists('imageCreateFromJpeg')) {
     /* Make's sure GD library is installed */
     $use_captcha = true;
 } else {

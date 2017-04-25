@@ -4,10 +4,10 @@
  * WebsiteBaker CMS module: mpForm
  * ===============================
  * This module allows you to create customised online forms, such as a feedback form with file upload and customizable email notifications. mpForm allows forms over one or more pages, loops of forms, conditionally displayed sections within a single page, and many more things.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module. Since 1.2.0 forms can be imported and exported directly in the module.
- *  
+ *
  * @category            page
  * @module              mpform
- * @version             1.3.8.3
+ * @version             1.3.9
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -129,7 +129,7 @@ $LANG['backend'] = array(
     'TXT_USE_IN_SITE_HTML'        => "notifica al proprietario del sito",
     'TXT_USE_IN_USER_HTML'        => "nella notifica per l&apos;utente",
     'conditional'                 => "blocco visualizzato condizionalmente",
-    'dependency'                  => "dipendenza",    
+    'dependency'                  => "dipendenza",
     'entry'                       => "L&apos;ingresso &eacute;",
     'compulsory_entry'            => "obbligatorio",
     'optional_entry'              => "optionale",
@@ -163,7 +163,7 @@ $LANG['backend'] = array(
                                    . 'Richiede JavaScript <br />'
                                    . '&nbsp; {HELPTXT} - testo della guida sempre visibile <br /> '
                                    . '&nbsp; {ERRORTEXT} - testo di errore '
-                                   . '(Solo per alcuni tipi di campo) <br />',                                   
+                                   . '(Solo per alcuni tipi di campo) <br />',
     'txt_extraclasses'            => 'classi CSS',
     'des_extraclasses'            => 'queste classe CSS sono inoltre applicati all&apos;interno del campo',
     'des_footer'                  => 'Il seguente segnaposto &eacute; possibile: <br /> '
@@ -189,7 +189,7 @@ $LANG['backend'] = array(
                                    . "     sezione HTML. Se si modificano le opzioni di %s &egrave;\n"
                                    . "     necessario aggiornare questo codice manualmente\n"
                                    . "     (o si avvia di nuovo cambiando il tipo di nuovo al\n"
-                                   . "     blocco di visualizzazione condizionale) "                        
+                                   . "     blocco di visualizzazione condizionale) "
 );
 
 $LANG['backend_adv'] = array(
@@ -234,7 +234,7 @@ $LANG['backend_adv'] = array(
                                    . 'invece del testo.',
     'TXT_VALUE_OPTION_SEPARATOR'  => "opzione valore stringa separatore",
     'TXT_DATE_FORMAT'             => "Formato data",
-    'TXT_ASP_SETTINGS'            => 'Protezione SPAM', 
+    'TXT_ASP_SETTINGS'            => 'Protezione SPAM',
     'des_date_format'             => 'Bash Formato data (ad es. %m/%d/%Y)',
     'TXT_UPLOAD_FILE_FOLDER'      => "Cartella Upload file",
     'TXT_UPLOAD_ONLY_EXTS'        => "Carica solo tipo di file",
@@ -272,5 +272,5 @@ $LANG['frontend'] = array(
                                    . '(Noto anche come Captcha) '
                                    . 'che hai inserito non &eacute; corretta.',
     'VERIFICATION'                => "Codice di verifica (antispam)"
-        
+
 );

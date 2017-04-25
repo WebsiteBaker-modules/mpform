@@ -3,10 +3,10 @@
  * WebsiteBaker CMS module: mpForm
  * ===============================
  * This module allows you to create customised online forms, such as a feedback form with file upload and customizable email notifications. mpForm allows forms over one or more pages, loops of forms, conditionally displayed sections within a single page, and many more things.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module. Since 1.2.0 forms can be imported and exported directly in the module.
- *  
+ *
  * @category            page
  * @module              mpform
- * @version             1.3.8.3
+ * @version             1.3.9
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -19,8 +19,8 @@
  **/
 /* This file defines constants. */
 // Must include code to stop this file being access directly
-if (!defined('WB_PATH'))  { 
-    exit("Cannot access this file directly"); 
+if (!defined('WB_PATH'))  {
+    exit("Cannot access this file directly");
 }
 
 // obtain module directory
@@ -36,22 +36,22 @@ if(file_exists(dirname(__FILE__).'/constants.user.php')){
     include(dirname(__FILE__).'/constants.user.php');
 }
 
-if(!defined('MPFORM_IS_DEFAULT')){  
-    // marker for default checkboxes or radiobuttons    
+if(!defined('MPFORM_IS_DEFAULT')){
+    // marker for default checkboxes or radiobuttons
     define('MPFORM_IS_DEFAULT', '{(*#)}');
 }
 
-if(!defined('MPFORM_CLASS_PREFIX')){ 
+if(!defined('MPFORM_CLASS_PREFIX')){
     define('MPFORM_CLASS_PREFIX', 'mpform_');
 }
 
-if(!defined('MPFORM_ICONS')){ 
+if(!defined('MPFORM_ICONS')){
     define('MPFORM_ICONS', WB_URL.'/modules/mpform/images/');
 }
 
-if(!defined('TP_MPFORM')){ 
+if(!defined('TP_MPFORM')){
     define('TP_MPFORM', TABLE_PREFIX."mod_mpform_");
-} 
+}
 
 if(!defined('MPFORM_DIV_WRAPPER')){
     // you may define another class for the wrapper <div class="mpfom"> here
@@ -60,18 +60,18 @@ if(!defined('MPFORM_DIV_WRAPPER')){
     define('MPFORM_DIV_WRAPPER', "mpform");
 }
 
-if(ENABLED_ASP) { 
+if(ENABLED_ASP) {
     if(!function_exists('draw_asp_honeypots')){
         function draw_asp_honeypots($iSectionID) {
             $sTimeStamp = time();
-            $_SESSION['submitted_when'.$iSectionID] = $sTimeStamp; 
-            $sHoneyPots 
+            $_SESSION['submitted_when'.$iSectionID] = $sTimeStamp;
+            $sHoneyPots
                 = '<input'
                 . ' type="hidden"'
                 . ' name="submitted_when'.$iSectionID.'"'
                 . ' value="'.$sTimeStamp.'" />'
                 . '<p class=nixhier>'
-                
+
                 . 'email address:'
                 . '<label for="email_'.$iSectionID.'">'
                 . 'Leave this field email-address blank:'
@@ -81,7 +81,7 @@ if(ENABLED_ASP) {
                 . ' size="56"'
                 . ' value="" />'
                 . '<br />'
-                
+
                 . 'Homepage:'
                 . '<label'
                 . ' for="homepage_'.$iSectionID.'">'
@@ -94,7 +94,7 @@ if(ENABLED_ASP) {
                 . ' value="" />'
                 . '<br />'
                 . 'URL:'
-                
+
                 . '<label'
                 . ' for="url_'.$iSectionID.'">'
                 . 'Do not fill out this field url:'
@@ -105,7 +105,7 @@ if(ENABLED_ASP) {
                 . ' size="63"'
                 . ' value="" />'
                 . '<br />'
-                
+
                 . 'Comment:'
                 . '<label'
                 . ' for="comment_'.$iSectionID.'">'
@@ -133,7 +133,7 @@ if(!defined('MPFORM_HEADER')){
 
 
 if(!defined('MPFORM_FIELD_LOOP')){
-    define('MPFORM_FIELD_LOOP', 
+    define('MPFORM_FIELD_LOOP',
       '<div class="questionbox {CLASSES} '.MPFORM_CLASS_PREFIX.'title">'
     . '{TITLE}{REQUIRED}:'
     . '<div class="'.MPFORM_CLASS_PREFIX.'help">'
@@ -148,7 +148,7 @@ if(!defined('MPFORM_FIELD_LOOP')){
 
 
 if(!defined('MPFORM_FOOTER')){
-    define('MPFORM_FOOTER', 
+    define('MPFORM_FOOTER',
       '<div class="submitbox">'
     . '{SUBMIT}'
     . '</div>');
@@ -156,7 +156,7 @@ if(!defined('MPFORM_FOOTER')){
 
 
 if(!defined('MPFORM_SUBMIT_BUTTON')){
-    define('MPFORM_SUBMIT_BUTTON', 
+    define('MPFORM_SUBMIT_BUTTON',
       '<input'
     . ' type="submit"'
     . ' name="submit"'
@@ -168,7 +168,7 @@ if(!defined('MPFORM_SUBMIT_BUTTON')){
 // when you face problems with generic security exceptions where you would not expect them,
 // you can disable each type of security check separately for debugging purposes and at your own risk
 
-// FTAN was quite often a problem, especially in older WB versions. Anyhow, here you can disable the check 
+// FTAN was quite often a problem, especially in older WB versions. Anyhow, here you can disable the check
 /*
 if(!defined('MPFORM_SKIP_FTAN')){
     define('MPFORM_SKIP_FTAN',true);
@@ -187,7 +187,7 @@ if(!defined('MPFORM_SKIP_ID_CHECK')){
 
 // similar to FTANS the IDKEYs are a WB built-in security feature. They expire once the data sent by forms
 // is verified against them, or the same page is called from another window in the same session.
-// You can disable the encoding of the ids and also the decoding and test with the following setting:   
+// You can disable the encoding of the ids and also the decoding and test with the following setting:
 /*
 if(!defined('MPFORM_SKIP_IDKEY')){
     define('MPFORM_SKIP_IDKEY',true);

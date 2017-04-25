@@ -22,7 +22,7 @@ function getUrlVars()
     return vars;
 }
 $(function() {
-    
+
     $.insert( AJAX_PLUGINS +"/ajaxDeleteRecord.js");
     // AjaxHelper delete fields records
     $("td.delete_field").ajaxDeleteRecord({
@@ -30,86 +30,86 @@ $(function() {
         DB_RECORD_TABLE: 'mpform_fields',
         DB_COLUMN: 'field_id',
         sFTAN: ''
-    });    
-    
+    });
+
     // AjaxHelper delete submissions records
-    $("td.delete_submission").ajaxDeleteRecord({        
+    $("td.delete_submission").ajaxDeleteRecord({
         MODULE : 'mpform',
         DB_RECORD_TABLE: 'mpform_submissions',
         DB_COLUMN: 'submission_id',
         sFTAN: ''
     });
-    
+
     $.insert( AJAX_PLUGINS +"/ajaxChangeFormFieldStatus.js");
     // AjaxHelper change FormFieldStatus
-    $("td.required_status").ajaxChangeFormFieldStatus({        
+    $("td.required_status").ajaxChangeFormFieldStatus({
         MODULE : 'mpform',
         DB_RECORD_TABLE: 'mpform_fields',
         DB_COLUMN: 'field_id',
         sFTAN: ''
     });
-    
-    
-    function inspectAllInputFields(){    
+
+
+    function inspectAllInputFields(){
         // disable BUTTONS as long requiredFields ain't filled
         var count = 0;
         var oFields = $('#save_settings, #copy_field, #add_field');
         $('.requiredInput').each(function(i){
-            if( $(this).val() === '') 
+            if( $(this).val() === '')
                 count++;
-            if(count == 0) 
+            if(count == 0)
                 oFields.prop('disabled', false);
             else {
                 oFields.prop('disabled', true);
             }
         });
-    }    
+    }
     // disable BUTTONS as long requiredFields ain't filled
     if($('#field_title').val() === '')
         $('#save_settings, #copy_field, #add_field').prop('disabled', true);
-    
+
     $('.requiredInput').change(function() {
        inspectAllInputFields();
     });
 
-    
-    /**         
-     *    
+
+    /**
+     *
      *     LOAD
      *    jNotify
      *    @documentation: http://www.myjqueryplugins.com/jNotify/
-     */    
+     */
     if(getUrlVars()["success"])
-    {        
+    {
         var MESSAGE = getUrlVars()["success"];
         switch (MESSAGE){
             case 'add':   var SUCCESS_STRING = LANG.RECORD_NEW_SAVED;            break;
             case 'save':  var SUCCESS_STRING = LANG.SETTINGS_SAVED;              break;
-            default:      var SUCCESS_STRING = '<b>' + LANG.SUCCESS + '!</b>';   break;        
-        }                
-        $.insert( AJAX_PLUGINS +"/jNotify.jquery.js");        
-        jSuccess( SUCCESS_STRING, 
-            { 
+            default:      var SUCCESS_STRING = '<b>' + LANG.SUCCESS + '!</b>';   break;
+        }
+        $.insert( AJAX_PLUGINS +"/jNotify.jquery.js");
+        jSuccess( SUCCESS_STRING,
+            {
                 // jNotify Settings
-                autoHide : true, // added in v2.0 
+                autoHide : true, // added in v2.0
                 TimeShown : REDIRECT_TIMER,
-                HorizontalPosition : 'center', 
-                VerticalPosition : 'top', 
+                HorizontalPosition : 'center',
+                VerticalPosition : 'top',
                 ColorOverlay : '#FFF'
             }
-        ); 
+        );
     }
-        
+
     if($('.pry').length > 0){
-        // LOAD ajaxPryFunction (cluetip)            
-        $.insert(AJAX_PLUGINS +"/ajaxPryFunction.js"); 
+        // LOAD ajaxPryFunction (cluetip)
+        $.insert(AJAX_PLUGINS +"/ajaxPryFunction.js");
     }
-    
+
     // Load external ajax_dragdrop file
     if($('.dragdrop_form').length > 0){
         $.insert(AJAX_PLUGINS +"/ajax_dragdrop.js");
     }
-    
+
     /*
         jEditable
         @purpose: inline edit
@@ -118,7 +118,7 @@ $(function() {
         jQuery.insert(AJAX_PLUGINS +"/jquery.jeditable.js");
         $('.inlineEdit').editable(AJAX_PLUGINS +"/inline_save.php", {
             indicator: 'saving',
-            tooltip: LANG.DOUBLECLICK_TO_EDIT, 
+            tooltip: LANG.DOUBLECLICK_TO_EDIT,
             placeholder: 'empty',
             event: "dblclick"
         });
@@ -127,7 +127,7 @@ $(function() {
             cancel: LANG.CANCEL,
             submit: LANG.SAVE,
             indicator: 'saving',
-            tooltip: LANG.DOUBLECLICK_TO_EDIT, 
+            tooltip: LANG.DOUBLECLICK_TO_EDIT,
             placeholder: 'empty',
             event: "dblclick"
         });

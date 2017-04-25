@@ -3,10 +3,10 @@
  * WebsiteBaker CMS module: mpForm
  * ===============================
  * This module allows you to create customised online forms, such as a feedback form with file upload and customizable email notifications. mpForm allows forms over one or more pages, loops of forms, conditionally displayed sections within a single page, and many more things.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module. Since 1.2.0 forms can be imported and exported directly in the module.
- *  
+ *
  * @category            page
  * @module              mpform
- * @version             1.3.8.3
+ * @version             1.3.9
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -39,7 +39,7 @@ $mod_dir = basename(dirname(__FILE__));
 
 
 // include the module language file depending on the backend language of the current user
-if (!@include(get_module_language_file($mod_dir))) return;  
+if (!@include(get_module_language_file($mod_dir))) return;
 
 
 // include WB admin wrapper script to check permissions
@@ -60,7 +60,7 @@ $query_content = $database->query(
     "SELECT *"
     . " FROM ".TABLE_PREFIX."sections"
     . " WHERE section_id = '$section_id'");
-    
+
 $res = $query_content->fetchRow();
 if (($res['page_id'] != $page_id)
     && (!(defined('MPFORM_SKIP_ID_CHECK')&&(MPFORM_SKIP_ID_CHECK)))) {
@@ -69,7 +69,7 @@ if (($res['page_id'] != $page_id)
       $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS']
       .' (ID_CHECK) '.__FILE__.':'.__LINE__,
       $sUrlToGo);
-    else 
+    else
       header("Location: ". $sUrlToGo);
     exit(0);
 }
@@ -96,13 +96,13 @@ $blocked_modules = array('section_picker', 'foldergallery');
 
 // extract path separator and detect this module name
 $path_sep = strtoupper(substr(PHP_OS, 0, 3) == 'WIN') ? '\\' : '/';
-$module_folder 
+$module_folder
     = str_replace(
-        WB_PATH 
-        . $path_sep 
-        . 'modules' 
+        WB_PATH
+        . $path_sep
+        . 'modules'
         . $path_sep,
-        '', 
+        '',
         dirname(__FILE__)
      );
 $url_admintools = ADMIN_URL . '/admintools/tool.php?tool=' . $module_folder;
@@ -115,10 +115,10 @@ $lines[] = '<?xml  version="1.0" encoding="'. DEFAULT_CHARSET .'" ?>';
 $sql = "SELECT * FROM ". TABLE_PREFIX ."sections where section_id = '$section_id'";
 $results = $database->query($sql);
 if ($results && $row = $results->fetchRow()) {
-    // if ( in_array($row['module'], $blocked_modules)) 
+    // if ( in_array($row['module'], $blocked_modules))
     // after integrating into mpform we restrict this to mpform sections instead
     // we should not arrive here anyway...
-    if ($row['module'] != 'mpform'){ 
+    if ($row['module'] != 'mpform'){
         $admin->print_header();
         $admin->print_error("Export of sections of type ".$row['module']." is not possible",
             ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
@@ -145,13 +145,13 @@ if ($results && $row = $results->fetchRow()) {
         $result = $database->query($sql);
         while ($row = $result->fetchRow()) {
             // skip non-module tables:
-            if (strpos($row[0], TABLE_PREFIX.'mod_') !== 0) continue;    
+            if (strpos($row[0], TABLE_PREFIX.'mod_') !== 0) continue;
             // skip submissions from form module:
-            if (strpos($row[0], TABLE_PREFIX.'mod_form_submissions') === 0) continue;  
+            if (strpos($row[0], TABLE_PREFIX.'mod_form_submissions') === 0) continue;
             // skip submissions from formx module:
-            if (strpos($row[0], TABLE_PREFIX.'mod_formx_submissions') === 0) continue;  
+            if (strpos($row[0], TABLE_PREFIX.'mod_formx_submissions') === 0) continue;
             // skip submissions from mpform module:
-            if (strpos($row[0], TP_MPFORM.'submissions') === 0) continue;  
+            if (strpos($row[0], TP_MPFORM.'submissions') === 0) continue;
             $sql = "SHOW COLUMNS FROM " . $row[0] . " LIKE 'section_id'";
             $results = $database->query($sql);
             if ($results && $exists = $results->fetchRow()) {
@@ -172,7 +172,7 @@ if ($results && $row = $results->fetchRow()) {
                         if ($i > 1) {
                             if ($i % 2 == 0) {
                                 $cv = addslashes($v);
-                                $lines[] 
+                                $lines[]
                                     = "\t\t\t<export_section_field>"
                                     . "<fieldn>$k</fieldn>"
                                     . "<fieldv><![CDATA[" .$cv. "]]></fieldv>"
@@ -187,7 +187,7 @@ if ($results && $row = $results->fetchRow()) {
                     $inside_tab = false;
                 }
             }
-        }    
+        }
 
         $lines[] = "</export_section>";
     }

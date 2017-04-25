@@ -3,10 +3,10 @@
  * WebsiteBaker CMS module: mpForm
  * ===============================
  * This module allows you to create customised online forms, such as a feedback form with file upload and customizable email notifications. mpForm allows forms over one or more pages, loops of forms, conditionally displayed sections within a single page, and many more things.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module. Since 1.2.0 forms can be imported and exported directly in the module.
- *  
+ *
  * @category            page
  * @module              mpform
- * @version             1.3.8.3
+ * @version             1.3.9
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -21,16 +21,16 @@
 if(defined('WB_URL')) {
 
 require_once(dirname(__FILE__).'/constants.php');
-    
+
     // Rename files
-    if (!file_exists(WB_PATH."/modules/mpform/backend.css"))  
-        rename(WB_PATH."/modules/mpform/backend.default.css",  
+    if (!file_exists(WB_PATH."/modules/mpform/backend.css"))
+        rename(WB_PATH."/modules/mpform/backend.default.css",
                WB_PATH."/modules/mpform/backend.css");
-    if (!file_exists(WB_PATH."/modules/mpform/frontend.css")) 
-        rename(WB_PATH."/modules/mpform/frontend.default.css", 
+    if (!file_exists(WB_PATH."/modules/mpform/frontend.css"))
+        rename(WB_PATH."/modules/mpform/frontend.default.css",
                WB_PATH."/modules/mpform/frontend.css");
-    if (!file_exists(WB_PATH."/modules/mpform/private.default.php"))  
-        rename(WB_PATH."/modules/mpform/private.default.php",  
+    if (!file_exists(WB_PATH."/modules/mpform/private.default.php"))
+        rename(WB_PATH."/modules/mpform/private.default.php",
                WB_PATH."/modules/mpform/private.php");
 
     // Create tables
@@ -96,7 +96,7 @@ require_once(dirname(__FILE__).'/constants.php');
         . " PRIMARY KEY ( `section_id` ) "
         . " )";
     $database->query($mod_mpform);
-    
+
     $database->query("DROP TABLE IF EXISTS `".TP_MPFORM."submissions`");
     $mod_mpform = "CREATE TABLE `".TP_MPFORM."submissions` ("
         . " `submission_id` INT NOT NULL AUTO_INCREMENT,"
@@ -105,7 +105,7 @@ require_once(dirname(__FILE__).'/constants.php');
         . " `position` INT NOT NULL DEFAULT '0' ,"
         . " `started_when` INT NOT NULL DEFAULT '0' ,"     // time when form was sent to browser
         . " `submitted_when` INT NOT NULL DEFAULT '0' ,"       // time when form was sent back to server
-        . " `submitted_by` INT NOT NULL DEFAULT '0',"        
+        . " `submitted_by` INT NOT NULL DEFAULT '0',"
         . " `session_id` TEXT NOT NULL ,"            // same id for one set of forms
         . " `ip_addr` TEXT NOT NULL ,"               // IP address
         . " `body` TEXT NOT NULL,"
@@ -114,7 +114,7 @@ require_once(dirname(__FILE__).'/constants.php');
         . " PRIMARY KEY ( `submission_id` ) "
         . " )";
     $database->query($mod_mpform);
-        
+
     // Insert info into the search table
     // Module query info
     $field_info = array();
@@ -132,9 +132,9 @@ require_once(dirname(__FILE__).'/constants.php');
         . " `value` = 'mpform', "
         . " `extra` = '".$field_info."'"
         );
-        
+
     // Query start
-    $query_start_code 
+    $query_start_code
        = "SELECT [TP]pages.page_id,"
        . " [TP]pages.page_title,"
        . " [TP]pages.link,"
@@ -154,7 +154,7 @@ require_once(dirname(__FILE__).'/constants.php');
         );
 
     // Query body
-    $query_body_code 
+    $query_body_code
         = " [TP]pages.page_id = [TP]mod_mpform_settings.page_id"
        . " AND [TP]mod_mpform_settings.header"
        . " LIKE \'%[STRING]%\'"
@@ -174,7 +174,7 @@ require_once(dirname(__FILE__).'/constants.php');
         . " `value` = '$query_body_code', "
         . " `extra` = 'mpform'"
         );
-    
+
     // Query end
     $query_end_code = "";
      $database->query(
@@ -184,7 +184,7 @@ require_once(dirname(__FILE__).'/constants.php');
         . " `value` = '$query_end_code', "
         . " `extra` = 'mpform'"
         );
-    
+
     // Insert blank row (there needs to be at least on row for the search to work)
     $sql = "INSERT INTO `".TP_MPFORM."fields` "
     . "SET `page_id` = '0', "

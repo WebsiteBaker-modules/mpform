@@ -3,10 +3,10 @@
  * WebsiteBaker CMS module: mpForm
  * ===============================
  * This module allows you to create customised online forms, such as a feedback form with file upload and customizable email notifications. mpForm allows forms over one or more pages, loops of forms, conditionally displayed sections within a single page, and many more things.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module. Since 1.2.0 forms can be imported and exported directly in the module.
- *  
+ *
  * @category            page
  * @module              mpform
- * @version             1.3.8.3
+ * @version             1.3.9
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -38,7 +38,7 @@ require_once(dirname(__FILE__).'/constants.php');
 $mod_dir = basename(dirname(__FILE__));
 
 // include the module language file depending on the backend language of the current user
-if (!@include(get_module_language_file($mod_dir))) return;  
+if (!@include(get_module_language_file($mod_dir))) return;
 
 //START HEADER HERE
 require_once(WB_PATH.'/modules/'.$mod_dir.'/functions.php');
@@ -55,28 +55,28 @@ $query_content = $database->query(
 $setting = $query_content->fetchRow();
 
 // protect from cross page reading
-if (($setting['page_id'] != $page_id) 
+if (($setting['page_id'] != $page_id)
     && (!(defined('MPFORM_SKIP_ID_CHECK')&&(MPFORM_SKIP_ID_CHECK)))) {
     $sUrlToGo = ADMIN_URL."/pages/index.php";
     if(headers_sent())
         $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS']
         .' (ID_CHECK) '.__FILE__.':'.__LINE__,
         $sUrlToGo);
-    else 
+    else
         header("Location: ". $sUrlToGo);
     exit(0);
 }
 
 // include template parser class and set template
-if (file_exists(WB_PATH . '/include/phplib/template.inc')) 
+if (file_exists(WB_PATH . '/include/phplib/template.inc'))
     require_once(WB_PATH . '/include/phplib/template.inc');
 $tpl = new Template(dirname(__FILE__) . '/htt/');
 
-// define how to handle unknown variables 
+// define how to handle unknown variables
 // (default:='remove', during development use 'keep' or 'comment')
 $tpl->set_unknowns('keep');
 
-// define debug mode (default:=0 (disabled), 1:=variable assignments, 
+// define debug mode (default:=0 (disabled), 1:=variable assignments,
 //                    2:=calls to get variable, 4:=show internals)
 $tpl->debug = 0;
 
@@ -103,9 +103,9 @@ foreach($settings as $key => $value) {
 
 $email_from_value = $setting['email_from'];
 $email_replyto_value = $setting['email_replyto'];
-$email_fromname_value = $setting['email_fromname']; 
+$email_fromname_value = $setting['email_fromname'];
 $success_email_from_value = $setting['success_email_from'];
-$success_email_fromname_value = $setting['success_email_fromname']; 
+$success_email_fromname_value = $setting['success_email_fromname'];
 
 // replace static template placeholders with values from language file
 $tpl->set_var(
@@ -128,26 +128,26 @@ $tpl->set_var(
         'txt_header'                 => $TEXT['HEADER'],
         'txt_field_loop'             => $TEXT['FIELD'].' '.$TEXT['LOOP'],
         'txt_footer'                 => $TEXT['FOOTER'],
-        'email_from'                 => ((substr($settings['email_from'], 0, 5) != 'field') 
-                                         && ($settings['email_from'] != 'wbu') 
+        'email_from'                 => ((substr($settings['email_from'], 0, 5) != 'field')
+                                         && ($settings['email_from'] != 'wbu')
                                          ? $settings['email_from'] : ''),
-        'email_replyto'              => ((substr($settings['email_replyto'], 0, 5) != 'field') 
-                                         && ($settings['email_replyto'] != 'wbu') 
+        'email_replyto'              => ((substr($settings['email_replyto'], 0, 5) != 'field')
+                                         && ($settings['email_replyto'] != 'wbu')
                                          ? $settings['email_replyto'] : ''),
         'des_email_from_field'       => '',
-        'email_fromname'             => ((substr($settings['email_fromname'], 0, 5) != 'field') 
-                                         && ($settings['email_fromname'] != 'wbu') 
+        'email_fromname'             => ((substr($settings['email_fromname'], 0, 5) != 'field')
+                                         && ($settings['email_fromname'] != 'wbu')
                                          ? $settings['email_fromname'] : ''),
         'des_email_fromname_field'   => '',
         'des_email_fromname'         => '',
         'des_email_subject'          => '',
         'txt_email_subject'          => $TEXT['SUBJECT'],
         'des_success_email_to'       => '',
-        'success_email_from'         => ((substr($settings['success_email_from'], 0, 5) != 'field') 
-                                         && ($settings['success_email_from'] != 'wbu') 
+        'success_email_from'         => ((substr($settings['success_email_from'], 0, 5) != 'field')
+                                         && ($settings['success_email_from'] != 'wbu')
                                          ? $settings['success_email_from'] : ''),
-        'success_email_fromname'     => ((substr($settings['success_email_fromname'], 0, 5) != 'field') 
-                                         && ($settings['success_email_fromname'] != 'wbu') 
+        'success_email_fromname'     => ((substr($settings['success_email_fromname'], 0, 5) != 'field')
+                                         && ($settings['success_email_fromname'] != 'wbu')
                                          ? $settings['success_email_fromname'] : ''),
         'des_success_email_from'     => '',
         'des_success_email_fromname' => '',
@@ -168,18 +168,18 @@ $tpl->set_var(
 
 
 // returns list of email fields from the form
-function give_me_address_list(&$tpl, $curr_value, $java=true, $fname = '', $wbt, $listtype='email'){    
+function give_me_address_list(&$tpl, $curr_value, $java=true, $fname = '', $wbt, $listtype='email'){
     global $database, $section_id, $TEXT;
     $tpl->set_block('main_block', $fname.'_block' , $fname);
     $rt = false;
-    
+
     // add authenticated user:
     $s = "<option value=\"wbu\"";
     if($curr_value == 'wbu') {
         $s .= " selected='selected'";
         $rt = true;
     }
-    if ($java) 
+    if ($java)
         $s .= " onclick=\"javascript:"
             . " document.getElementById('"
             . $fname."_slave').style.display = 'none';\"";
@@ -188,7 +188,7 @@ function give_me_address_list(&$tpl, $curr_value, $java=true, $fname = '', $wbt,
     $tpl->parse($fname, $fname.'_block', true);
     $s = '';
 
-    $query_email_fields 
+    $query_email_fields
         = $database->query(
             "SELECT `field_id`,`title`"
                 . " FROM `".TP_MPFORM."fields`"
@@ -202,7 +202,7 @@ function give_me_address_list(&$tpl, $curr_value, $java=true, $fname = '', $wbt,
                 $s .= " selected='selected'";
                 $rt = true;
             }
-            if ($java) 
+            if ($java)
                 $s .= " onclick=\"javascript: "
                     . " document.getElementById('". $fname."_slave').style.display"
                     . " = 'none';\"";
@@ -218,18 +218,18 @@ function give_me_address_list(&$tpl, $curr_value, $java=true, $fname = '', $wbt,
 }
 
 // returns list of text fields from the form
-function give_me_name_list(&$tpl, $curr_value, $java=true, $fname = '', $wbt, $listtype='textfield'){  
+function give_me_name_list(&$tpl, $curr_value, $java=true, $fname = '', $wbt, $listtype='textfield'){
     global $database, $section_id, $TEXT;
     $tpl->set_block('main_block', $fname.'_block' , $fname);
     $rt = false;
-    
+
     // add authenticated user:
     $s = "<option value=\"wbu\"";
     if($curr_value == 'wbu') {
         $s .= " selected='selected'";
         $rt = true;
     }
-    if ($java) 
+    if ($java)
         $s .= " onclick=\"javascript:"
             . " document.getElementById('". $fname."_slave').style.display"
             . " = 'none';\"";
@@ -237,8 +237,8 @@ function give_me_name_list(&$tpl, $curr_value, $java=true, $fname = '', $wbt, $l
     $tpl->set_var('options_'.$fname, $s);
     $tpl->parse($fname, $fname.'_block', true);
     $s = '';
-    
-    $query_email_fields 
+
+    $query_email_fields
         = $database->query(
             "SELECT `field_id`,`title`"
             . " FROM `".TP_MPFORM."fields`"
@@ -253,7 +253,7 @@ function give_me_name_list(&$tpl, $curr_value, $java=true, $fname = '', $wbt, $l
                 $s .= " selected='selected'";
                 $rt = true;
             }
-            if ($java) 
+            if ($java)
                 $s .= " onclick=\"javascript:"
                     . " document.getElementById('". $fname."_slave').style.display"
                     . " = 'none';\"";
@@ -270,7 +270,7 @@ function give_me_name_list(&$tpl, $curr_value, $java=true, $fname = '', $wbt, $l
 
 
 // returns list of possible success pages
-function give_me_pages_list(&$tpl, $page, $fname){    
+function give_me_pages_list(&$tpl, $page, $fname){
     global $database, $admin;
     $tpl->set_block('main_block', $fname.'_block' , 'schleife');
     $s = '';
@@ -290,85 +290,85 @@ function give_me_pages_list(&$tpl, $page, $fname){
             $selected = '';
         }
         $s = '<option value="'.$success_page.'"'.$selected.'>'.$mail_pagename.'</option>';
-        $tpl->set_var('options_'.$fname, $s);   
+        $tpl->set_var('options_'.$fname, $s);
         $tpl->parse('schleife', $fname.'_block', true);
-    } 
+    }
 }
 
 // fill some fields with lists
-$rt1 
+$rt1
     = give_me_address_list(
         $tpl,
-        $email_from_value, 
-        true, 
-        'email_from_f', 
+        $email_from_value,
+        true,
+        'email_from_f',
         $LANG['backend']['TXT_USER_ADDR']
     );
 $tpl->set_var(
-    'display_email_from_field', 
+    'display_email_from_field',
     (($rt1) ? 'none' : 'block')
 );
 
-$rt2 
+$rt2
     = give_me_name_list(
         $tpl,
-        $email_fromname_value, 
-        true, 
-        'email_fromname_f', 
+        $email_fromname_value,
+        true,
+        'email_fromname_f',
         $LANG['backend']['TXT_USER_NAME']
     );
 $tpl->set_var(
-    'display_email_fromname_field', 
+    'display_email_fromname_field',
     (($rt2) ? 'none' : 'block')
 );
 
-$rt3 
+$rt3
     = give_me_address_list(
         $tpl,
-        $email_replyto_value, 
-        true, 
-        'email_replyto_f', 
+        $email_replyto_value,
+        true,
+        'email_replyto_f',
         $LANG['backend']['TXT_USER_ADDR']
     );
 $tpl->set_var(
-    'display_email_replyto_field', 
+    'display_email_replyto_field',
     (($rt3) ? 'none' : 'block')
 );
 
-$rt4 
+$rt4
     = give_me_address_list(
         $tpl,
-        $success_email_from_value, 
-        true, 
-        'success_email_from_f', 
+        $success_email_from_value,
+        true,
+        'success_email_from_f',
         $LANG['backend']['TXT_USER_ADDR'],
         'email_recip'
     );
 $tpl->set_var(
-    'display_success_email_from_field', 
+    'display_success_email_from_field',
     (($rt4) ? 'none' : 'block')
 );
 
-$rt5 
+$rt5
     = give_me_name_list(
         $tpl,
-        $success_email_fromname_value, 
-        true, 
-        'success_email_fromname_f', 
+        $success_email_fromname_value,
+        true,
+        'success_email_fromname_f',
         $LANG['backend']['TXT_USER_NAME'],
         'email_recip'
     );
 $tpl->set_var(
-    'display_success_email_fromname_field', 
+    'display_success_email_fromname_field',
     (($rt5) ? 'none' : 'block')
 );
 
 
 give_me_address_list(
     $tpl,
-    $settings['success_email_to'], 
-    false, 
-    'success_email_to', 
+    $settings['success_email_to'],
+    false,
+    'success_email_to',
     $LANG['backend']['TXT_USER_ADDR']
 );
 give_me_pages_list(

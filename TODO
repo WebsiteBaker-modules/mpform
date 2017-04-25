@@ -3,7 +3,9 @@
  * todo list for upcoming releases:
  * ================================
  *
- * (If you find bugs or if you would like to propose a new feature which you 
+ * (If you find bugs or if you would like to propose a new feature which you
  * consider useful, do not hesitate to contact me)
  *
+ * - improve error handling in upgrade script (clear message if TP_MPFORM is altered)
+ * - check ajax Helpers: Ok button when adding a field is sometimes blocked too much
  */

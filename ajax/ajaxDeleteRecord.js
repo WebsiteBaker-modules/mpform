@@ -1,7 +1,7 @@
 /**
  * AJAX
  *    Plugin to delete Records from a given table without a new page load (no reload)
- */    
+ */
 // Building a jQuery Plugin
 // using the Tutorial: http://www.learningjquery.com/2007/10/a-plugin-development-pattern
 // plugin definition
@@ -11,24 +11,24 @@
     MODULE = 'modulename',                    // (string)
     DB_RECORD_TABLE: 'modulename_table',    // (string)
     DB_COLUMN: 'item_id',                     // (string) the key column you will use as reference
-    sFTAN: ''                                 // (string) FTAN 
+    sFTAN: ''                                 // (string) FTAN
 
 */
-    
+
 (function($) {
     $.fn.ajaxDeleteRecord = function(options) {
-        
-        var aOpts = $.extend({}, $.fn.ajaxDeleteRecord.defaults, options);        
+
+        var aOpts = $.extend({}, $.fn.ajaxDeleteRecord.defaults, options);
         $(this).find('a').removeAttr("href").css('cursor', 'pointer');
-        
+
         $(this).click(function() {
-            var oElement = $(this).find('img');        
-            var oLink = $(this).find('a');        
+            var oElement = $(this).find('img');
+            var oLink = $(this).find('a');
             var iRecordID = oElement.attr("id").substring(4);
             var iSectionID = oElement.attr("rel");
-            var oRecord = $("tr#" + aOpts.DB_COLUMN +'_'+ iRecordID);    
-            
-            if (confirm(LANG.SURE_DELETE_RECORD)) {                    
+            var oRecord = $("tr#" + aOpts.DB_COLUMN +'_'+ iRecordID);
+
+            if (confirm(LANG.SURE_DELETE_RECORD)) {
 
                 $.ajax({
                     url: MODULE_URL +"/ajax/ajax.php",
@@ -43,14 +43,14 @@
                     success: function(json_respond) {
                         if(json_respond.success == true) {
                             //row.fadeOut('slow');
-                            oRecord.fadeOut(1200);    
-                            window.location.reload();   
+                            oRecord.fadeOut(1200);
+                            window.location.reload();
                         } else {
                             alert(json_respond.message);
                         }
-                    }        
+                    }
                 });
             }
         });
-    }    
+    }
 })(jQuery);

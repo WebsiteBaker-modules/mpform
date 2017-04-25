@@ -1,5 +1,5 @@
 var CLUETIP_DIR = AJAX_PLUGINS +"/jquery.cluetip"; //plugins directory
-$.insert(CLUETIP_DIR +"/jquery.cluetip.pryFunction.css"); 
+$.insert(CLUETIP_DIR +"/jquery.cluetip.pryFunction.css");
 $.insert(CLUETIP_DIR +"/jquery.cluetip.min.js");
 
 //$.insert(WB_URL +"/include/jquery/jquery-ui.css"); // uncomment if you want to use jquery-ui.css
@@ -22,18 +22,18 @@ $.insert(CLUETIP_DIR +"/jquery.cluetip.min.js");
 
 $('.pry').cluetip({
                 width: 800,
-                //height: 500, 
+                //height: 500,
                 cluezIndex: 9999,
-                sticky: true, 
+                sticky: true,
                 leftOffset: 20,
-                dropShadow: true,  
-                dropShadowSteps: 4,  
-                closePosition: 'title', 
-                waitImage: true,  
+                dropShadow: true,
+                dropShadowSteps: 4,
+                closePosition: 'title',
+                waitImage: true,
                 arrows: true,
                 closeText: '<img src="'+CLUETIP_DIR+'/cluetip_images/close_button.gif" title="'+ LANG.CLOSE +'" alt ="[x]" width="16" height="16"/>',
-                ajaxCache: false // don't cache 
+                ajaxCache: false // don't cache
 });
-$(".hideCluetip").click(function () { 
-        $(this).trigger('hideCluetip');                        
+$(".hideCluetip").click(function () {
+        $(this).trigger('hideCluetip');
 });

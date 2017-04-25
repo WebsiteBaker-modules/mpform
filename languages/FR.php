@@ -4,10 +4,10 @@
  * WebsiteBaker CMS module: mpForm
  * ===============================
  * This module allows you to create customised online forms, such as a feedback form with file upload and customizable email notifications. mpForm allows forms over one or more pages, loops of forms, conditionally displayed sections within a single page, and many more things.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module. Since 1.2.0 forms can be imported and exported directly in the module.
- *  
+ *
  * @category            page
  * @module              mpform
- * @version             1.3.8.3
+ * @version             1.3.9
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -155,7 +155,7 @@ $LANG['backend'] = array(
     'TXT_USE_IN_SITE_HTML'        => "dans la notification au propri&eacute;taire du site",
     'TXT_USE_IN_USER_HTML'        => "dans la notification &agrave; l&apos;utilisateur",
     'conditional'                 => "bloc conditionnel affich&eacute;",
-    'dependency'                  => "d&eacute;pendence &agrave;",    
+    'dependency'                  => "d&eacute;pendence &agrave;",
     'entry'                       => 'Saisie',
     'compulsory_entry'            => 'obligatoire',
     'optional_entry'              => 'optionnelle',
@@ -272,11 +272,11 @@ $LANG['backend_adv'] = array(
                                    . '(il est pratique d&apos;utiliser, par exemple, '
                                    . '0, 1 ou a), alors cette valeur sera '
                                    . 'incr&eacute;ment&eacute;e pour chaque option  '
-                                   . 'et renvoy&eacute;e &agrave; la place du texte.',        
+                                   . 'et renvoy&eacute;e &agrave; la place du texte.',
      'TXT_VALUE_OPTION_SEPARATOR' => "Cha&icirc;ne de s&eacute;parateur '
                                    . ' valeur-option",
     'TXT_DATE_FORMAT'             => 'Format de la date',
-    'TXT_ASP_SETTINGS'            => 'Protection Anti-SPAM', 
+    'TXT_ASP_SETTINGS'            => 'Protection Anti-SPAM',
      'des_date_format'            => '<br/>Cha&icirc;ne de format de date  '
                                    . 'et d&apos;heure standard (ex. %m/%d/%Y)',
     'TXT_UPLOAD_FILE_FOLDER'      => 'Dossier de destination',

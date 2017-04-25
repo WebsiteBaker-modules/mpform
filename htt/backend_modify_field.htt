@@ -25,10 +25,10 @@
         </td>
     </tr>
     <tr>
-        <th>{TXT_TYPE}:</th> 
+        <th>{TXT_TYPE}:</th>
         <td>
             <select class="requiredInput" id="select_type" name="type" style="width: 30%;">
-                <option value="">{TXT_PLEASE_SELECT}...</option> 
+                <option value="">{TXT_PLEASE_SELECT}...</option>
                 <!-- BEGIN field_block -->
                     <option value={VAL_FIELDTYPE}</option>
                 <!-- END field_block -->

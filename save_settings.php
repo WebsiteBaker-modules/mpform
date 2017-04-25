@@ -3,10 +3,10 @@
  * WebsiteBaker CMS module: mpForm
  * ===============================
  * This module allows you to create customised online forms, such as a feedback form with file upload and customizable email notifications. mpForm allows forms over one or more pages, loops of forms, conditionally displayed sections within a single page, and many more things.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module. Since 1.2.0 forms can be imported and exported directly in the module.
- *  
+ *
  * @category            page
  * @module              mpform
- * @version             1.3.8.3
+ * @version             1.3.9
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -56,7 +56,7 @@ $query_content = $database->query(
     "SELECT *"
     . " FROM ".TABLE_PREFIX."sections"
     . " WHERE section_id = '$section_id'");
-    
+
 $res = $query_content->fetchRow();
 if (($res['page_id'] != $page_id)
     && (!(defined('MPFORM_SKIP_ID_CHECK')&&(MPFORM_SKIP_ID_CHECK)))) {
@@ -70,7 +70,7 @@ if (($res['page_id'] != $page_id)
 // obtain module directory
 $curr_dir = dirname(__FILE__);
 
-// convert page/section id to numbers 
+// convert page/section id to numbers
 // (already checked by /modules/admin.php but kept for consistency)
 $page_id = (isset($_POST['page_id'])) ? (int) $_POST['page_id'] : '';
 $section_id = (isset($_POST['section_id'])) ? (int) $_POST['section_id'] : '';
@@ -114,7 +114,7 @@ foreach($upd_extra as $key) {
 
 // Sanitize data, cleaning if necessary:
 // (only allow alphanumerical chars as table suffix)
-$tbl_suffix = preg_replace("/\W/", "", $tbl_suffix);  
+$tbl_suffix = preg_replace("/\W/", "", $tbl_suffix);
 
 // check multiple email recipients
 $temp_email_to = "";
@@ -134,7 +134,7 @@ foreach ($emails as $recip) {
         $s = explode(">", $teil[1]);   // string with (list of) email address(es)
         $se = explode(",", $s[0]);     // array  with (list of) email address(es)
         foreach ($se as $sh) {
-            $ok = true;                // $admin->validate_email(trim($sh)); 
+            $ok = true;                // $admin->validate_email(trim($sh));
         if (!$ok)                      // check each address
             break;                     // break as soon as an invalid address is found
         }
@@ -145,10 +145,10 @@ foreach ($emails as $recip) {
 $email_to = trim($temp_email_to);
 
 if (!$admin->validate_email($email_from)) {
-    $email_from = '';    
+    $email_from = '';
 }
 if (!$admin->validate_email($email_replyto)) {
-    $email_replyto = '';    
+    $email_replyto = '';
 }
 if (!$admin->validate_email($success_email_from)) {
     $success_email_from = '';
@@ -164,7 +164,7 @@ $success_email_text = htmlspecialchars($success_email_text, ENT_QUOTES);
 
 if(is_array($email_fromname_field)&&!empty($email_fromname_field)){
     // check which ones were there already
-    $query_settings 
+    $query_settings
        = $database->query(
            "SELECT `email_fromname`"
                . " FROM ".TP_MPFORM."settings"
@@ -211,7 +211,7 @@ if ($success_email_fromname_field != '')
     $success_email_fromname = $success_email_fromname_field; //  use a field of the form as sender's name
 
 // now loop over update values and create the SQL query string (this way we do not forget values)
-// - no need to protect this anymore because post-values were already protected above 
+// - no need to protect this anymore because post-values were already protected above
 $sql_key_values = '';
 foreach($update_keys as $key) {
     $sql_key_values .= (($sql_key_values) ? ', ' : '' ) . "`$key` = '" . ${$key} . "'";
@@ -239,16 +239,16 @@ if (!($database->is_error()) and ($tbl_suffix != "DISABLED")) {
              . " PRIMARY KEY ( `session_id` ) "
              . " )";
          $database->query($sSQL);
-    
-         if($database->is_error()) {    
-             $admin->print_error("Could not add results table to database", $sUrlToGo);  
+
+         if($database->is_error()) {
+             $admin->print_error("Could not add results table to database", $sUrlToGo);
              $admin->print_footer();
              exit(0);
          }
      }
 
      // loop through fields and update results table
-     $query_fields 
+     $query_fields
          = $database->query(
              "SELECT *"
              . " FROM `".TP_MPFORM."fields`"
@@ -267,13 +267,13 @@ if (!($database->is_error()) and ($tbl_suffix != "DISABLED")) {
                  $sSQL = "ALTER TABLE `$results`"
                        . " add `field".$field_id."` TEXT NOT NULL";
                  $database->query($sSQL);
-                 if($database->is_error()) {    
+                 if($database->is_error()) {
                      $admin->print_error(
                          "could not add field "
                          . $field['field_id']
-                         . "to results table", 
+                         . "to results table",
                          $sUrlToGo
-                     );    
+                     );
                      $admin->print_footer();
                      exit(0);
                  }
@@ -291,9 +291,9 @@ if (!($database->is_error()) and ($tbl_suffix != "DISABLED")) {
               . " add `submission_id` INT NOT NULL DEFAULT '0' AFTER `referer`";
         $database->query($sSQL);
 
-        if($database->is_error()) {    
+        if($database->is_error()) {
             $admin->print_header();
-            $admin->print_error("could not add submission_id to results table", $sUrlToGo);    
+            $admin->print_error("could not add submission_id to results table", $sUrlToGo);
             $admin->print_footer();
             exit(0);
         }
@@ -303,10 +303,10 @@ if (!($database->is_error()) and ($tbl_suffix != "DISABLED")) {
 
 // check if there is a db error, otherwise say successful
 if ($database->is_error()) {
-    $admin->print_error($database->get_error(), 
+    $admin->print_error($database->get_error(),
         ADMIN_URL . '/pages/modify.php?page_id=' . $page_id);
 } else {
-    $admin->print_success($TEXT['SUCCESS'], 
+    $admin->print_success($TEXT['SUCCESS'],
         ADMIN_URL . '/pages/modify.php?page_id=' . $page_id);
 }
 

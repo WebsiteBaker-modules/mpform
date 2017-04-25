@@ -3,10 +3,10 @@
  * WebsiteBaker CMS module: mpForm
  * ===============================
  * This module allows you to create customised online forms, such as a feedback form with file upload and customizable email notifications. mpForm allows forms over one or more pages, loops of forms, conditionally displayed sections within a single page, and many more things.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module. Since 1.2.0 forms can be imported and exported directly in the module.
- *  
+ *
  * @category            page
  * @module              mpform
- * @version             1.3.8.3
+ * @version             1.3.9
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -17,8 +17,8 @@
  * @requirements        php >= 5.3
  *
  **/
-/* This file contains site related private functions for the frontend, 
- * to be created by the admin if required. 
+/* This file contains site related private functions for the frontend,
+ * to be created by the admin if required.
  */
 
 // Must include code to stop this file being access directly
@@ -39,7 +39,7 @@ function private_function_before_new_form($section_id) {
         $_SESSION['mpf']['field4568'] = '';
         if (isset($_SERVER['HTTP_REFERER'])) {
             $_SESSION['mpf']['field4568'] = $_SERVER['HTTP_REFERER'];
-        } 
+        }
         return true;
     }
 */
@@ -54,9 +54,9 @@ function private_function_before_email(
 /*
     // example how to use: append a value extracted from the session to the list of submitted fields
     if ($section_id == 4524) {
-        $html_data_user 
+        $html_data_user
             .= $_SESSION['study_id'] . "<br />\n";
-        $html_data_site 
+        $html_data_site
             .= $_SESSION['study_id'] . "<br />\n";
         return true;
     }
@@ -85,25 +85,25 @@ function private_function_after_email(
 }
 
 function private_function_on_success($section_id) {
-/*    
+/*
     global $database;
     // example for looping through a form
     // set the following values according your forms
     // see online help for tutorial!
-    $prev_section =   9000;    // section_id of the part of the form before the loop 
+    $prev_section =   9000;    // section_id of the part of the form before the loop
     $prev_field =     8000;    // id of the field deciding whether to skip the loop or not
     $prev_cond =     "yes";    // value of the condition for entering the loop
-    $loop_section =   9001;    // section_id of the looping part of the form 
+    $loop_section =   9001;    // section_id of the looping part of the form
     $loop_field =     8000;    // id of the field deciding whether to leave the loop or not
     $loop_cond =     "yes";    // value of the condition for staying in the loop
     $loop_page =      7001;    // id of the page with the loop
     $next_page =      7002;    // id of the page following after the loop
-    
+
     if ($section_id == $prev_section) {
-        ($_SESSION['mpf']['field'.$prev_field] == $prev_cond) 
-            ? $np = $loop_page 
+        ($_SESSION['mpf']['field'.$prev_field] == $prev_cond)
+            ? $np = $loop_page
             : $np = $next_page;
-        $query_menu 
+        $query_menu
             = $database->query(
                 "SELECT link,target"
                 . " FROM ".TABLE_PREFIX."pages"
@@ -126,10 +126,10 @@ function private_function_on_success($section_id) {
         } else {
             $np = $next_page;
             // restore original submission_id:
-            $_SESSION['submission_id_'.$section_id] 
-                = substr($_SESSION['submission_id_'.$section_id], 0, 8);  
+            $_SESSION['submission_id_'.$section_id]
+                = substr($_SESSION['submission_id_'.$section_id], 0, 8);
         }
-        $query_menu 
+        $query_menu
             = $database->query(
                 "SELECT link,target"
                 . " FROM ".TABLE_PREFIX."pages"

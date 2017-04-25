@@ -51,8 +51,8 @@
     function insertInnerHTML(msg,title,help){
         return '<div class="'
             +MPFORM_CLASS_PREFIX
-            +'"help_box_div">'  
-            +((title) 
+            +'"help_box_div">'
+            +((title)
                 ? '<h5 class="'
                     +MPFORM_CLASS_PREFIX
                     +'help_box_h5">'
@@ -62,7 +62,7 @@
                     +'</h5><hr class="'
                     +MPFORM_CLASS_PREFIX
                     +'help_box_hr" noshade="noshade" size="1" />'
-                    : '')
+                : '')
             +'<h6 class="'
             +MPFORM_CLASS_PREFIX
             +'help_box_h6">'

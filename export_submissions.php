@@ -3,10 +3,10 @@
  * WebsiteBaker CMS module: mpForm
  * ===============================
  * This module allows you to create customised online forms, such as a feedback form with file upload and customizable email notifications. mpForm allows forms over one or more pages, loops of forms, conditionally displayed sections within a single page, and many more things.  User input for the same session_id will become a single row in the submitted table.  Since Version 1.1.0 many ajax helpers enable you to speed up the process of creating forms with this module. Since 1.2.0 forms can be imported and exported directly in the module.
- *  
+ *
  * @category            page
  * @module              mpform
- * @version             1.3.8.3
+ * @version             1.3.9
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -39,7 +39,7 @@ $mod_dir = basename(dirname(__FILE__));
 
 
 // include the module language file depending on the backend language of the current user
-if (!@include(get_module_language_file($mod_dir))) return;  
+if (!@include(get_module_language_file($mod_dir))) return;
 
 
 // include WB admin wrapper script to check permissions
@@ -49,7 +49,7 @@ if (( method_exists( $admin, 'checkFTAN' )  && (!$admin->checkFTAN()))
     && (!(defined('MPFORM_SKIP_FTAN')&&(MPFORM_SKIP_FTAN)))) {
     $admin->print_header();
     $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS']
-        .' (FTAN) '.__FILE__.':'.__LINE__,        
+        .' (FTAN) '.__FILE__.':'.__LINE__,
         ADMIN_URL.'/pages/modify.php?page_id='.(int)$page_id);
     $admin->print_footer();
     exit();
@@ -60,7 +60,7 @@ $query_content = $database->query(
     "SELECT *"
     . " FROM ".TABLE_PREFIX."sections"
     . " WHERE section_id = '$section_id'");
-    
+
 $res = $query_content->fetchRow();
 if (($res['page_id'] != $page_id)
     && (!(defined('MPFORM_SKIP_ID_CHECK')&&(MPFORM_SKIP_ID_CHECK)))) {
@@ -69,26 +69,26 @@ if (($res['page_id'] != $page_id)
       $admin->print_error($MESSAGE['GENERIC_SECURITY_ACCESS']
       .' (ID_CHECK) '.__FILE__.':'.__LINE__,
       $sUrlToGo);
-    else 
+    else
       header("Location: ". $sUrlToGo);
     exit(0);
 }
 
 // get settings
-$query_content 
+$query_content
     = $database->query(
         "SELECT *"
             . " FROM `".TP_MPFORM."settings`"
             . " WHERE `section_id` = '$section_id'"
     );
-    
+
 $fetch_settings = $query_content->fetchRow();
 $suffix = $fetch_settings['tbl_suffix'];
 
 $res = $database->query("SELECT field_id, title, position FROM `".TP_MPFORM."fields` WHERE `section_id` = $section_id");
 if($database->is_error()) {
     $admin->print_header();
-    $admin->print_error($database->get_error(), 
+    $admin->print_error($database->get_error(),
         ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
     $admin->print_footer();
     exit;
@@ -108,7 +108,7 @@ $res = $database->query("SHOW COLUMNS"
 
 if($database->is_error()) {
     $admin->print_header();
-    $admin->print_error($database->get_error(), 
+    $admin->print_error($database->get_error(),
         ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
     $admin->print_footer();
     exit;
@@ -146,7 +146,7 @@ $qs= "SELECT ".join(',', array_keys($column_names))." FROM ".TP_MPFORM."results_
 
 if($database->is_error()) {
     $admin->print_header();
-    $admin->print_error($database->get_error(), 
+    $admin->print_error($database->get_error(),
         ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
     $admin->print_footer();
     exit;

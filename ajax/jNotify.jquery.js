@@ -26,7 +26,7 @@
             ShowOverlay : true,          // show overlay behind the notice ?
             ColorOverlay : '#000',           // color of the overlay
             OpacityOverlay : 0.3,        // opacity of the overlay
-            
+
             /** METHODS - OPTIONS **/
             onClosed : null,
             onCompleted : null
@@ -65,7 +65,7 @@
         /** Construct DOM **/
         /*******************/
         _construct:function(id, msg) {
-            $Div = 
+            $Div =
             $('<div id="'+id+'"/>')
             .css({opacity : 0,minWidth : opts.MinWidth})
             .html(msg)
@@ -161,7 +161,7 @@
         },
 
         _showOverlay:function(el){
-            var overlay = 
+            var overlay =
             $('<div id="jOverlay" />')
             .css({
                 backgroundColor : opts.ColorOverlay,

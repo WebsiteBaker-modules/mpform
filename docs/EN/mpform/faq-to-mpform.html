@@ -36,7 +36,7 @@
 
   <div id="content-left">
       <div class="innerwrap">
-       
+
 <!-- show_menu2 -->
  <ul class="menu-top menu-1">
     <li class="menu-1 knot menu-parent" title="MPForm Help pages"><a href="../../../docs/EN/mpform.html" target="_top" class="menu-1 knot menu-parent">MPForm</a>
@@ -70,50 +70,50 @@
 
 <h2>Frequently asked questions regarding MPForm</h2>
 <dl>
-    <dt class="faq"><strong>Question</strong>: 
+    <dt class="faq"><strong>Question</strong>:
        Website Baker already comes with the Form module, so why should I install MPForm?</dt>
-    <dd class="faq"><b>Answer</b>: 
-       You should install the <strong>MPForm</strong> module only if you reached the functional limit 
-       of the <strong>Form </strong>module. <strong>MPForm </strong>offers much more potential, 
+    <dd class="faq"><b>Answer</b>:
+       You should install the <strong>MPForm</strong> module only if you reached the functional limit
+       of the <strong>Form </strong>module. <strong>MPForm </strong>offers much more potential,
        but consequently it requires more effort to learn how to adjust all the settings appropriately.
        <br />
     </dd>
-    <dt class="faq"><strong>Question</strong>: 
-       My form contains a Date field. When I click the calendar icon next the field, 
+    <dt class="faq"><strong>Question</strong>:
+       My form contains a Date field. When I click the calendar icon next the field,
        no calendar does pop up?</dt>
-    <dd class="faq"><b>Answer</b>: 
-       The Javascript Calendar in some WB versions came with a known bug: If the Mainbody style uses 
-       absolute positioning and a Z-Index, the Calendar is positioned behind instead of in front of 
-       the main window. 
-       You just need to adapt the screen.css file of your template and everything will work. 
+    <dd class="faq"><b>Answer</b>:
+       The Javascript Calendar in some WB versions came with a known bug: If the Mainbody style uses
+       absolute positioning and a Z-Index, the Calendar is positioned behind instead of in front of
+       the main window.
+       You just need to adapt the screen.css file of your template and everything will work.
        <br />
     </dd>
-    <dt class="faq"><strong>Question</strong>: 
+    <dt class="faq"><strong>Question</strong>:
        How can I integrate a declaration of consent (or my terms and conditions) into the form?</dt>
-    <dd class="faq"><b>Answer</b>: 
-       You can use a field of type HTML for arbitrary HTML code. When you put a single mandatory 
-       checkbox beneath this field, the user can only submit the form after he agreed to your conditions. 
+    <dd class="faq"><b>Answer</b>:
+       You can use a field of type HTML for arbitrary HTML code. When you put a single mandatory
+       checkbox beneath this field, the user can only submit the form after he agreed to your conditions.
        <br />
     </dd>
-    <dt class="faq"><strong>Question</strong>: 
+    <dt class="faq"><strong>Question</strong>:
        Is it possible to preset a field dynamically, depending on some conditions?</dt>
-    <dd class="faq"><b>Answer</b>: 
+    <dd class="faq"><b>Answer</b>:
         Yes, you just need to set the right SESSION variable before the form is generated:
     <ol>
-        <li>Find out the ID of the field and the section_id of the form 
+        <li>Find out the ID of the field and the section_id of the form
            (look, for instance, into the field properties in the backend)</li>
-        <li>Write your code in the file private.php into the function private_function_before_new_form. 
+        <li>Write your code in the file private.php into the function private_function_before_new_form.
            For the field with ID 42 in the form of section 24 you would write e.g.<br />
-        <tt>         if ($section_id == 24) { 
-           $_SESSION['field42'] = &quot;default value&quot;;                 
-           return true;         
+        <tt>    if ($section_id == 24) {
+           $_SESSION['field42'] = &quot;default value&quot;;
+           return true;
            }</tt></li>
     </ol>
     It might make sense to set the status of the field to read only.<br />
     In case you have a multi select field, you write:<br />
     <tt> $_SESSION['field42']=array('one','two');</tt>     </dd>
-    <dt class="faq"><strong>Question</strong>: 
-       I get a Fatal error: &quot;Call to a member function numRows() on a non-object 
+    <dt class="faq"><strong>Question</strong>:
+       I get a Fatal error: &quot;Call to a member function numRows() on a non-object
        in \modules\mpform\evalform.php on line 533&quot; - What does this mean?</dt>
     <dd class="faq"><b>Answer</b>:
        You probably changed the suffix of the results table after you created the first field of the form.
@@ -122,30 +122,30 @@
        it should help to open the general settings page in the backend and simply save the settings again.
        This should trigger a scan of the fields and update the results table accordingly.<br />
     </dd>
-    <dt class="faq"><strong>Question</strong>: 
+    <dt class="faq"><strong>Question</strong>:
        When creating a new section it is always a div-based layout and I have to edit the settings each time.
        Can I permanently switch back to the old-style table based layout?
     </dt>
     <dd class="faq"><b>Answer</b>:
-       Yes, you can permantently change the layout for freshly created sections by creating a file 
-       constants.user.php, where you can define the default layout. Have a look at constants.php to see 
+       Yes, you can permantently change the layout for freshly created sections by creating a file
+       constants.user.php, where you can define the default layout. Have a look at constants.php to see
        which constants are used and define your own setting in constants.user.php.
     </dd>
-    <dt class="faq"><strong>Question</strong>: 
-       When I export the submissions as csv file the deleted submissions are still there. 
+    <dt class="faq"><strong>Question</strong>:
+       When I export the submissions as csv file the deleted submissions are still there.
        What am I doing wrong?
     </dt>
     <dd class="faq"><b>Answer</b>:
        This may have two reasons: Versions of MPForm before 1.3.1 did not store the submission_id
        in the results table. When you open the general settings and save them again, the appropriate
-       column is added to the database. Subsequent submissions will track the submission_id 
+       column is added to the database. Subsequent submissions will track the submission_id
        not only in the submissions table, but in the results table as well. If you delete them,
        they will also vanish from the results table.<br/>
-       The other case are multi page forms: Even in new versions the line is not removed from 
+       The other case are multi page forms: Even in new versions the line is not removed from
        the results table when a subsequent page has been submitted (which then has updated the
        submission_id in the results table, because it has added new data).
     </dd>
-    <dt class="faq"><strong>Question</strong>: 
+    <dt class="faq"><strong>Question</strong>:
        But how can I get rid of all the old submissions then?
     </dt>
     <dd class="faq"><b>Answer</b>:
@@ -153,20 +153,20 @@
        Next, you delete the whole section of the form. After that, you re-create a new MPForm section,
        and finally you re-import the previously exported settings. Then, your old submissions are gone.
     </dd>
-    <dt class="faq"><strong>Question</strong>: 
+    <dt class="faq"><strong>Question</strong>:
        I don&apos;t need the results table at all. Can I disable it?
     </dt>
     <dd class="faq"><b>Answer</b>:
        Yes, just set the suffix to the string &quot;DISABLED&quot;, but be aware that export as csv file
        won&apos;t work, then.
     </dd>
-    <dt class="faq"><strong>Question</strong>: 
+    <dt class="faq"><strong>Question</strong>:
        How can I modify the appearance of my form?
     </dt>
     <dd class="faq"><b>Antwort</b>:
        As described in <a href="../../../docs/EN/mpform/table-or-div.html" >Table or div</a>
        the field loop, which is executed to produce the output of the form, can be customized with quite
-       some flexibility. In the loop the place holder {CLASSES} which contains CSS classes can be used. 
+       some flexibility. In the loop the place holder {CLASSES} which contains CSS classes can be used.
        Those classes may be configured in the frontend.css file in order to influence the appearance.
        Since version 1.3.2 the place holder {TEMPLATE} may be used as well, and as soon as it is contained
        in the field loop, an additional input appears when creating or modifying fields, which lets
@@ -177,12 +177,12 @@
        which allow a more flexible layout using CSS.  Since version 1.3.3 the place holders
        {TEMPLATE1} ... {TEMPLATE9} are available, too, which contain the first to the nineth line of the
        field template. For fields whose local template contains less lines, the remaining place
-       holders contain the empty string. When in the field loop or in the template the place holder 
-       {FORMATTED_FIELD} is used instead of {FIELD}, another input appears in the backend, where the 
+       holders contain the empty string. When in the field loop or in the template the place holder
+       {FORMATTED_FIELD} is used instead of {FIELD}, another input appears in the backend, where the
        user can define his own css classes explicitly for the current field.
-    </dd> 
+    </dd>
 <!--
-    <dt class="faq"><strong>Question</strong>: 
+    <dt class="faq"><strong>Question</strong>:
 
     </dt>
     <dd class="faq"><b>Answer</b>:
@@ -190,7 +190,7 @@
     </dd>
 -->
 </dl>
-<p>&nbsp;</p>          </div>
+<p>&nbsp;</p>     </div>
 
 
 <!-- ************ Footer -->
@@ -198,7 +198,7 @@
   <div class="clear-both"></div>
 <div id="footer">
         <p class="txt">&nbsp; MPForm is releaed under GPL </p>
- 
+
         <ul class="bottomnav">
           <li class="bottomnav"><a href="#"
              title="Print page without menu"
