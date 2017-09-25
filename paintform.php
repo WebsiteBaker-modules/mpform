@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.9
+ * @version             1.3.9.1
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -792,7 +792,7 @@ if (!function_exists('paint_form')) {
                             :'')
                         .'"'
                         . $maxlength
-                        . 'class="'.$field_classes.' '.$sErrClass.'email" '
+                        . ' class="'.$field_classes.' '.$sErrClass.'email" '
                         ."$readonly />";
                     break;
 
