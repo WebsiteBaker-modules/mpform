@@ -73,6 +73,13 @@ $(function() {
     });
 
 
+    // also when the mouse pointer goes over one of the buttons, update the status
+    $('.mod_mpform_button').mouseover(function() {
+       inspectAllInputFields();
+    });
+
+
+
     /**
      *
      *     LOAD

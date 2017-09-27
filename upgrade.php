@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.9
+ * @version             1.3.10
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -25,6 +25,8 @@ require_once(dirname(__FILE__).'/constants.php');
 
 require(WB_PATH.'/modules/mpform/info.php');
 
+if(defined('TP_MPFORM') == false) { exit("TP_MPFORM must be defined in order to run the upgrade"); }
+
 echo "<BR><B>Updating database for module: $module_name</B><BR>";
 
 // adding fields new in version 0.4.0:
@@ -34,6 +36,8 @@ $settingstable
         "SELECT *"
         . " FROM `".TP_MPFORM."settings`"
     );
+if($settingstable==NULL) { exit("settings table not found - is TP_MPFORM defined correcctly?"); }
+
 $settings = $settingstable->fetchRow();
 
 

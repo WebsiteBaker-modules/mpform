@@ -5,6 +5,11 @@ MODULE VERSION HISTORY
 ======================
 
    ------------------------------------------------------------------------------------------------------------------------
+        *** 1.3.10 (Martin Hecht: 27-Sep-2017) ***
+        inserted a missing space in paintform, (thanks to gitFrank, #4)
+        do not unneccessarily block Ok button when adding new fields (thanks to florian)
+        in upgrade.php ensure that TP_MPFORM is defined and sensible (thanks to ronja)
+
         *** 1.3.9 (Martin Hecht: 30-Mar-2017) ***
         removed an extra backslash in constants.php
         removed obsolete HELP from lang files and causes trouble with WB 2.10.x
