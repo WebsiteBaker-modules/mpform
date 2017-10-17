@@ -7,7 +7,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.10
+ * @version             1.3.11
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -208,20 +208,20 @@ $LANG['backend_adv'] = array(
                                    . 'Oggetto dell&apos;email, '
                                    . 'Data, '
                                    . 'Numero <br />'
-                                   . 'Place titolari: {TITLE}, {DATA} e {TEMPLATE}',
+                                   . 'Place titolari: {TITLE}, {DATA}, {CLASSES} e {TEMPLATE}',
     'txt_long_html'               => 'campi di input potenzialmente multipli file',
     'des_long_html'               => 'usata per i tipi:'
                                    . 'Testo Lungo,'
                                    . 'Gruppo Casella,'
                                    . 'Selezionare scatola <br />'
-                                   . 'Place titolari: {TITLE}, {DATA} e {TEMPLATE}',
+                                   . 'Place titolari: {TITLE}, {DATA}, {CLASSES} e {TEMPLATE}',
     'txt_email_html'              => 'E-Mail',
     'des_email_html'              => 'Utilizzato per tipo:'
                                    . 'E-Mail <br />'
-                                   . 'Place titolari: {TITLE}, {DATA} e {TEMPLATE}',
+                                   . 'Place titolari: {TITLE}, {DATA}, {CLASSES} e {TEMPLATE}',
     'txt_uploadfile_html'         => 'Carica file',
     'des_uploadfile_html'         => 'Utilizzato per tipo: upload di file <br />'
-                                   . 'Place titolari: {TITLE}, {DATA}, {SIZE} e {TEMPLATE}',
+                                   . 'Place titolari: {TITLE}, {DATA}, {CLASSES}, {SIZE} e {TEMPLATE}',
     'SPECIAL_SETTINGS'            => 'Impostazioni speciali',
     'txt_enum'                    => 'Valore iniziale per la Radio e la casella di controllo',
     'des_enum'                    => 'comportamento predefinito: Se questo campo &eacute; vuoto, '

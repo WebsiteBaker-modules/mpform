@@ -7,7 +7,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.10
+ * @version             1.3.11
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -210,21 +210,21 @@ $LANG['backend_adv'] = array(
                                    . 'E-mailonderwerp,  '
                                    . 'Datum,  '
                                    . 'Nummer<br /> '
-                                   . 'Codes: {TITLE}, {DATA} en {TEMPLATE}',
+                                   . 'Codes: {TITLE}, {DATA}, {CLASSES} en {TEMPLATE}',
     'txt_long_html'               => 'Invoer op meerdere regels',
     'des_long_html'               => 'Gebruikt voor typen:  '
                                    . 'Lange tekst,  '
                                    . 'Aankruisvakje,  '
                                    . 'Keuzemenu<br /> '
-                                   . 'Codes: {TITLE}, {DATA} en {TEMPLATE}',
+                                   . 'Codes: {TITLE}, {DATA}, {CLASSES} en {TEMPLATE}',
     'txt_email_html'              => 'E-mailadres',
     'des_email_html'              => 'Gebruikt voor type:  '
                                    . 'E-mailadres<br /> '
-                                   . 'Codes: {TITLE}, {DATA} en {TEMPLATE}',
+                                   . 'Codes: {TITLE}, {DATA}, {CLASSES} en {TEMPLATE}',
     'txt_uploadfile_html'         => 'Uploaden bestand',
     'des_uploadfile_html'         => 'Gebruikt voor type:  '
                                    . 'Uploaden bestand<br /> '
-                                   . 'Codes: {TITLE}, {DATA}, {SIZE} en {TEMPLATE}',
+                                   . 'Codes: {TITLE}, {DATA}, {CLASSES}, {SIZE} en {TEMPLATE}',
     'SPECIAL_SETTINGS'            => 'Speciale instellingen',
     'txt_enum'                    => 'Startwaarde voor Radiobutton en Aankruisvakje',
     'des_enum'                    => 'Standaard gedrag:  '

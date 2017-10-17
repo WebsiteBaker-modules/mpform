@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.10
+ * @version             1.3.11
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -454,9 +454,13 @@ if ($admin->get_post('type') == 'textfield'
         if($bTableLayout)
            $extra = '<tr><td class="mpform_heading" colspan="3">'.$extra.'</td></tr>';
     }
+    $value=" ";
+    if (isset($_POST['use_in_form'])) $value .= "form ";
+    if (isset($_POST['use_in_site_html'])) $value .= "site ";
+    if (isset($_POST['use_in_user_html'])) $value .= "user ";
     $database->query(
         "UPDATE ".TP_MPFORM."fields"
-            . " SET value = '',"
+            . " SET value = '$value',"
             . " extra = '$extra'"
             . " WHERE field_id = '$field_id'"
         );

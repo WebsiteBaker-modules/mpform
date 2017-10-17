@@ -109,9 +109,10 @@
     <dt>&quot;From&quot; address</dt>
     <dd>In order not to be qualified as SPAM, emails should contain a valid &quot;From&quot; address.
        The real sender is you, because the email has been sent from your own web site.
-       You either can set a static address&nbsp; (e.b. web-form@...) or you ask the user
+       Therefore, the from field should be set as the <strong>Server email</stron> address.
+       Alternatively you can set a static address&nbsp; (e.b. web-form@...) or you ask the user
        for his own email address (with a field of type <strong>E-Mail-Address</strong>)
-       and use that one or you select <strong>E-Mail of the logged on user</strong>
+       and use that one or you select <strong>E-Mail of the logged on user</strong>.
        <br />
     </dd>
     <dt>&quot;From&quot;&nbsp;name</dt>
@@ -143,7 +144,9 @@
     </dd>
     <dt>Success Email Style</dt>
     <dd>Here you can define CSS classes to be applied in the HTML version of the email.
-       Of course they are not applied to the plain text variant of the mail.<br />
+       In order to apply those on specific field types, in the  <a href="../../../../docs/EN/mpform/settings-of-mpform/special-settings.html" >special settings</a> the place holder {CLASSES} must be present in the corresponding
+       template.
+       Of course the formattings are not applied to the plain text variant of the mail.<br />
     </dd>
 </dl>
 <p><span style="color: rgb(255, 0, 0);">Attention Pitfall: </span>

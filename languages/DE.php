@@ -7,7 +7,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.10
+ * @version             1.3.11
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -223,21 +223,21 @@ $LANG['backend_adv'] = array(
                                    . 'E-Mail-Betreff,  '
                                    . 'Datum,  '
                                    . 'Zahl<br /> '
-                                   . 'Platzhalter: {TITLE}, {DATA} und {TEMPLATE}',
+                                   . 'Platzhalter: {TITLE}, {DATA}, {CLASSES} und {TEMPLATE}',
     'txt_long_html'               => 'Potentiell mehrzeilige Eingaben',
     'des_long_html'               => 'Wird verwendet f&uuml;r Typen:  '
                                    . 'Langtext,  '
                                    . 'Kontrollk&auml;stchen,  '
                                    . 'Auswahlliste<br /> '
-                                   . 'Platzhalter: {TITLE}, {DATA} und {TEMPLATE}',
+                                   . 'Platzhalter: {TITLE}, {DATA}, {CLASSES} und {TEMPLATE}',
     'txt_email_html'              => 'E-Mail-Adresse',
     'des_email_html'              => 'Wird verwendet f&uuml;r Typ:  '
                                    . 'E-Mail-Adresse<br /> '
-                                   . 'Platzhalter: {TITLE}, {DATA} und {TEMPLATE}',
+                                   . 'Platzhalter: {TITLE}, {DATA}, {CLASSES} und {TEMPLATE}',
     'txt_uploadfile_html'         => 'Datei-Upload',
     'des_uploadfile_html'         => 'Wird verwendet f&uuml;r Typ:  '
                                    . 'Datei-Upload<br /> '
-                                   . 'Platzhalter: {TITLE}, {DATA}, {SIZE} und {TEMPLATE}',
+                                   . 'Platzhalter: {TITLE}, {DATA}, {CLASSES}, {SIZE} und {TEMPLATE}',
     'SPECIAL_SETTINGS'            => 'Spezielle Einstellungen',
     'txt_enum'                    => 'Startwert f&uuml;r Radio und Checkbox',
     'des_enum'                    => 'Standardverhalten:  '

@@ -7,7 +7,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.10
+ * @version             1.3.11
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -247,21 +247,21 @@ $LANG['backend_adv'] = array(
                                    . 'Objet de l&apos;email,  '
                                    . 'Date,  '
                                    . 'Nombre<br /> '
-                                   . 'Variables: {TITLE}, {DATA} et {TEMPLATE}',
+                                   . 'Variables: {TITLE}, {DATA}, {CLASSES} et {TEMPLATE}',
     'txt_long_html'               => 'Zone de saisie <br/>(multi-lignes)',
     'des_long_html'               => 'Utilis&eacute; pour les types:  '
                                    . 'Texte long,  '
                                    . 'Groupe de checkbox,  '
                                    . 'S&eacute;lection des bo&icirc;tes<br /> '
-                                   . 'Variables: {TITLE}, {DATA} et {TEMPLATE}',
+                                   . 'Variables: {TITLE}, {DATA}, {CLASSES} et {TEMPLATE}',
     'txt_email_html'              => 'Adresse email',
     'des_email_html'              => 'Utilis&eacute; pour type:  '
                                    . 'Adresse email<br /> '
-                                   . 'Variables: {TITLE}, {DATA} et {TEMPLATE}',
+                                   . 'Variables: {TITLE}, {DATA}, {CLASSES} et {TEMPLATE}',
     'txt_uploadfile_html'         => 'Envoi de fichiers <br/>(Upload)',
     'des_uploadfile_html'         => 'Utilis&eacute; pour type:  '
                                    . 'Envoi de fichiers<br /> '
-                                   . 'Variables: {TITLE}, {DATA}, {SIZE} et {TEMPLATE}',
+                                   . 'Variables: {TITLE}, {DATA}, {CLASSES}, {SIZE} et {TEMPLATE}',
     'SPECIAL_SETTINGS'            => 'R&eacute;glages sp&eacute;ciaux',
     'txt_enum'                    => 'Valeur initiale des boutons Radio et Checkbox',
     'des_enum'                    => 'Comportement par d&eacute;faut:  '

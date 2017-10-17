@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.10
+ * @version             1.3.11
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -139,10 +139,27 @@ $fieldtypeoption = "";
 // first round:
 switch ($type) {
     case 'heading':
+        $use_in_form="";
+        $use_in_site_html="";
+        $use_in_user_html="";
+        if(($form['value'] == '') or (preg_match('/form/',$form['value'])))
+            $use_in_form=" checked='checked'";
+        if(($form['value'] == '') or (preg_match('/site/',$form['value'])))
+            $use_in_site_html=" checked='checked'";
+        if(($form['value'] == '') or (preg_match('/user/',$form['value'])))
+            $use_in_user_html=" checked='checked'";
         $fieldtypeoption = "<tr>\n"
         ."<th>". $TEXT['TEMPLATE'] ."</th>\n"
         ."<td><textarea name='template'  cols='50' rows='5' style='width: 98%; height: 200px;'>". $form['extra'] ."</textarea></td>\n"
-        ."</tr>\n";
+        ."</tr>\n"
+        ."<tr><th>".$LANG['backend']['TXT_WHERE_USE_HTML']."</th>\n<td>"
+        ."<input type='checkbox' name='use_in_form'".$use_in_form." />"
+        .'<label for="use_in_form">'. $LANG['backend']['TXT_USE_IN_FORM'] ."</label>"
+        ."<input type='checkbox' name='use_in_site_html'".$use_in_site_html." />"
+        .'<label for="use_in_site_html">'. $LANG['backend']['TXT_USE_IN_SITE_HTML'] ."</label>"
+        ."<input type='checkbox' name='use_in_user_html'".$use_in_user_html." />"
+        .'<label for="use_in_user_html">'. $LANG['backend']['TXT_USE_IN_USER_HTML'] ."</label>"
+        ."</td></tr>\n";
         $form['required'] |= 3;
         break;
     case 'textfield':

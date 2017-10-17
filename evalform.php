@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.10
+ * @version             1.3.11
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -138,11 +138,25 @@ if (!function_exists('mpform_mailx')) {
         // set user defined from address
         if ($fromaddress!='') {
             if($fromname!='') $myMail->FromName = $fromname;     // FROM-NAME
+            if ($fromaddress == 'SERVER_EMAIL') {
+                if(defined('SERVER_EMAIL')) {
+                    $fromaddress = SERVER_EMAIL;
+                } else {
+                    $fromaddress = '';
+                }
+            }
             $myMail->From = $fromaddress;                        // FROM:
         }
 
         // set user defined replyto address
         if ($replytoaddress!='') {
+            if ($replytoaddress == 'SERVER_EMAIL') {
+                if(defined('SERVER_EMAIL')) {
+                    $replytoaddress = SERVER_EMAIL;
+                } else {
+                    $replytoaddress = '';
+                }
+            }
             $myMail->AddReplyTo($replytoaddress);                // REPLY TO:
         } else {
             $myMail->AddReplyTo($fromaddress);                   // REPLY TO:
@@ -152,6 +166,11 @@ if (!function_exists('mpform_mailx')) {
         // define recipient(s)
         $emails = explode(",", $toaddress);
         foreach ($emails as $recip) {
+            if(defined('SERVER_EMAIL')) {
+                $recip = str_replace('SERVER_EMAIL', SERVER_EMAIL, $recip);
+            } else {
+                $recip = str_replace('SERVER_EMAIL', '', $recip);
+            }
             if (trim($recip) != '') {
                 if (preg_match("/^bcc\:(.*?)\<(.*?)\>$/i",trim($recip),$matches)) { //bcc whith name
                     $myMail->AddBcc(trim($matches[2]), trim($matches[1]));
@@ -291,6 +310,14 @@ if (!function_exists('eval_form')) {
                 $email_from = $admin->get_email();
             }
 
+            if ($email_from == 'SERVER_EMAIL') {
+                if(defined('SERVER_EMAIL')) {
+                    $email_from = SERVER_EMAIL;
+                } else {
+                    $email_from = '';
+                }
+            }
+
             $email_replyto = $fetch_settings['email_replyto'];
             if(substr($email_replyto, 0, 5) == 'field') {
                 // Set the email replyto field to what the user entered in the specified field
@@ -301,6 +328,14 @@ if (!function_exists('eval_form')) {
             }
             if ($email_replyto == 'wbu') {
                 $email_replyto = $admin->get_email();
+            }
+
+            if ($email_replyto == 'SERVER_EMAIL') {
+                if(defined('SERVER_EMAIL')) {
+                    $email_replyto = SERVER_EMAIL;
+                } else {
+                    $email_replyto = '';
+                }
             }
 
             $email_fromname = $fetch_settings['email_fromname'];
@@ -333,6 +368,14 @@ if (!function_exists('eval_form')) {
                 $success_email_to = $admin->get_email();
             }
 
+            if ($success_email_to == 'SERVER_EMAIL') {
+                if(defined('SERVER_EMAIL')) {
+                    $success_email_to = SERVER_EMAIL;
+                } else {
+                    $success_email_to = '';
+                }
+            }
+
             $email_subject =          $fetch_settings['email_subject'];
             $email_text =             $fetch_settings['email_text'];
             $email_css =              $fetch_settings['email_css'];
@@ -348,6 +391,14 @@ if (!function_exists('eval_form')) {
             }
             if ($success_email_from == 'wbu') {
                 $success_email_from = $admin->get_email();
+            }
+
+            if ($success_email_from == 'SERVER_EMAIL') {
+                if(defined('SERVER_EMAIL')) {
+                    $success_email_from = SERVER_EMAIL;
+                } else {
+                    $success_email_from = '';
+                }
             }
 
             $success_email_fromname = $fetch_settings['success_email_fromname'];
@@ -522,6 +573,19 @@ if (!function_exists('eval_form')) {
                             $tpl_idx++;
                         }
 
+                        // Set field values for css formatting
+                        $extraclasses = $field['extraclasses'];
+                        if(! (preg_match('/{FORMATTED_FIELD}/',$fetch_settings['field_loop']) ||
+                           ( preg_match('/{TEMPLATE/',$fetch_settings['field_loop'])
+                           && preg_match('/{FORMATTED_FIELD}/',$field['template'])) ))
+                                $extraclasses = '';
+                        if($extraclasses!='') $extraclasses.=' ';
+                        $classes = 'fid'.$field_id.' '.MPFORM_CLASS_PREFIX. $field['type'];
+                        $field_classes = $extraclasses
+                                       .MPFORM_CLASS_PREFIX.'field_'.$field_id.' '
+                                       .MPFORM_CLASS_PREFIX.'field_'.$field['type'];
+
+                        $aReplacements['{CLASSES}'] = $field_classes;
                         if($field['type'] == 'email'
                             AND $admin->validate_email($post_field) == false) {
                                 $err_txt[$field_id] = $MESSAGE['USERS']['INVALID_EMAIL'];
@@ -548,18 +612,20 @@ if (!function_exists('eval_form')) {
 
                         if ($field['type'] == 'heading') {
                             $aReplacements['{HEADING}'] = $field['title'];
-                            $html_data_user
-                                .= str_replace(
-                                    array_keys($aReplacements),
-                                    array_values($aReplacements),
-                                    $heading_html
-                                );
-                            $html_data_site
-                                .= str_replace(
-                                    array_keys($aReplacements),
-                                    array_values($aReplacements),
-                                    $heading_html
-                                );
+                            if(($field['value'] == '') or (preg_match('/user/',$field['value'])))
+                                $html_data_user
+                                    .= str_replace(
+                                        array_keys($aReplacements),
+                                        array_values($aReplacements),
+                                        $heading_html
+                                    );
+                            if(($field['value'] == '') or (preg_match('/site/',$field['value'])))
+                                $html_data_site
+                                    .= str_replace(
+                                       array_keys($aReplacements),
+                                       array_values($aReplacements),
+                                       $heading_html
+                                    );
                         } elseif ($field['type'] == 'email_recip') {
                             // the browser will convert umlauts,
                             // we need to undo this for compare:
@@ -960,7 +1026,7 @@ if (!function_exists('eval_form')) {
                             $recip_list,
                             $email_subject,
                             $body,
-                            $success_email_css,
+                            $email_css,
                             $email_fromname,
                             $files_to_attach
                         )
@@ -1019,7 +1085,7 @@ if (!function_exists('eval_form')) {
                             $success_email_to,
                             $success_email_subject,
                             $user_body,
-                            $email_css,
+                            $success_email_css,
                             $success_email_fromname
                         )
                     ) {

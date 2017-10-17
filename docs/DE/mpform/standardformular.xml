@@ -2,7 +2,7 @@
 <export_section>
         <module>
                 <name>mpform</name>
-                <version>1.3.10</version>
+                <version>1.3.11</version>
         </module>
         <export_section_table>
                 <tablename>mod_mpform_fields</tablename>
@@ -147,10 +147,10 @@
                         <export_section_field><fieldn>footer</fieldn><fieldv><![CDATA[<div class=\"submitbox\">
 <input type=\"submit\" name=\"submit\" class=\"mpform_submit\" value=\"Formular Absenden\" />
 </div>]]></fieldv></export_section_field>
-                        <export_section_field><fieldn>email_to</fieldn><fieldv><![CDATA[you@yoursite.tld
+                        <export_section_field><fieldn>email_to</fieldn><fieldv><![CDATA[Webmaster<SERVER_EMAIL>
 
 ]]></fieldv></export_section_field>
-                        <export_section_field><fieldn>email_from</fieldn><fieldv><![CDATA[]]></fieldv></export_section_field>
+                        <export_section_field><fieldn>email_from</fieldn><fieldv><![CDATA[SERVER_EMAIL]]></fieldv></export_section_field>
                         <export_section_field><fieldn>email_replyto</fieldn><fieldv><![CDATA[]]></fieldv></export_section_field>
                         <export_section_field><fieldn>email_fromname</fieldn><fieldv><![CDATA[]]></fieldv></export_section_field>
                         <export_section_field><fieldn>email_subject</fieldn><fieldv><![CDATA[Formularereintragung von der Website...]]></fieldv></export_section_field>
@@ -164,18 +164,18 @@ Verweisseite: {REFERER}
 IP-Adresse: {IP}
 Datum: {DATE}]]></fieldv></export_section_field>
                         <export_section_field><fieldn>success_email_to</fieldn><fieldv><![CDATA[]]></fieldv></export_section_field>
-                        <export_section_field><fieldn>success_email_from</fieldn><fieldv><![CDATA[you@yoursite.tld]]></fieldv></export_section_field>
+                        <export_section_field><fieldn>success_email_from</fieldn><fieldv><![CDATA[SERVER_EMAIL]]></fieldv></export_section_field>
                         <export_section_field><fieldn>success_email_fromname</fieldn><fieldv><![CDATA[]]></fieldv></export_section_field>
                         <export_section_field><fieldn>success_email_text</fieldn><fieldv><![CDATA[Danke f&uuml;r das Ausf&uuml;llen des Formulars. Wir haben folgende Daten erhalten:&lt;br /&gt;{DATA}]]></fieldv></export_section_field>
                         <export_section_field><fieldn>success_email_css</fieldn><fieldv><![CDATA[]]></fieldv></export_section_field>
                         <export_section_field><fieldn>success_email_subject</fieldn><fieldv><![CDATA[Sie haben ein Formular abgeschickt]]></fieldv></export_section_field>
                         <export_section_field><fieldn>stored_submissions</fieldn><fieldv><![CDATA[1000]]></fieldv></export_section_field>
                         <export_section_field><fieldn>max_submissions</fieldn><fieldv><![CDATA[50]]></fieldv></export_section_field>
-                        <export_section_field><fieldn>heading_html</fieldn><fieldv><![CDATA[<h3>{HEADING}</h3>]]></fieldv></export_section_field>
-                        <export_section_field><fieldn>short_html</fieldn><fieldv><![CDATA[<b>{TITLE}:</b> {DATA}<br />]]></fieldv></export_section_field>
-                        <export_section_field><fieldn>long_html</fieldn><fieldv><![CDATA[<b>{TITLE}:</b><br />{DATA}<br /><br />]]></fieldv></export_section_field>
-                        <export_section_field><fieldn>email_html</fieldn><fieldv><![CDATA[<b>{TITLE}:</b> <a href=\"mailto:{DATA}\">{DATA}</a><br />]]></fieldv></export_section_field>
-                        <export_section_field><fieldn>uploadfile_html</fieldn><fieldv><![CDATA[<b>{TITLE}:</b> <a href=\"{DATA}\">{DATA}</a><br />]]></fieldv></export_section_field>
+                        <export_section_field><fieldn>heading_html</fieldn><fieldv><![CDATA[<div class={CLASSES}><h3>{HEADING}</h3></div>]]></fieldv></export_section_field>
+                        <export_section_field><fieldn>short_html</fieldn><fieldv><![CDATA[<div class={CLASSES}><b>{TITLE}:</b> {DATA}</div>]]></fieldv></export_section_field>
+                        <export_section_field><fieldn>long_html</fieldn><fieldv><![CDATA[<div class={CLASSES}><b>{TITLE}:</b><br />{DATA}<br /></div>]]></fieldv></export_section_field>
+                        <export_section_field><fieldn>email_html</fieldn><fieldv><![CDATA[<div class={CLASSES}><b>{TITLE}:</b> <a href=\"mailto:{DATA}\">{DATA}</a></div>]]></fieldv></export_section_field>
+                        <export_section_field><fieldn>uploadfile_html</fieldn><fieldv><![CDATA[<div class={CLASSES}><b>{TITLE}:</b> <a href=\"{DATA}\">{DATA}</a></div>]]></fieldv></export_section_field>
                         <export_section_field><fieldn>use_captcha</fieldn><fieldv><![CDATA[1]]></fieldv></export_section_field>
                         <export_section_field><fieldn>upload_files_folder</fieldn><fieldv><![CDATA[/media/mpform]]></fieldv></export_section_field>
                         <export_section_field><fieldn>date_format</fieldn><fieldv><![CDATA[%d.%m.%Y]]></fieldv></export_section_field>

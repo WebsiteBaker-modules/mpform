@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.10
+ * @version             1.3.11
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -45,17 +45,17 @@ $setting = $query_content->fetchRow();
 $header = MPFORM_HEADER;
 $field_loop = MPFORM_FIELD_LOOP;
 $footer = MPFORM_FOOTER;
-$heading_html = "<h3>{HEADING}</h3>";
-$short_html = "<b>{TITLE}:</b> {DATA}<br />";
-$long_html = "<b>{TITLE}:</b><br />{DATA}<br /><br />";
-$email_html = "<b>{TITLE}:</b> <a href=\"mailto:{DATA}\">{DATA}</a><br />";
-$uploadfile_html = "<b>{TITLE}:</b> <a href=\"{DATA}\">{DATA}</a><br />";
+$heading_html = "<div class={CLASSES}><h3>{HEADING}</h3></div>";
+$short_html = "<div class={CLASSES}><b>{TITLE}:</b> {DATA}</div>";
+$long_html = "<div class={CLASSES}><b>{TITLE}:</b><br />{DATA}<br /></div>";
+$email_html = "<div class={CLASSES}><b>{TITLE}:</b> <a href=\"mailto:{DATA}\">{DATA}</a></div>";
+$uploadfile_html = "<div class={CLASSES}><b>{TITLE}:</b> <a href=\"{DATA}\">{DATA}</a></div>";
 $date_format = $LANG['backend_adv']['date_format'];
 $is_following = 0;
 $upload_files_folder = MEDIA_DIRECTORY. "/".$mod_dir;
-$email_to = $admin->get_email();
+$email_to = 'SERVER_EMAIL';
 $email_from = '';
-$email_replyto = '';
+$email_replyto = $admin->get_email();
 $email_fromname = '';
 $email_subject = $LANG['backend']['EMAIL_SUBJECT'];
 $success_page = 'none';
@@ -78,7 +78,7 @@ $email_text = 'The following data was submitted:<br />{DATA}'
     . 'IP address: {IP}';
 $email_css = '';
 $success_email_to = '';
-$success_email_from = $admin->get_email();
+$success_email_from = 'SERVER_EMAIL';
 $success_email_fromname = '';
 $success_email_text = 'Thank you for submitting your data.'
     . ' We received the following data:'

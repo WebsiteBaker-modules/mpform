@@ -5,6 +5,14 @@ MODULE VERSION HISTORY
 ======================
 
    ------------------------------------------------------------------------------------------------------------------------
+        *** 1.3.11 (Martin Hecht: 17-Oct-2017) ***
+        add option to select server email for sender email
+        by default use this new option when creating a new form
+        update documentation and sample forms
+        correctly assign css for site owner and for user mails (thanks to florian)
+        for headings add the possibility to suppress them in the mails (request by blitzliht12)
+        introduce css classes depending on the field type also in the confirmation mails
+
         *** 1.3.10 (Martin Hecht: 27-Sep-2017) ***
         inserted a missing space in paintform, (thanks to gitFrank, #4)
         do not unneccessarily block Ok button when adding new fields (thanks to florian)

@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.10
+ * @version             1.3.11
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -130,6 +130,7 @@ $tpl->set_var(
         'txt_footer'                 => $TEXT['FOOTER'],
         'email_from'                 => ((substr($settings['email_from'], 0, 5) != 'field')
                                          && ($settings['email_from'] != 'wbu')
+                                         && ($settings['email_from'] != 'EMAIL_FROM')
                                          ? $settings['email_from'] : ''),
         'email_replyto'              => ((substr($settings['email_replyto'], 0, 5) != 'field')
                                          && ($settings['email_replyto'] != 'wbu')
@@ -145,6 +146,7 @@ $tpl->set_var(
         'des_success_email_to'       => '',
         'success_email_from'         => ((substr($settings['success_email_from'], 0, 5) != 'field')
                                          && ($settings['success_email_from'] != 'wbu')
+                                         && ($settings['success_email_from'] != 'EMAIL_FROM')
                                          ? $settings['success_email_from'] : ''),
         'success_email_fromname'     => ((substr($settings['success_email_fromname'], 0, 5) != 'field')
                                          && ($settings['success_email_fromname'] != 'wbu')
@@ -184,6 +186,21 @@ function give_me_address_list(&$tpl, $curr_value, $java=true, $fname = '', $wbt,
             . " document.getElementById('"
             . $fname."_slave').style.display = 'none';\"";
     $s .= ">$wbt</option>";
+    $tpl->set_var('options_'.$fname, $s);
+    $tpl->parse($fname, $fname.'_block', true);
+    $s = '';
+
+    // add server email
+    $s = "<option value=\"SERVER_EMAIL\"";
+    if($curr_value == 'SERVER_EMAIL') {
+        $s .= " selected='selected'";
+        $rt = true;
+    }
+    if ($java)
+        $s .= " onclick=\"javascript:"
+            . " document.getElementById('"
+            . $fname."_slave').style.display = 'none';\"";
+    $s .= ">".$TEXT['SERVER_EMAIL']."</option>";
     $tpl->set_var('options_'.$fname, $s);
     $tpl->parse($fname, $fname.'_block', true);
     $s = '';

@@ -93,8 +93,11 @@
        <strong>E-Mail-Address</strong> and select this one here.     </p></dd>
     <dt>&quot;From&quot; address</dt>
     <dd>This is the email address which the user sees when he receives the confirmation mail.
-    You have the choice between specifying a fixed address or you select a field of the type
-    <strong>E-Mail-receipient</strong>, which acts as a sender in the context of the confirmation mail.<br />
+    You have the choice between specifying a <strong>fixed address</strong> or you select a field of the type
+    <strong>E-Mail-receipient</strong>, which acts as a sender in the context of the confirmation mail.
+    You can also select the <strong>default server email</strong> as the sender, which may be the
+    smartest setting when you have to deal with strict constraints to avoid being rated as spammer.
+    <br />
     </dd>
     <dt>&quot;From&quot; name</dt>
     <dd>This is the sender's name which the user sees when he receives the confirmation mail. Also here
@@ -114,7 +117,8 @@
     </dd>
     <dt>Success Email Style</dt>
     <dd>Here you can define CSS classes to be applied in the HTML version of the email.
-       Of course they are not applied to the plain text variant of the mail.<br />
+       In order to apply those on specific field types, in the  <a href="../../../../docs/EN/mpform/settings-of-mpform/special-settings.html" >special settings</a> the place holder {CLASSES} must be present in the corresponding
+       template. Of course they are not applied to the plain text variant of the mail.<br />
     </dd>
 </dl>
 </div>
