@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.11
+ * @version             1.3.12
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -894,7 +894,7 @@ if (!function_exists('paint_form')) {
         } // if ... numRows > 0
 
         // Captcha
-        if($use_captcha) {
+        if($use_captcha AND (!(defined('MPFORM_SKIP_CAPTCHA')&&(MPFORM_SKIP_CAPTCHA))) ) {
             if (in_array('captcha'.$iSID, $aMissing)) {
                 $classes = 'captcha_err';
             } else {

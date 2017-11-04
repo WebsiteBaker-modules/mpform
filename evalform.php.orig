@@ -215,24 +215,14 @@ if (!function_exists('mpform_mailx')) {
 
 if (!function_exists('eval_form')) {
     function eval_form($section_id) {
-
         global $database, $MESSAGE, $admin, $TEXT, $LANG;
 
         (preg_match("/^\d+\.\d+\.\d+\.\d+$/", $_SERVER['REMOTE_ADDR']))
              ? $ip = $_SERVER['REMOTE_ADDR']
              : $ip = 'unknown';  // IP address of sender
 
-
-         if(class_exists('Settings') && defined('WBCE_VERSION')){
-                $filter_settings = array(
-                    'sys_rel'         => 0,
-                    'email_filter'    => 0,
-                    'mailto_filter'   => 1,
-                    'at_replacement'  => Settings::Get('opf_at_replacement', '(at)') ,
-                    'dot_replacement' => Settings::Get('opf_dot_replacement', '(dot)')
-                );
-         }
-         else if (file_exists(WB_PATH.'/modules/output_filter/filter-routines.php')) {
+        // obtain the settings of the output filter module
+        if (file_exists(WB_PATH.'/modules/output_filter/filter-routines.php')) {
             if(!function_exists('executeFrontendOutputFilter')) {
                 include(WB_PATH.'/modules/output_filter/filter-routines.php');
             }
@@ -243,14 +233,21 @@ if (!function_exists('eval_form')) {
             }else {
                 $filter_settings['email_filter'] = 0;
             }
-        }
-        else {
+        } else {
+            if(class_exists('Settings') && defined('WBCE_VERSION')){
+                $filter_settings = array(
+                    'sys_rel'         => 0,
+                    'email_filter'    => 0,
+                    'mailto_filter'   => 1,
+                    'at_replacement'  => Settings::Get('opf_at_replacement', '(at)') ,
+                    'dot_replacement' => Settings::Get('opf_dot_replacement', '(dot)')
+                );
+
+            } else {
                 // no output filter used, define default settings
                 $filter_settings['email_filter'] = 0;
+            }
         }
-
-
-
 
         $files_to_attach = array();
         $upload_filename = '';

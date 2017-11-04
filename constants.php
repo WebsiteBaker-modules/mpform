@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.11
+ * @version             1.3.12
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -193,3 +193,30 @@ if(!defined('MPFORM_SKIP_IDKEY')){
     define('MPFORM_SKIP_IDKEY',true);
 }
 */
+
+
+// MPForm also stores the submission_id in the $_SESSION variable when a form is generated and verifies
+// it when the form is submitted. The submission_id of the $_POST data is checked against the value
+// stored in the $_SESSION. You can disable this check with the following setting:
+/*
+if(!defined('MPFORM_SKIP_SUBMISSION_ID')){
+    define('MPFORM_SKIP_SUBMISSION_ID',true);
+}
+*/
+
+
+// Captchas are usually controlled globally by the corresponding admin setting, but if you want to
+// disable it locally for MPForm only, you can do so by uncommenting these lines:
+/*
+if(!defined('MPFORM_SKIP_CAPTCHA')){
+    define('MPFORM_SKIP_CAPTCHA',true);
+}
+*/
+
+// Related but slightly different are the honeypot fields (see above) used for Anti Spam Protection:
+/*
+if(!defined('MPFORM_SKIP_ASP')){
+    define('MPFORM_SKIP_ASP',true);
+}
+*/
+
