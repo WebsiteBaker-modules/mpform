@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.12
+ * @version             1.3.13
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -1112,7 +1112,11 @@ if (!function_exists('eval_form')) {
                 if ($success==true) {
                     // Write submission to database
                     $us = $_SESSION['submission_id_'.$section_id];
-                    $started_when = $_SESSION['submitted_when'.$section_id];
+                    $submitted_when = time();
+                    $started_when = isset($_SESSION['started_when'])
+                        ? $_SESSION['started_when'];
+                        : $submitted_when;
+                    $_SESSION['started_when'] = $started_when;
                     $body
                         = str_replace(
                             array('{DATA}', '{REFERER}', '{IP}', '{DATE}', '{USER}', '{EMAIL}'),
@@ -1125,7 +1129,7 @@ if (!function_exists('eval_form')) {
                         . " SET"
                         . " `page_id` = '".PAGE_ID."', "
                         . " `section_id` = '".$section_id."', "
-                        . " `submitted_when` = '".time()."', "
+                        . " `submitted_when` = '".$submitted_when."', "
                         . " `submitted_by` = '".$submitted_by."', "
                         . " `upload_filename` = '".$upload_filename."', "
                         . " `ip_addr` = '".$ip."', "
@@ -1181,7 +1185,7 @@ if (!function_exists('eval_form')) {
                                );
                             $num_submitted = $query_submitted->numRows();
                             if ($mpform_fields != "") $mpform_fields .= ", ";
-                            $mpform_fields .= "submitted_when = '". time() ."'";
+                            $mpform_fields .= "submitted_when = '". $submitted_when ."'";
                             $lf = array("\r\n", "\n", "\r");
                             if ($num_submitted == 0) {
                                 // new session: insert a new row,
