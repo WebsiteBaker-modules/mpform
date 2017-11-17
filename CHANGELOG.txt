@@ -5,6 +5,9 @@ MODULE VERSION HISTORY
 ======================
 
    ------------------------------------------------------------------------------------------------------------------------
+        *** 1.3.14 (Martin Hecht: 17-Nov-2017) ***
+        fix syntax error introduced by the previous commit, thanks to janko
+
         *** 1.3.13 (Martin Hecht: 6-Nov-2017) ***
         forgot to commit "fix submitted_when in session", reported by Norhei
 

@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.13
+ * @version             1.3.14
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -1114,7 +1114,7 @@ if (!function_exists('eval_form')) {
                     $us = $_SESSION['submission_id_'.$section_id];
                     $submitted_when = time();
                     $started_when = isset($_SESSION['started_when'])
-                        ? $_SESSION['started_when'];
+                        ? $_SESSION['started_when']
                         : $submitted_when;
                     $_SESSION['started_when'] = $started_when;
                     $body
