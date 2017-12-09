@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.14
+ * @version             1.3.15
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -225,9 +225,9 @@ if (!function_exists('eval_form')) {
 
          if(class_exists('Settings') && defined('WBCE_VERSION')){
                 $filter_settings = array(
-                    'sys_rel'         => 0,
-                    'email_filter'    => 0,
-                    'mailto_filter'   => 1,
+                    'sys_rel'         => Settings::Get("opf_sys_rel", 0),
+                    'email_filter'    => Settings::Get("opf_email_filter", 0),
+                    'mailto_filter'   => Settings::Get("opf_mailto_filter", 1),
                     'at_replacement'  => Settings::Get('opf_at_replacement', '(at)') ,
                     'dot_replacement' => Settings::Get('opf_dot_replacement', '(dot)')
                 );
@@ -925,6 +925,11 @@ if (!function_exists('eval_form')) {
                     if ($field['type'] == 'decimal_number') $curr_field = '0.0';
                 }
 
+                if ($curr_field == "''") {
+                    if($field['required'] == 1) {
+                        $fer[]=$field_id;
+                    }
+                }
                 $mpform_fields["$field_id"] = $curr_field;
             } // end of field loop
         }
