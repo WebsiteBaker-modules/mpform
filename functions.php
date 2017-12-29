@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.15
+ * @version             1.3.15.1
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -81,7 +81,7 @@ if (!function_exists('module_header_footer')) {
         $template->set_var(array(
             'TEXT_CURRENT_PAGE' => $TEXT['CURRENT_PAGE'],
             'TEXT_CHANGE_SETTINGS' => $TEXT['CHANGE_SETTINGS'],
-            'LAST_MODIFIED' => $MESSAGE['PAGES']['LAST_MODIFIED'],
+            'LAST_MODIFIED' => $MESSAGE['PAGES_LAST_MODIFIED'],
             'HEADING_MODIFY_PAGE' => $HEADING['MODIFY_PAGE']
             )
         );

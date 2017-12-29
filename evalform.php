@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.15
+ * @version             1.3.15.1
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -593,7 +593,7 @@ if (!function_exists('eval_form')) {
                         $aReplacements['{CLASSES}'] = $field_classes;
                         if($field['type'] == 'email'
                             AND $admin->validate_email($post_field) == false) {
-                                $err_txt[$field_id] = $MESSAGE['USERS']['INVALID_EMAIL'];
+                                $err_txt[$field_id] = $MESSAGE['USERS_INVALID_EMAIL'];
                                 $fer[] = $field_id;
                         }
 
@@ -968,7 +968,7 @@ if (!function_exists('eval_form')) {
                 );
             if($query_submissions->numRows() > $max_submissions) {
                 // Too many submissions so far this hour
-                echo $MESSAGE['MOD_FORM']['EXCESS_SUBMISSIONS']. " ";
+                echo $MESSAGE['MOD_FORM_EXCESS_SUBMISSIONS']. " ";
                 $success = false;
             } else {
 

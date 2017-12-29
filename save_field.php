@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.15
+ * @version             1.3.15.1
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2017, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -86,7 +86,7 @@ if( $admin->get_post('title') == ''
 if($admin->get_post('title') == '' OR $admin->get_post('type') == '') {
     $admin->print_header();
     $admin->print_error(
-        $MESSAGE['GENERIC']['FILL_IN_ALL'],
+        $MESSAGE['GENERIC_FILL_IN_ALL'],
         WB_URL.'/modules/mpform/modify_field.php'
             .'?page_id='.$page_id
             .'&section_id='.$section_id
