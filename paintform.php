@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.17
+ * @version             1.3.17.1
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -336,7 +336,7 @@ if (!function_exists('paint_form')) {
         $sSectionIdPrefix = (defined( 'SEC_ANCHOR' ) ? SEC_ANCHOR : '' );
 
         echo '<form name="form_'.$iSID.'"  enctype="multipart/form-data" action="'
-            . $sActionAttr .'#'$sSectionIdPrefix.$iSID.'" method="post">'.PHP_EOL;
+            . $sActionAttr .'#'.$sSectionIdPrefix.$iSID.'" method="post">'.PHP_EOL;
         echo '<input type="hidden" name="submission_id" value="'. $sValueAttr .'" />'.PHP_EOL;
 
         if(ENABLED_ASP) {
