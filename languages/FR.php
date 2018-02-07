@@ -7,7 +7,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.16
+ * @version             1.3.17
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -210,7 +210,7 @@ $LANG['backend'] = array(
     'TXT_EXPORT_SUBMISSIONS'      => 'Exporter soumissions',
     'TXT_IMPORT_FORM'             => 'Importer formulaire',
     'txt_import_err_wrong_module' => 'pour importer seulement le type de module '
-                                     '&quot;mpform&quot; est pris en charge',
+                                   . '&quot;mpform&quot; est pris en charge',
     'txt_import_err_not_empty'    => 'il y a d&eacute;j&agrave; quelques champs '
                                    . 'de ce formulaire. Import est pris en charge '
                                    . 'uniquement pour les sections vides',
@@ -218,13 +218,12 @@ $LANG['backend'] = array(
                                    . 'transfer&eacut;es lors de l&apos;importation / '
                                    . 'exportation',
     'txt_you_have_selected'       => 'Vous avez s&eacute;lectionn&eacute; ',
-    'des_conditional_div'         => "code généré - vous voulez probablement modifier le contenu\n"
+    'des_conditional_div'         => "code g&eacute;n&eacute;r&eacute; - vous voulez probablement modifier le contenu\n"
                                    . "     des sections div et vous pouvez d&eacute;placer le div-tag \n"
                                    . "     cl&ocirc;ture et tout qui suit &agrave; une autre section html.\n"
                                    . "     Si vous modifiez les options de %s vous devez mettre \n"
                                    . "     &agrave; jour le code manuellement (ou vous commencez &agrave\n"
                                    . "     nouveau en rechangeant le type a bloc conditionnel affich&eacute;)"
-
 );
 
 $LANG['backend_adv'] = array(

@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.16
+ * @version             1.3.17
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -40,7 +40,8 @@ module_header_footer($page_id,$mod_dir);
 //END HEADER HERE
 
 // Get id
-if (method_exists( $admin, 'checkIDKEY' )) {
+if (method_exists( $admin, 'checkIDKEY' )
+   && (!(defined('MPFORM_SKIP_IDKEY')&&(MPFORM_SKIP_IDKEY))) ) {
    $submission_id = $admin->checkIDKEY('submission_id', false, 'GET');
 } else {
    $submission_id = (int) $_GET['submission_id'];

@@ -5,6 +5,11 @@ MODULE VERSION HISTORY
 ======================
 
    ------------------------------------------------------------------------------------------------------------------------
+        *** 1.3.16.2 (Martin Hecht: 16-Jan-2018) ***
+        correct the debugging behavior when skipping idkeys (thanks to Guenther)
+        fix French launguage file (thanks to jacobi22)
+        fixed section anchor in paintform.php (thanks to jacobi22 and dbs)
+
         *** 1.3.16 (Martin Hecht: 08-Jan-2018) ***
         updade the array indices that refer to the global language files, thanks to hgs
 
