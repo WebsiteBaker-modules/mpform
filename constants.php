@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.17
+ * @version             1.3.18
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -163,6 +163,16 @@ if(!defined('MPFORM_SUBMIT_BUTTON')){
     . ' class="'.MPFORM_CLASS_PREFIX.'submit"'
     . ' value="{SUBMIT_TEXT}" />');
 }
+
+
+// MPForm uses section anchors, but if they are disabled in the WB framework,
+// it adds its own anchor. If you even want to suppress this, uncomment the following
+/*
+if(!defined('MPFORM_NO_ANCHOR')){
+    define('MPFORM_NO_ANCHOR',true);
+}
+*/
+
 
 
 // when you face problems with generic security exceptions where you would not expect them,

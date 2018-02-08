@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.17
+ * @version             1.3.18
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -54,6 +54,14 @@ require_once(WB_PATH.'/include/captcha/captcha.php');
 // include private functions, if available
 if (file_exists(WB_PATH .'/modules/mpform/private.php')) {
     include_once(WB_PATH .'/modules/mpform/private.php');
+}
+
+// for mpForm we need the section anchor  (even if it is suppressed in the framework)
+if(!defined( 'SEC_ANCHOR' ) || SEC_ANCHOR == '' || SEC_ANCHOR == 'none'){
+    if(!defined( 'MPFORM_NO_ANCHOR' ) || MPFORM_NO_ANCHOR == false ){
+        $sSectionIdPrefix = (defined( 'SEC_ANCHOR' ) ? SEC_ANCHOR : '' );
+        echo '<a class="section_anchor" id="'.$sSectionIdPrefix.$section_id.'"></a>';
+    }
 }
 
 // Work-out if the form has been submitted or not

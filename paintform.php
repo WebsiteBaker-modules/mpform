@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.17.1
+ * @version             1.3.18
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -333,11 +333,27 @@ if (!function_exists('paint_form')) {
             echo PHP_EOL.'<div class="'.MPFORM_DIV_WRAPPER.'">'.PHP_EOL;
         }
 
-        $sSectionIdPrefix = (defined( 'SEC_ANCHOR' ) ? SEC_ANCHOR : '' );
+        $sSectionAnchor = '';
+        if((!defined( 'SEC_ANCHOR' ) || SEC_ANCHOR == '' || SEC_ANCHOR == 'none')
+           && defined( 'MPFORM_NO_ANCHOR' ) && MPFORM_NO_ANCHOR == true ) {
+            $sSectionAnchor = '#form_' . $iSID;
+        } else {
+            if (defined( 'SEC_ANCHOR' )){
+                $sSectionAnchor =  '#' . SEC_ANCHOR . $iSID;
+            } else {
+                $sSectionAnchor = '#'. $iSID;
+            }
+        }
 
-        echo '<form name="form_'.$iSID.'"  enctype="multipart/form-data" action="'
-            . $sActionAttr .'#'.$sSectionIdPrefix.$iSID.'" method="post">'.PHP_EOL;
-        echo '<input type="hidden" name="submission_id" value="'. $sValueAttr .'" />'.PHP_EOL;
+        echo '<form name="form_' . $iSID . '"'
+            . ' id="form_' . $iSID . '"'
+            . ' enctype="multipart/form-data"'
+            . ' action="' . $sActionAttr . $sSectionAnchor . '"'
+            . ' method="post">' . PHP_EOL;
+        echo '<input '
+            . ' type="hidden"'
+            . ' name="submission_id"'
+            . ' value="'. $sValueAttr .'" />'.PHP_EOL;
 
         if(ENABLED_ASP) {
            echo draw_asp_honeypots($iSID);
@@ -840,8 +856,8 @@ if (!function_exists('paint_form')) {
                 }
                 if ($field['help']) {
                     $sHelp = preg_replace('/[\r\n]/', "<br />", $field['help']);
-                    $sHelp = str_replace('&quot;', '\\&quot;', $sHelp);
                     $sHelpText = '<p class="help_txt">'.$sHelp.'</p>'.PHP_EOL;
+                    $sHelp = str_replace('&quot;', '\\&quot;', $sHelp);
                     $sHelpLink
                         =  '<a id="mpform_a_'
                         . $iFID

@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.17.1
+ * @version             1.3.18
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -1307,8 +1307,6 @@ if (!function_exists('eval_form')) {
             }
 
             if ($success == true) {
-                $sSectionIdPrefix = (defined( 'SEC_ANCHOR' ) ? SEC_ANCHOR : '' );
-                echo '<a name="'.$sSectionIdPrefix.$iSID.'">';
 
                 if ($success_page=='none') {
                     echo str_replace(
@@ -1338,7 +1336,6 @@ if (!function_exists('eval_form')) {
                       echo "<script type='text/javascript'>location.href='".$link."';</script>";
                     }
                 }
-                echo "</a>";
             }
 
             // delete the referer page reference after it did its work:

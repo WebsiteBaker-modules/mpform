@@ -5,8 +5,11 @@ MODULE VERSION HISTORY
 ======================
 
    ------------------------------------------------------------------------------------------------------------------------
-        *** 1.3.17.1 (Martin Hecht: 07-Feb-2018) ***
-        correct the anchor issue once more
+        *** 1.3.18 (Martin Hecht: 08-Feb-2018) ***
+        correct the anchor issue once more, (thanks to dbs and bernd)
+        enforce the presence of section anchors in view.php by default
+        allow a fallback to internal form id as anchor
+        fix an escaping issue with HELPTXT, (thanks to jonas)
 
         *** 1.3.17 (Martin Hecht: 07-Feb-2018) ***
         correct the debugging behavior when skipping idkeys (thanks to Guenther)
