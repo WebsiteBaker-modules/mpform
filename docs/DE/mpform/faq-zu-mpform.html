@@ -189,6 +189,30 @@
        so erscheint ein weiteres Eingabefeld im Backend, in dem vom Nutzer eigene CSS-Klassen speziell
        f&uuml;r das aktuelle Feld angegeben werden k&ouml;nnen.
     </dd>
+    <dt class="faq"><strong>Frage</strong>:
+        Ich habe Benachrichtigungsmails konfiguriert. Kann ich mpform so einstellen, dass keine Eintragungen
+        in der Datenbank gespeichert werden?
+    </dt>
+    <dd class="faq"><b>Antwort</b>:
+        In den <a href="../../../docs/DE/mpform/referenz-der-optionen/spam-schutz.html">Einstellungen zum
+        SPAM Schutz</a> kann mit <dt>Max. gespeicherte Eintragungen</dt> festgelegt werden, wie viele
+        Eintragungen in der Datenbank gespeichert werden sollen. Wenn dieser Wert auf <b>0</b> gestellt
+        wird, werden keine Daten in der Submissions Tabelle abgelegt, ebenso wenig in den Results-Tabellen.
+    </dd>
+    <dt class="faq"><strong>Frage</strong>:
+        Kann ich bei Auswahllisten, Kontrollk&auml;stchen oder Optionsfeldern eine Auswahl vom Benutzer erzwingen?
+    </dt>
+    <dd class="faq"><b>Antwort</b>:
+        Ja, das jeweilige Feld muss als Pflichtfeld konfiguriert sein. Der Default-Wert sollte etwas sein wie
+        &quot;Bitte etwas ausw&auml;hlen...&quot;. Um zu verhindern, dass genau dieser String letztlich
+        als eine g&uuml;ltige Auswahl angenommen wird, h&auml;ngen Sie noch den
+        <dt>Value-Option Trenn-String</dt> an, wie er in den
+        <a href="../../../docs/DE/mpform/referenz-der-optionen/spezielle-einstellungen.html">Speziellen
+        Einstellungen</a> hinterlegt ist, mit an. Dieser Trenn-String muss f&uuml;r diesen Anwendungsfall
+        am Ende stehen, so dass der String damit abgeschlossen wird. Dadurch w&uuml;rde diese Auswahl
+        als leerer String entgegengenommen, und das wiederum sorgt seit Version 1.3.15 daf&uuml;r dass
+        diese Auswahl nicht angenommen wird.
+    </dd>
 
 <!--
     <dt class="faq"><strong>Frage</strong>:

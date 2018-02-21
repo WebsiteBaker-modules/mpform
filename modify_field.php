@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.18
+ * @version             1.3.19
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -313,6 +313,7 @@ switch ($type) {
         ."<td>";
 
         $option_count = 0;
+        $imgurl = THEME_URL . '/images/';
         $list = explode(',', $form['value']);
         foreach($list AS $option_value) {
             $def = strpos($option_value, MPFORM_IS_DEFAULT);
@@ -331,6 +332,26 @@ switch ($type) {
                 ."<td><input type='text' name='value$option_count'"
                 ." value='$ovalue' style='width: 250px;' /> "
                 ."<input type='$kind' name='$isdef' value='$option_count' $cv /></td>\n"
+
+                ."<td width='20' class='move_position'><a href='#' "
+                . (($option_count != 1) ? '' : 'style="display:none"') . " onclick='"
+                ."var value$option_count "
+                ."  = document.getElementsByName(\"value$option_count\")[0].value; "
+                ."document.getElementsByName(\"value$option_count\")[0].value"
+                ."  = document.getElementsByName(\"value".($option_count-1)."\")[0].value; "
+                ."document.getElementsByName(\"value".($option_count-1)."\")[0].value"
+                ."  = value$option_count; return false;' title=\"".$TEXT['MOVE_UP']."\">"
+                ."<img src=\"$imgurl/up_16.png\" border='0' alt='^' /></a></td>\n"
+
+                ."<td width='20' class='move_position'><a href='#' onclick='"
+                ."var value$option_count "
+                ."  = document.getElementsByName(\"value$option_count\")[0].value; "
+                ."document.getElementsByName(\"value$option_count\")[0].value"
+                ."  = document.getElementsByName(\"value".($option_count+1)."\")[0].value; "
+                ."document.getElementsByName(\"value".($option_count+1)."\")[0].value"
+                ."  = value$option_count; return false;' title=\"".$TEXT['MOVE_DOWN']."\">"
+                ."<img src=\"$imgurl/down_16.png\" border='0' alt='v' /></a></td>\n"
+
                 ."</tr></table>\n";
         }
         for($i = 0; $i < 2; $i++) {
@@ -341,6 +362,26 @@ switch ($type) {
                 ."<td><input type='text' name='value$option_count'"
                 ." value='' style='width: 250px;' /> "
                 ."<input type='$kind' name='$isdef' value='$option_count' /></td>\n"
+
+                ."<td width='20' class='move_position'><a href='#' onclick='"
+                ."var value$option_count "
+                ."  = document.getElementsByName(\"value$option_count\")[0].value; "
+                ."document.getElementsByName(\"value$option_count\")[0].value"
+                ."  = document.getElementsByName(\"value".($option_count-1)."\")[0].value; "
+                ."document.getElementsByName(\"value".($option_count-1)."\")[0].value"
+                ."  = value$option_count; return false;' title=\"".$TEXT['MOVE_UP']."\">"
+                ."<img src=\"$imgurl/up_16.png\" border='0' alt='^' /></a></td>\n"
+
+                ."<td width='20' class='move_position'><a href='#' "
+                . (($i != 1) ? '' : 'style="display:none"') . " onclick='"
+                ."var value$option_count "
+                ."  = document.getElementsByName(\"value$option_count\")[0].value; "
+                ."document.getElementsByName(\"value$option_count\")[0].value"
+                ."  = document.getElementsByName(\"value".($option_count+1)."\")[0].value; "
+                ."document.getElementsByName(\"value".($option_count+1)."\")[0].value"
+                ."  = value$option_count; return false;' title=\"".$TEXT['MOVE_DOWN']."\">"
+                ."<img src=\"$imgurl/down_16.png\" border='0' alt='v' /></a></td>\n"
+
                 ."</tr></table>\n";
             }
         $fieldtypeoption .= "<input type='hidden' name='list_count'"

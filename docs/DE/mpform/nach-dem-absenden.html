@@ -120,6 +120,8 @@ aller M&ouml;glichkeiten, die Daten zu speichern und anzuzeigen:</p>
     <ul>
         <li>Die Workflow-Einstellung <strong>Daten&uuml;bergabe an mpform_submissions-Tabelle</strong>
           muss mindestens den Platzhalter <strong>{DATA}</strong> enthalten.</li>
+        <li>Wenn Best&auml;tigungsmails konfiguriert sind, darf der Versand der emails nicht fehlgeschlagen
+         sein.</li>
     </ul>
     </dd>
     <dt>Speicherung in der Tabelle mpform_results_xxx<br />
@@ -135,6 +137,9 @@ aller M&ouml;glichkeiten, die Daten zu speichern und anzuzeigen:</p>
         <li>
            Die Namensendung darf nicht der String &quot;<strong>DISABLED</strong>&quot; sein,
            denn bei diesem String werden die Ergebnistabllen nicht behandelt.
+        </li>
+        <li>
+           Speichern der Eintragung in der Submissions-Tabelle zuvor darf nicht fehlgeschlagen sein.
         </li>
     </ul>
   Die Tabelle enth&auml;lt eine Zeile je abgeschicktem Formular und eine Spalte je Tabellenfeld.

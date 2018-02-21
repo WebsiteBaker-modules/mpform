@@ -181,6 +181,28 @@
        {FORMATTED_FIELD} is used instead of {FIELD}, another input appears in the backend, where the
        user can define his own css classes explicitly for the current field.
     </dd>
+    <dt class="faq"><strong>Question</strong>:
+        I have configured notification mails. Can I configure mpform not to store any data in the database?
+    </dt>
+    <dd class="faq"><b>Answer</b>:
+        In the <a href="../../../docs/EN/mpform/settings-of-mpform/spam-protection.html">settings for
+        SPAM protection</a> for <dt>Submissions stored in Database</dt> you can configure how many entries
+        shall be stored in the database. If you set this to <b>0</b>, no data is stored in the submissions
+        table, nor in the results tables.
+    </dd>
+    <dt class="faq"><strong>Question</strong>:
+        Can I enforce the user to actually select something in select boxes, radio button groups, or
+        checkboxes?
+    </dt>
+    <dd class="faq"><b>Answer</b>:
+        Yes, the field needs to be configured as a required input. The default value should be something
+        like &quot;please make your choice...&quot;. To prevent this value from actually being accepted
+        as a valid input, you need to append the <dt>Value-Option Separator-String</dt> as configured in
+        <a href="../../../docs/EN/mpform/settings-of-mpform/special-settings.html">Special Settings</a>.
+        For this use case this separator string has to terminate the value. Therefore, if this option
+        is selected, an empty string is returned, which in turn is not accepted as a valid choice
+        since mpform version 1.3.15.
+    </dd>
 <!--
     <dt class="faq"><strong>Question</strong>:
 

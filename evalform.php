@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.18
+ * @version             1.3.19
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -1122,168 +1122,174 @@ if (!function_exists('eval_form')) {
                         ? $_SESSION['started_when']
                         : $submitted_when;
                     $_SESSION['started_when'] = $started_when;
-                    $body
-                        = str_replace(
-                            array('{DATA}', '{REFERER}', '{IP}', '{DATE}', '{USER}', '{EMAIL}'),
-                            array($html_data_site, $_SESSION['href'], $ip, $now, $wb_user, $success_email_to),
-                            $submissions_text
+                    if($submissions_text!=""){
+                        $body
+                            = str_replace(
+                                array('{DATA}', '{REFERER}', '{IP}', '{DATE}', '{USER}', '{EMAIL}'),
+                                array($html_data_site, $_SESSION['href'], $ip, $now, $wb_user, $success_email_to),
+                                $submissions_text
+                            );
+                        $body = mpform_escape_string($body);
+                        $database->query(
+                            "INSERT INTO `".TP_MPFORM."submissions`"
+                            . " SET"
+                            . " `page_id` = '".PAGE_ID."', "
+                            . " `section_id` = '".$section_id."', "
+                            . " `submitted_when` = '".$submitted_when."', "
+                            . " `submitted_by` = '".$submitted_by."', "
+                            . " `upload_filename` = '".$upload_filename."', "
+                            . " `ip_addr` = '".$ip."', "
+                            . " `body` = '".$body."', "
+                            . " `started_when` = '".$started_when."', "
+                            . " `session_id` = '".$us."'"
                         );
-                    $body = mpform_escape_string($body);
-                    $database->query(
-                        "INSERT INTO `".TP_MPFORM."submissions`"
-                        . " SET"
-                        . " `page_id` = '".PAGE_ID."', "
-                        . " `section_id` = '".$section_id."', "
-                        . " `submitted_when` = '".$submitted_when."', "
-                        . " `submitted_by` = '".$submitted_by."', "
-                        . " `upload_filename` = '".$upload_filename."', "
-                        . " `ip_addr` = '".$ip."', "
-                        . " `body` = '".$body."', "
-                        . " `started_when` = '".$started_when."', "
-                        . " `session_id` = '".$us."'"
-                    );
-                    if($database->is_error()) {
-                        $success = false;
-                        echo $TEXT['DATABASE']. " ";
-                    } else {
-                        // Make sure submissions table isn't too full
-                        $query_submissions
-                            = $database->query(
-                                "SELECT submission_id"
-                                . " FROM ".TP_MPFORM."submissions"
-                                . " ORDER BY submitted_when"
-                            );
-                        $num_submissions = $query_submissions->numRows();
-                        if($num_submissions > $stored_submissions) {
-                            // Remove excess submission
-                            $num_to_remove = $num_submissions-$stored_submissions;
-                            while($submission = $query_submissions->fetchRow()) {
-                                if($num_to_remove > 0) {
-                                    $submission_id = $submission['submission_id'];
-                                    $database->query(
-                                        "DELETE"
-                                         . " FROM ".TP_MPFORM."submissions"
-                                         . " WHERE submission_id = '$submission_id'"
-                                    );
-                                    if($database->is_error()) {
-                                        $success = false;
-                                        echo $TEXT['DATABASE']. " ";
-                                    }
-                                    $num_to_remove -= 1;
-                                }
-                            }
-                        }
-                        $query_submissions
-                            = $database->query(
-                                "SELECT submission_id"
-                                . " FROM ".TP_MPFORM."submissions"
-                                . " ORDER BY `submission_id` DESC LIMIT 1"
-                            );
-                        $res = $query_submissions->fetchRow();
-                        $submission_id = $res['submission_id'];
-                        if ($suffix != "DISABLED"){
-                            $query_submitted
-                               = $database->query(
-                                   "SELECT session_id"
-                                       . " FROM ".TP_MPFORM."results_$suffix"
-                                       . " WHERE session_id = '$us'"
-                               );
-                            $num_submitted = $query_submitted->numRows();
-                            if ($mpform_fields != "") $mpform_fields .= ", ";
-                            $mpform_fields .= "submitted_when = '". $submitted_when ."'";
-                            $lf = array("\r\n", "\n", "\r");
-                            if ($num_submitted == 0) {
-                                // new session: insert a new row,
-                                // first of all find out the columns of the results table
-                                $field_empty = "";
-                                $res = $database->query("SHOW COLUMNS"
-                                    . " FROM ".TP_MPFORM."results_$suffix"
-                                    . " LIKE 'field%'"
-                                    );
-                                while($results_col = $res->fetchRow()) {
-                                    $field_empty .= ', `'
-                                                 . $results_col['Field']
-                                                 . '`'
-                                                 . " = ''";
-                                }
-
-                                // Check whether results table contains submission_id
-                                $res = $database->query("SHOW COLUMNS"
-                                    . " FROM ".TP_MPFORM."results_$suffix"
-                                    . " LIKE 'submission_id'"
-                                    );
-                                if ($res->numRows() > 0 ) {
-                                    $field_empty .= ', `submission_id`'
-                                                 . " = '"
-                                                 . $submission_id
-                                                 . "'";
-                                }
-                                $qs = "INSERT INTO ".TP_MPFORM."results_$suffix"
-                                    . " SET "
-                                    . "`session_id` = '$us', "
-                                    . "`started_when` = '$started_when', "
-                                    . "`referer` = '". $_SESSION['href'] ."'"
-                                    . $field_empty;
-                                $database->query($qs);
-                                if($database->is_error()) {
-                                    echo $TEXT['DATABASE']
-                                      . " "
-                                      . $qs."<br />"
-                                      . $database->get_error();
-                                    $success = false;
-                                }
-                            }
-                            if ($success != false){
-                                // Check whether results table contains submission_id
-                                $res = $database->query("SHOW COLUMNS"
-                                    . " FROM ".TP_MPFORM."results_$suffix"
-                                    . " LIKE 'submission_id'"
-                                    );
-                                if ($res->numRows() > 0 ) {
-                                    $mpform_fields .= ', `submission_id`'
-                                                   . " = '"
-                                                   . $submission_id
-                                                   . "'";
-                                }
-
-                                $qs = "UPDATE ".TP_MPFORM."results_$suffix"
-                                  . " SET "
-                                  . str_replace($lf, " ", $mpform_fields)
-                                  . " WHERE session_id = '$us' LIMIT 1";
-                                $database->query($qs);
-                                if($database->is_error()) {
-                                    echo $TEXT['DATABASE']
-                                      . " "
-                                      . $qs."<br />"
-                                      . $database->get_error();
-                                    $success = false;
-                                }
-                            }
-
-                            // Make sure results table isn't too full
-                            $qs
-                               = $database->query(
-                                   "SELECT session_id"
-                                       . " FROM ".TP_MPFORM."results_$suffix"
-                                       . " ORDER BY submitted_when"
-                                 );
-                            $num_submissions = $qs->numRows();
+                        if($database->is_error()) {
+                            $success = false;
+                            echo $TEXT['DATABASE']. " ";
+                        } else {
+                            // Make sure submissions table isn't too full
+                            $query_submissions
+                                = $database->query(
+                                    "SELECT submission_id"
+                                    . " FROM ".TP_MPFORM."submissions"
+                                    . " ORDER BY submitted_when"
+                                );
+                            $num_submissions = $query_submissions->numRows();
                             if($num_submissions > $stored_submissions) {
                                 // Remove excess submission
                                 $num_to_remove = $num_submissions-$stored_submissions;
                                 while($submission = $query_submissions->fetchRow()) {
                                     if($num_to_remove > 0) {
-                                        $submission_id = $submission['session_id'];
+                                        $submission_id = $submission['submission_id'];
                                         $database->query(
-                                            "DELETE "
-                                            ."FROM ".TP_MPFORM."results_$suffix"
-                                            ."WHERE session_id = '$submission_id'"
+                                            "DELETE"
+                                             . " FROM ".TP_MPFORM."submissions"
+                                             . " WHERE submission_id = '$submission_id'"
                                         );
                                         if($database->is_error()) {
                                             $success = false;
                                             echo $TEXT['DATABASE']. " ";
                                         }
                                         $num_to_remove -= 1;
+                                    }
+                                }
+                            }
+                            $query_submissions
+                                = $database->query(
+                                    "SELECT submission_id"
+                                    . " FROM ".TP_MPFORM."submissions"
+                                    . " ORDER BY `submission_id` DESC LIMIT 1"
+                                );
+                            $res = $query_submissions->fetchRow();
+                            $submission_id = $res['submission_id'];
+                            if ($suffix != "DISABLED"){
+                                $query_submitted
+                                   = $database->query(
+                                       "SELECT session_id"
+                                           . " FROM ".TP_MPFORM."results_$suffix"
+                                           . " WHERE session_id = '$us'"
+                                   );
+                                $num_submitted = $query_submitted->numRows();
+                                if ($mpform_fields != "") $mpform_fields .= ", ";
+                                $mpform_fields .= "submitted_when = '". $submitted_when ."'";
+                                $lf = array("\r\n", "\n", "\r");
+                                if ($num_submitted == 0) {
+                                    // new session: insert a new row,
+                                    // first of all find out the columns of the results table
+                                    $field_empty = "";
+                                    $res = $database->query("SHOW COLUMNS"
+                                        . " FROM ".TP_MPFORM."results_$suffix"
+                                        . " LIKE 'field%'"
+                                        );
+                                    while($results_col = $res->fetchRow()) {
+                                        $field_empty .= ', `'
+                                                     . $results_col['Field']
+                                                     . '`'
+                                                     . " = ''";
+                                    }
+
+                                    // Check whether results table contains submission_id
+                                    $res = $database->query("SHOW COLUMNS"
+                                        . " FROM ".TP_MPFORM."results_$suffix"
+                                        . " LIKE 'submission_id'"
+                                        );
+                                    if ($res->numRows() > 0 ) {
+                                        $field_empty .= ', `submission_id`'
+                                                     . " = '"
+                                                     . $submission_id
+                                                     . "'";
+                                    }
+                                    $qs = "INSERT INTO ".TP_MPFORM."results_$suffix"
+                                        . " SET "
+                                        . "`session_id` = '$us', "
+                                        . "`started_when` = '$started_when', "
+                                        . "`referer` = '". $_SESSION['href'] ."'"
+                                        . $field_empty;
+                                    $database->query($qs);
+                                    if($database->is_error()) {
+                                        echo $TEXT['DATABASE']
+                                          . " "
+                                          . $qs."<br />"
+                                          . $database->get_error();
+                                        $success = false;
+                                    }
+                                }
+                                if ($success != false){
+                                    // Check whether results table contains submission_id
+                                    $res = $database->query("SHOW COLUMNS"
+                                        . " FROM ".TP_MPFORM."results_$suffix"
+                                        . " LIKE 'submission_id'"
+                                        );
+                                    if ($res->numRows() > 0 ) {
+                                        $mpform_fields .= ', `submission_id`'
+                                                       . " = '"
+                                                       . $submission_id
+                                                       . "'";
+                                    }
+
+                                    $qs = "UPDATE ".TP_MPFORM."results_$suffix"
+                                      . " SET "
+                                      . str_replace($lf, " ", $mpform_fields)
+                                      . " WHERE session_id = '$us' LIMIT 1";
+                                    $database->query($qs);
+                                    if($database->is_error()) {
+                                        echo $TEXT['DATABASE']
+                                          . " "
+                                          . $qs."<br />"
+                                          . $database->get_error();
+                                        $success = false;
+                                    }
+                                }
+
+                                // Make sure results table isn't too full
+                                $qs
+                                   = $database->query(
+                                       "SELECT session_id"
+                                           . " FROM ".TP_MPFORM."results_$suffix"
+                                           . " ORDER BY submitted_when"
+                                     );
+                                $num_submissions = $qs->numRows();
+                                if($num_submissions > $stored_submissions) {
+                                    // Remove excess submission
+                                    $num_to_remove = $num_submissions-$stored_submissions;
+                                    while($submission = $qs->fetchRow()) {
+                                        if($num_to_remove > 0) {
+                                            $submission_id = $submission['session_id'];
+                                            $database->query(
+                                                "DELETE "
+                                                ." FROM ".TP_MPFORM."results_$suffix"
+                                                ." WHERE session_id = '$submission_id'"
+                                            );
+                                            if($database->is_error()) {
+                                                $success = false;
+                                                echo $TEXT['DATABASE']
+                                                . " "
+                                                . $qs."<br />"
+                                                . $database->get_error();
+                                              $success = false;
+                                            }
+                                            $num_to_remove -= 1;
+                                        }
                                     }
                                 }
                             }
