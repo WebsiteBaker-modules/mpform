@@ -7,7 +7,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.19
+ * @version             1.3.20
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -111,7 +111,7 @@ $LANG['backend'] = array(
                                    . '&nbsp; {IP} - het IP-adres van de afzender<br />'
                                    . '&nbsp; {DATE} - datum en tijd<br />'
                                    . '&nbsp; {USER} - name of the logged on user<br />'
-                                   . '&nbsp; {EMAIL} - Email entered in the form or ',
+                                   . '&nbsp; {EMAIL} - Email entered in the form or '
                                    . 'the one of the logged on user<br />',
     'des_success_email_text'      => 'Inhoud van de bevestigingsmail aan de afzender',
     'des_email_text'              => 'Inhoud van de e-mail aan de site-eigenaar',
