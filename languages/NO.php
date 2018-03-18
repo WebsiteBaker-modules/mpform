@@ -7,7 +7,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.20
+ * @version             1.3.21
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -59,7 +59,10 @@ $LANG['backend'] = array(
     'ROWS'                        => 'Rader',
     'TXT_TBLSFX'                  => 'Endelse for resultat tabellen(_skjema01)',
     'DES_TXT_TBLSFX'              => 'Resultatene fra skjema med samme endelse  '
-                                   . 'ender i den samme tabellen.',
+                                   . 'ender i den samme tabellen. '
+                                   . 'Set this to DISABLED, if you do not want to have '
+                                   . 'any entries stored in the results table. Independently, '
+                                   . 'however, they are stored to the submissions table.',
     'textfield'                   => 'Tekst felt (en linje)',
     'hiddenfield'                 => 'skjult felt',
     'textarea'                    => 'Tekst felt (flere linjer)',
@@ -248,8 +251,9 @@ $LANG['backend_adv'] = array(
     'date_format'                 => '%m/%d/%Y',
     'help_extensions'             => 'file extensions comma separated, eg. pdf,xls',
     'help_filemask'               => 'permissions for uploaded file, eg. 0640',
-    'help_dirmask'                => 'permissions for upload directory, eg. 0750'
-
+    'help_dirmask'                => 'permissions for upload directory, eg. 0750',
+    'des_stored_submissions'      => 'Set this value to 0 if you do not want to have '
+                                   . 'any submissions stored in the database.'
 );
 
 // Text outputs for the frontend

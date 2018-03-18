@@ -5,6 +5,11 @@ MODULE VERSION HISTORY
 ======================
 
    ------------------------------------------------------------------------------------------------------------------------
+        *** 1.3.21 (Martin Hecht: 18-Mar-2018) ***
+        correctly restore selected option fields containing commata from the session, thanks to jonas
+        correct the documentation about enforcing choices by the user
+        added hints about how to avoid storing submitted data (thanks to ice)
+
         *** 1.3.20 (Martin Hecht: 22-Feb-2018) ***
         fix typo in Dutch language file, thanks to jacobi22
 

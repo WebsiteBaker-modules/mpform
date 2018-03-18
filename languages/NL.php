@@ -7,7 +7,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.20
+ * @version             1.3.21
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -56,7 +56,10 @@ $LANG['backend'] = array(
                                    . 'gebruikt op uw site, is het aan te raden  '
                                    . 'om de resultaten in aparte databasetabellen  '
                                    . 'op te slaan, om te voorkomen dat alle  '
-                                   . 'resultaten in dezelfde tabel terechtkomen.',
+                                   . 'resultaten in dezelfde tabel terechtkomen. '
+                                   . 'Set this to DISABLED, if you do not want to have '
+                                   . 'any entries stored in the results table. Independently, '
+                                   . 'however, they are stored to the submissions table.',
     'textfield'                   => 'Korte tekst (1 regel)',
     'hiddenfield'                 => 'verborgen veld',
     'textarea'                    => 'Lange tekst (meerdere regels)',
@@ -250,8 +253,9 @@ $LANG['backend_adv'] = array(
     'help_extensions'             => 'Voer extensies kommagescheiden in,  '
                                    . 'bijv. doc,pdf,xls,jpg,gif,png,tif,bmp.',
     'help_filemask'               => 'Rechten voor geupload bestand, bijv. 0640',
-    'help_dirmask'                => 'Rechten voor upload-folder, bijv. 0750'
-
+    'help_dirmask'                => 'Rechten voor upload-folder, bijv. 0750',
+    'des_stored_submissions'      => 'Set this value to 0 if you do not want to have '
+                                   . 'any submissions stored in the database.'
 );
 
 // Text outputs for the frontend

@@ -7,7 +7,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.20
+ * @version             1.3.21
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -63,7 +63,11 @@ $LANG['backend'] = array(
     'TXT_TBLSFX'                  => 'Code du tableau de r&eacute;sultats',
     'DES_TXT_TBLSFX'              => 'Toutes les pages de r&eacute;sultats '
                                    . 'd&eacute;sign&eacute;es par ce code seront '
-                                   . 'regroup&eacute;s dans un m&ecirc;me tableau.',
+                                   . 'regroup&eacute;s dans un m&ecirc;me tableau. '
+                                   . 'D&eacut;finissez ceci sur DISABLED, si vous ne voulez pas '
+                                   . 'que des entr&eacut;es soient stock&eacut;es dans la table '
+                                   . 'des r&eacut;sultats. Ind&eacut;pendamment, cependant, ils '
+                                   . 'sont stock&eacut;s dans la table de soumission.',
     'textfield'                   => 'Champ texte (une ligne)',
     'hiddenfield'                 => 'Champ cach&eacute;',
     'textarea'                    => 'Zone de texte (multi-lignes)',
@@ -292,8 +296,10 @@ $LANG['backend_adv'] = array(
     'help_filemask'               => 'Droits des fichiers apr&egrave;s envoi  '
                                    . '(upload), ex. 0640',
     'help_dirmask'                => 'Droits du dossier de destination  '
-                                   . 'des fichiers, ex. 0750'
-
+                                   . 'des fichiers, ex. 0750',
+    'des_stored_submissions'      => 'D&eacut;finissez cette valeur sur 0 si vous ne souhaitez '
+                                   . 'pas que des soumissions soient stock&eacut;es dans la '
+                                   . 'base de donn&eacut;es.'
 );
 
 // Text outputs for the frontend

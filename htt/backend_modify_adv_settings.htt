@@ -111,11 +111,14 @@
         </tr>
         <tr>
             <th>{txt_max_submissions}:</th>
-            <td><input name="max_submissions" class="setting_value_text" type="text" title="{des_max_submissions}" value="{max_submissions}" /></td>
+            <td><input name="max_submissions" class="setting_value_text" type="text" title="{des_max_submissions}" value="{max_submissions}" />
+</td>
         </tr>
         <tr>
             <th>{txt_stored_submissions}:</th>
-            <td><input name="stored_submissions" class="setting_value_text" type="text" title="{des_stored_submissions}" value="{stored_submissions}" /></td>
+            <td><input name="stored_submissions" class="setting_value_text" type="text" title="{des_stored_submissions}" value="{stored_submissions}" />
+                    <br />
+                    <small>{des_stored_submissions}</small></td>
         </tr>
     </table>
 

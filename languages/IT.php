@@ -7,7 +7,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.20
+ * @version             1.3.21
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -52,7 +52,10 @@ $LANG['backend'] = array(
     'ROWS'                        => 'Righe',
     'TXT_TBLSFX'                  => 'suffisso del nome per la tabella dei risultati',
     'DES_TXT_TBLSFX'              => 'I risultati di tutte le pagine con lo stesso suffisso '
-                                   . 'vanno nella stessa tabella.',
+                                   . 'vanno nella stessa tabella. Impostalo su DISABLED,  '
+                                   . 'se non vuoi che le voci siano memorizzate nella  '
+                                   . 'tabella dei risultati. Indipendentemente, tuttavia,  '
+                                   . 'vengono memorizzati nella tabella di invio.',
     'textfield'                   => 'Campo di testo (una linea)',
     'hiddenfield'                 => 'Campo nascosto',
     'textarea'                    => 'area di testo (multilinea)',
@@ -246,8 +249,9 @@ $LANG['backend_adv'] = array(
     'date_format'                 => '%m/%d/%Y',
     'help_extensions'             => 'le estensioni dei file virgola separati, ad es. pdf, xls',
     'help_filemask'               => 'permessi per file inserito, per esempio. 0640 ',
-    'help_dirmask'                => 'permessi per directory di upload, ad es. 0750 '
-
+    'help_dirmask'                => 'permessi per directory di upload, ad es. 0750 ',
+    'des_stored_submissions'      => 'Impostare questo valore su 0 se non si desidera che '
+                                   . 'qualsiasi invio sia memorizzato nel database.'
 );
 
 // Text outputs for the frontend

@@ -205,12 +205,11 @@
     <dd class="faq"><b>Antwort</b>:
         Ja, das jeweilige Feld muss als Pflichtfeld konfiguriert sein. Der Default-Wert sollte etwas sein wie
         &quot;Bitte etwas ausw&auml;hlen...&quot;. Um zu verhindern, dass genau dieser String letztlich
-        als eine g&uuml;ltige Auswahl angenommen wird, h&auml;ngen Sie noch den
-        <dt>Value-Option Trenn-String</dt> an, wie er in den
+        als eine g&uuml;ltige Auswahl angenommen wird, stellen Sie dem Wert den
+        <dt>Value-Option Trenn-String</dt> voran, wie er in den
         <a href="../../../docs/DE/mpform/referenz-der-optionen/spezielle-einstellungen.html">Speziellen
-        Einstellungen</a> hinterlegt ist, mit an. Dieser Trenn-String muss f&uuml;r diesen Anwendungsfall
-        am Ende stehen, so dass der String damit abgeschlossen wird. Dadurch w&uuml;rde diese Auswahl
-        als leerer String entgegengenommen, und das wiederum sorgt seit Version 1.3.15 daf&uuml;r dass
+        Einstellungen</a> hinterlegt ist. Dieser Trenn-String muss f&uuml;r diesen Anwendungsfall
+        am Anfang stehen, so dass ihm ein Leerstring vorausgeht. Dadurch w&uuml;rde dieser Leerstring entgegengenommen, und das wiederum sorgt seit Version 1.3.15 daf&uuml;r dass
         diese Auswahl nicht angenommen wird.
     </dd>
 

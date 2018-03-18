@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.20
+ * @version             1.3.21
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -137,7 +137,6 @@ $tpl->set_var(
                                         ? '' : 'checked="checked"'),
         'des_max_submissions'       => '',
         'txt_max_submissions'       => $TEXT['MAX_SUBMISSIONS_PER_HOUR'],
-        'des_stored_submissions'    => '',
         'txt_stored_submissions'    => $TEXT['SUBMISSIONS_STORED_IN_DATABASE'],
         'des_upload_files_folder'   => '',
         'MEDIA_DIRECTORY'           => WB_PATH . MEDIA_DIRECTORY,

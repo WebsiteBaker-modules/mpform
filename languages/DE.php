@@ -7,7 +7,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.20
+ * @version             1.3.21
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -57,8 +57,11 @@ $LANG['backend'] = array(
     'TXT_ADD_FIELD'               => 'Feld hinzuf&uuml;gen',
     'ROWS'                        => 'Zeilen',
     'TXT_TBLSFX'                  => 'Namensendung f&uuml;r die Ergebnistabelle',
-    'DES_TXT_TBLSFX'              => 'Die Ergebnisse von allen Seiten mit der gleichen  '
-                                   . 'Namensendung landen in der gleichen Tabelle.',
+    'DES_TXT_TBLSFX'              => 'Die Ergebnisse von allen Seiten mit der gleichen '
+                                   . 'Namensendung landen in der gleichen Tabelle. '
+                                   . 'Setzen Sie dies auf DISABLED, wenn Sie keine Eintragungen '
+                                   . 'in der Ergebnistablle gespeichert haben wollen. Unabh&auml;ngig davon '
+                                   . 'werden sie jedoch in die Submissionstabelle geschrieben.',
     'textfield'                   => 'Textfeld (einzeilig)',
     'hiddenfield'                 => 'verborgenes Feld',
     'textarea'                    => 'Textarea (mehrzeilig)',
@@ -266,7 +269,9 @@ $LANG['backend_adv'] = array(
     'help_filemask'              => 'Berechtigungen f&uuml;r hochgeladene Dateien, '
                                    . ' z.B.: 0640',
     'help_dirmask'               => 'Berechtigungen f&uuml;r Upload-Verzeichnis,  '
-                                   . 'z.B.: 0750'
+                                   . 'z.B.: 0750',
+    'des_stored_submissions'      => 'Setzen Sie diesen Wert auf 0 wenn Sie keine Eintragungen '
+                                   . 'in der Datenbank speichern wollen.'
 );
 
 // Text outputs for the frontend
