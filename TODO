@@ -3,6 +3,11 @@
  * todo list for upcoming releases:
  * ================================
  *
+ * - make workflow more flexible. Right now, saving results in various tables
+ *   and sending emails happens in a fixed order. Moving these steps around
+ *   like it is possible to drag&drop fields would be nice, but it needs a
+ *   huge redesign of evalform, by far the largest file of the module :-/
+ *
  * (If you find bugs or if you would like to propose a new feature which you
  * consider useful, do not hesitate to contact me)
  *

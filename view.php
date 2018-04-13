@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.21
+ * @version             1.3.22
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -35,7 +35,7 @@ if (!include(get_module_language_file($mod_dir))) return;
 
 // check if frontend.css file needs to be included into the <body></body> of view.php
 if((!function_exists('register_frontend_modfiles')
-    || !defined('MOD_FRONTEND_CSS_REGISTERED'))
+    && !defined('MOD_FRONTEND_CSS_REGISTERED'))
     && file_exists(WB_PATH .'/modules/mpform/frontend.css')) {
         echo '<style type="text/css">';
         include_once(WB_PATH .'/modules/mpform/frontend.css');

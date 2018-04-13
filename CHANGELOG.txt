@@ -5,6 +5,10 @@ MODULE VERSION HISTORY
 ======================
 
    ------------------------------------------------------------------------------------------------------------------------
+
+        *** 1.3.22 (Martin Hecht: 12-Apr-2018) ***
+        correct the behavior for including module css
+
         *** 1.3.21 (Martin Hecht: 18-Mar-2018) ***
         correctly restore selected option fields containing commata from the session, thanks to jonas
         correct the documentation about enforcing choices by the user
