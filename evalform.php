@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.22
+ * @version             1.3.23
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -591,10 +591,11 @@ if (!function_exists('eval_form')) {
                                        .MPFORM_CLASS_PREFIX.'field_'.$field['type'];
 
                         $aReplacements['{CLASSES}'] = $field_classes;
-                        if($field['type'] == 'email'
-                            AND $admin->validate_email($post_field) == false) {
+                        if($field['type'] == 'email'){
+                            if ($admin->validate_email($post_field) == false) {
                                 $err_txt[$field_id] = $MESSAGE['USERS_INVALID_EMAIL'];
                                 $fer[] = $field_id;
+                            }  else $curr_field = "'".mpform_escape_string($post_field)."'";
                         }
 
                         // check invalid user input
@@ -675,6 +676,7 @@ if (!function_exists('eval_form')) {
                                     array_values($aReplacements),
                                     $short_html
                                 );
+                            $curr_field = "'".mpform_escape_string($field_value)."'";
                         } elseif (!is_array($post_field)) {
                             if ($field['type'] == 'email') {
                                 $aReplacements['{TITLE}'] =  $field['title'];
@@ -924,7 +926,6 @@ if (!function_exists('eval_form')) {
                     if($field['type'] == 'integer_number') $curr_field = '0';
                     if ($field['type'] == 'decimal_number') $curr_field = '0.0';
                 }
-
                 if ($curr_field == "''") {
                     if($field['required'] == 1) {
                         $fer[]=$field_id;

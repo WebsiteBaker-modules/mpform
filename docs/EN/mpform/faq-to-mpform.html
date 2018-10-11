@@ -204,6 +204,19 @@
         is selected, that empty string is returned, which in turn is not accepted as a valid choice
         since mpform version 1.3.15.
     </dd>
+    <dt class="faq"><strong>Question</strong>:
+        How can I ensure that a contact form just sends emails but does not store any data on the server side?
+    </dt>
+    <dd class="faq"><b>Answer</b>:
+          This is possible since version 1.3.19:<br/>
+
+    You just have to go to &quot;general settings&quot;, &quot;Workflow Settings&quot; and remove all the content of the template in the box &quot;Data transfer to mpform_submissions table&quot; and save the settings. You also need to set the &quot;name suffix for result table&quot; to &quot;DISABLED&quot;<br/>
+
+    Alternatively, you can also go to &quot;Advanced Settings&quot; and in the section &quot;SPAM Protection&quot; set the &quot;Submissions stored in Database&quot; to 0 and save the advanced settings.<br/>
+
+The first method stops saving submissions to the submission table of the current form, the second one has a larger impact, namely the next submission would wipe out all data in the submission_table and in the results_table if the suffix not already set to &quot;DISABLED&quot;.
+    </dd>
+
 <!--
     <dt class="faq"><strong>Question</strong>:
 

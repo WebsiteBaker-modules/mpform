@@ -212,6 +212,18 @@
         am Anfang stehen, so dass ihm ein Leerstring vorausgeht. Dadurch w&uuml;rde dieser Leerstring entgegengenommen, und das wiederum sorgt seit Version 1.3.15 daf&uuml;r dass
         diese Auswahl nicht angenommen wird.
     </dd>
+    <dt class="faq"><strong>Frage</strong>:
+        Wie kann ich sicherstellen, dass ein Kontaktformular lediglich die Benachrichtigungs-Emails verschickt, aber serverseitig keinerlei Daten abspreichert?
+    </dt>
+    <dd class="faq"><b>Antwort</b>:
+          Das geht seit Version 1.3.19:<br/>
+
+    Dazu muss man in den &quot;allgemeinen Optionen&quot; unter &quot; Workflow Einstellungen&quot; den gesamten Inhalt des Templates in der Box &quot;Daten&uuml;bergabe an mpform_submissions-Tabelle l&ouml;schen und die Einstellugnen speichern. Au&szlig;erdem muss man die Namensendung f&uuml;r die Ergebnistabelle auf &quot;DISABLED&quot; stellen. <br/>
+
+    Alternativ kann man in den &quot;Erweiterten Einstellungen&quot; im Abschnitt &quot;SPAM-Schutz&quot; den Wert f&uuml;r &quot;Max. gespeicherte Eintragungen&quot; auf 0 setzen. <br/>
+
+     Der erste Ansatz verhindert dass k&uuml;nftig Daten in die Submissions- und die Ergebnis-Tabelle des aktuellen Formulars gespeichert werden. Die zweite Methode hat gravierendere Auswirkungen, n&auml;mlich dass die n&auml;chste Eintragung daf&uuml;r sorgt, dass alle Daten aus der Submissions-Tabelle und der Ergebnis-Tabelle gel&ouml;scht werden.
+    </dd>
 
 <!--
     <dt class="faq"><strong>Frage</strong>:

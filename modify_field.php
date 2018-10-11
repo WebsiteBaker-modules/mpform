@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.22
+ * @version             1.3.23
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -90,7 +90,7 @@ if (($form['page_id'] != $page_id)
 }
 
 // include template parser class and set template
-if (file_exists(WB_PATH . '/include/phplib/template.inc'))
+if (!class_exists('Template') && file_exists(WB_PATH . '/include/phplib/template.inc'))
     require_once(WB_PATH . '/include/phplib/template.inc');
 $tpl = new Template(dirname(__FILE__) . '/htt/');
 

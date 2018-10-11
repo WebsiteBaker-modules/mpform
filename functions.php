@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.22
+ * @version             1.3.23
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
  * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
@@ -19,6 +19,11 @@
  **/
 /* This file provides functions and classes for the module */
 if (!function_exists('module_header_footer')) {
+
+    // include template parser class
+    if (!class_exists('Template') && file_exists(WB_PATH . '/include/phplib/template.inc'))
+        require_once(WB_PATH . '/include/phplib/template.inc');
+
     function module_header_footer($page_id, $mod_dir) {
         global $admin, $database, $HEADING, $TEXT, $MESSAGE, $section_id;
         require_once(WB_PATH.'/modules/admin.php');

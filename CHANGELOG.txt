@@ -6,6 +6,11 @@ MODULE VERSION HISTORY
 
    ------------------------------------------------------------------------------------------------------------------------
 
+        *** 1.3.23 (Martin Hecht: 10-Oct-2018) ***
+        add an FAQ entry how to disable storage of entries in the database
+        if the template class does not exist, include template.inc
+        allow email and email subject to be required fields
+
         *** 1.3.22 (Martin Hecht: 12-Apr-2018) ***
         correct the behavior for including module css
 
