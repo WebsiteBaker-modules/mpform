@@ -4,7 +4,9 @@ mpForm wbCMS Content Module
 MODULE VERSION HISTORY
 ======================
 
-   ------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+        *** 1.3.24 (Martin Hecht: 27-Dec-2018) ***
+        updated pear and its http_upload class (thanks to dbs)
 
         *** 1.3.23 (Martin Hecht: 10-Oct-2018) ***
         add an FAQ entry how to disable storage of entries in the database

@@ -7,12 +7,10 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.23
+ * @version             1.3.24
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
- * @url                 http://forum.websitebaker.org/index.php/topic,28496.0.html
  * @url                 https://github.com/WebsiteBaker-modules/mpform
- * @url                 https://forum.wbce.org/viewtopic.php?id=661
  * @license             GNU General Public License
  * @platform            2.8.x
  * @requirements        php >= 5.3
