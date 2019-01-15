@@ -6,9 +6,9 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.24
+ * @version             1.3.25
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
- * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
+ * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
  * @license             GNU General Public License
  * @platform            2.8.x
@@ -835,7 +835,7 @@ if (!function_exists('eval_form')) {
                                                  = $filename;
                                             }
                                             $curr_field
-                                                = "'"
+                                                .= "'"
                                                 . $upload_filename
                                                 . "'";
                                             $fs
@@ -879,6 +879,8 @@ if (!function_exists('eval_form')) {
                                         'files' => $tmp_files_to_attach,
                                         'filenames' => $tmp_filenames
                                     );
+                                $curr_field = str_replace("''", ",", $curr_field);
+
                                 $html_data_user .= $tmp_html_user;
                                 $html_data_site .= $tmp_html_site;
                                 $files_to_attach = array_merge($files_to_attach, $tmp_files_to_attach);

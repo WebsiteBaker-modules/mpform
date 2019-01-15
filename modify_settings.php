@@ -6,9 +6,9 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.24
+ * @version             1.3.25
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
- * @copyright           (c) 2009 - 2018, Website Baker Org. e.V.
+ * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
  * @license             GNU General Public License
  * @platform            2.8.x
@@ -23,6 +23,11 @@ unset($_GET['section_id']);
 // manually include the config.php file (defines the required constants)
 require('../../config.php');
 
+// $admin_header = false;
+// Tells script to update when this page was last updated
+$update_when_modified = false;
+// show the info banner
+$print_info_banner = true;
 // Include WB admin wrapper script
 require(WB_PATH.'/modules/admin.php');
 
@@ -37,11 +42,6 @@ $mod_dir = basename(dirname(__FILE__));
 
 // include the module language file depending on the backend language of the current user
 if (!@include(get_module_language_file($mod_dir))) return;
-
-//START HEADER HERE
-require_once(WB_PATH.'/modules/'.$mod_dir.'/functions.php');
-module_header_footer($page_id, $mod_dir);
-//END HEADER HERE
 
 // Get header and footer
 $query_content = $database->query(
