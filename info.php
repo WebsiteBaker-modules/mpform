@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.25
+ * @version             1.3.26
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -20,7 +20,7 @@
 $module_directory   = 'mpform';
 $module_name        = 'mpForm';
 $module_function    = 'page';
-$module_version     = '1.3.25';
+$module_version     = '1.3.26';
 $module_platform    = '2.8.x';
 $module_status      = 'stable';
 $module_author      = 'Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others';

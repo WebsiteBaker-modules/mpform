@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.25
+ * @version             1.3.26
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -872,14 +872,15 @@ if (!function_exists('eval_form')) {
                                 }
                             }
                             if($file_counter>0){
+                                $curr_field = str_replace("''", ",", $curr_field);
                                 $_SESSION['mpf']['datafield'.$field_id]
                                     = array(
                                         'user' => $tmp_html_user,
                                         'site' => $tmp_html_site,
                                         'files' => $tmp_files_to_attach,
-                                        'filenames' => $tmp_filenames
+                                        'filenames' => $tmp_filenames,
+                                        'field' => $curr_field
                                     );
-                                $curr_field = str_replace("''", ",", $curr_field);
 
                                 $html_data_user .= $tmp_html_user;
                                 $html_data_site .= $tmp_html_site;
@@ -891,6 +892,8 @@ if (!function_exists('eval_form')) {
                                 $html_data_user .= $_SESSION['mpf']['datafield'.$field_id]['user'];
                             if(isset($_SESSION['mpf']['datafield'.$field_id]['site']))
                                 $html_data_site .= $_SESSION['mpf']['datafield'.$field_id]['site'];
+                            if(isset($_SESSION['mpf']['datafield'.$field_id]['field']))
+                                $curr_field .= $_SESSION['mpf']['datafield'.$field_id]['field'];
                             $files_to_attach = array_merge($files_to_attach, $tmp_files_to_attach);
                             if ( ($field['required']==1)
                                  && ( (!isset($_SESSION['mpf']['datafield'.$field_id]['user']))

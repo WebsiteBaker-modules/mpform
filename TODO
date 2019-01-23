@@ -3,6 +3,8 @@
  * todo list for upcoming releases:
  * ================================
  *
+ * - add a checkbox for file upload to control if multiple files may be selected
+ *
  * - make workflow more flexible. Right now, saving results in various tables
  *   and sending emails happens in a fixed order. Moving these steps around
  *   like it is possible to drag&drop fields would be nice, but it needs a

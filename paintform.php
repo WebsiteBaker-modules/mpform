@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.25
+ * @version             1.3.26
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -44,7 +44,8 @@ if (!function_exists('make_option')) {
             $option = '</optgroup>';
         } else {
             if (in_array($h, $values) or ($isnew and $def > 0)) {
-                $option = '<option selected="selected" value="'.$vals[0].'">'.$vals[1].'</option>';
+                $option = '<option selected="selected"'
+                        . ' value="'.$vals[0].'">'.$vals[1].'</option>';
             } else {
                 $option = '<option value="'.$vals[0].'">'.$vals[1].'</option>';
             }
@@ -63,7 +64,8 @@ if (!function_exists('make_checkbox')) {
         $value,
         $sErrClass,
         $isnew,
-        $value_option_separator
+        $value_option_separator,
+        $required
     ) {
         $def = strpos($option, MPFORM_IS_DEFAULT);
         ($def > 0) ? $h = substr($option, 0, $def) : $h = $option;
@@ -87,7 +89,8 @@ if (!function_exists('make_checkbox')) {
                . ' id="'.$label_id.'"'
                . ' name="field'.$field_id.'['.$idx.']"'
                . ' value="'.$v.'"'
-               . ' checked="checked" />'
+               . ' checked="checked"'
+               . $required.' />'
                . '<label for="'.$label_id.'"'
                . 'class="'.$sErrClass.'checkbox_label">'
                . $vals[1]
@@ -98,7 +101,8 @@ if (!function_exists('make_checkbox')) {
             . ' type="checkbox"'
             . ' id="'.$label_id.'"'
             . ' name="field'.$field_id.'['.$idx.']"'
-            . ' value="'.$v.'" />'
+            . ' value="'.$v.'"'
+            . $required.' />'
             . '<label for="'.$label_id.'"'
             . ' class="'.$sErrClass.'checkbox_label">'
             . $vals[1]
@@ -118,7 +122,8 @@ if (!function_exists('make_radio')) {
         $value,
         $sErrClass,
         $isnew,
-        $value_option_separator
+        $value_option_separator,
+        $required
     ) {
         $def = strpos($option, MPFORM_IS_DEFAULT);
         ($def > 0) ? $h = substr($option, 0, $def) : $h = $option;
@@ -142,7 +147,8 @@ if (!function_exists('make_radio')) {
             . ' id="'.$label_id.'"'
             . ' name="field'.$field_id.'"'
             . ' value="'.$v.'"'
-            . ' checked="checked" />'
+            . ' checked="checked"'
+            . $required.' />'
             . '<label'
             . ' for="'.$label_id.'"'
             . ' class="'.$sErrClass.'radio_label">'
@@ -154,7 +160,8 @@ if (!function_exists('make_radio')) {
             . ' type="radio"'
             . ' id="'.$label_id.'"'
             . ' name="field'.$field_id.'"'
-            . ' value="'.$v.'" />'
+            . ' value="'.$v.'"'
+            . $required.' />'
             . '<label'
             . ' for="'.$label_id.'" '
             . 'class="'.$sErrClass.'radio_label">'
@@ -437,12 +444,14 @@ if (!function_exists('paint_form')) {
                 $aReplacements['{TITLE}'] = $field_title;
 
                 // mark required fields:
+                $required='';
                 $aReplacements['{REQUIRED}'] = '';
                 if ($field['required'] == 1) {
                     $aReplacements['{REQUIRED}']
                         = '<span class="'.MPFORM_CLASS_PREFIX
                         .'required required">*</span>';
                     $classes .= ' '.MPFORM_CLASS_PREFIX.'required';
+                    $required = ' required="required"';
                 }
 
                 // mark read only fields:
@@ -451,6 +460,7 @@ if (!function_exists('paint_form')) {
                     $readonly = ' readonly="readonly"';
                     $classes .= ' '.MPFORM_CLASS_PREFIX.'readonly';
                 }
+                $readonly .= $required;
 
                 $aReplacements['{HELP}'] = '';
                 $aReplacements['{HELPTXT}'] = '';
@@ -588,7 +598,8 @@ if (!function_exists('paint_form')) {
                             . ' multiple="multiple"'
                             . ' id="field'.$iFID.'" '.$sMaxLength
                             . ' value="'.$sValue.'"'
-                            . ' class="'.$field_classes.' '.$sErrClass.'text" />'
+                            . ' class="'.$field_classes.' '.$sErrClass.'text" '
+                            . $readonly.'/>'
                             . (isset($_SESSION['mpf']['datafield'.$iFID]['filenames'])?
                                 ($_SESSION['mpf']['datafield'.$iFID]['filenames']):'');
                         $first_MAX = false;
@@ -659,6 +670,7 @@ if (!function_exists('paint_form')) {
                                  . ' name="field'.$iFID.'[]"'
                                  . ' id="field'.$iFID.'" '
                                  . $extras
+                                 . $readonly
                                  . ' class="'.$field_classes.' '.$sErrClass.'select">'
                                  . implode($options)
                                  . '</select>';
@@ -689,6 +701,7 @@ if (!function_exists('paint_form')) {
                         }
                         $aReplacements['{FIELD}']
                             = '<select'
+                            . $readonly
                             . ' name="field'.$iFID.'[]"'
                             . ' id="field'.$iFID.'"'
                             . ' class="'.$field_classes.' '.$sErrClass.'select">';
@@ -741,6 +754,7 @@ if (!function_exists('paint_form')) {
                     case 'checkbox':
                         $options = explode(',', $value);
                         $mpform_code = $enum_start;
+                        if(count($options)>1) $readonly="";
                         foreach ($options as $idx => $option){
                             make_checkbox(
                                 $option,
@@ -754,7 +768,8 @@ if (!function_exists('paint_form')) {
                                 ),
                                 $field_classes." ".$sErrClass,
                                 $isnew,
-                                $value_option_separator
+                                $value_option_separator,
+                                $readonly
                             );
                             $options[$idx]=$option;
                         }
@@ -783,7 +798,8 @@ if (!function_exists('paint_form')) {
                                 ),
                                 $field_classes." ".$sErrClass,
                                 $isnew,
-                                $value_option_separator
+                                $value_option_separator,
+                                $readonly
                             );
                             $options[$idx]=$option;
                         }

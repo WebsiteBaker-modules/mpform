@@ -5,9 +5,13 @@ MODULE VERSION HISTORY
 ======================
 
 ------------------------------------------------------------------------------------------------------------------------
+        *** 1.3.26 (Martin Hecht: 23-Jan-2019) ***
+        put required attribute into required input fields (thanks to dbs)
+        write file names correctly to results table when correcting an upload error (thanks again to hansi)
+
         *** 1.3.25 (Martin Hecht: 15-Jan-2019) ***
         replace module_header_footer by core function of admin class
-        support writing multiple file names to results table
+        support writing multiple file names per field to results table (thanks to hansi)
 
         *** 1.3.24 (Martin Hecht: 27-Dec-2018) ***
         updated pear and its http_upload class (thanks to dbs)
