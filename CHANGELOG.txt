@@ -5,6 +5,9 @@ MODULE VERSION HISTORY
 ======================
 
 ------------------------------------------------------------------------------------------------------------------------
+        *** 1.3.27 (Martin Hecht: 31-Jan-2019) ***
+        support new phpmailer class in WBCE
+
         *** 1.3.26 (Martin Hecht: 23-Jan-2019) ***
         put required attribute into required input fields (thanks to dbs)
         write file names correctly to results table when correcting an upload error (thanks again to hansi)

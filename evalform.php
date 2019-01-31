@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.26
+ * @version             1.3.27
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -100,6 +100,10 @@ if (!function_exists('mpform_upload_one_file')) {
 if (!function_exists('NewWbMailer')) {
     function NewWbMailer()
     {
+        if (class_exists('Mailer', true)) {
+                // for WBCE > 1.3.3 (?)
+                return new Mailer();
+        }
         if (!class_exists('WbMailer', false)) {
             // its wb < 2.8.3 sp4(?)
             if (!class_exists('wbmailer', false)) {
