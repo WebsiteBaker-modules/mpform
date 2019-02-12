@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.27
+ * @version             1.3.28
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -88,6 +88,7 @@ $max_submissions = 50;
 $stored_submissions = 1000;
 $max_file_size_kb = 1024;
 $attach_file = 0;
+$multiple_files = 1;
 $upload_file_mask = STRING_FILE_MODE;
 $upload_dir_mask = STRING_DIR_MODE;
 $upload_only_exts = "jpg,gif,png,tif,bmp,pdf";
@@ -137,6 +138,7 @@ $SQL = "INSERT INTO `".TP_MPFORM."settings`"
      . " `upload_files_folder` = '".$upload_files_folder."', "
      . " `upload_only_exts` = '".$upload_only_exts."', "
      . " `is_following` = '".$is_following."', "
-     . " `tbl_suffix` = '".$section_id."'";
+     . " `tbl_suffix` = '".$section_id."', "
+     . " `multiple_files` = '".$multiple_files."'";
 
 $database->query($SQL);

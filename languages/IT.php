@@ -7,7 +7,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.27
+ * @version             1.3.28
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -244,6 +244,7 @@ $LANG['backend_adv'] = array(
     'TXT_UPLOAD_DIRMASK'          => "Le autorizzazioni per directory di upload",
     'TXT_ATTACH_FILE'             => "Allega file caricato a e-mail",
     'TXT_MAX_FILE_SIZE_KB'        => "Dimensione massima file caricati Kb",
+    'TXT_MULTIPLE_FILES'          => "Permetti pi&uacute; file per campo",
     'date_format'                 => '%m/%d/%Y',
     'help_extensions'             => 'le estensioni dei file virgola separati, ad es. pdf, xls',
     'help_filemask'               => 'permessi per file inserito, per esempio. 0640 ',

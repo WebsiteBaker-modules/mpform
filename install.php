@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.27
+ * @version             1.3.28
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -91,6 +91,7 @@ require_once(dirname(__FILE__).'/constants.php');
         . " `value_option_separator` VARCHAR(10) NOT NULL DEFAULT '',"
         . " `tbl_suffix` VARCHAR(100) DEFAULT '' ,"        // optional suffix for the results table
         . " `enum_start` VARCHAR(1) DEFAULT '' ,"          // optional enumeration for radio and checkbox
+        . " `multiple_files` BOOL NOT NULL DEFAULT '1' ,"
         . " PRIMARY KEY ( `section_id` ) "
         . " )";
     $database->query($mod_mpform);

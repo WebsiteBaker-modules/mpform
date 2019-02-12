@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.27
+ * @version             1.3.28
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -426,6 +426,7 @@ if (!function_exists('eval_form')) {
             $use_captcha =            $fetch_settings['use_captcha'];
             $upload_files_folder =    $fetch_settings['upload_files_folder'];
             $attach_file =            $fetch_settings['attach_file'];
+            $multiple_files =         $fetch_settings['multiple_files'];
             $upload_only_exts =       $fetch_settings['upload_only_exts'];
             $upload_file_mask =       $fetch_settings['upload_file_mask'];
             $max_file_size =          $fetch_settings['max_file_size_kb'] * 1024;
@@ -770,9 +771,15 @@ if (!function_exists('eval_form')) {
                         // locally we use a copy of max_file_size
                         $tmp_max_file_size = $max_file_size;
                         $file_counter=0;
-                        if ((($field['required'] & 4) == 0) // skip disabled fields
-                            && (count($_FILES['field'.$field_id]['name'])!=0)){
-                            foreach($_FILES['field'.$field_id]['name'] as $f => $name) {
+                        if (($field['required'] & 4) == 0){ // skip disabled fields
+                            $tmp_files = array();
+                            // convert single value upload to array:
+                            if (isset($_FILES['field'.$field_id]) && !is_array($_FILES['field'.$field_id]['name']))
+                                $tmp_files = array($_FILES['field'.$field_id]['name']);
+                            if (isset($_FILES['field'.$field_id]) && is_array($_FILES['field'.$field_id]['name']))
+                                $tmp_files = $_FILES['field'.$field_id]['name'];
+                            if (count($tmp_files)){
+                            foreach($tmp_files as $f => $name) {
                                 if($name != ""){
                                     if($tmp_max_file_size<=0){
                                         $err_txt[$field_id]
@@ -874,7 +881,8 @@ if (!function_exists('eval_form')) {
                                         }
                                     }
                                 }
-                            }
+                                if((!$multiple_files)&&($file_counter>0)) break;
+                            }}
                             if($file_counter>0){
                                 $curr_field = str_replace("''", ",", $curr_field);
                                 $_SESSION['mpf']['datafield'.$field_id]

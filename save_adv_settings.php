@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.27
+ * @version             1.3.28
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -93,6 +93,7 @@ $update_keys=array(
     'upload_file_mask',
     'attach_file',
     'max_file_size_kb',
+    'multiple_files',
     'upload_only_exts'
 );
 foreach($update_keys as $key) {

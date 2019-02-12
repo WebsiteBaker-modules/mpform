@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.27
+ * @version             1.3.28
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -43,6 +43,7 @@ if(!defined('MPFORM_CLASS_PREFIX')){
     define('MPFORM_CLASS_PREFIX', 'mpform_');
 }
 
+// be sure to have a slash at the end of the following constant:
 if(!defined('MPFORM_ICONS')){
     define('MPFORM_ICONS', WB_URL.'/modules/mpform/images/');
 }

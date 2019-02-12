@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.27
+ * @version             1.3.28
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -216,7 +216,7 @@ if (!function_exists('remove_comments')) {
 if (!function_exists('paint_form')) {
     function paint_form( $iSID /*section_id*/, $aMissing = array(),
                          $aErrTxt = array(), $isnew = true) {
-        global $database, $MENU, $TEXT, $LANG, $admin;
+        global $database, $MENU, $TEXT, $LANG, $admin, $wb;
         $mpform_code="";
 
         if($aMissing != array()) {
@@ -252,6 +252,7 @@ if (!function_exists('paint_form')) {
             $enum_start             = $aSettings['enum_start'];
             $success_page           = $aSettings['success_page'];
             $upload_only_exts       = $aSettings['upload_only_exts'];
+            $multiple_files         = $aSettings['multiple_files'];
         } else {
             exit($TEXT['UNDER_CONSTRUCTION']);
         }
@@ -332,6 +333,8 @@ if (!function_exists('paint_form')) {
         }
 
         $sActionAttr = htmlspecialchars(strip_tags($_SERVER['SCRIPT_NAME']));
+        if($sActionAttr == "") $sActionAttr = $wb->page_link($wb->page['link']);
+
         $sValueAttr  = $_SESSION['submission_id_'.$iSID];
 
         if(defined('MPFORM_DIV_WRAPPER')){
@@ -591,15 +594,17 @@ if (!function_exists('paint_form')) {
                                 = '<span class="'.MPFORM_CLASS_PREFIX.'small">&nbsp;<br/>&nbsp;<br/></span>';
                             $bFileSizeHintShown=true;
                         }
+                        $sMultiple = $multiple_files ? ' multiple="multiple"' : '';
                         $aReplacements['{FIELD}']
                             .= '<input'
                             . ' type="file"'
                             . '  name="field'.$iFID.'[]"'
-                            . ' multiple="multiple"'
+                            . $sMultiple
                             . ' id="field'.$iFID.'" '.$sMaxLength
                             . ' value="'.$sValue.'"'
                             . ' class="'.$field_classes.' '.$sErrClass.'text" '
-                            . $readonly.'/>'
+                            . $readonly
+                            . '/>'
                             . (isset($_SESSION['mpf']['datafield'.$iFID]['filenames'])?
                                 ($_SESSION['mpf']['datafield'.$iFID]['filenames']):'');
                         $first_MAX = false;
@@ -847,13 +852,14 @@ if (!function_exists('paint_form')) {
                             . $maxlength
                             . ' value="'
                             . $sValue
-                            . '" class="'.$field_classes.' '.$sErrClass.'date" />'
+                            . '" class="'.$field_classes.' '.$sErrClass.'date"  '
+                            . "$readonly />"
                             . '</td>'
                             . PHP_EOL
                             .'<td>'
                             .PHP_EOL
                             .'<img src="'.MPFORM_ICONS
-                            .'/cal.gif"'
+                            .'cal.gif"'
                             . ' id="field'
                             .$iFID.'_trigger"'
                             . ' class="'.MPFORM_CLASS_PREFIX.'date_img"'
@@ -885,7 +891,7 @@ if (!function_exists('paint_form')) {
                         .'\'); return false;"'
                         . ' title="'.$MENU['HELP'].'"><img'
                         . ' class="mpform_img_help"'
-                        . ' src="'.MPFORM_ICONS.'/help.gif"'
+                        . ' src="'.MPFORM_ICONS.'help.gif"'
                         . ' alt="'.$MENU['HELP']
                         .'" /></a>';
                     $aReplacements['{HELP}'] .= $sHelpLink;

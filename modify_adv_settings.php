@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.27
+ * @version             1.3.28
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -144,6 +144,11 @@ $tpl->set_var(
         'attach_file_false_checked' =>(($settings['attach_file']==true)
                                         ? '' : 'checked="checked"'),
         'des_max_file_size_kb'      => '',
+        'des_multiple_files'           => '',
+        'multiple_files_true_checked'  => (($settings['multiple_files']==true)
+                                        ? 'checked="checked"' : ''),
+        'multiple_files_false_checked' =>(($settings['multiple_files']==true)
+                                        ? '' : 'checked="checked"'),
         'TXT_ENABLED'               => $TEXT['ENABLED'],
         'TXT_DISABLED'              => $TEXT['DISABLED'],
         'TXT_SAVE'                  => $TEXT['SAVE'],

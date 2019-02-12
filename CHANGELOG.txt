@@ -5,6 +5,13 @@ MODULE VERSION HISTORY
 ======================
 
 ------------------------------------------------------------------------------------------------------------------------
+        *** 1.3.28 (Martin Hecht: 08-Feb-2019) ***
+        for fraggy: put table captions above the tables in the settings table (thanks to ice)
+        add required option to required date fields (thanks to jacobi22)
+        add an advanced option if upload of multiple files per field is allowed (feature request by Hansi)
+        correct URLs that use icons (thanks to jacobi22)
+        add a fallback for SCRIPT_NAME in case this is not set
+
         *** 1.3.27 (Martin Hecht: 31-Jan-2019) ***
         support new phpmailer class in WBCE
 

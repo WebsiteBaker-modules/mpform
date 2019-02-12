@@ -2,7 +2,7 @@
 <export_section>
         <module>
                 <name>mpform</name>
-                <version>1.3.27</version>
+                <version>1.3.28</version>
         </module>
         <export_section_table>
                 <tablename>mod_mpform_fields</tablename>
@@ -194,6 +194,7 @@ Date: {DATE}]]></fieldv></export_section_field>
                         <export_section_field><fieldn>value_option_separator</fieldn><fieldv><![CDATA[]]></fieldv></export_section_field>
                         <export_section_field><fieldn>tbl_suffix</fieldn><fieldv><![CDATA[56]]></fieldv></export_section_field>
                         <export_section_field><fieldn>enum_start</fieldn><fieldv><![CDATA[]]></fieldv></export_section_field>
+                        <export_section_field><fieldn>multiple_files</fieldn><fieldv><![CDATA[1]]></fieldv></export_section_field>
                 </export_section_row>
         </export_section_table>
 </export_section>

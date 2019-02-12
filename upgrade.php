@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.27
+ * @version             1.3.28
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -77,7 +77,7 @@ if (!isset($settings['email_text'])){
 
 if (!isset($settings['enum_start'])){
     $qs = "ALTER TABLE `".TP_MPFORM."settings`"
-        . "  ADD `enum_start` VARCHAR( 1 ) NOT NULL";
+        . "  ADD `enum_start` VARCHAR( 1 ) NOT NULL AFTER `tbl_suffix`";
     $database->query($qs);
     if($database->is_error()) {
         echo $database->get_error().'<br />';
@@ -134,6 +134,21 @@ if (!isset($settings['success_email_css'])){
         echo "Added new field `success_email_css` successfully<br />";
     }
 }
+
+
+// new in 1.3.28
+
+if (!isset($settings['multiple_files'])){
+    $qs = "ALTER TABLE `".TP_MPFORM."settings`"
+        . "  ADD `multiple_files` BOOL NOT NULL DEFAULT '1' AFTER `enum_start`";
+    $database->query($qs);
+    if($database->is_error()) {
+        echo $database->get_error().'<br />';
+    } else {
+        echo "Added new field `multiple_files` successfully<br />";
+    }
+}
+
 
 
 // removing fields never ever used:

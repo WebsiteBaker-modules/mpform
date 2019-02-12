@@ -88,6 +88,15 @@
             <td><input name="max_file_size_kb" class="setting_value_text" type="text" title="{des_max_file_size_kb}" value="{max_file_size_kb}" /></td>
         </tr>
         <tr>
+            <th>{TXT_MULTIPLE_FILES}:</th>
+            <td>
+                <input type="radio" name="multiple_files" id="multiple_files_true" value="1" {multiple_files_true_checked} title="{des_multiple_files}" />
+                <label for="multiple_files_true">{TXT_ENABLED}</label>
+                <input type="radio" name="multiple_files" id="multiple_files_false" value="0" {multiple_files_false_checked} title="{des_multiple_files}" />
+                <label for="multiple_files_false">{TXT_DISABLED}</label>
+            </td>
+        </tr>
+        <tr>
             <th>{TXT_UPLOAD_ONLY_EXTS}:</th>
             <td><input name="upload_only_exts" class="setting_value_text" type="text" title="{help_extensions}" value="{upload_only_exts}" />
             <br />
