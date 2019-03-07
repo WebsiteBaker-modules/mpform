@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.28
+ * @version             1.3.29
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -417,6 +417,12 @@ if (!function_exists('paint_form')) {
 
                 // skip conditional blocks as well (they are not ready yet...)
                 if ($field['type'] == 'conditional') continue;
+
+                if (!isset($_SESSION['mpf']['field'.$iFID])
+                    && isset($_GET['field'.$iFID])){
+                        $_SESSION['mpf']['field'.$iFID] =
+                            htmlspecialchars($admin->get_get('field'.$iFID));
+                }
 
 
                 $aReplacements = array();
