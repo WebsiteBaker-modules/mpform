@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.29
+ * @version             1.3.30
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -421,9 +421,15 @@ if (!function_exists('paint_form')) {
                 if (!isset($_SESSION['mpf']['field'.$iFID])
                     && isset($_GET['field'.$iFID])){
                         $_SESSION['mpf']['field'.$iFID] =
-                            htmlspecialchars($admin->get_get('field'.$iFID));
-                }
-
+                            str_replace(
+                                array("[[", "]]"),
+                                array("&#91;&#91;", "&#93;&#93;"),
+                                htmlspecialchars(
+                                    stripslashes($admin->get_get('field'.$iFID)),
+                                    ENT_QUOTES
+                                )
+                            );
+                    }
 
                 $aReplacements = array();
 
