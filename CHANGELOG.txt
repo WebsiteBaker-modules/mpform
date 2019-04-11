@@ -6,8 +6,14 @@ MODULE VERSION HISTORY
 
 ------------------------------------------------------------------------------------------------------------------------
 
+        *** 1.3.31 (Martin Hecht: 11-Apr-2019) ***
+        introduce MPFORM_REQUIRED_ATTRIBUTE to control if and how required attributes are delivered
+        introduce private_function_for_field for fine grained input evaluation
+        correction to the captcha patch from 2012
+        suppress other forms on the same page when evaluating a submitted one
+
         *** 1.3.30 (Martin Hecht: 14-Mar-2019) ***
-        secuirty fix for 1.3.29: prevent from injections via url get parameter
+        security fix for 1.3.29: prevent from injections via url get parameter
 
         *** 1.3.29 (Martin Hecht: 07-Mar-2019) ***
         allow to pre-fill fields via url get parameters

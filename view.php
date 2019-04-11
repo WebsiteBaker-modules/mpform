@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.30
+ * @version             1.3.31
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -30,6 +30,9 @@ require_once(dirname(__FILE__).'/constants.php');
 
 // include the module language file depending on the backend language of the current user
 if (!include(get_module_language_file($mod_dir))) return;
+
+if(isset($_POST['section_id']) && intval($_POST['section_id']) != $section_id) return;
+
 
 // check if frontend.css file needs to be included into the <body></body> of view.php
 if((!function_exists('register_frontend_modfiles')
@@ -63,7 +66,7 @@ if(!defined( 'SEC_ANCHOR' ) || SEC_ANCHOR == '' || SEC_ANCHOR == 'none'){
 }
 
 // Work-out if the form has been submitted or not
-if ($_POST != array()) {
+if ($_POST != array()){
     // some form has been submitted:
     include_once(WB_PATH .'/modules/mpform/evalform.php');
     eval_form($section_id);

@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.30
+ * @version             1.3.31
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -362,6 +362,10 @@ if (!function_exists('paint_form')) {
             . ' type="hidden"'
             . ' name="submission_id"'
             . ' value="'. $sValueAttr .'" />'.PHP_EOL;
+        echo '<input '
+            . ' type="hidden"'
+            . ' name="section_id"'
+            . ' value="'. $iSID .'" />'.PHP_EOL;
 
         if(ENABLED_ASP) {
            echo draw_asp_honeypots($iSID);
@@ -466,7 +470,7 @@ if (!function_exists('paint_form')) {
                         = '<span class="'.MPFORM_CLASS_PREFIX
                         .'required required">*</span>';
                     $classes .= ' '.MPFORM_CLASS_PREFIX.'required';
-                    $required = ' required="required"';
+                    $required = MPFORM_REQUIRED_ATTRIBUTE;
                 }
 
                 // mark read only fields:

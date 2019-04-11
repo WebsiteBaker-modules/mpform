@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.30
+ * @version             1.3.31
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -163,6 +163,10 @@ if(!defined('MPFORM_SUBMIT_BUTTON')){
     . ' value="{SUBMIT_TEXT}" />');
 }
 
+if(!defined('MPFORM_REQUIRED_ATTRIBUTE')){
+    define('MPFORM_REQUIRED_ATTRIBUTE',
+      ' required="required"');
+}
 
 // MPForm uses section anchors, but if they are disabled in the WB framework,
 // it adds its own anchor. If you even want to suppress this, uncomment the following

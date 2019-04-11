@@ -85,13 +85,15 @@
     <dt>function private_function_before_new_form($section_id)</dt>
     <dd>Will be called before a form will be assembled. Here you can, for instance, set the current date
       in a field.</dd>
+    <dt>function private_function_for_field($field_id, $post_field)</dt>
+    <dd>Is called for each field being evaluated. If the function returns an empty string, this is
+      treated as success, whereas a non-emptry string means an error message for the current field.</dd>
     <dt>function private_function_before_email($section_id, &amp;$html_data_user, &amp;$html_data_site)</dt>
     <dd>Will be called after a form has been submitted successfully, but before it will be saved or sent
       by email. Here you can, change the message text.<br />
       There are two versions, one for the site owner and one for the user who has submitted the form.
     </dd>
-    <dt>private_function_after_email($section_id, &amp;$html_data_site, &amp;$mpform_fields)
-</dt>
+    <dt>private_function_after_email($section_id, &amp;$html_data_site, &amp;$mpform_fields)</dt>
     <dd>Will be called after a form has been submitted and email has been sent successfully, but before
     data is saved to the database. If you need to postprocess the submitted values for later use and
     you want to keep the original format in the email, this is the place to do this transformation.<br />

@@ -92,12 +92,15 @@
     <dt>function private_function_before_new_form($section_id)</dt>
     <dd>Wird aufgerufen, bevor ein Formular zusammengebaut wird. Hier kann man z.B. Feldinhalte
       je nach zuvor besuchter Seite vorbelegen.</dd>
+    <dt>function private_function_for_field($field_id, $post_field)</dt>
+    <dd>Wird aufgerufen, wenn ein Feld ausgewertet wird. Gibt die Funktion einen Leerstring zur&uuml;ck,
+      wird dies als fehlerfrei gewertet, w&auml;hrend ein nicht-leerer String eine Fehlermeldung f&uuml;r
+      das aktuelle Feld bedeutet.</dd>
     <dt>function private_function_before_email($section_id, &amp;$html_data_user, &amp;$html_data_site)</dt>
     <dd>Wird aufgerufen, nachdem ein Formular erfolgreich ausgef&uuml;llt wurde, aber bevor es
       verschickt und gespeichert wird. Hier k&ouml;nnte man also z.B. Benachrichtigungstexte anpassen.
       Dabei gibt es den Benachrichtigungstext an den Sitebetreiber und denjenigen an den Benutzer.</dd>
-    <dt>private_function_after_email($section_id, &amp;$html_data_site, &amp;$mpform_fields)
-</dt>
+    <dt>private_function_after_email($section_id, &amp;$html_data_site, &amp;$mpform_fields)</dt>
     <dd>Wird aufgerufen, nachdem ein Formular erfolgreich ausgef&uuml;llt und verschickt wurde, aber bevor es
       in der Datenbank gespeichert wird. Eventuell soll der Inhalt in der Datenbank in einem anderen
       Format abgelegt werden, so dass es leichter zu verarbeiten ist, aber in der Benachrichtigungsmail
@@ -115,7 +118,8 @@
 private_function_before_new_form noch nicht. Bei allen anderen: FALSE dient zum Abbrechen des
  regul&auml;ren Programmflusses, bei TRUE geht die Ausf&uuml;hrung weiter.</p>
 <p>Auf der n&auml;chsten Seite gibt es ein Beispiel aus der Praxis: die Programmierung einer
-   Formularschleife.</p>          </div>
+   Formularschleife.</p>
+</div>
 
 
 <!-- ************ Footer -->

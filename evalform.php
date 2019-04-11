@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.30
+ * @version             1.3.31
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -469,11 +469,10 @@ if (!function_exists('eval_form')) {
         // Captcha
         if($use_captcha AND (!(defined('MPFORM_SKIP_CAPTCHA')&&(MPFORM_SKIP_CAPTCHA))) ) {
             if(isset($_POST['captcha']) AND $_POST['captcha'] != ''){
-                // Check for a mismatch patch from http://www.websitebaker2.org/forum/index.php/topic,23986.msg167490.html#msg167490
-                if((!isset($_SESSION['captcha'.$section_id])
-                    OR $_POST['captcha'] != $_SESSION['captcha'.$section_id])
-                    && (!isset($_SESSION['captcha'])
-                    OR $_POST['captcha'] != $_SESSION['captcha'])) {
+                if((isset($_SESSION['captcha'.$section_id])
+                    AND ($_POST['captcha'] != $_SESSION['captcha'.$section_id]))
+                    OR (!isset($_SESSION['captcha'.$section_id])
+                    AND ($_POST['captcha'] != $_SESSION['captcha']))) {
                         $err_txt['captcha'.$section_id]
                             = $LANG['frontend']['INCORRECT_CAPTCHA'];
                         $fer[] = 'captcha'.$section_id;
@@ -504,6 +503,7 @@ if (!function_exists('eval_form')) {
                 // Loop through fields and add to message body
                 $field_id = $field['field_id'];
                 $curr_field = '';
+                $post_field = '';
                 if($field['type'] != '') {
                     if ((!empty($_POST['field'.$field_id]))
                     or  ($admin->get_post('field'.$field_id) == "0")) { // added Apr 2009
@@ -947,6 +947,18 @@ if (!function_exists('eval_form')) {
                     }
                 }
                 $mpform_fields["$field_id"] = $curr_field;
+                // execute private function in private.php, if available
+                if (function_exists('private_function_for_field')) {
+                    $field_errmsg
+                        = private_function_for_field(
+                            $field_id,
+                            $post_field
+                        );
+                    if(!empty($field_errmsg)){
+                        $fer[]=$field_id;
+                        $err_txt[$field_id] = $field_errmsg;
+                    }
+                }
             } // end of field loop
         }
 
@@ -969,7 +981,7 @@ if (!function_exists('eval_form')) {
         }
         $mpform_fields = $tmp_mpform_fields;
         // Check if the user forgot to enter values into all the required fields
-        if($fer != array()) {
+        if(!empty($fer)) {
             // paint form again:
             include_once(WB_PATH .'/modules/mpform/paintform.php');
             paint_form($section_id, $fer, $err_txt, false);

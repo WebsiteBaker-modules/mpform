@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.30
+ * @version             1.3.31
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -43,6 +43,24 @@ function private_function_before_new_form($section_id) {
 */
     return true;
 }
+
+
+function private_function_for_field(
+                            $field_id,
+                            $post_field
+                        ) {
+/*
+    // example how to use: for a specific section verify that the value is in the proper range
+    if ($field_id == 3269) {
+        if((intval($post_field)<0) or (intval($post_field)>10))
+            return "pleaseenter a value between 0 and 10";
+    }
+    // ... checks for other fields - this function is called separately for each field
+*/
+    return "";
+}
+
+
 
 function private_function_before_email(
                             $section_id,
@@ -143,3 +161,4 @@ function private_function_on_success($section_id) {
 */
     return true;
 }
+
