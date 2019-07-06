@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.31
+ * @version             1.3.32
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -464,15 +464,19 @@ if (!function_exists('eval_form')) {
         if(isset($_SESSION['html_data_site'.$iSID])) $html_data_site = $_SESSION['html_data_site'.$iSID];
 
         $format = DEFAULT_DATE_FORMAT. " " .DEFAULT_TIME_FORMAT;
-        $now = date($format);
+        $now = date($format, time()+DEFAULT_TIMEZONE);
 
         // Captcha
+        $captcha_value = "";
+        if(isset($_POST['captcha']) AND $_POST['captcha'] != '') $captcha_value = $_POST['captcha'];
+        if(isset($_POST['captcha'.$section_id]) AND $_POST['captcha'.$section_id] != '') $captcha_value = $_POST['captcha'.$section_id];
+
         if($use_captcha AND (!(defined('MPFORM_SKIP_CAPTCHA')&&(MPFORM_SKIP_CAPTCHA))) ) {
-            if(isset($_POST['captcha']) AND $_POST['captcha'] != ''){
+            if($captcha_value!=""){
                 if((isset($_SESSION['captcha'.$section_id])
-                    AND ($_POST['captcha'] != $_SESSION['captcha'.$section_id]))
+                    AND ($captcha_value != $_SESSION['captcha'.$section_id]))
                     OR (!isset($_SESSION['captcha'.$section_id])
-                    AND ($_POST['captcha'] != $_SESSION['captcha']))) {
+                    AND ($captcha_value != $_SESSION['captcha']))) {
                         $err_txt['captcha'.$section_id]
                             = $LANG['frontend']['INCORRECT_CAPTCHA'];
                         $fer[] = 'captcha'.$section_id;
@@ -1145,7 +1149,7 @@ if (!function_exists('eval_form')) {
                 if ($success==true) {
                     // Write submission to database
                     $us = $_SESSION['submission_id_'.$section_id];
-                    $submitted_when = time();
+                    $submitted_when = time()+DEFAULT_TIMEZONE;
                     $started_when = isset($_SESSION['started_when'])
                         ? $_SESSION['started_when']
                         : $submitted_when;

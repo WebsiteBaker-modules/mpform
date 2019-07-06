@@ -7,7 +7,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.31
+ * @version             1.3.32
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -27,6 +27,8 @@ $aJsonRespond['success'] = FALSE;
         $aJsonRespond['message'] = '"action" was not set';
         exit(json_encode($aJsonRespond));
     }
+
+
 
         /**
          *      A simple mini-validator function
@@ -88,6 +90,10 @@ $aJsonRespond['success'] = FALSE;
 
         require_once(WB_PATH.'/framework/class.admin.php');
         $admin = new admin('Modules', 'module_view', FALSE, FALSE);
+
+
+        require_once(dirname(dirname(__FILE__)).'/constants.php');
+
         if(!is_numeric($iRecordID)) {
             if(method_exists( $admin, 'checkIDKEY' ))
                $iRecordID = $admin->checkIDKEY($iRecordID,-1,'key',true);
@@ -139,14 +145,76 @@ $aJsonRespond['success'] = FALSE;
             // Check the Parameters
             if(isset($_POST['action']) && $_POST['action'] == 'delete')    {
 
-                $query = "DELETE FROM `".$sDbRecordTable."` WHERE `".$sDbColumn."` = '".$iRecordID."' LIMIT 1";
-                $database->query($query);
-                if($database->is_error())
-                {
-                    $aJsonRespond['message'] = 'db query failed: '.$database->get_error();
-                    exit(json_encode($aJsonRespond));
+                // special treatment in this case which is more complicated
+                if( $sDbRecordTable == TP_MPFORM."submissions"){
+                    $submission_id = $iRecordID;
+
+                    // find out section_id
+                    $res  = $database->query("SELECT "
+                            . "`section_id` FROM `".TP_MPFORM."submissions`"
+                            . " WHERE `submission_id` = '$submission_id'"
+                            );
+                    $rec = $res->fetchRow();
+                    $section_id = $rec['section_id'];
+
+                    // Delete row
+                    $database->query(
+                        "DELETE FROM ".TP_MPFORM."submissions"
+                            . " WHERE submission_id = '$submission_id'"
+                    );
+
+                    // Check if there is a db error, otherwise say successful
+                    if($database->is_error()) {
+                        $aJsonRespond['message'] = 'db query failed: '.$database->get_error();
+                        exit(json_encode($aJsonRespond));
+                    } else {
+
+
+                        // find results table
+                        $ts = $database->query("SELECT "
+                            . "`tbl_suffix` FROM `".TP_MPFORM."settings` "
+                            . "WHERE `section_id` = '".$section_id."'"
+                            );
+
+                        $setting = $ts->fetchRow();
+                        $suffix = $setting['tbl_suffix'];
+                        if ($suffix != "DISABLED"){
+
+                            $results = TP_MPFORM."results_" . $suffix;
+
+                            // Check whether results table contains submission_id
+                            $res = $database->query("SHOW COLUMNS"
+                                . " FROM `$results` "
+                                . " LIKE 'submission_id'"
+                                );
+                            if ($res->numRows() > 0 ) {
+                                $database->query(
+                                    "DELETE FROM `$results` "
+                                        . " WHERE submission_id = '$submission_id'"
+                                );
+                            }
+
+                            if($database->is_error()) {
+                                $aJsonRespond['message'] = 'db query failed: '.$database->get_error();
+                                exit(json_encode($aJsonRespond));
+                            } else {
+                                $aJsonRespond['message'] = 'Record deleted successfully ';
+                            }
+                        } else {
+                            $aJsonRespond['message'] = 'Record deleted successfully ';
+                        }
+                    }
+
                 } else {
-                    $aJsonRespond['message'] = 'Record deleted successfully ';
+                    $query = "DELETE FROM `".$sDbRecordTable."` WHERE `".$sDbColumn."` = '".$iRecordID."' LIMIT 1";
+                    $database->query($query);
+                    if($database->is_error())
+                    {
+                        $aJsonRespond['message'] = 'db query failed: '.$database->get_error();
+                        exit(json_encode($aJsonRespond));
+                    } else {
+                        $aJsonRespond['message'] = 'Record deleted successfully ';
+                    }
                 }
                 // Clean up ordering after deletion
                 require(WB_PATH.'/framework/class.order.php');

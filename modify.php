@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.31
+ * @version             1.3.32
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -269,7 +269,7 @@ if($query_submissions->numRows() > 0) {
                                             ? $admin->getIDKEY($field['submission_id'])
                                             : $field['submission_id'],
                 'field_submission_when'  => date(TIME_FORMAT.', '.DATE_FORMAT,
-                                                 $submission['submitted_when']),
+                                                 $submission['submitted_when']-DEFAULT_TIMEZONE+TIMEZONE),
             )
         );
         $tpl->parse('submission_loop', 'submission_block', true);

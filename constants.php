@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.31
+ * @version             1.3.32
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -16,10 +16,6 @@
  *
  **/
 /* This file defines constants. */
-// Must include code to stop this file being access directly
-if (!defined('WB_PATH'))  {
-    exit("Cannot access this file directly");
-}
 
 // obtain module directory
 $mod_dir = basename(dirname(__FILE__));
