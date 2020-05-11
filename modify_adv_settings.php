@@ -102,9 +102,7 @@ $settings['value_option_separator']=
 foreach($settings as $key => $value) {
     $tpl->set_var($key, $value);
 }
-$sCaptchaType = $database->get_one(
-    'SELECT `captcha_type` FROM `'.TABLE_PREFIX.'mod_captcha_control`'
-);
+$sCaptchaType = $settings['captcha_type'];
 $sImgSrc = '/include/captcha/captchas/'.$sCaptchaType.'.png';
 $sCaptchaImgSrc = (file_exists(WB_PATH.$sImgSrc)) ? WB_URL.$sImgSrc : '';
 
