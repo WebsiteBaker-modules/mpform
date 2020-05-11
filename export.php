@@ -153,7 +153,7 @@ if ($results && $row = $results->fetchRow()) {
             $sql = "SHOW COLUMNS FROM " . $row[0] . " LIKE 'section_id'";
             $results = $database->query($sql);
             if ($results && $exists = $results->fetchRow()) {
-                $sql2 = "SELECT * FROM " . $row[0] . " WHERE section_id = '$section_id'";
+                $sql2 = "SELECT * FROM `" . $row[0] . "` WHERE section_id = '$section_id'";
                 $results2 = $database->query($sql2);
                 $inside_tab = false;
                 while ($results2 && $row2 = $results2->fetchRow()) {
