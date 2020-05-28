@@ -3,6 +3,8 @@
  * todo list for upcoming releases:
  * ================================
  *
+ * - allow place holders for the field IDs also in the mail body
+ *
  * - make workflow more flexible. Right now, saving results in various tables
  *   and sending emails happens in a fixed order. Moving these steps around
  *   like it is possible to drag&drop fields would be nice, but it needs a

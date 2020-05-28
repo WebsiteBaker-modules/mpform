@@ -6,9 +6,9 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.32
+ * @version             1.3.33
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
- * @copyright           (c) 2009 - 2019, Website Baker Org. e.V.
+ * @copyright           (c) 2009 - 2020, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
  * @license             GNU General Public License
  * @platform            2.8.x
@@ -150,7 +150,7 @@ if ($results && $row = $results->fetchRow()) {
             if (strpos($row[0], TABLE_PREFIX.'mod_formx_submissions') === 0) continue;
             // skip submissions from mpform module:
             if (strpos($row[0], TP_MPFORM.'submissions') === 0) continue;
-            $sql = "SHOW COLUMNS FROM " . $row[0] . " LIKE 'section_id'";
+            $sql = "SHOW COLUMNS FROM `" . $row[0] . "` LIKE 'section_id'";
             $results = $database->query($sql);
             if ($results && $exists = $results->fetchRow()) {
                 $sql2 = "SELECT * FROM `" . $row[0] . "` WHERE section_id = '$section_id'";

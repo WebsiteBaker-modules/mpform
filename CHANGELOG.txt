@@ -5,6 +5,11 @@ MODULE VERSION HISTORY
 ======================
 
 ------------------------------------------------------------------------------------------------------------------------
+        *** 1.3.33 (Martin Hecht: 28-May-2020)
+        replace {FIELD1}... placeholders in email body
+        added backticks in row 154 (thanks to Bianka)
+        table mod_captcha_control no longer exists in wbce (thanks to Bianka)
+
         *** 1.3.32 (Martin Hecht: 06-Jul-2019) ***
         correctly display submission time in backend
         support new captcha form of wb 2.12.2

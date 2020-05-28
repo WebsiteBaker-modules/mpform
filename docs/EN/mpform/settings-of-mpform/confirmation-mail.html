@@ -107,13 +107,15 @@
     <dd>This is the Subject header line of the email.
         There is a field type <strong>E-Mail Subject (Suffix)</strong>.
         If you use this type of field in your form, its content will be appeded to the content of the
-        subject defined here in the backend. </dd>
+        subject defined here in the backend. You can insert place holders of the form {FIELD42}, which
+       let you insert the value submitted by that field for the place holder.</dd>
     <dt>Text</dt>
     <dd>This is the real content of the email. Place holders will be replaced by the content.
         {DATA} stands for the entire user input.
         {REFERER} contains the page from where the user has accessed the form, {DATE} is the current date,
         {USER} contains the user name in case the user is registered and logged into website baker
-        and {EMAIL} is the From address as it is adjusted above. <br />
+        and {EMAIL} is the From address as it is adjusted above. You can insert place holders of the form
+        {FIELD42}, which let you insert the value submitted by that field for the place holder.<br />
     </dd>
     <dt>Success Email Style</dt>
     <dd>Here you can define CSS classes to be applied in the HTML version of the email.
