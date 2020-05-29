@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.33
+ * @version             1.3.34
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2020, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -65,7 +65,8 @@ function private_function_for_field(
 function private_function_before_email(
                             $section_id,
                             &$html_data_user,
-                            &$html_data_site
+                            &$html_data_site,
+                            $mpform_fields
                         ) {
 /*
     // example how to use: append a value extracted from the session to the list of submitted fields
@@ -76,6 +77,7 @@ function private_function_before_email(
             .= $_SESSION['study_id'] . "<br />\n";
         return true;
     }
+   // you can also re-write $html_data_user and $html_data_site using the $mpform_fields array
 */
     return true;
 }

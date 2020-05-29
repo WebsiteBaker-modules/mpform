@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.33
+ * @version             1.3.34
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2020, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -983,7 +983,7 @@ if (!function_exists('eval_form')) {
             $email_subject = str_replace("{FIELD".$mpfid."}", $mpfval, $email_subject);
             $success_email_subject = str_replace("{FIELD".$mpfid."}", $mpfval, $success_email_subject);
             $email_text = str_replace("{FIELD".$mpfid."}", $mpfval, $email_text);
-            $success_email_text = str_replace("{FIELD".$mpfid."}", $mpfval, $success_email_txt);
+            $success_email_text = str_replace("{FIELD".$mpfid."}", $mpfval, $success_email_text);
         }
         $mpform_fields = $tmp_mpform_fields;
         // Check if the user forgot to enter values into all the required fields
