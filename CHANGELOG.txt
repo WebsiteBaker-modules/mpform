@@ -5,6 +5,9 @@ MODULE VERSION HISTORY
 ======================
 
 ------------------------------------------------------------------------------------------------------------------------
+        *** 1.3.34 (Martin Hecht: 29-May-2020)
+        fix typo in previous version (thanks to florian)
+
         *** 1.3.33 (Martin Hecht: 28-May-2020)
         replace {FIELD1}... placeholders in email body
         added backticks in row 154 (thanks to Bianka)

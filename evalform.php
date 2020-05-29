@@ -983,7 +983,7 @@ if (!function_exists('eval_form')) {
             $email_subject = str_replace("{FIELD".$mpfid."}", $mpfval, $email_subject);
             $success_email_subject = str_replace("{FIELD".$mpfid."}", $mpfval, $success_email_subject);
             $email_text = str_replace("{FIELD".$mpfid."}", $mpfval, $email_text);
-            $success_email_text = str_replace("{FIELD".$mpfid."}", $mpfval, $success_email_txt);
+            $success_email_text = str_replace("{FIELD".$mpfid."}", $mpfval, $success_email_text);
         }
         $mpform_fields = $tmp_mpform_fields;
         // Check if the user forgot to enter values into all the required fields
