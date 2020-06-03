@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.34
+ * @version             1.3.35
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2020, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -266,8 +266,8 @@ if($query_submissions->numRows() > 0) {
                 'field_submission_id'    => $submission['submission_id'],
                 'submissionIDKEY'        => (method_exists( $admin, 'getIDKEY')
                                               && (!(defined('MPFORM_SKIP_IDKEY')&&(MPFORM_SKIP_IDKEY))))
-                                            ? $admin->getIDKEY($field['submission_id'])
-                                            : $field['submission_id'],
+                                            ? $admin->getIDKEY($submission['submission_id'])
+                                            : $submission['submission_id'],
                 'field_submission_when'  => date(TIME_FORMAT.', '.DATE_FORMAT,
                                                  $submission['submitted_when']-DEFAULT_TIMEZONE+TIMEZONE),
             )

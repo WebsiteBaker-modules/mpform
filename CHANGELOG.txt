@@ -5,6 +5,12 @@ MODULE VERSION HISTORY
 ======================
 
 ------------------------------------------------------------------------------------------------------------------------
+        *** 1.3.35 (Martin Hecht: 03-Jun-2020)
+        another fix to the previous versions (thanks to freesbee)
+        fix a warning in the backend (thanks to florian)
+        improve layout of the backend: enlarge background picture
+        update documentation about place holders in email template
+
         *** 1.3.34 (Martin Hecht: 29-May-2020)
         fix typo in previous version (thanks to florian)
 

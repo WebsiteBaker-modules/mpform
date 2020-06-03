@@ -7,7 +7,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.34
+ * @version             1.3.35
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2020, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -117,7 +117,8 @@ $LANG['backend'] = array(
                                    . '&nbsp; {USER} - Name des '
                                    . 'angemeldeten Benutzers<br />'
                                    . '&nbsp; {EMAIL} - eingegebene Email oder die '
-                                   . 'des angemeldeten Benutzers<br />',
+                                   . 'des angemeldeten Benutzers<br />'
+                                   . '&nbsp; {FIELD1}... - Wert des jeweiligen Feldes <br />',
     'des_success_email_text'      => 'Inhalt der Best&auml;tigungs-email  '
                                    . 'an den Absender',
     'des_success_email_css'       => 'CSS f&uuml;r die Best&auml;tigungs-email  '

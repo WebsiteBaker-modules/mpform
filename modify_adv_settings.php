@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.34
+ * @version             1.3.35
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2020, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -102,7 +102,7 @@ $settings['value_option_separator']=
 foreach($settings as $key => $value) {
     $tpl->set_var($key, $value);
 }
-$sCaptchaType = ''
+$sCaptchaType = '';
 if(class_exists('Settings') && defined('WBCE_VERSION')){
         $sCaptchaType = Settings::Get('captcha_type', '');
 }

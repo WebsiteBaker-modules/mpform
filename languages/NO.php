@@ -7,7 +7,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.34
+ * @version             1.3.35
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2020, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -113,7 +113,8 @@ $LANG['backend'] = array(
                                    . '&nbsp; {DATE} - date and time<br />'
                                    . '&nbsp; {USER} - name of the logged on user<br />'
                                    . '&nbsp; {EMAIL} - Email entered in the form or '
-                                   . 'the one of the logged on user<br />',
+                                   . 'the one of the logged on user<br />'
+                                   . '&nbsp; {FIELD1}... - value of the field<br />',
     'des_success_email_text'      => 'Content of the confirmation email  '
                                    . 'to the sender',
     'des_email_text'              => 'Content of the email to the site owner',
