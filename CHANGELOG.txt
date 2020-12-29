@@ -5,6 +5,9 @@ MODULE VERSION HISTORY
 ======================
 
 ------------------------------------------------------------------------------------------------------------------------
+        *** 1.3.36 (Martin Hecht: 29-Dec-2020)
+        allow email receipients to be a required field
+
         *** 1.3.35 (Martin Hecht: 03-Jun-2020)
         another fix to the previous versions (thanks to freesbee)
         fix a warning in the backend (thanks to florian)

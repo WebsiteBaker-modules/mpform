@@ -6,7 +6,7 @@
  *
  * @category            page
  * @module              mpform
- * @version             1.3.35
+ * @version             1.3.36
  * @authors             Frank Heyne, NorHei(heimsath.org), Christian M. Stefan (Stefek), Martin Hecht (mrbaseman) and others
  * @copyright           (c) 2009 - 2020, Website Baker Org. e.V.
  * @url                 https://github.com/WebsiteBaker-modules/mpform
@@ -665,6 +665,7 @@ if (!function_exists('eval_form')) {
                             if ($mailto == "") {
                                 $mailto = $recip;
                             }
+                            $curr_field = "'".mpform_escape_string($mailto)."'";
 
                         } elseif ($field['type'] == 'email_subj') {
                             $email_subject .= " ". $field_value;
